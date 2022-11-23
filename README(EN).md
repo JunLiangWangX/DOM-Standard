@@ -1,4 +1,4 @@
-<p align="center"><img src='./resource/logo.svg'></p>
+<p align="center"><img src='./resource/logo(EN).svg'></p>
 
 <p align="center">
   <a href="https://github.com/JunLiangWangX/DOM-Standard" target="_blank">
@@ -25,12 +25,12 @@
 </p>
 
 <p align="center">
-    <a href="https://wangjunliang.com/DOM-Standard/"><img src='./resource/domestic-site-btn.svg'></a>
-    <a href="https://junliangwangx.github.io/DOM-Standard/"><img src='./resource/foreign-sites-btn.svg'></a>
+    <a href="https://wangjunliang.com/DOM-Standard/"><img src='./resource/domestic-site-btn(EN).svg'></a>
+    <a href="https://junliangwangx.github.io/DOM-Standard/"><img src='./resource/foreign-sites-btn(EN).svg'></a>
 </p>
 <p align='center'><a href='./README.md'>中文</a> &nbsp&nbsp&nbsp <a href='./README(EN).md'>English</a></p>
 
-## 海内存知己，天涯若比邻
+## Contributors
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -54,16 +54,19 @@
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-本项目遵循  [all-contributors](https://github.com/all-contributors/all-contributors)  规范，欢迎任何形式的贡献！
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification, and contributions of any kind are welcome!
 
-## 如何贡献
-如果您发现了项目bug、翻译错误或者有兴趣参与翻译工作、提出建议，请您遵循以下规则：
+## How to contribute
 
-- 先提交一个[issue](https://github.com/JunLiangWangX/DOM-Standard/issues)，在提交 issue 之前，请搜索相关内容是否已被提出
-- fork 一份到自己的项目下，不要直接在仓库下建分支。
-- commit 信息请描写准确，并且必须关联相关的issue
-- 确保 PR 是提交到 `main` 分支，而不是其他分支
-- 如若您觉得本地编译过于复杂，提交 PR 后能在check栏看到编译详情
+If you find project bugs, translation errors, or are interested in participating in translation work and making suggestions, please follow the rules below:
 
-## 本地构建
-本地构建预览项目参考[WHATWG贡献指南](https://github.com/whatwg/meta/blob/main/CONTRIBUTING.md#building)
+- Submit an [issue](https://github.com/JunLiangWangX/DOM-Standard/issues)，before submitting an issue, please search whether the relevant content has been raised
+- Fork a copy to your own project, don't build a branch directly under the warehouse.
+- commit Please describe the commit message accurately and must be associated with the relevant issue
+- Please describe the commit message accurately and must be associated with the relevant issue
+- Make sure the PR is committed to the `main` branch, not another branch
+- If you think the local compilation is too complicated, you can see the compilation details in the check column after submitting the PR
+
+## Build locally
+
+Local Build Preview Project Reference[WHATWG Contributor Guidelines](https://github.com/whatwg/meta/blob/main/CONTRIBUTING.md#building)
