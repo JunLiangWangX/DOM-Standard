@@ -1,4 +1,6 @@
-<p align="center"><img src='./resource/logo.svg'></p>
+<p align="center">
+  <img src='./resource/logo.svg'>
+</p>
 
 <p align="center">
   <a href="https://github.com/JunLiangWangX/DOM-Standard" target="_blank">
