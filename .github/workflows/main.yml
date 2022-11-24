@@ -16,16 +16,16 @@ jobs:
            destination: public/index.html
            parameters: --md-Text-Macro=COMMIT-SHA LOCAL COPY
       
-      - name: Publish HTML to GitHub Pages
-        if: ${{ github.event_name == 'push'&&success()}}
+      - if: ${{ github.event_name == 'push'&&success()}}
+        name: Publish HTML to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.SECRET }}
           publish_dir: ./public
           enable_jekyll: false
           
-      - name: deploy file to server
-        if: ${{ github.event_name == 'push'&&success()}}
+      - if: ${{ github.event_name == 'push'&&success()}}
+        name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4 
         with:  
           username: 'root'
