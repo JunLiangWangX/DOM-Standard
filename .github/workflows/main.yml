@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Output to HTML
+        uses: JunLiangWangX/bikeshed-action@master
+        with:
+           source: dom.bs
+           destination: public/index.html
+           parameters: --md-Text-Macro=COMMIT-SHA LOCAL COPY
+      
+      - name: Publish HTML to GitHub Pages
+        if: github.event_name == "push"&&success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.SECRET }}
+          publish_dir: ./public
+          enable_jekyll: false
+          
+      - name: deploy file to server
+        if: github.event_name == "push"&&success()
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4 
+        with:  
+          username: 'root'
+          server: '${{ secrets.SERVER_IP }}'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} # 引用之前创建好的secret
+          local_path: './public/*'  # 对应我们项目build的文件夹路径
+          remote_path: '/home/www/htdocs/wangjunliang/DOM-Standard'
