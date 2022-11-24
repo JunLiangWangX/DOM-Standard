@@ -1,7 +1,11 @@
 name: Deploy
-
-on: [push,pull_request]
-
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -16,7 +20,7 @@ jobs:
            destination: public/index.html
            parameters: --md-Text-Macro=COMMIT-SHA LOCAL COPY
       
-      - if: ${{ github.event_name == 'push'&&success()}}
+      - if: ${{ github.event_name == 'push' && success() }}
         name: Publish HTML to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -24,7 +28,7 @@ jobs:
           publish_dir: ./public
           enable_jekyll: false
           
-      - if: ${{ github.event_name == 'push'&&success()}}
+      - if: ${{ github.event_name == 'push' && success() }}
         name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4 
         with:  
