@@ -31,6 +31,7 @@
 <p align='center'><a href='./README.md'>中文</a> &nbsp&nbsp&nbsp <a href='./README(EN).md'>English</a></p>
 
 ## 海内存知己，天涯若比邻
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -39,6 +40,7 @@
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 本项目遵循  [all-contributors](https://github.com/all-contributors/all-contributors)  规范，欢迎任何形式的贡献！
 
 ## 如何贡献
