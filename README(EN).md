@@ -34,21 +34,6 @@
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href="http://wangjunliang.com"><img src="https://avatars.githubusercontent.com/u/40155337?v=4?s=100" width="100px;" alt="JunLiangWang"/><br /><sub><b>JunLiangWang</b></sub></a><br /><a href="#projectManagement-JunLiangWangX" title="Project Management">📆</a></td>
-      <td align="center"><a href="https://github.com/SuperCoolEngineer"><img src="https://avatars.githubusercontent.com/u/116628393?v=4?s=100" width="100px;" alt="SuperCoolEngineer"/><br /><sub><b>SuperCoolEngineer</b></sub></a><br /><a href="#projectManagement-SuperCoolEngineer" title="Project Management">📆</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
