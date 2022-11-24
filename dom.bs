@@ -1,10 +1,11 @@
 <pre class=metadata>
 Group: WHATWG
+Title:DOM标准
 H1: DOM
 Shortname: dom
 Text Macro: TWITTER thedomstandard
 Text Macro: LATESTRD 2022-06
-Abstract: DOM defines a platform-neutral model for events, aborting activities, and node trees.
+Abstract: DOM标准定义了与实现平台无关的evnts、aborting activities和node trees模型
 Translation: ja https://triple-underscore.github.io/DOM4-ja.html
 Translate IDs: slottable slotable
 Indent: 1
