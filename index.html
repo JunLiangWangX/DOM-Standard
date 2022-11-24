@@ -34,6 +34,7 @@ a[href].issue-return {
      <dt>参与贡献:
      <dd><a href="https://github.com/whatwg/dom">GitHub whatwg/dom</a> (<a href="https://github.com/whatwg/dom/issues/new">new issue</a>, <a href="https://github.com/whatwg/dom/issues">open issues</a>)
      <dd><a href="https://whatwg.org/chat">Chat on Matrix</a>
+     <dd><a href="https://github.com/JunLiangWangX/DOM-Standard">简体中文翻译(非规范)</a>
      <dt>提交历史:
      <dd><a href="https://github.com/whatwg/dom/commits">GitHub whatwg/dom/commits</a>
      <dd><a copy href="/commit-snapshots/LOCAL" id="commit-snapshot-link">Snapshot as of this commit</a>
@@ -57,7 +58,7 @@ a[href].issue-return {
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li>
-     <a href="#infrastructure"><span class="secno">1</span> <span class="content">Infrastructure</span></a>
+     <a href="#infrastructure"><span class="secno">1</span> <span class="content">基础设施</span></a>
      <ol class="toc">
       <li><a href="#trees"><span class="secno">1.1</span> <span class="content">Trees</span></a>
       <li><a href="#ordered-sets"><span class="secno">1.2</span> <span class="content">Ordered sets</span></a>
@@ -201,11 +202,10 @@ APIs</span></a>
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="infrastructure"><span class="secno">1. </span><span class="content">Infrastructure</span><span id="terminology"></span><span id="dependencies"></span><a class="self-link" href="#infrastructure"></a></h2>
-   <p>This specification depends on the Infra Standard. <a data-link-type="biblio" href="#biblio-infra">[INFRA]</a> </p>
-   <p>Some of the terms used in this specification are defined in <cite>Encoding</cite>, <cite>Selectors</cite>, <cite>Web IDL</cite>, <cite>XML</cite>, and <cite>Namespaces in XML</cite>. <a data-link-type="biblio" href="#biblio-encoding">[ENCODING]</a> <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> <a data-link-type="biblio" href="#biblio-webidl">[WEBIDL]</a> <a data-link-type="biblio" href="#biblio-xml">[XML]</a> <a data-link-type="biblio" href="#biblio-xml-names">[XML-NAMES]</a> </p>
-   <p>When extensions are needed, the DOM Standard can be updated accordingly, or a new standard
-can be written that hooks into the provided extensibility hooks for <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="other applicable specifications" id="other-applicable-specifications">applicable specifications</dfn>. </p>
+   <h2 class="heading settled" data-level="1" id="infrastructure"><span class="secno">1. </span><span class="content">基础设施</span><span id="terminology"></span><span id="dependencies"></span><a class="self-link" href="#infrastructure"></a></h2>
+   <p>此规范依赖于Infra标准. <a data-link-type="biblio" href="#biblio-infra">[INFRA]</a> </p>
+   <p>本规范中使用的一些术语在<cite>Encoding</cite>, <cite>Selectors</cite>, <cite>Web IDL</cite>, <cite>XML</cite>, 以及 <cite>XML的命名空间</cite>中定义. <a data-link-type="biblio" href="#biblio-encoding">[ENCODING]</a> <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> <a data-link-type="biblio" href="#biblio-webidl">[WEBIDL]</a> <a data-link-type="biblio" href="#biblio-xml">[XML]</a> <a data-link-type="biblio" href="#biblio-xml-names">[XML-NAMES]</a> </p>
+   <p>当需要扩展时，可以相应地更新 DOM 标准，或者可以编写一个新标准来挂钩到 <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="other applicable specifications" id="other-applicable-specifications">适用规范</dfn>提供的可扩展性挂钩中. </p>
    <h3 class="heading settled" data-level="1.1" id="trees"><span class="secno">1.1. </span><span class="content">Trees</span><a class="self-link" href="#trees"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-tree">tree</dfn> is a finite hierarchical tree structure. In <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-tree-order">tree order</dfn> is preorder, depth-first traversal of a <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree">tree</a>. </p>
    <p>An object that <dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export data-lt="participate|participate in a tree|participates in a tree" id="concept-tree-participate">participates</dfn> in a <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①">tree</a> has a <dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-parent">parent</dfn>, which is either
