@@ -53,7 +53,7 @@ spec:html; type:element
 <p>此规范依赖于Infra标准. [[!INFRA]]
 
 <p>本规范中使用的一些术语在<cite>Encoding</cite>,
-<cite>Selectors</cite>, <cite>Web IDL</cite>, <cite>XML</cite>, 以及 <cite>XML的命名空间</cite>中定义.
+<cite>Selectors</cite>, <cite>Web IDL</cite>, <cite>XML</cite>, 以及 <cite>XML的命名空间</cite>中定义。
 [[!ENCODING]]
 [[!SELECTORS4]]
 [[!WEBIDL]]
@@ -61,23 +61,21 @@ spec:html; type:element
 [[!XML-NAMES]]
 
 <p>当需要扩展时，可以相应地更新 DOM 标准，或者可以编写一个新标准来挂钩到
-<dfn export lt="other applicable specifications">适用规范</dfn>提供的可扩展性挂钩中.
+<dfn export lt="other applicable specifications">适用规范</dfn>提供的可扩展性挂钩中。
 <!-- https://www.w3.org/mid/17E341CD-E790-422C-9F9A-69347EE01CEB@iki.fi -->
 
 <h3 id=trees>Trees</h3> <!-- Sorry reddit, this is not /r/trees -->
 
-<p>A <dfn export id=concept-tree>tree</dfn> is a finite hierarchical tree structure. In
-<dfn export id=concept-tree-order>tree order</dfn> is preorder, depth-first traversal of a
-<a>tree</a>.
+<p><dfn export id=concept-tree>tree</dfn>是一种有限的分层树结构。<a>tree</a>的遍历
+<dfn export id=concept-tree-order lt="tree order">顺序</dfn>采用深度优先先序遍历。
 <!-- https://en.wikipedia.org/wiki/Depth-first_search -->
 
-<p>An object that
-<dfn export for=tree id=concept-tree-participate lt="participate|participate in a tree|participates in a tree">participates</dfn>
-in a <a>tree</a> has a <dfn export for=tree id=concept-tree-parent>parent</dfn>, which is either
-null or an object, and has
-<dfn export for=tree id=concept-tree-child lt="child|children">children</dfn>, which is an
-<a>ordered set</a> of objects. An object <var>A</var> whose <a for=tree>parent</a> is object
-<var>B</var> is a <a for=tree>child</a> of <var>B</var>.
+<p>
+<dfn export for=tree id=concept-tree-participate lt="participate|participate in a tree|participates in a tree">参与</dfn>
+<a>tree</a>的对象有一个<dfn export for=tree id=concept-tree-parent>parent</dfn>，他存放父对象，是 null 或一个对象；
+还有一个
+<dfn export for=tree id=concept-tree-child lt="child|children">children</dfn>，存放子对象，它是一组
+<a data-lt="ordered set">有序</a>的对象。对象B是对象A的父对象，那么对象A是对象B的子对象。
 
 <p>The <dfn export for=tree id=concept-tree-root>root</dfn> of an object is itself, if its
 <a for=tree>parent</a> is null, or else it is the <a for=tree>root</a> of its
@@ -87,7 +85,7 @@ null or an object, and has
 An object <var>A</var> is called a
 <dfn export for=tree id=concept-tree-descendant>descendant</dfn> of an object
 <var>B</var>, if either <var>A</var> is a
-<a for=tree>child</a> of <var>B</var> or
+<a for=tree>child</a> of <var>B</var> or  
 <var>A</var> is a <a for=tree>child</a> of an
 object <var ignore>C</var> that is a
 <a>descendant</a> of <var>B</var>.
