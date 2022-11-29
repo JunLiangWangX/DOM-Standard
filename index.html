@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-11-25">2022-11-25</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-11-29">2022-11-29</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -7871,13 +7871,16 @@ are: </p>
    </dl>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-closest"><code>closest(<var>selectors</var>)</code></dfn> method steps are: </p>
    <ol>
-    <li>Let <var>s</var> be the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#parse-a-selector" id="ref-for-parse-a-selector①">parse a selector</a> from <var>selectors</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> 
-    <li>If <var>s</var> is failure, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑤⑤">throw</a> a
- "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror①">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑥⑦">DOMException</a></code>. 
-    <li>Let <var>elements</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪②">this</a>’s <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor⑥">inclusive ancestors</a> that are <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⓪⑥">elements</a>, in reverse <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order②⓪">tree order</a>. 
-    <li>For each <var>element</var> in <var>elements</var>, if <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-an-element" id="ref-for-match-a-selector-against-an-element">match a selector against an element</a>, using <var>s</var>, <var>element</var>, and <a data-link-type="dfn" href="https://www.w3.org/TR/selectors-4/#scope-element" id="ref-for-scope-element">:scope element</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪③">this</a>,
- returns success, return <var>element</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> 
-    <li>Return null. 
+    <li>
+     <p>Let <var>s</var> be the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#parse-a-selector" id="ref-for-parse-a-selector①">parse a selector</a> from <var>selectors</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> </p>
+    <li>
+     <p>If <var>s</var> is failure, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑤⑤">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror①">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑥⑦">DOMException</a></code>. </p>
+    <li>
+     <p>Let <var>elements</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪②">this</a>’s <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor⑥">inclusive ancestors</a> that are <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⓪⑥">elements</a>, in reverse <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order②⓪">tree order</a>. </p>
+    <li>
+     <p>For each <var>element</var> in <var>elements</var>, if <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-an-element" id="ref-for-match-a-selector-against-an-element">match a selector against an element</a>, using <var>s</var>, <var>element</var>, and <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#scoping-root" id="ref-for-scoping-root①">scoping root</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪③">this</a>, returns success, return <var>element</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> </p>
+    <li>
+     <p>Return null. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-matches"><code>matches(<var>selectors</var>)</code></dfn> and <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-webkitmatchesselector"><code>webkitMatchesSelector(<var>selectors</var>)</code></dfn> method steps
 are: </p>
@@ -7887,7 +7890,7 @@ are: </p>
     <li>
      <p>If <var>s</var> is failure, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑤⑥">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror②">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑥⑧">DOMException</a></code>. </p>
     <li>
-     <p>If the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-an-element" id="ref-for-match-a-selector-against-an-element①">match a selector against an element</a>, using <var>s</var>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪④">this</a>, and <a data-link-type="dfn" href="https://www.w3.org/TR/selectors-4/#scope-element" id="ref-for-scope-element①">:scope element</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪⑤">this</a>, returns success, then return true; otherwise,
+     <p>If the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-an-element" id="ref-for-match-a-selector-against-an-element①">match a selector against an element</a>, using <var>s</var>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪④">this</a>, and <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#scoping-root" id="ref-for-scoping-root②">scoping root</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪⑤">this</a>, returns success, then return true; otherwise,
  return false. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> </p>
    </ol>
    <hr>
@@ -10094,7 +10097,7 @@ these steps: </p>
      <p>Return <var>s</var>. </p>
    </ol>
    <hr>
-   <p class="note" role="note">The <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/DOM-Parsing/#dfn-createcontextualfragment-fragment" id="ref-for-dfn-createcontextualfragment-fragment">createContextualFragment()</a></code>, <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view-1/#dom-range-getclientrects" id="ref-for-dom-range-getclientrects">getClientRects()</a></code>,
+   <p class="note" role="note">The <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/DOM-Parsing/#dom-range-createcontextualfragment" id="ref-for-dom-range-createcontextualfragment">createContextualFragment()</a></code>, <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view-1/#dom-range-getclientrects" id="ref-for-dom-range-getclientrects">getClientRects()</a></code>,
 and <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view-1/#dom-range-getboundingclientrect" id="ref-for-dom-range-getboundingclientrect">getBoundingClientRect()</a></code> methods are defined in other specifications. <a data-link-type="biblio" href="#biblio-dom-parsing">[DOM-Parsing]</a> <a data-link-type="biblio" href="#biblio-cssom-view">[CSSOM-VIEW]</a> </p>
    <h2 class="heading settled" data-level="6" id="traversal"><span class="secno">6. </span><span class="content">Traversal</span><a class="self-link" href="#traversal"></a></h2>
    <p><code class="idl"><a data-link-type="idl" href="#nodeiterator" id="ref-for-nodeiterator③">NodeIterator</a></code> and <code class="idl"><a data-link-type="idl" href="#treewalker" id="ref-for-treewalker②">TreeWalker</a></code> objects can be used to filter and traverse <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①⑨③">node</a> <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree②④">trees</a>. </p>
@@ -12944,10 +12947,10 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-NT-Char">4.5. Interface Document</a> <a href="#ref-for-NT-Char①">(2)</a> <a href="#ref-for-NT-Char②">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-createcontextualfragment-fragment">
-   <a href="https://w3c.github.io/DOM-Parsing/#dfn-createcontextualfragment-fragment">https://w3c.github.io/DOM-Parsing/#dfn-createcontextualfragment-fragment</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-dom-range-createcontextualfragment">
+   <a href="https://w3c.github.io/DOM-Parsing/#dom-range-createcontextualfragment">https://w3c.github.io/DOM-Parsing/#dom-range-createcontextualfragment</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-createcontextualfragment-fragment">5.5. Interface Range</a>
+    <li><a href="#ref-for-dom-range-createcontextualfragment">5.5. Interface Range</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-NT-Name">
@@ -13802,12 +13805,6 @@ APIs</a>
     <li><a href="#ref-for-defined-pseudo">4.9. Interface Element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-scope-element">
-   <a href="https://www.w3.org/TR/selectors-4/#scope-element">https://www.w3.org/TR/selectors-4/#scope-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-scope-element">4.9. Interface Element</a> <a href="#ref-for-scope-element①">(2)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-match-a-selector-against-a-tree">
    <a href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree">https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree</a><b>Referenced in:</b>
    <ul>
@@ -13831,6 +13828,7 @@ APIs</a>
    <a href="https://drafts.csswg.org/selectors-4/#scoping-root">https://drafts.csswg.org/selectors-4/#scoping-root</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-scoping-root">1.3. Selectors</a>
+    <li><a href="#ref-for-scoping-root①">4.9. Interface Element</a> <a href="#ref-for-scoping-root②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-serviceworkerglobalscope">
@@ -14453,7 +14451,7 @@ APIs</a>
      <li><span class="dfn-paneled" id="term-for-devicemotion①">DeviceOrientationEvent</span>
      <li><span class="dfn-paneled" id="term-for-idl-def-touchevent">TouchEvent</span>
      <li><span class="dfn-paneled" id="term-for-NT-Char">char</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-createcontextualfragment-fragment">createContextualFragment()</span>
+     <li><span class="dfn-paneled" id="term-for-dom-range-createcontextualfragment">createContextualFragment()</span>
      <li><span class="dfn-paneled" id="term-for-NT-Name">name</span>
      <li><span class="dfn-paneled" id="term-for-NT-PubidChar">pubidchar</span>
      <li><span class="dfn-paneled" id="term-for-NT-QName">qname</span>
@@ -14604,7 +14602,6 @@ APIs</a>
     <a data-link-type="biblio">[SELECTORS4]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-defined-pseudo">:defined</span>
-     <li><span class="dfn-paneled" id="term-for-scope-element">:scope element</span>
      <li><span class="dfn-paneled" id="term-for-match-a-selector-against-a-tree">match a selector against a tree</span>
      <li><span class="dfn-paneled" id="term-for-match-a-selector-against-an-element">match a selector against an element</span>
      <li><span class="dfn-paneled" id="term-for-parse-a-selector">parse a selector</span>
