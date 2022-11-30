@@ -72,80 +72,56 @@ spec:html; type:element
 
 <p>
 <dfn export for=tree id=concept-tree-participate lt="participate|participate in a tree|participates in a tree">参与</dfn>
-<a>tree</a>的对象有一个<dfn export for=tree id=concept-tree-parent>parent</dfn>，他存放父对象，是 null 或一个对象；
+<a>tree</a>的对象有一个<dfn export for=tree id=concept-tree-parent>parent</dfn>，它存放父对象，是 null 或一个对象；
 还有一个
 <dfn export for=tree id=concept-tree-child lt="child|children">children</dfn>，存放子对象，它是一组
 <a data-lt="ordered set">有序</a>的对象。对象B是对象A的父对象，那么对象A是对象B的子对象。
 
-<p>The <dfn export for=tree id=concept-tree-root>root</dfn> of an object is itself, if its
-<a for=tree>parent</a> is null, or else it is the <a for=tree>root</a> of its
-<a for=tree>parent</a>. The <a for=tree>root</a> of a <a>tree</a> is any object
-<a for=tree>participating</a> in that <a>tree</a> whose <a for=tree>parent</a> is null.
+<p>一个对象的<dfn export for=tree id=concept-tree-root lt="root">根</dfn>是它自己，如果它的
+<a for=tree>parent</a>不为空，它就是它的<a for=tree lt="parent">父对象</a>的<a for=tree  lt="root">根</a>。
+<a>tree</a>的<a for=tree lt="root">根</a>是<a for=tree lt="participate">参与</a>该<a>tree</a>的其<a for=tree>parent</a>为空的对象。
 
-An object <var>A</var> is called a
-<dfn export for=tree id=concept-tree-descendant>descendant</dfn> of an object
-<var>B</var>, if either <var>A</var> is a
-<a for=tree>child</a> of <var>B</var> or  
-<var>A</var> is a <a for=tree>child</a> of an
-object <var ignore>C</var> that is a
-<a>descendant</a> of <var>B</var>.
+对象<var>A</var>称为对象<var>B</var>的
+<dfn export for=tree id=concept-tree-descendant lt="descendant">后代</dfn>，
+如果对象<var>A</var>是对象<var ignore>C</var>的<a for=tree lt="child">孩子</a>，
+而对象<var>C</var>则是<var>B</var>的<a lt="descendant">后代</a>。
 
-An
-<dfn export for=tree id=concept-tree-inclusive-descendant>inclusive descendant</dfn> is
-an object or one of its
-<a>descendants</a>.
+<dfn export for=tree id=concept-tree-inclusive-descendant lt="inclusive descendant">包容性后代</dfn>是一个对象或其
+<a lt="descendants">后代</a>之一。
 
-An object <var>A</var> is called an
-<dfn export for=tree id=concept-tree-ancestor>ancestor</dfn> of an object
-<var>B</var> if and only if <var>B</var> is a
-<a>descendant</a> of
-<var>A</var>.
+当且仅当<var>B</var>是<var>A</var>的<a lt="descendant">后代</a>，<var>A</var>才能被称为<var>B</var>的
+<dfn export for=tree id=concept-tree-ancestor lt="ancestor">祖先</dfn>。
 
-An <dfn export for=tree id=concept-tree-inclusive-ancestor>inclusive ancestor</dfn> is
-an object or one of its <a>ancestors</a>.
+<dfn export for=tree id=concept-tree-inclusive-ancestor lt="inclusive ancestor">包容性祖先</dfn>
+是一个对象或其<a lt="ancestors">祖先</a>之一。
 
-An object <var>A</var> is called a
-<dfn export for=tree id=concept-tree-sibling>sibling</dfn> of an object
-<var>B</var>, if and only if <var>B</var> and <var>A</var>
-share the same non-null <a for=tree>parent</a>.
+当且仅当<var>B</var>和<var>A</var>拥有相同的非空<a for=tree lt="parent">父对象</a>时，对象<var>A</var>才称为对象<var>B</var>的
+<dfn export for=tree id=concept-tree-sibling lt="sibling">兄弟</dfn>对象。
 
-An <dfn export for=tree id=concept-tree-inclusive-sibling>inclusive sibling</dfn> is an
-object or one of its <a for=tree>siblings</a>.
+<dfn export for=tree id=concept-tree-inclusive-sibling lt="inclusive sibling">包容性兄弟</dfn>是一个对象或其
+<a for=tree lt="siblings">兄弟</a>之一。
 
-An object <var>A</var> is
-<dfn export for=tree id=concept-tree-preceding>preceding</dfn> an object
-<var>B</var> if <var>A</var> and <var>B</var> are in the
-same <a>tree</a> and <var>A</var> comes
-before <var>B</var> in
-<a>tree order</a>.
+如果<var>A</var>和<var>B</var>在同一棵<a>tree</a>中并且<var>A</var>在<a lt="tree order">tree的顺序</a>中位于<var>B</var>的
+<dfn export for=tree id=concept-tree-preceding lt="preceding">前面</dfn>，
+则对象<var>A</var>在对象<var>B</var>之前。
 
-An object <var>A</var> is
-<dfn export for=tree id=concept-tree-following>following</dfn> an object
-<var>B</var> if <var>A</var> and <var>B</var> are in the
-same <a>tree</a> and <var>A</var> comes
-after <var>B</var> in
-<a>tree order</a>.
+如果<var>A</var>和<var>B</var>在同一棵<a>tree</a>中并且<var>A</var>在<a lt="tree order">tree的顺序</a>中位于<var>B</var>的
+<dfn export for=tree id=concept-tree-following lt="following">后面</dfn>，
+则对象<var>A</var>在对象<var>B</var>之后。
 
-<p>The <dfn export for=tree id=concept-tree-first-child>first child</dfn> of an object is its first
-<a for=tree>child</a> or null if it has no <a for=tree>children</a>.
+<p>对象的<dfn export for=tree id=concept-tree-first-child>first child</dfn>是它第一个<a for=tree lt="child">孩子</a>，
+如果没有<a for=tree lt="children">孩子</a>，则为 null 。
 
-<p>The <dfn export for=tree id=concept-tree-last-child>last child</dfn> of an object is its last
-<a for=tree>child</a> or null if it has no <a for=tree>children</a>.
+<p>对象的<dfn export for=tree id=concept-tree-last-child>last child</dfn>是它最后一个<a for=tree lt="child">孩子</a>，
+如果没有<a for=tree lt="children">孩子</a>，则为 null 。
 
-The <dfn export for=tree id=concept-tree-previous-sibling>previous sibling</dfn> of an
-object is its first <a>preceding</a>
-<a for=tree>sibling</a> or null if it has no
-<a>preceding</a>
-<a for=tree>sibling</a>.
+对象的<dfn export for=tree id=concept-tree-previous-sibling>previous sibling</dfn>是它第一个<a lt="preceding">前面</a>的<a for=tree lt="sibling">兄弟</a>，
+如果没有<a lt="preceding">前面</a>的<a for=tree lt="sibling">兄弟</a>则为 null 。
 
-The <dfn export for=tree id=concept-tree-next-sibling>next sibling</dfn> of an
-object is its first <a>following</a>
-<a for=tree>sibling</a> or null if it has no
-<a>following</a>
-<a for=tree>sibling</a>.
+对象的<dfn export for=tree id=concept-tree-next-sibling>next sibling</dfn>是它第一个<a lt="following">后面</a>的<a for=tree lt="sibling">兄弟</a>，
+如果没有<a lt="following">后面</a>的<a for=tree lt="sibling">兄弟</a>则为 null 。
 
-<p>The <dfn export for=tree id=concept-tree-index>index</dfn> of an object is its number of
-<a>preceding</a> <a for=tree>siblings</a>, or 0 if it has none.
+<p>对象的<dfn export for=tree id=concept-tree-index>index</dfn>是其<a lt="preceding">前面</a><a for=tree lt="sibling">兄弟</a>的数量，如果没有则为 0。
 
 
 <h3 id="ordered-sets">Ordered sets</h3>
