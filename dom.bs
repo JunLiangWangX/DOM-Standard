@@ -64,7 +64,7 @@ spec:html; type:element
 <dfn export lt="other applicable specifications">适用规范</dfn>提供的可扩展性挂钩中。
 <!-- https://www.w3.org/mid/17E341CD-E790-422C-9F9A-69347EE01CEB@iki.fi -->
 
-<h3 id=trees>Trees</h3> <!-- Sorry reddit, this is not /r/trees -->
+<h3 id=trees lt="trees">Trees：树</h3> <!-- Sorry reddit, this is not /r/trees -->
 
 <p><dfn export id=concept-tree>tree</dfn>是一种有限的分层树结构。<a>tree</a>的遍历
 <dfn export id=concept-tree-order lt="tree order">顺序</dfn>采用深度优先先序遍历。
@@ -110,39 +110,36 @@ spec:html; type:element
 则对象<var>A</var>在对象<var>B</var>之后。
 
 <p>对象的<dfn export for=tree id=concept-tree-first-child>first child</dfn>是它第一个<a for=tree lt="child">孩子</a>，
-如果没有<a for=tree lt="children">孩子</a>，则为 null 。
+如果没有<a for=tree lt="children">孩子</a>，则为null。
 
 <p>对象的<dfn export for=tree id=concept-tree-last-child>last child</dfn>是它最后一个<a for=tree lt="child">孩子</a>，
-如果没有<a for=tree lt="children">孩子</a>，则为 null 。
+如果没有<a for=tree lt="children">孩子</a>，则为null。
 
 对象的<dfn export for=tree id=concept-tree-previous-sibling>previous sibling</dfn>是它第一个<a lt="preceding">前面</a>的<a for=tree lt="sibling">兄弟</a>，
-如果没有<a lt="preceding">前面</a>的<a for=tree lt="sibling">兄弟</a>则为 null 。
+如果没有<a lt="preceding">前面</a>的<a for=tree lt="sibling">兄弟</a>则为null。
 
 对象的<dfn export for=tree id=concept-tree-next-sibling>next sibling</dfn>是它第一个<a lt="following">后面</a>的<a for=tree lt="sibling">兄弟</a>，
-如果没有<a lt="following">后面</a>的<a for=tree lt="sibling">兄弟</a>则为 null 。
+如果没有<a lt="following">后面</a>的<a for=tree lt="sibling">兄弟</a>则为null。
 
 <p>对象的<dfn export for=tree id=concept-tree-index>index</dfn>是其<a lt="preceding">前面</a><a for=tree lt="sibling">兄弟</a>的数量，如果没有则为 0。
 
 
-<h3 id="ordered-sets">Ordered sets</h3>
+<h3 id="ordered-sets" lt="ordered-sets">Ordered sets：有序集</h3>
 
-<p>The <dfn export id=concept-ordered-set-parser>ordered set parser</dfn> takes a string
-<var>input</var> and then runs these steps:
+<p><dfn export id=concept-ordered-set-parser lt="ordered set parser">有序集解析器</dfn>接受字符串输入，并且会运行以下步骤：
 
 <ol>
- <li><p>Let <var>inputTokens</var> be the result of
- <a lt="split on ASCII whitespace">splitting <var>input</var> on ASCII whitespace</a>.
+ <li><p>将<a lt="split on ASCII whitespace">输入字符串以空格拆分</a>，赋值给inputTokens。
 
- <li><p>Let <var>tokens</var> be a new <a>ordered set</a>.
+ <li><p>将tokens设置为新的<a lt="ordered set">有序集</a>。
+ 
+ <li><p><a for=list lt="For each">遍历</a>inputTokens中的token，将token<a for=set id="append" lt="append">添加</a>到tokens中。
 
- <li><p><a for=list>For each</a> <var>token</var> in <var>inputTokens</var>, <a for=set>append</a>
- <var>token</var> to <var>tokens</var>.
-
- <li>Return <var>tokens</var>.
+ <li>返回tokens。
 </ol>
 
-<p>The <dfn export id=concept-ordered-set-serializer>ordered set serializer</dfn> takes a
-<var>set</var> and returns the <a for=string>concatenation</a> of <var>set</var> using U+0020 SPACE.
+<p><dfn export id=concept-ordered-set-serializer lt="ordered set serializer">有序集序列化</dfn>将集合使用空格(unicode空格编码，U+0020)
+<a for=string lt="concatenate">串联为字符串</a>并以此作为返回值
 
 
 <h3 id=selectors>Selectors</h3>
