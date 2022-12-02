@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-11-30">2022-11-30</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-02">2022-12-02</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -60,8 +60,8 @@ a[href].issue-return {
     <li>
      <a href="#infrastructure"><span class="secno">1</span> <span class="content">基础设施</span></a>
      <ol class="toc">
-      <li><a href="#trees"><span class="secno">1.1</span> <span class="content">Trees</span></a>
-      <li><a href="#ordered-sets"><span class="secno">1.2</span> <span class="content">Ordered sets</span></a>
+      <li><a href="#trees"><span class="secno">1.1</span> <span class="content">Trees：树</span></a>
+      <li><a href="#ordered-sets"><span class="secno">1.2</span> <span class="content">Ordered sets：有序集</span></a>
       <li><a href="#selectors"><span class="secno">1.3</span> <span class="content">Selectors</span></a>
       <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a>
      </ol>
@@ -206,7 +206,7 @@ APIs</span></a>
    <p>此规范依赖于Infra标准. <a data-link-type="biblio" href="#biblio-infra">[INFRA]</a> </p>
    <p>本规范中使用的一些术语在<cite>Encoding</cite>, <cite>Selectors</cite>, <cite>Web IDL</cite>, <cite>XML</cite>, 以及 <cite>XML的命名空间</cite>中定义。 <a data-link-type="biblio" href="#biblio-encoding">[ENCODING]</a> <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> <a data-link-type="biblio" href="#biblio-webidl">[WEBIDL]</a> <a data-link-type="biblio" href="#biblio-xml">[XML]</a> <a data-link-type="biblio" href="#biblio-xml-names">[XML-NAMES]</a> </p>
    <p>当需要扩展时，可以相应地更新 DOM 标准，或者可以编写一个新标准来挂钩到 <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="other applicable specifications" id="other-applicable-specifications">适用规范</dfn>提供的可扩展性挂钩中。 </p>
-   <h3 class="heading settled" data-level="1.1" id="trees"><span class="secno">1.1. </span><span class="content">Trees</span><a class="self-link" href="#trees"></a></h3>
+   <h3 class="heading settled" data-level="1.1" data-lt="trees" id="trees"><span class="secno">1.1. </span><span class="content">Trees：树</span><a class="self-link" href="#trees"></a></h3>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-tree">tree</dfn>是一种有限的分层树结构。<a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree">tree</a>的遍历 <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="tree order" id="concept-tree-order">顺序</dfn>采用深度优先先序遍历。 </p>
    <p> <dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export data-lt="participate|participate in a tree|participates in a tree" id="concept-tree-participate">参与</dfn> <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①">tree</a>的对象有一个<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-parent">parent</dfn>，它存放父对象，是 null 或一个对象；
 还有一个 <dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export data-lt="child|children" id="concept-tree-child">children</dfn>，存放子对象，它是一组 <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">有序</a>的对象。对象B是对象A的父对象，那么对象A是对象B的子对象。 </p>
@@ -224,26 +224,26 @@ APIs</span></a>
    <p>如果<var>A</var>和<var>B</var>在同一棵<a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree⑤">tree</a>中并且<var>A</var>在<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order①">tree的顺序</a>中位于<var>B</var>的 <dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export data-lt="following" id="concept-tree-following">后面</dfn>，
 则对象<var>A</var>在对象<var>B</var>之后。</p>
    <p>对象的<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-first-child">first child</dfn>是它第一个<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child①">孩子</a>，
-如果没有<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②">孩子</a>，则为 null 。 </p>
+如果没有<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②">孩子</a>，则为null。 </p>
    <p>对象的<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-last-child">last child</dfn>是它最后一个<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child③">孩子</a>，
-如果没有<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child④">孩子</a>，则为 null 。 </p>
+如果没有<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child④">孩子</a>，则为null。 </p>
    <p>对象的<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-previous-sibling">previous sibling</dfn>是它第一个<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding">前面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①">兄弟</a>，
-如果没有<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding①">前面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling②">兄弟</a>则为 null 。</p>
+如果没有<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding①">前面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling②">兄弟</a>则为null。</p>
    <p>对象的<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-next-sibling">next sibling</dfn>是它第一个<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following">后面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling③">兄弟</a>，
-如果没有<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following①">后面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling④">兄弟</a>则为 null 。</p>
+如果没有<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following①">后面</a>的<a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling④">兄弟</a>则为null。</p>
    <p>对象的<dfn class="dfn-paneled" data-dfn-for="tree" data-dfn-type="dfn" data-export id="concept-tree-index">index</dfn>是其<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding②">前面</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑤">兄弟</a>的数量，如果没有则为 0。 </p>
-   <h3 class="heading settled" data-level="1.2" id="ordered-sets"><span class="secno">1.2. </span><span class="content">Ordered sets</span><a class="self-link" href="#ordered-sets"></a></h3>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-ordered-set-parser">ordered set parser</dfn> takes a string <var>input</var> and then runs these steps: </p>
+   <h3 class="heading settled" data-level="1.2" data-lt="ordered-sets" id="ordered-sets"><span class="secno">1.2. </span><span class="content">Ordered sets：有序集</span><a class="self-link" href="#ordered-sets"></a></h3>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="ordered set parser" id="concept-ordered-set-parser">有序集解析器</dfn>接受字符串输入，并且会运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>inputTokens</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#split-on-ascii-whitespace" id="ref-for-split-on-ascii-whitespace">splitting <var>input</var> on ASCII whitespace</a>. </p>
+     <p>将<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#split-on-ascii-whitespace" id="ref-for-split-on-ascii-whitespace">输入字符串以空格拆分</a>，赋值给inputTokens。 </p>
     <li>
-     <p>Let <var>tokens</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①">ordered set</a>. </p>
+     <p>将tokens设置为新的<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①">有序集</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>token</var> in <var>inputTokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append">append</a> <var>token</var> to <var>tokens</var>. </p>
-    <li>Return <var>tokens</var>. 
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">遍历</a>inputTokens中的token，将token<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="append">添加</a>到tokens中。 </p>
+    <li>返回tokens。 
    </ol>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-ordered-set-serializer">ordered set serializer</dfn> takes a <var>set</var> and returns the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-concatenate" id="ref-for-string-concatenate">concatenation</a> of <var>set</var> using U+0020 SPACE. </p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="ordered set serializer" id="concept-ordered-set-serializer">有序集序列化</dfn>将集合使用空格(unicode空格编码，U+0020) <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-concatenate" id="ref-for-string-concatenate">串联为字符串</a>并以此作为返回值 </p>
    <h3 class="heading settled" data-level="1.3" id="selectors"><span class="secno">1.3. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="scope-match-a-selectors-string">scope-match a selectors string</dfn> <var>selectors</var> against a <var>node</var>, run these steps: </p>
    <ol>
@@ -1970,7 +1970,7 @@ specified otherwise, its value is the empty set. </p>
     <li>
      <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted②">aborted</a>, then return. </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append①">Append</a> <var>algorithm</var> to <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms">abort algorithms</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append">Append</a> <var>algorithm</var> to <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms">abort algorithms</a>. </p>
    </ol>
    <p>To <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-remove">remove<a class="self-link" href="#abortsignal-remove"></a></dfn> an algorithm <var>algorithm</var> from an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑤">AbortSignal</a></code> <var>signal</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove②">remove</a> <var>algorithm</var> from <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms①">abort algorithms</a>. </p>
    <p class="note" role="note">The <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms②">abort algorithms</a> enable APIs with complex
@@ -2426,7 +2426,7 @@ steps: </p>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-a-slot-change">signal a slot change</dfn>, for a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slot</a> <var>slot</var>, run these steps: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append②">Append</a> <var>slot</var> to <var>slot</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent">relevant agent</a>’s <a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list">signal slots</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append①">Append</a> <var>slot</var> to <var>slot</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent">relevant agent</a>’s <a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list">signal slots</a>. </p>
     <li>
      <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask">Queue a mutation observer microtask</a>. </p>
    </ol>
@@ -2517,7 +2517,7 @@ algorithm is passed <var>insertedNode</var>, as indicated in the <a data-link-ty
       <li>
        <p><a data-link-type="dfn" href="#concept-node-adopt" id="ref-for-concept-node-adopt">Adopt</a> <var>node</var> into <var>parent</var>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document③">node document</a>. </p>
       <li>
-       <p>If <var>child</var> is null, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append③">append</a> <var>node</var> to <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②①">children</a>. </p>
+       <p>If <var>child</var> is null, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append②">append</a> <var>node</var> to <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②①">children</a>. </p>
       <li>
        <p>Otherwise, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-insert" id="ref-for-list-insert">insert</a> <var>node</var> into <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②②">children</a> before <var>child</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index②">index</a>. </p>
       <li>
@@ -4041,7 +4041,7 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
     <li>
      <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑨">this</a>’s <a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback③">callback</a> to <var>callback</var>. </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">Append</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⓪">this</a> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent①">relevant agent</a>’s <a data-link-type="dfn" href="#mutation-observer-list" id="ref-for-mutation-observer-list①">mutation observers</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append③">Append</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⓪">this</a> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent①">relevant agent</a>’s <a data-link-type="dfn" href="#mutation-observer-list" id="ref-for-mutation-observer-list①">mutation observers</a>. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export data-lt="observe(target, options)|observe(target)" id="dom-mutationobserver-observe"><code>observe(<var>target</var>, <var>options</var>)</code></dfn> method steps are: </p>
    <ol>
@@ -11086,7 +11086,7 @@ false. </p>
    "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror①⑦">InvalidCharacterError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑥">DOMException</a></code>. </p>
      </ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②①">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append⑤">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③②⓪">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②①">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③②⓪">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
     <li>
      <p>Run the <a data-link-type="dfn" href="#concept-dtl-update" id="ref-for-concept-dtl-update">update steps</a>. </p>
    </ol>
@@ -11123,7 +11123,7 @@ false. </p>
        <p>Return true. </p>
      </ol>
     <li>
-     <p>Otherwise, if <var>force</var> not given or is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append⑥">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③②④">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①⑤">token set</a>, run the <a data-link-type="dfn" href="#concept-dtl-update" id="ref-for-concept-dtl-update③">update steps</a>, and return true. </p>
+     <p>Otherwise, if <var>force</var> not given or is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append⑤">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③②④">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①⑤">token set</a>, run the <a data-link-type="dfn" href="#concept-dtl-update" id="ref-for-concept-dtl-update③">update steps</a>, and return true. </p>
     <li>
      <p>Return false. </p>
    </ol>
@@ -13459,12 +13459,12 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-set-append">
    <a href="https://infra.spec.whatwg.org/#set-append">https://infra.spec.whatwg.org/#set-append</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-set-append">1.2. Ordered sets</a>
-    <li><a href="#ref-for-set-append①">3.2. Interface AbortSignal</a>
-    <li><a href="#ref-for-set-append②">4.2.2.5. Signaling slot change</a>
-    <li><a href="#ref-for-set-append③">4.2.3. Mutation algorithms</a>
-    <li><a href="#ref-for-set-append④">4.3.1. Interface MutationObserver</a>
-    <li><a href="#ref-for-set-append⑤">7.1. Interface DOMTokenList</a> <a href="#ref-for-set-append⑥">(2)</a>
+    <li><a href="#append">1.2. Ordered sets：有序集</a>
+    <li><a href="#ref-for-set-append">3.2. Interface AbortSignal</a>
+    <li><a href="#ref-for-set-append①">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-set-append②">4.2.3. Mutation algorithms</a>
+    <li><a href="#ref-for-set-append③">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-set-append④">7.1. Interface DOMTokenList</a> <a href="#ref-for-set-append⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ascii-case-insensitive">
@@ -13523,7 +13523,16 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-string-concatenate">
    <a href="https://infra.spec.whatwg.org/#string-concatenate">https://infra.spec.whatwg.org/#string-concatenate</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-string-concatenate">1.2. Ordered sets</a>
+    <li><a href="#ref-for-string-concatenate">1.2. Ordered sets：有序集</a>
+    <li><a href="#ref-for-string-concatenate①">4.4. Interface Node</a>
+    <li><a href="#ref-for-string-concatenate②">4.11. Interface Text</a> <a href="#ref-for-string-concatenate③">(2)</a> <a href="#ref-for-string-concatenate④">(3)</a>
+    <li><a href="#ref-for-string-concatenate⑤">5.5. Interface Range</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-string-concatenate">
+   <a href="https://infra.spec.whatwg.org/#string-concatenate">https://infra.spec.whatwg.org/#string-concatenate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-string-concatenate">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-string-concatenate①">4.4. Interface Node</a>
     <li><a href="#ref-for-string-concatenate②">4.11. Interface Text</a> <a href="#ref-for-string-concatenate③">(2)</a> <a href="#ref-for-string-concatenate④">(3)</a>
     <li><a href="#ref-for-string-concatenate⑤">5.5. Interface Range</a>
@@ -13583,7 +13592,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
    <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-iterate">1.2. Ordered sets</a>
+    <li><a href="#ref-for-list-iterate">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-list-iterate①">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-list-iterate②">2.9. Dispatching events</a> <a href="#ref-for-list-iterate③">(2)</a> <a href="#ref-for-list-iterate④">(3)</a> <a href="#ref-for-list-iterate⑤">(4)</a> <a href="#ref-for-list-iterate⑥">(5)</a>
     <li><a href="#ref-for-list-iterate⑦">3.2. Interface AbortSignal</a>
@@ -13678,8 +13687,8 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-ordered-set">
    <a href="https://infra.spec.whatwg.org/#ordered-set">https://infra.spec.whatwg.org/#ordered-set</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordered-set">1.1. Trees</a>
-    <li><a href="#ref-for-ordered-set①">1.2. Ordered sets</a>
+    <li><a href="#ref-for-ordered-set">1.1. Trees：树</a>
+    <li><a href="#ref-for-ordered-set①">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-ordered-set②">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-ordered-set③">4.2.2.5. Signaling slot change</a>
     <li><a href="#ref-for-ordered-set④">4.3. Mutation observers</a>
@@ -13726,8 +13735,8 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-ordered-set">
    <a href="https://infra.spec.whatwg.org/#ordered-set">https://infra.spec.whatwg.org/#ordered-set</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordered-set">1.1. Trees</a>
-    <li><a href="#ref-for-ordered-set①">1.2. Ordered sets</a>
+    <li><a href="#ref-for-ordered-set">1.1. Trees：树</a>
+    <li><a href="#ref-for-ordered-set①">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-ordered-set②">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-ordered-set③">4.2.2.5. Signaling slot change</a>
     <li><a href="#ref-for-ordered-set④">4.3. Mutation observers</a>
@@ -13753,7 +13762,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-split-on-ascii-whitespace">
    <a href="https://infra.spec.whatwg.org/#split-on-ascii-whitespace">https://infra.spec.whatwg.org/#split-on-ascii-whitespace</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-split-on-ascii-whitespace">1.2. Ordered sets</a>
+    <li><a href="#ref-for-split-on-ascii-whitespace">1.2. Ordered sets：有序集</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-strictly-split">
@@ -14562,7 +14571,8 @@ APIs</a>
      <li><span class="dfn-paneled" id="term-for-iteration-break">break</span>
      <li><span class="dfn-paneled" id="term-for-list-clone">clone</span>
      <li><span class="dfn-paneled" id="term-for-code-unit">code unit</span>
-     <li><span class="dfn-paneled" id="term-for-string-concatenate">concatenation</span>
+     <li><span class="dfn-paneled" id="term-for-string-concatenate">concatenate</span>
+     <li><span class="dfn-paneled" id="term-for-string-concatenate①">concatenation</span>
      <li><span class="dfn-paneled" id="term-for-list-contain">contain</span>
      <li><span class="dfn-paneled" id="term-for-iteration-continue">continue</span>
      <li><span class="dfn-paneled" id="term-for-list-empty">empty</span>
@@ -15394,7 +15404,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree">
    <b><a href="#concept-tree">#concept-tree</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree">1.1. Trees</a> <a href="#ref-for-concept-tree①">(2)</a> <a href="#ref-for-concept-tree②">(3)</a> <a href="#ref-for-concept-tree③">(4)</a> <a href="#ref-for-concept-tree④">(5)</a> <a href="#ref-for-concept-tree⑤">(6)</a>
+    <li><a href="#ref-for-concept-tree">1.1. Trees：树</a> <a href="#ref-for-concept-tree①">(2)</a> <a href="#ref-for-concept-tree②">(3)</a> <a href="#ref-for-concept-tree③">(4)</a> <a href="#ref-for-concept-tree④">(5)</a> <a href="#ref-for-concept-tree⑤">(6)</a>
     <li><a href="#ref-for-concept-tree⑥">2.1. Introduction to "DOM Events"</a> <a href="#ref-for-concept-tree⑦">(2)</a>
     <li><a href="#ref-for-concept-tree⑧">2.2. Interface Event</a> <a href="#ref-for-concept-tree⑨">(2)</a> <a href="#ref-for-concept-tree①⓪">(3)</a> <a href="#ref-for-concept-tree①①">(4)</a>
     <li><a href="#ref-for-concept-tree①②">4.1. Introduction to "The DOM"</a> <a href="#ref-for-concept-tree①③">(2)</a>
@@ -15410,7 +15420,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-order">
    <b><a href="#concept-tree-order">#concept-tree-order</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-order">1.1. Trees</a> <a href="#ref-for-concept-tree-order①">(2)</a>
+    <li><a href="#ref-for-concept-tree-order">1.1. Trees：树</a> <a href="#ref-for-concept-tree-order①">(2)</a>
     <li><a href="#ref-for-concept-tree-order②">2.1. Introduction to "DOM Events"</a> <a href="#ref-for-concept-tree-order③">(2)</a>
     <li><a href="#ref-for-concept-tree-order④">2.2. Interface Event</a>
     <li><a href="#ref-for-concept-tree-order⑤">4.2. Node tree</a>
@@ -15432,7 +15442,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-participate">
    <b><a href="#concept-tree-participate">#concept-tree-participate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-participate">1.1. Trees</a>
+    <li><a href="#ref-for-concept-tree-participate">1.1. Trees：树</a>
     <li><a href="#ref-for-concept-tree-participate①">2.1. Introduction to "DOM Events"</a>
     <li><a href="#ref-for-concept-tree-participate②">2.2. Interface Event</a> <a href="#ref-for-concept-tree-participate③">(2)</a>
     <li><a href="#ref-for-concept-tree-participate④">4.2. Node tree</a> <a href="#ref-for-concept-tree-participate⑤">(2)</a>
@@ -15442,7 +15452,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-parent">
    <b><a href="#concept-tree-parent">#concept-tree-parent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-parent">1.1. Trees</a> <a href="#ref-for-concept-tree-parent①">(2)</a> <a href="#ref-for-concept-tree-parent②">(3)</a> <a href="#ref-for-concept-tree-parent③">(4)</a>
+    <li><a href="#ref-for-concept-tree-parent">1.1. Trees：树</a> <a href="#ref-for-concept-tree-parent①">(2)</a> <a href="#ref-for-concept-tree-parent②">(3)</a> <a href="#ref-for-concept-tree-parent③">(4)</a>
     <li><a href="#ref-for-concept-tree-parent④">4.2. Node tree</a>
     <li><a href="#ref-for-concept-tree-parent⑤">4.2.1. Document tree</a>
     <li><a href="#ref-for-concept-tree-parent⑥">4.2.2.3. Finding slots and slottables</a> <a href="#ref-for-concept-tree-parent⑦">(2)</a> <a href="#ref-for-concept-tree-parent⑧">(3)</a>
@@ -15463,7 +15473,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-child">
    <b><a href="#concept-tree-child">#concept-tree-child</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-child">1.1. Trees</a> <a href="#ref-for-concept-tree-child①">(2)</a> <a href="#ref-for-concept-tree-child②">(3)</a> <a href="#ref-for-concept-tree-child③">(4)</a> <a href="#ref-for-concept-tree-child④">(5)</a>
+    <li><a href="#ref-for-concept-tree-child">1.1. Trees：树</a> <a href="#ref-for-concept-tree-child①">(2)</a> <a href="#ref-for-concept-tree-child②">(3)</a> <a href="#ref-for-concept-tree-child③">(4)</a> <a href="#ref-for-concept-tree-child④">(5)</a>
     <li><a href="#ref-for-concept-tree-child⑤">4.1. Introduction to "The DOM"</a>
     <li><a href="#ref-for-concept-tree-child⑥">4.2. Node tree</a> <a href="#ref-for-concept-tree-child⑦">(2)</a> <a href="#ref-for-concept-tree-child⑧">(3)</a> <a href="#ref-for-concept-tree-child⑨">(4)</a>
     <li><a href="#ref-for-concept-tree-child①⓪">4.2.2.3. Finding slots and slottables</a> <a href="#ref-for-concept-tree-child①①">(2)</a>
@@ -15483,7 +15493,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-root">
    <b><a href="#concept-tree-root">#concept-tree-root</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-root">1.1. Trees</a> <a href="#ref-for-concept-tree-root①">(2)</a>
+    <li><a href="#ref-for-concept-tree-root">1.1. Trees：树</a> <a href="#ref-for-concept-tree-root①">(2)</a>
     <li><a href="#ref-for-concept-tree-root②">1.3. Selectors</a>
     <li><a href="#ref-for-concept-tree-root③">2.2. Interface Event</a>
     <li><a href="#ref-for-concept-tree-root④">2.9. Dispatching events</a> <a href="#ref-for-concept-tree-root⑤">(2)</a> <a href="#ref-for-concept-tree-root⑥">(3)</a> <a href="#ref-for-concept-tree-root⑦">(4)</a>
@@ -15503,7 +15513,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-descendant">
    <b><a href="#concept-tree-descendant">#concept-tree-descendant</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-descendant">1.1. Trees</a> <a href="#ref-for-concept-tree-descendant①">(2)</a> <a href="#ref-for-concept-tree-descendant②">(3)</a>
+    <li><a href="#ref-for-concept-tree-descendant">1.1. Trees：树</a> <a href="#ref-for-concept-tree-descendant①">(2)</a> <a href="#ref-for-concept-tree-descendant②">(3)</a>
     <li><a href="#ref-for-concept-tree-descendant③">4.2.2.3. Finding slots and slottables</a> <a href="#ref-for-concept-tree-descendant④">(2)</a>
     <li><a href="#ref-for-concept-tree-descendant⑤">4.2.4. Mixin NonElementParentNode</a> <a href="#ref-for-concept-tree-descendant⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-descendant⑦">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-tree-descendant⑧">(2)</a>
@@ -15528,7 +15538,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-ancestor">
    <b><a href="#concept-tree-ancestor">#concept-tree-ancestor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-ancestor">1.1. Trees</a>
+    <li><a href="#ref-for-concept-tree-ancestor">1.1. Trees：树</a>
     <li><a href="#ref-for-concept-tree-ancestor①">2.1. Introduction to "DOM Events"</a>
     <li><a href="#ref-for-concept-tree-ancestor②">2.2. Interface Event</a>
     <li><a href="#ref-for-concept-tree-ancestor③">4.4. Interface Node</a> <a href="#ref-for-concept-tree-ancestor④">(2)</a>
@@ -15551,7 +15561,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-sibling">
    <b><a href="#concept-tree-sibling">#concept-tree-sibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-sibling">1.1. Trees</a> <a href="#ref-for-concept-tree-sibling①">(2)</a> <a href="#ref-for-concept-tree-sibling②">(3)</a> <a href="#ref-for-concept-tree-sibling③">(4)</a> <a href="#ref-for-concept-tree-sibling④">(5)</a> <a href="#ref-for-concept-tree-sibling⑤">(6)</a>
+    <li><a href="#ref-for-concept-tree-sibling">1.1. Trees：树</a> <a href="#ref-for-concept-tree-sibling①">(2)</a> <a href="#ref-for-concept-tree-sibling②">(3)</a> <a href="#ref-for-concept-tree-sibling③">(4)</a> <a href="#ref-for-concept-tree-sibling④">(5)</a> <a href="#ref-for-concept-tree-sibling⑤">(6)</a>
     <li><a href="#ref-for-concept-tree-sibling⑥">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-sibling⑨">(4)</a>
     <li><a href="#ref-for-concept-tree-sibling①⓪">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-sibling①①">(2)</a> <a href="#ref-for-concept-tree-sibling①②">(3)</a>
     <li><a href="#ref-for-concept-tree-sibling①③">4.11. Interface Text</a>
@@ -15561,7 +15571,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-preceding">
    <b><a href="#concept-tree-preceding">#concept-tree-preceding</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-preceding">1.1. Trees</a> <a href="#ref-for-concept-tree-preceding①">(2)</a> <a href="#ref-for-concept-tree-preceding②">(3)</a>
+    <li><a href="#ref-for-concept-tree-preceding">1.1. Trees：树</a> <a href="#ref-for-concept-tree-preceding①">(2)</a> <a href="#ref-for-concept-tree-preceding②">(3)</a>
     <li><a href="#ref-for-concept-tree-preceding③">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-tree-preceding④">(2)</a>
     <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-preceding⑦">4.2.8. Mixin ChildNode</a>
@@ -15573,7 +15583,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-tree-following">
    <b><a href="#concept-tree-following">#concept-tree-following</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-following">1.1. Trees</a> <a href="#ref-for-concept-tree-following①">(2)</a>
+    <li><a href="#ref-for-concept-tree-following">1.1. Trees：树</a> <a href="#ref-for-concept-tree-following①">(2)</a>
     <li><a href="#ref-for-concept-tree-following②">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-tree-following③">(2)</a> <a href="#ref-for-concept-tree-following④">(3)</a> <a href="#ref-for-concept-tree-following⑤">(4)</a>
     <li><a href="#ref-for-concept-tree-following⑥">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑦">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑧">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-following⑨">(2)</a>
