@@ -63,7 +63,7 @@ a[href].issue-return {
       <li><a href="#trees"><span class="secno">1.1</span> <span class="content">Trees：树</span></a>
       <li><a href="#ordered-sets"><span class="secno">1.2</span> <span class="content">Ordered sets：有序集</span></a>
       <li><a href="#selectors"><span class="secno">1.3</span> <span class="content">Selectors：选择器</span></a>
-      <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a>
+      <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces：命名空间</span></a>
      </ol>
     <li>
      <a href="#events"><span class="secno">2</span> <span class="content">Events</span></a>
@@ -255,36 +255,33 @@ APIs</span></a>
      <p>使用<a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#scoping-root" id="ref-for-scoping-root">作用域根</a>节点返回 <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree" id="ref-for-match-a-selector-against-a-tree">选择器与树(具有s和节点的</a><a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②">根</a>)的匹配结果。 </p>
    </ol>
    <p class="note" role="note">注意：选择器中对名称空间的支持没有计划，也不会添加。 </p>
-   <h3 class="heading settled" data-level="1.4" id="namespaces"><span class="secno">1.4. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h3>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="validate">validate</dfn> a <var>qualifiedName</var>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①">throw</a> an
-"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror">InvalidCharacterError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> if <var>qualifiedName</var> does not match
-the <code><a class="css" data-link-type="type" href="https://www.w3.org/TR/xml-names/#NT-QName" id="ref-for-NT-QName">QName</a></code> production. </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="validate-and-extract">validate and extract</dfn> a <var>namespace</var> and <var>qualifiedName</var>,
-run these steps: </p>
+   <h3 class="heading settled" data-level="1.4" data-lt="Namespaces" id="namespaces"><span class="secno">1.4. </span><span class="content">Namespaces：命名空间</span><a class="self-link" href="#namespaces"></a></h3>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="validate" id="validate">验证</dfn>qualifiedName，qualifiedName若不能匹配<code><a class="css" data-link-type="type" href="https://www.w3.org/TR/xml-names/#NT-QName" id="ref-for-NT-QName">QName</a></code>定义的规则，则匹配失败，<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①">抛出</a>" <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror">InvalidCharacterError</a></code>(无效的字符错误)"的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>(DOM异常)。 </p>
+   <p>要<dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="validate and extract" id="validate-and-extract">验证和提取</dfn>namespaces和qualifiedName，请运行以下步骤： </p>
    <ol>
     <li>
-     <p>If <var>namespace</var> is the empty string, then set it to null. </p>
+     <p>如果namespace为空字符串，则将其设置为 null。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#validate" id="ref-for-validate">Validate</a> <var>qualifiedName</var>. </p>
+     <p><a data-link-type="dfn" href="#validate" id="ref-for-validate">验证</a>qualifiedName。 </p>
     <li>
-     <p>Let <var>prefix</var> be null. </p>
+     <p>让<var>prefix</var>为空。 </p>
     <li>
-     <p>Let <var>localName</var> be <var>qualifiedName</var>. </p>
+     <p>将<var>qualifiedName</var>赋值给<var>localName</var>。 </p>
     <li>
-     <p>If <var>qualifiedName</var> contains a U+003A (:), then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split">strictly split</a> the string on
- it and set <var>prefix</var> to the part before and <var>localName</var> to the part after. </p>
+     <p>如果<var>qualifiedName</var>中包含符号":"(Unicode码：U+003A)，则以符号":"<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split">严格拆分</a>字符串，字符串前一部分赋值给<var>prefix</var>，
+ 后一部分赋值给<var>localName</var>。 </p>
     <li>
-     <p>If <var>prefix</var> is non-null and <var>namespace</var> is null, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②">throw</a> a
- "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror">NamespaceError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>. </p>
+     <p>如果<var>prefix</var>不为null但<var>namespace</var>为null，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror">NamespaceError</a></code>(命名空间错误)"的 <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>(DOM异常)。 </p>
     <li>
-     <p>If <var>prefix</var> is "<code>xml</code>" and <var>namespace</var> is not the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xml-namespace" id="ref-for-xml-namespace">XML namespace</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw③">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror①">NamespaceError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>. </p>
+     <p>如果<var>prefix</var>是"<code>xml</code>"但<var>namespace</var>不是<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xml-namespace" id="ref-for-xml-namespace">XML命名空间</a>，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw③">抛出</a> 一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror①">NamespaceError</a></code>(命名空间错误)"的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>(DOM异常)。 </p>
     <li>
-     <p>If either <var>qualifiedName</var> or <var>prefix</var> is "<code>xmlns</code>" and <var>namespace</var> is not the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xmlns-namespace" id="ref-for-xmlns-namespace">XMLNS namespace</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw④">throw</a> a
- "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror②">NamespaceError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>. </p>
+     <p>如果<var>qualifiedName</var>或<var>prefix</var>是"<code>xmlns</code>"但<var>namespace</var>不是<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xmlns-namespace" id="ref-for-xmlns-namespace">XMLNS命名空间</a>，
+ 则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw④">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror②">NamespaceError</a></code>(命名空间错误)"的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>(DOM异常)。 </p>
     <li>
-     <p>If <var>namespace</var> is the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xmlns-namespace" id="ref-for-xmlns-namespace①">XMLNS namespace</a> and neither <var>qualifiedName</var> nor <var>prefix</var> is "<code>xmlns</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑤">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror③">NamespaceError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑤">DOMException</a></code>. </p>
+     <p>如果<var>namespace</var>是<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#xmlns-namespace" id="ref-for-xmlns-namespace①">XMLNS命名空间</a>但<var>qualifiedName</var>和<var>prefix</var>都不是"<code>xmlns</code>"，
+ 则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑤">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#namespaceerror" id="ref-for-namespaceerror③">NamespaceError</a></code>(命名空间错误)"的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑤">DOMException</a></code>(DOM异常)。 </p>
     <li>
-     <p>Return <var>namespace</var>, <var>prefix</var>, and <var>localName</var>. </p>
+     <p>返回<var>namespace</var>，<var>prefix</var>，和<var>localName</var>。 </p>
    </ol>
    <h2 class="heading settled" data-level="2" id="events"><span class="secno">2. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="introduction-to-dom-events"><span class="secno">2.1. </span><span class="content">Introduction to "DOM Events"</span><a class="self-link" href="#introduction-to-dom-events"></a></h3>
@@ -12967,7 +12964,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-NT-QName">
    <a href="https://www.w3.org/TR/xml-names/#NT-QName">https://www.w3.org/TR/xml-names/#NT-QName</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-NT-QName">1.4. Namespaces</a>
+    <li><a href="#ref-for-NT-QName">1.4. Namespaces：命名空间</a>
     <li><a href="#ref-for-NT-QName①">4.5. Interface Document</a>
     <li><a href="#ref-for-NT-QName②">4.5.1. Interface DOMImplementation</a>
    </ul>
@@ -13767,7 +13764,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-strictly-split">
    <a href="https://infra.spec.whatwg.org/#strictly-split">https://infra.spec.whatwg.org/#strictly-split</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-strictly-split">1.4. Namespaces</a>
+    <li><a href="#ref-for-strictly-split">1.4. Namespaces：命名空间</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-struct">
@@ -13793,14 +13790,14 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-xml-namespace">
    <a href="https://infra.spec.whatwg.org/#xml-namespace">https://infra.spec.whatwg.org/#xml-namespace</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xml-namespace">1.4. Namespaces</a>
+    <li><a href="#ref-for-xml-namespace">1.4. Namespaces：命名空间</a>
     <li><a href="#ref-for-xml-namespace①">4.5. Interface Document</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-xmlns-namespace">
    <a href="https://infra.spec.whatwg.org/#xmlns-namespace">https://infra.spec.whatwg.org/#xmlns-namespace</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xmlns-namespace">1.4. Namespaces</a> <a href="#ref-for-xmlns-namespace①">(2)</a>
+    <li><a href="#ref-for-xmlns-namespace">1.4. Namespaces：命名空间</a> <a href="#ref-for-xmlns-namespace①">(2)</a>
     <li><a href="#ref-for-xmlns-namespace②">4.4. Interface Node</a> <a href="#ref-for-xmlns-namespace③">(2)</a>
     <li><a href="#ref-for-xmlns-namespace④">4.5. Interface Document</a> <a href="#ref-for-xmlns-namespace⑤">(2)</a>
    </ul>
@@ -13936,7 +13933,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-DOMException">1.3. Selectors：选择器</a>
-    <li><a href="#ref-for-idl-DOMException①">1.4. Namespaces</a> <a href="#ref-for-idl-DOMException②">(2)</a> <a href="#ref-for-idl-DOMException③">(3)</a> <a href="#ref-for-idl-DOMException④">(4)</a> <a href="#ref-for-idl-DOMException⑤">(5)</a>
+    <li><a href="#ref-for-idl-DOMException①">1.4. Namespaces：命名空间</a> <a href="#ref-for-idl-DOMException②">(2)</a> <a href="#ref-for-idl-DOMException③">(3)</a> <a href="#ref-for-idl-DOMException④">(4)</a> <a href="#ref-for-idl-DOMException⑤">(5)</a>
     <li><a href="#ref-for-idl-DOMException⑥">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-idl-DOMException⑦">3.1. Interface AbortController</a>
     <li><a href="#ref-for-idl-DOMException⑧">3.2. Interface AbortSignal</a> <a href="#ref-for-idl-DOMException⑨">(2)</a> <a href="#ref-for-idl-DOMException①⓪">(3)</a> <a href="#ref-for-idl-DOMException①①">(4)</a> <a href="#ref-for-idl-DOMException①②">(5)</a>
@@ -14053,7 +14050,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-invalidcharactererror">
    <a href="https://webidl.spec.whatwg.org/#invalidcharactererror">https://webidl.spec.whatwg.org/#invalidcharactererror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-invalidcharactererror">1.4. Namespaces</a>
+    <li><a href="#ref-for-invalidcharactererror">1.4. Namespaces：命名空间</a>
     <li><a href="#ref-for-invalidcharactererror①">4.5. Interface Document</a> <a href="#ref-for-invalidcharactererror②">(2)</a> <a href="#ref-for-invalidcharactererror③">(3)</a> <a href="#ref-for-invalidcharactererror④">(4)</a> <a href="#ref-for-invalidcharactererror⑤">(5)</a> <a href="#ref-for-invalidcharactererror⑥">(6)</a> <a href="#ref-for-invalidcharactererror⑦">(7)</a> <a href="#ref-for-invalidcharactererror⑧">(8)</a> <a href="#ref-for-invalidcharactererror⑨">(9)</a>
     <li><a href="#ref-for-invalidcharactererror①⓪">4.5.1. Interface DOMImplementation</a>
     <li><a href="#ref-for-invalidcharactererror①①">4.9. Interface Element</a> <a href="#ref-for-invalidcharactererror①②">(2)</a>
@@ -14099,7 +14096,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-namespaceerror">
    <a href="https://webidl.spec.whatwg.org/#namespaceerror">https://webidl.spec.whatwg.org/#namespaceerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-namespaceerror">1.4. Namespaces</a> <a href="#ref-for-namespaceerror①">(2)</a> <a href="#ref-for-namespaceerror②">(3)</a> <a href="#ref-for-namespaceerror③">(4)</a>
+    <li><a href="#ref-for-namespaceerror">1.4. Namespaces：命名空间</a> <a href="#ref-for-namespaceerror①">(2)</a> <a href="#ref-for-namespaceerror②">(3)</a> <a href="#ref-for-namespaceerror③">(4)</a>
     <li><a href="#ref-for-namespaceerror④">4.5. Interface Document</a>
     <li><a href="#ref-for-namespaceerror⑤">4.5.1. Interface DOMImplementation</a>
    </ul>
@@ -14366,7 +14363,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#dfn-throw">https://webidl.spec.whatwg.org/#dfn-throw</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dfn-throw">1.3. Selectors：选择器</a>
-    <li><a href="#ref-for-dfn-throw①">1.4. Namespaces</a> <a href="#ref-for-dfn-throw②">(2)</a> <a href="#ref-for-dfn-throw③">(3)</a> <a href="#ref-for-dfn-throw④">(4)</a> <a href="#ref-for-dfn-throw⑤">(5)</a>
+    <li><a href="#ref-for-dfn-throw①">1.4. Namespaces：命名空间</a> <a href="#ref-for-dfn-throw②">(2)</a> <a href="#ref-for-dfn-throw③">(3)</a> <a href="#ref-for-dfn-throw④">(4)</a> <a href="#ref-for-dfn-throw⑤">(5)</a>
     <li><a href="#ref-for-dfn-throw⑥">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-dfn-throw⑦">4.2.3. Mutation algorithms</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
     <li><a href="#ref-for-dfn-throw②⓪">4.2.6. Mixin ParentNode</a> <a href="#ref-for-dfn-throw②①">(2)</a> <a href="#ref-for-dfn-throw②②">(3)</a>
@@ -15666,7 +15663,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="validate">
    <b><a href="#validate">#validate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-validate">1.4. Namespaces</a>
+    <li><a href="#ref-for-validate">1.4. Namespaces：命名空间</a>
     <li><a href="#ref-for-validate①">4.5.1. Interface DOMImplementation</a>
    </ul>
   </aside>
