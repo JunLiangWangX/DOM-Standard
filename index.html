@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-02">2022-12-02</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-05">2022-12-05</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -62,7 +62,7 @@ a[href].issue-return {
      <ol class="toc">
       <li><a href="#trees"><span class="secno">1.1</span> <span class="content">Trees：树</span></a>
       <li><a href="#ordered-sets"><span class="secno">1.2</span> <span class="content">Ordered sets：有序集</span></a>
-      <li><a href="#selectors"><span class="secno">1.3</span> <span class="content">Selectors</span></a>
+      <li><a href="#selectors"><span class="secno">1.3</span> <span class="content">Selectors：选择器</span></a>
       <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a>
      </ol>
     <li>
@@ -244,18 +244,17 @@ APIs</span></a>
     <li>返回tokens。 
    </ol>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="ordered set serializer" id="concept-ordered-set-serializer">有序集序列化</dfn>将集合使用空格(unicode空格编码，U+0020) <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-concatenate" id="ref-for-string-concatenate">串联为字符串</a>并以此作为返回值 </p>
-   <h3 class="heading settled" data-level="1.3" id="selectors"><span class="secno">1.3. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="scope-match-a-selectors-string">scope-match a selectors string</dfn> <var>selectors</var> against a <var>node</var>, run these steps: </p>
+   <h3 class="heading settled" data-level="1.3" data-lt="selectors" id="selectors"><span class="secno">1.3. </span><span class="content">Selectors：选择器</span><a class="self-link" href="#selectors"></a></h3>
+   <p>针对节点<dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="scope-match a selectors string" id="scope-match-a-selectors-string">匹配给定的字符串选择器时</dfn>，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>s</var> be the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#parse-a-selector" id="ref-for-parse-a-selector">parse a selector</a> <var>selectors</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> </p>
+     <p><a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#parse-a-selector" id="ref-for-parse-a-selector">解析</a>输入的字符串选择器是否正确，并将其结果赋值给变量s。<a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a> </p>
     <li>
-     <p>If <var>s</var> is failure, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>. </p>
+     <p>如果s的值为失败，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw">抛出</a> "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror">SyntaxError</a></code>(语法错误)"的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>(DOM异常)。 </p>
     <li>
-     <p>Return the result of <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree" id="ref-for-match-a-selector-against-a-tree">match a selector against a tree</a> with <var>s</var> and <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②">root</a> using <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#scoping-root" id="ref-for-scoping-root">scoping root</a> <var>node</var>. <a data-link-type="biblio" href="#biblio-selectors4">[SELECTORS4]</a>. </p>
+     <p>使用<a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#scoping-root" id="ref-for-scoping-root">作用域根</a>节点返回 <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree" id="ref-for-match-a-selector-against-a-tree">选择器与树(具有s和节点的</a><a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②">根</a>)的匹配结果。 </p>
    </ol>
-   <p class="note" role="note">Support for namespaces within selectors is not planned and will not be
-added. </p>
+   <p class="note" role="note">注意：选择器中对名称空间的支持没有计划，也不会添加。 </p>
    <h3 class="heading settled" data-level="1.4" id="namespaces"><span class="secno">1.4. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h3>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="validate">validate</dfn> a <var>qualifiedName</var>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①">throw</a> an
 "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror">InvalidCharacterError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> if <var>qualifiedName</var> does not match
@@ -13815,7 +13814,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-match-a-selector-against-a-tree">
    <a href="https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree">https://drafts.csswg.org/selectors-4/#match-a-selector-against-a-tree</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-match-a-selector-against-a-tree">1.3. Selectors</a>
+    <li><a href="#ref-for-match-a-selector-against-a-tree">1.3. Selectors：选择器</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-match-a-selector-against-an-element">
@@ -13827,14 +13826,14 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-parse-a-selector">
    <a href="https://drafts.csswg.org/selectors-4/#parse-a-selector">https://drafts.csswg.org/selectors-4/#parse-a-selector</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parse-a-selector">1.3. Selectors</a>
+    <li><a href="#ref-for-parse-a-selector">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-parse-a-selector①">4.9. Interface Element</a> <a href="#ref-for-parse-a-selector②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-scoping-root">
    <a href="https://drafts.csswg.org/selectors-4/#scoping-root">https://drafts.csswg.org/selectors-4/#scoping-root</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-scoping-root">1.3. Selectors</a>
+    <li><a href="#ref-for-scoping-root">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-scoping-root①">4.9. Interface Element</a> <a href="#ref-for-scoping-root②">(2)</a>
    </ul>
   </aside>
@@ -13936,7 +13935,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMException">1.3. Selectors</a>
+    <li><a href="#ref-for-idl-DOMException">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-idl-DOMException①">1.4. Namespaces</a> <a href="#ref-for-idl-DOMException②">(2)</a> <a href="#ref-for-idl-DOMException③">(3)</a> <a href="#ref-for-idl-DOMException④">(4)</a> <a href="#ref-for-idl-DOMException⑤">(5)</a>
     <li><a href="#ref-for-idl-DOMException⑥">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-idl-DOMException⑦">3.1. Interface AbortController</a>
@@ -14163,7 +14162,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-syntaxerror">
    <a href="https://webidl.spec.whatwg.org/#syntaxerror">https://webidl.spec.whatwg.org/#syntaxerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntaxerror">1.3. Selectors</a>
+    <li><a href="#ref-for-syntaxerror">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-syntaxerror①">4.9. Interface Element</a> <a href="#ref-for-syntaxerror②">(2)</a> <a href="#ref-for-syntaxerror③">(3)</a>
     <li><a href="#ref-for-syntaxerror④">7.1. Interface DOMTokenList</a> <a href="#ref-for-syntaxerror⑤">(2)</a> <a href="#ref-for-syntaxerror⑥">(3)</a> <a href="#ref-for-syntaxerror⑦">(4)</a> <a href="#ref-for-syntaxerror⑧">(5)</a> <a href="#ref-for-syntaxerror⑨">(6)</a> <a href="#ref-for-syntaxerror①⓪">(7)</a> <a href="#ref-for-syntaxerror①①">(8)</a>
    </ul>
@@ -14366,7 +14365,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-dfn-throw">
    <a href="https://webidl.spec.whatwg.org/#dfn-throw">https://webidl.spec.whatwg.org/#dfn-throw</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-throw">1.3. Selectors</a>
+    <li><a href="#ref-for-dfn-throw">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-dfn-throw①">1.4. Namespaces</a> <a href="#ref-for-dfn-throw②">(2)</a> <a href="#ref-for-dfn-throw③">(3)</a> <a href="#ref-for-dfn-throw④">(4)</a> <a href="#ref-for-dfn-throw⑤">(5)</a>
     <li><a href="#ref-for-dfn-throw⑥">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-dfn-throw⑦">4.2.3. Mutation algorithms</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
@@ -15494,7 +15493,7 @@ APIs</a>
    <b><a href="#concept-tree-root">#concept-tree-root</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-root">1.1. Trees：树</a> <a href="#ref-for-concept-tree-root①">(2)</a>
-    <li><a href="#ref-for-concept-tree-root②">1.3. Selectors</a>
+    <li><a href="#ref-for-concept-tree-root②">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-concept-tree-root③">2.2. Interface Event</a>
     <li><a href="#ref-for-concept-tree-root④">2.9. Dispatching events</a> <a href="#ref-for-concept-tree-root⑤">(2)</a> <a href="#ref-for-concept-tree-root⑥">(3)</a> <a href="#ref-for-concept-tree-root⑦">(4)</a>
     <li><a href="#ref-for-concept-tree-root⑧">4.2.1. Document tree</a> <a href="#ref-for-concept-tree-root⑨">(2)</a>
