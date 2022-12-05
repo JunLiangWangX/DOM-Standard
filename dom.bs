@@ -157,42 +157,38 @@ spec:html; type:element
 <p class=note>注意：选择器中对名称空间的支持没有计划，也不会添加。
 
 
-<h3 id=namespaces>Namespaces</h3>
+<h3 id=namespaces lt="Namespaces">Namespaces：命名空间</h3>
 
-<p>To <dfn export>validate</dfn> a <var>qualifiedName</var>, <a>throw</a> an
-"{{InvalidCharacterError!!exception}}" {{DOMException}} if <var>qualifiedName</var> does not match
-the <code><a type>QName</a></code> production.
+<p><dfn export lt="validate">验证</dfn>qualifiedName，qualifiedName若不能匹配<code><a type>QName</a></code>定义的规则，则匹配失败，<a lt="throw">抛出</a>"
+{{InvalidCharacterError!!exception}}(无效的字符错误)"的{{DOMException}}(DOM异常)。
 
-<p>To <dfn export>validate and extract</dfn> a <var>namespace</var> and <var>qualifiedName</var>,
-run these steps:
+<p>要<dfn export lt="validate and extract">验证和提取</dfn>namespaces和qualifiedName，请运行以下步骤：
 
 <ol>
- <li><p>If <var>namespace</var> is the empty string, then set it to null.
+ <li><p>如果namespace为空字符串，则将其设置为 null。
+ 
+ <li><p><a lt="Validate">验证</a>qualifiedName。
 
- <li><p><a>Validate</a> <var>qualifiedName</var>.
+ <li><p>让<var>prefix</var>为空。
 
- <li><p>Let <var>prefix</var> be null.
+ <li><p>将<var>qualifiedName</var>赋值给<var>localName</var>。
 
- <li><p>Let <var>localName</var> be <var>qualifiedName</var>.
+ <li><p>如果<var>qualifiedName</var>中包含符号":"(Unicode码：U+003A)，则以符号":"<a lt="strictly split">严格拆分</a>字符串，字符串前一部分赋值给<var>prefix</var>，
+ 后一部分赋值给<var>localName</var>。
 
- <li><p>If <var>qualifiedName</var> contains a U+003A (:), then <a>strictly split</a> the string on
- it and set <var>prefix</var> to the part before and <var>localName</var> to the part after.
+ <li><p>如果<var>prefix</var>不为null但<var>namespace</var>为null，则<a lt="throw">抛出</a>一个"{{NamespaceError!!exception}}(命名空间错误)"的
+ {{DOMException}}(DOM异常)。
 
- <li><p>If <var>prefix</var> is non-null and <var>namespace</var> is null, then <a>throw</a> a
- "{{NamespaceError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>prefix</var>是"<code>xml</code>"但<var>namespace</var>不是<a lt="XML namespace">XML命名空间</a>，则<a lt="throw">抛出</a>
+ 一个"{{NamespaceError!!exception}}(命名空间错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>prefix</var> is "<code>xml</code>" and <var>namespace</var> is not the
- <a>XML namespace</a>, then <a>throw</a> a "{{NamespaceError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>qualifiedName</var>或<var>prefix</var>是"<code>xmlns</code>"但<var>namespace</var>不是<a lt="XMLNS namespace">XMLNS命名空间</a>，
+ 则<a lt="throw">抛出</a>一个"{{NamespaceError!!exception}}(命名空间错误)"的{{DOMException}}(DOM异常)。
+ 
+ <li><p>如果<var>namespace</var>是<a lt="XMLNS namespace">XMLNS命名空间</a>但<var>qualifiedName</var>和<var>prefix</var>都不是"<code>xmlns</code>"，
+ 则<a lt="throw">抛出</a>一个"{{NamespaceError!!exception}}(命名空间错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If either <var>qualifiedName</var> or <var>prefix</var> is "<code>xmlns</code>" and
- <var>namespace</var> is not the <a>XMLNS namespace</a>, then <a>throw</a> a
- "{{NamespaceError!!exception}}" {{DOMException}}.
-
- <li><p>If <var>namespace</var> is the <a>XMLNS namespace</a> and neither <var>qualifiedName</var>
- nor <var>prefix</var> is "<code>xmlns</code>", then <a>throw</a> a "{{NamespaceError!!exception}}"
- {{DOMException}}.
-
- <li><p>Return <var>namespace</var>, <var>prefix</var>, and <var>localName</var>.
+ <li><p>返回<var>namespace</var>，<var>prefix</var>，和<var>localName</var>。
 </ol>
 
 
