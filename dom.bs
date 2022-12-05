@@ -142,24 +142,19 @@ spec:html; type:element
 <a for=string lt="concatenate">串联为字符串</a>并以此作为返回值
 
 
-<h3 id=selectors>Selectors</h3>
+<h3 id=selectors lt="selectors">Selectors：选择器</h3>
 
-<p>To <dfn export>scope-match a selectors string</dfn> <var>selectors</var> against a
-<var>node</var>, run these steps:
+<p>针对节点<dfn export lt="scope-match a selectors string">匹配给定的字符串选择器时</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>s</var> be the result of <a>parse a selector</a> <var>selectors</var>.
- [[!SELECTORS4]]
+ <li><p><a lt="parse a selector">解析</a>输入的字符串选择器是否正确，并将其结果赋值给变量s。[[!SELECTORS4]]
 
- <li><p>If <var>s</var> is failure, then <a>throw</a> a "{{SyntaxError!!exception}}"
- {{DOMException}}.
+ <li><p>如果s的值为失败，则<a lt="throw">抛出</a> "{{SyntaxError!!exception}}(语法错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>Return the result of <a>match a selector against a tree</a> with <var>s</var> and
- <var>node</var>'s <a for=tree>root</a> using <a>scoping root</a> <var>node</var>. [[!SELECTORS4]].
+ <li><p>使用<a lt="scoping root">作用域根</a>节点返回 <a lt="match a selector against a tree">选择器与树(具有s和节点的<a for=tree lt="root">根</a>)的匹配结果</a>。
 </ol>
 
-<p class=note>Support for namespaces within selectors is not planned and will not be
-added.
+<p class=note>注意：选择器中对名称空间的支持没有计划，也不会添加。
 
 
 <h3 id=namespaces>Namespaces</h3>
