@@ -193,14 +193,13 @@ spec:html; type:element
 
 
 
-<h2 id=events>Events</h2>
+<h2 id=events lt="Events">Events：事件</h2>
 
-<h3 id=introduction-to-dom-events>Introduction to "DOM Events"</h3>
+<h3 id=introduction-to-dom-events lt="Introduction to "DOM Events"">DOM事件简介</h3>
 
-Throughout the web platform <a>events</a> are <a>dispatched</a> to objects to signal an
-occurrence, such as network activity or user interaction. These objects implement the
-{{EventTarget}} interface and can therefore add <a>event listeners</a> to observe
-<a>events</a> by calling {{EventTarget/addEventListener()}}:
+在整个Web平台中，<a>events</a>(事件)被<a>dispatched</a>(分派)给对象以表示发生的事件，
+例如网络活动或用户交互。这些对象实现{{EventTarget}}接口，因此可以通过调用{{EventTarget/addEventListener()}}添加
+<a lt="event listeners">event listeners(事件侦听器)</a>来观察<a lt="events">事件</a>：
 
 <pre class=lang-javascript>
 obj.addEventListener("load", imgFetched)
@@ -211,34 +210,33 @@ function imgFetched(ev) {
 }
 </pre>
 
-<a>Event listeners</a> can be removed
-by utilizing the
-{{EventTarget/removeEventListener()}}
-method, passing the same arguments.
+可以通过调用{{EventTarget/removeEventListener()}}方法并传递相同的参数来删除<a lt="event listeners">Event listeners(事件侦听器)</a>。
 
-Alternatively, <a>event listeners</a> can be removed by passing an {{AbortSignal}} to
-{{EventTarget/addEventListener()}} and calling {{AbortController/abort()}} on the controller
-owning the signal.
+<pre class=lang-javascript>
+obj.removeEventListener("load", imgFetched)
+</pre>
 
-<a>Events</a> are objects too and implement the
-{{Event}} interface (or a derived interface). In the example above
-<var ignore>ev</var> is the <a>event</a>. <var ignore>ev</var> is
-passed as an argument to the
-<a>event listener</a>'s <a for="event listener">callback</a>
-(typically a JavaScript Function as shown above).
-<a>Event listeners</a> key off the
-<a>event</a>'s
-{{Event/type}} attribute value
-("<code>load</code>" in the above example). The
-<a>event</a>'s
-{{Event/target}} attribute value returns the
-object to which the <a>event</a> was
-<a>dispatched</a>
-(<var ignore>obj</var> above).
+你还可以通过向{{EventTarget/addEventListener()}}方法传递{{AbortSignal}}信号，然后调用该信号的控制器的{{AbortController/abort()}}
+方法来删除<a lt="event listeners">event listeners(事件监听器)</a>
 
-<p id="synthetic-events">Although <a>events</a> are typically <a>dispatched</a> by the user agent
-as the result of user interaction or the completion of some task, applications can <a>dispatch</a>
-<a>events</a> themselves by using what are commonly known as synthetic events:
+<pre class=lang-javascript>
+const controller=new AbortController()
+const signal = controller.signal
+
+obj.addEventListener("load", imgFetched,{
+  signal:signal
+})
+
+controller.abort() //调用该方法删除事件监听器
+</pre>
+
+<a>Events</a>也是一个对象，它实现了{{Event}}接口(或派生接口)。在第一个例子中，函数的参数ev是一个<a>event</a>对象，ev作为参数传递
+给<a lt="event listener">event listener(事件监听器)</a>的<a for="event listener" lt="callback">回调函数</a>(通常是如上所示的
+JavaScript函数)。<a lt="event listener">event listener(事件监听器)</a>使用<a>event</a>的{{Event/type}}属性来表示监听哪种事件
+(上诉例子中的"load")。<a>event</a>的{{Event/target}}属性则表明了事件被<a lt="dispatched">分配</a>到哪个对象中(上述例子中的obj)。
+
+<p id="synthetic-events">尽管<a>events</a>通常作为用户交互或完成某些任务的结果由用户代理进行<a lt="dispatched">分派</a>，但应用
+程序可以使用合成事件的方式自行<a lt="dispatched">分派</a><a>events</a>：
 
 <pre class='lang-javascript'>
 // add an appropriate event listener
@@ -249,38 +247,27 @@ var event = new CustomEvent("cat", {"detail":{"hazcheeseburger":true}})
 obj.dispatchEvent(event)
 </pre>
 
-Apart from signaling, <a>events</a> are
-sometimes also used to let an application control what happens next in an
-operation. For instance as part of form submission an
-<a>event</a> whose
-{{Event/type}} attribute value is
-"<code>submit</code>" is
-<a>dispatched</a>. If this
-<a>event</a>'s
-{{Event/preventDefault()}} method is
-invoked, form submission will be terminated. Applications who wish to make
-use of this functionality through <a>events</a>
-<a>dispatched</a> by the application
-(synthetic events) can make use of the return value of the
-{{EventTarget/dispatchEvent()}} method:
+除了信号以外，<a>events</a>有时还用于让应用程序控制操作接下来发生的事情。例如，表单提交时将<a lt="dispatched">调度</a>一个
+{{Event/type}}属性值为"submit"的<a lt="events">事件</a>。如果调用此<a lt="event">事件</a>的{{Event/preventDefault()}}
+方法，表单提交将终止。希望通过应用程序<a lt="dispatched">分派</a>的<a lt="events">事件</a>(合成事件)使用此功能的应用程序
+可以使用{{EventTarget/dispatchEvent()}}方法的返回值：
 
 <pre class=lang-javascript>
 if(obj.dispatchEvent(event)) {
-  // event was not canceled, time for some magic
+  // 如果事件没有被取消
   &hellip;
 }
 </pre>
 
-<p>When an <a>event</a> is <a>dispatched</a> to an object that <a>participates</a> in a <a>tree</a>
-(e.g., an <a for=/>element</a>), it can reach <a>event listeners</a> on that object's
-<a>ancestors</a> too. Effectively, all the object's <a>inclusive ancestor</a> <a>event listeners</a>
-whose <a for="event listener">capture</a> is true are invoked, in <a>tree order</a>. And then, if
-<a>event</a>'s {{Event/bubbles}} is true, all the object's <a>inclusive ancestor</a>
-<a>event listeners</a> whose <a for="event listener">capture</a> is false are invoked, now in
-reverse <a>tree order</a>.
+<p>当<a lt="event">事件</a>被<a lt="dispatched">分派</a>到<a lt="participates">参与</a><a>tree</a>的对象
+(例如一个<a for=/ lt="element"/>元素</a>)时，该对象的<a lt="ancestors">祖先</a>的<a lt="event listeners">
+event listeners(事件监听器)</a>也会接收到分派的事件。当该对象的<a lt="inclusive ancestor">包容性祖先</a>
+的<a lt="event listeners">event listeners(事件监听器)</a>的<a for="event listener">capture</a>属性为true时，
+它们接收到分派事件的顺序为<a lt="tree order">树的顺序</a>；当该对象的<a lt="inclusive ancestor">包容性祖先</a>
+的<a lt="event listeners">event listeners(事件监听器)</a>的<a for="event listener">capture</a>属性为false，
+且<a>event</a>的{{Event/bubbles}}属性为true时，它们接收到分派事件的顺序为树的逆向顺序。
 
-<p>Let's look at an example of how <a>events</a> work in a <a>tree</a>:
-
+<p>让我们看一个<a>events</a>如何在<a>tree</a>中工作的例子:
 <pre class=lang-markup>
 &lt;!doctype html>
 &lt;html>
@@ -289,27 +276,43 @@ reverse <a>tree order</a>.
  &lt;/head>
  &lt;body>
   &lt;p>Hello &lt;span id=x>world&lt;/span>!&lt;/p>
+  &lt;p>在事件捕获中，事件从最外层元素传播到目标元素。它与事件冒泡相反，事件从目标向外传播到外部元素。
+  捕获发生在冒泡之前。事件传播的三个阶段是：捕获、目标和冒泡。&lt;/p>
   &lt;script>
    function test(e) {
-     debug(e.target, e.currentTarget, e.eventPhase)
+    console.info('（捕获阶段）currentTarget：'+e.currentTarget.nodeName)
+   } 
+   function test2(e) {
+    console.info('（冒泡阶段）currentTarget：'+e.currentTarget.nodeName)
    }
-   document.addEventListener("hey", test, {capture: true})
-   document.body.addEventListener("hey", test)
-   var ev = new Event("hey", {bubbles:true})
+   // 捕获阶段
+   document.addEventListener("hey", test,{capture:true})
+   document.body.addEventListener("hey", test,{capture:true})
+   document.getElementById("x").addEventListener("hey", test,{capture:true})
+   // 冒泡阶段
+   document.addEventListener("hey", test2)
+   document.body.addEventListener("hey", test2)
+   document.getElementById("x").addEventListener("hey",test2)
+
+   var ev = new Event("hey", {bubbles:true})  //bubbles:是否冒泡
    document.getElementById("x").dispatchEvent(ev)
+
+   /**  控制台输出：
+    * （捕获阶段）currentTarget：#document
+      （捕获阶段）currentTarget：BODY
+      （捕获阶段）currentTarget：SPAN
+      （冒泡阶段）currentTarget：SPAN
+      （冒泡阶段）currentTarget：BODY
+      （冒泡阶段）currentTarget：#document
+    * 
+    **/
   &lt;/script>
  &lt;/body>
 &lt;/html>
 </pre>
 
-<p>The <code>debug</code> function will be invoked twice. Each time the <a>event</a>'s
-{{Event/target}} attribute value will be the <code>span</code> <a for=/>element</a>. The first time
-{{Event/currentTarget}} attribute's value will be the <a>document</a>, the second time the
-<code>body</code> <a for=/>element</a>. {{Event/eventPhase}} attribute's value switches from
-{{Event/CAPTURING_PHASE}} to {{Event/BUBBLING_PHASE}}. If an <a>event listener</a> was registered
-for the <code>span</code> <a for=/>element</a>, {{Event/eventPhase}} attribute's value would have
-been {{Event/AT_TARGET}}.
-
+<p>test与test2函数分别会被调用3次。test的调用处于捕获阶段，因此其顺序为<a>document</a>—>body—>span；
+test2的调用处于冒泡阶段，因此顺序span—>body—><a>document</a>。
 
 <h3 id=interface-event>Interface {{Event}}</h3>
 
