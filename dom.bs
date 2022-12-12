@@ -464,130 +464,110 @@ dictionary EventInit {
  <dd>如果成功调用{{Event/preventDefault()}}以指示取消，则返回true；否则返回false。
 
  <dt><code><var>event</var> . {{Event/composed}}</code>
- <dd>Returns true or false depending on how <var>event</var> was initialized. True if
- <var>event</var> invokes listeners past a {{ShadowRoot}} <a for=/>node</a> that is the
- <a for=tree>root</a> of its <a for=Event>target</a>; otherwise false.
+ <dd>根据事件的初始化方式返回true或false。如果事件通过其目标的根节点是{{ShadowRoot}}节点调用侦听器，则为真；否则为假。
 
  <dt><code><var>event</var> . {{Event/isTrusted}}</code>
- <dd>Returns true if <var>event</var> was
- <a>dispatched</a> by the user agent, and
- false otherwise.
+ <dd>如果事件是由用户代理<a lt="dispatched">分派</a>的，则返回true，否则返回false。
 
  <dt><code><var>event</var> . {{Event/timeStamp}}</code>
- <dd>Returns the <var>event</var>'s timestamp as the number of milliseconds measured relative to
- the <a>time origin</a>.
+ <dd>返回事件的时间戳，作为相对于时间原点测量的毫秒数。
 </dl>
 
-<p>The <dfn attribute for=Event><code>type</code></dfn> attribute must return the value it was
-initialized to. When an <a>event</a> is created the attribute must be initialized to the empty
-string.
+<p><dfn attribute for=Event><code>type</code></dfn>属性必须返回它被初始化的值。创建<a lt="event">事件</a>时，必须将属性初始化为空字符串。
 
-<p>The <dfn attribute for=Event><code>target</code></dfn> getter steps are to return <a>this</a>'s
-<a for=Event>target</a>.
+<p><dfn attribute for=Event><code>target</code></dfn>的get方法返回<a>this</a>的<a for=Event>target</a>属性值。
 
-<p>The <dfn attribute for=Event><code>srcElement</code></dfn> getter steps are to return
-<a>this</a>'s <a for=Event>target</a>.
+<p><dfn attribute for=Event><code>srcElement</code></dfn>的get方法返回<a>this</a>的<a for=Event>target</a>属性值。
 
-<p>The <dfn attribute for=Event><code>currentTarget</code></dfn> attribute must return the value it
-was initialized to. When an <a>event</a> is created the attribute must be initialized to null.
+<p><dfn attribute for=Event><code>currentTarget</code></dfn>属性必须返回它被初始化的值。创建<a lt="event">事件</a>时，必须将属性初始化为null。
 
-<p>The <dfn method for=Event><code>composedPath()</code></dfn> method steps are:
+<p><dfn method for=Event><code>composedPath()</code></dfn>方法执行步骤：
 
 <ol>
- <li><p>Let <var>composedPath</var> be an empty <a for=/>list</a>.
+ <li><p>设composedPath为空<a for=/ lt="list">列表</a>。
 
- <li><p>Let <var>path</var> be <a>this</a>'s <a for=Event>path</a>.
+ <li><p>设path为<a>this</a>.<a for=Event>path</a>。
 
- <li><p>If <var>path</var> <a for=list>is empty</a>, then return <var>composedPath</var>.
+ <li><p>如果path<a for=list lt="is empty">为空</a>，则返回<var>composedPath</var>。
 
- <li><p>Let <var>currentTarget</var> be <a>this</a>'s {{Event/currentTarget}} attribute value.
+ <li><p>设currentTarget为this.{{Event/currentTarget}}的属性值。
 
- <li><p><a for=list>Append</a> <var>currentTarget</var> to <var>composedPath</var>.
+ <li><p>将<var>currentTarget</var><a for=list lt="Append">添加</a>到<var>composedPath</var>。
 
- <li><p>Let <var>currentTargetIndex</var> be 0.
+ <li><p>设<var>currentTargetIndex</var>为0。
 
- <li><p>Let <var>currentTargetHiddenSubtreeLevel</var> be 0.
+ <li><p>设<var>currentTargetHiddenSubtreeLevel</var>为0。
 
- <li><p>Let <var>index</var> be <var>path</var>'s <a for=list>size</a> &minus; 1.
+ <li><p>设<var>index</var>为<var>path</var>的<a for=list>size</a>-1。
 
  <li>
-  <p>While <var>index</var> is greater than or equal to 0:
+  <p>当 <var>index</var>大于等于0：
 
   <ol>
-   <li><p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>root-of-closed-tree</a> is true,
-   then increase <var>currentTargetHiddenSubtreeLevel</var> by 1.
+   <li><p>如果path[<var>index</var>]的<a for=Event/path>root-of-closed-tree</a>为true，<var>currentTargetHiddenSubtreeLevel</var>增加1。
 
-   <li><p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>invocation target</a> is
-   <var>currentTarget</var>, then set <var>currentTargetIndex</var> to <var>index</var> and
-   <a for=iteration>break</a>.
+   <li><p>如果path[<var>index</var>]的<a for=Event/path>invocation target</a>等于<var>currentTarget</var>，
+   则将<var>currentTargetIndex</var>设置为<var>index</var>并且break出循环。
 
-   <li><p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>slot-in-closed-tree</a> is true,
-   then decrease <var>currentTargetHiddenSubtreeLevel</var> by 1.
+   <li><p>如果path[<var>index</var>]的<a for=Event/path>slot-in-closed-tree</a>为true，<var>currentTargetHiddenSubtreeLevel</var>减1。
 
-   <li><p>Decrease <var>index</var> by 1.
+   <li><p>将<var>index</var>减1。
   </ol>
 
- <li><p>Let <var>currentHiddenLevel</var> and <var>maxHiddenLevel</var> be
- <var>currentTargetHiddenSubtreeLevel</var>.
+ <li><p>设<var>currentHiddenLevel</var>和<var>maxHiddenLevel</var>的值为<var>currentTargetHiddenSubtreeLevel</var>。
 
- <li><p>Set <var>index</var> to <var>currentTargetIndex</var> &minus; 1.
+ <li><p>设<var>index</var>为<var>currentTargetIndex</var>&minus; 1。
 
  <li>
-  <p>While <var>index</var> is greater than or equal to 0:
+  <p>当 <var>index</var>大于等于0：
 
   <ol>
-   <li><p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>root-of-closed-tree</a> is true,
-   then increase <var>currentHiddenLevel</var> by 1.
+   <li><p>如果path[<var>index</var>]的<a for=Event/path>root-of-closed-tree</a>为true，<var>currentHiddenLevel</var>增加1。
 
-   <li><p>If <var>currentHiddenLevel</var> is less than or equal to <var>maxHiddenLevel</var>, then
-   <a for=list>prepend</a> <var>path</var>[<var>index</var>]'s
-   <a for=Event/path>invocation target</a> to <var>composedPath</var>.
+   <li><p>如果<var>currentHiddenLevel</var>小于等于<var>maxHiddenLevel</var>， 则将<var>path</var>[<var>index</var>]的
+   <a for=Event/path>invocation target</a>添加到<var>composedPath</var>之前。
 
    <li>
-    <p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>slot-in-closed-tree</a> is true,
-    then:
+    <p>如果<var>path</var>[<var>index</var>]的<a for=Event/path>slot-in-closed-tree</a>为true，则：
 
     <ol>
-     <li><p>Decrease <var>currentHiddenLevel</var> by 1.
+     <li><p><var>currentHiddenLevel</var>减1。
 
-     <li><p>If <var>currentHiddenLevel</var> is less than <var>maxHiddenLevel</var>, then set
-     <var>maxHiddenLevel</var> to <var>currentHiddenLevel</var>.
+     <li><p>如果<var>currentHiddenLevel</var>小于<var>maxHiddenLevel</var>，则将<var>maxHiddenLevel</var>设置为<var>currentHiddenLevel</var>。
     </ol>
 
-   <li><p>Decrease <var>index</var> by 1.
+   <li><p>将<var>index</var>减1。
   </ol>
 
- <li><p>Set <var>currentHiddenLevel</var> and <var>maxHiddenLevel</var> to
- <var>currentTargetHiddenSubtreeLevel</var>.
+ <li><p>设<var>currentHiddenLevel</var>和<var>maxHiddenLevel</var>为
+ <var>currentTargetHiddenSubtreeLevel</var>。
 
- <li><p>Set <var>index</var> to <var>currentTargetIndex</var> + 1.
+ <li><p>将<var>index</var>设置为<var>currentTargetIndex</var> + 1。
 
  <li>
-  <p>While <var>index</var> is less than <var>path</var>'s <a for=list>size</a>:
+  <p>当<var>index</var>小于<var>path</var>的<a for=list>size</a>:
 
   <ol>
-   <li><p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>slot-in-closed-tree</a> is true,
-   then increase <var>currentHiddenLevel</var> by 1.
+   <li><p>如果<var>path</var>[<var>index</var>]的<a for=Event/path>slot-in-closed-tree</a>为true，
+   则将<var>currentHiddenLevel</var>增加1。
 
-   <li><p>If <var>currentHiddenLevel</var> is less than or equal to <var>maxHiddenLevel</var>, then
-   <a for=list>append</a> <var>path</var>[<var>index</var>]'s
-   <a for=Event/path>invocation target</a> to <var>composedPath</var>.
+   <li><p>如果<var>currentHiddenLevel</var>小于等于<var>maxHiddenLevel</var>， 则将
+   <var>path</var>[<var>index</var>]的<a for=Event/path>invocation target</a><a for=list lt="append">添加到</a><var>composedPath</var>。
 
    <li>
-    <p>If <var>path</var>[<var>index</var>]'s <a for=Event/path>root-of-closed-tree</a> is true,
-    then:
+    <p>如<var>path</var>[<var>index</var>]的<a for=Event/path>root-of-closed-tree</a>为true，则：
 
     <ol>
-     <li><p>Decrease <var>currentHiddenLevel</var> by 1.
+     <li><p><var>currentHiddenLevel</var>减1。
 
-     <li><p>If <var>currentHiddenLevel</var> is less than <var>maxHiddenLevel</var>, then set
-     <var>maxHiddenLevel</var> to <var>currentHiddenLevel</var>.
+     <li><p>如果<var>currentHiddenLevel</var>小于<var>maxHiddenLevel</var>，则将
+     <var>maxHiddenLevel</var>设置为<var>currentHiddenLevel</var>。
     </ol>
 
-   <li><p>Increase <var>index</var> by 1.
+   <li><p>将<var>index</var>增加1。
   </ol>
 
- <li><p>Return <var>composedPath</var>.
+ <li><p>返回<var>composedPath</var>。
 </ol>
 
 <p>The <dfn attribute for=Event><code>eventPhase</code></dfn> attribute must return the value it was
