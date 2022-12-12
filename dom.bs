@@ -69,6 +69,28 @@ spec:html; type:element
 <p><dfn export id=concept-tree>tree</dfn>是一种有限的分层树结构。<a>tree</a>的遍历
 <dfn export id=concept-tree-order lt="tree order">顺序</dfn>采用深度优先先序遍历。
 <!-- https://en.wikipedia.org/wiki/Depth-first_search -->
+为什么采用深度优先先序遍历？其实是由于深度优先先序遍历方式与我们阅读HTML文档顺序是一致的，看以下例子：
+<pre class=lang-markup>
+ &lt;F>
+   &lt;B>
+     &lt;K>&lt;/K>
+     &lt;D>
+       &lt;C>&lt;/C>
+       &lt;E>&lt;/E>
+     &lt;/D>
+   &lt;/B>
+   &lt;G>
+     &lt;I>
+       &lt;H>&lt;/H>
+     &lt;/I>
+   &lt;/G>
+ &lt;/F>
+ &lt;!--我们的阅读顺序:
+     F B K D C E G I H
+     深度优先先序遍历顺序：
+     F B K D C E G I H
+ -->
+</pre>
 
 <p>
 <dfn export for=tree id=concept-tree-participate lt="participate|participate in a tree|participates in a tree">参与</dfn>
@@ -77,9 +99,11 @@ spec:html; type:element
 <dfn export for=tree id=concept-tree-child lt="child|children">children</dfn>，存放子对象，它是一组
 <a data-lt="ordered set">有序</a>的对象。对象B是对象A的父对象，那么对象A是对象B的子对象。
 
-<p>一个对象的<dfn export for=tree id=concept-tree-root lt="root">根</dfn>是它自己，如果它的
-<a for=tree>parent</a>不为空，它就是它的<a for=tree lt="parent">父对象</a>的<a for=tree  lt="root">根</a>。
-<a>tree</a>的<a for=tree lt="root">根</a>是<a for=tree lt="participate">参与</a>该<a>tree</a>的其<a for=tree>parent</a>为空的对象。
+如果一个对象没有父对象(即它的<a for=tree>parent</a>属性为null)，那么该对象的
+<dfn export for=tree id=concept-tree-root lt="root">根</dfn>就是对象本身。
+如果对象确实有父对象(即它的<a for=tree>parent</a>属性不为null)，则对象的根是其父对象的根。换句话说，任何对象的根是对象所属层次结构中的最高对象。
+<a>tree</a>的<a for=tree lt="root">根</a>是<a for=tree lt="participate">参与</a>该<a>tree</a>
+的其<a for=tree>parent</a>为空的对象。
 
 对象<var>A</var>称为对象<var>B</var>的
 <dfn export for=tree id=concept-tree-descendant lt="descendant">后代</dfn>，
@@ -195,7 +219,7 @@ spec:html; type:element
 
 <h2 id=events lt="Events">Events：事件</h2>
 
-<h3 id=introduction-to-dom-events lt="Introduction to "DOM Events"">DOM事件简介</h3>
+<h3 id=introduction-to-dom-events>DOM事件简介</h3>
 
 在整个Web平台中，<a>events</a>(事件)被<a>dispatched</a>(分派)给对象以表示发生的事件，
 例如网络活动或用户交互。这些对象实现{{EventTarget}}接口，因此可以通过调用{{EventTarget/addEventListener()}}添加
@@ -230,13 +254,13 @@ obj.addEventListener("load", imgFetched,{
 controller.abort() //调用该方法删除事件监听器
 </pre>
 
-<a>Events</a>也是一个对象，它实现了{{Event}}接口(或派生接口)。在第一个例子中，函数的参数ev是一个<a>event</a>对象，ev作为参数传递
+<a lt="events">事件</a>也是一个对象，它实现了{{Event}}接口(或派生接口)。在第一个例子中，函数的参数ev是一个<a>event</a>对象，ev作为参数传递
 给<a lt="event listener">event listener(事件监听器)</a>的<a for="event listener" lt="callback">回调函数</a>(通常是如上所示的
 JavaScript函数)。<a lt="event listener">event listener(事件监听器)</a>使用<a>event</a>的{{Event/type}}属性来表示监听哪种事件
 (上诉例子中的"load")。<a>event</a>的{{Event/target}}属性则表明了事件被<a lt="dispatched">分配</a>到哪个对象中(上述例子中的obj)。
 
-<p id="synthetic-events">尽管<a>events</a>通常作为用户交互或完成某些任务的结果由用户代理进行<a lt="dispatched">分派</a>，但应用
-程序可以使用合成事件的方式自行<a lt="dispatched">分派</a><a>events</a>：
+<p id="synthetic-events">尽管<a lt="events">事件</a>通常作为用户交互或完成某些任务的结果由用户代理进行<a lt="dispatched">分派</a>，但应用
+程序可以使用合成事件的方式自行<a lt="dispatched">分派</a><a lt="events">事件</a>：
 
 <pre class='lang-javascript'>
 // add an appropriate event listener
@@ -247,7 +271,7 @@ var event = new CustomEvent("cat", {"detail":{"hazcheeseburger":true}})
 obj.dispatchEvent(event)
 </pre>
 
-除了信号以外，<a>events</a>有时还用于让应用程序控制操作接下来发生的事情。例如，表单提交时将<a lt="dispatched">调度</a>一个
+除了信号以外，<a lt="events">事件</a>有时还用于让应用程序控制操作接下来发生的事情。例如，表单提交时将<a lt="dispatched">调度</a>一个
 {{Event/type}}属性值为"submit"的<a lt="events">事件</a>。如果调用此<a lt="event">事件</a>的{{Event/preventDefault()}}
 方法，表单提交将终止。希望通过应用程序<a lt="dispatched">分派</a>的<a lt="events">事件</a>(合成事件)使用此功能的应用程序
 可以使用{{EventTarget/dispatchEvent()}}方法的返回值：
@@ -267,7 +291,7 @@ event listeners(事件监听器)</a>也会接收到分派的事件。当该对�
 的<a lt="event listeners">event listeners(事件监听器)</a>的<a for="event listener">capture</a>属性为false，
 且<a>event</a>的{{Event/bubbles}}属性为true时，它们接收到分派事件的顺序为树的逆向顺序。
 
-<p>让我们看一个<a>events</a>如何在<a>tree</a>中工作的例子:
+<p>让我们看一个<a>event</a>如何在<a>tree</a>中工作的例子:
 <pre class=lang-markup>
 &lt;!doctype html>
 &lt;html>
@@ -314,7 +338,7 @@ event listeners(事件监听器)</a>也会接收到分派的事件。当该对�
 <p>test与test2函数分别会被调用3次。test的调用处于捕获阶段，因此其顺序为<a>document</a>—>body—>span；
 test2的调用处于冒泡阶段，因此顺序span—>body—><a>document</a>。
 
-<h3 id=interface-event>Interface {{Event}}</h3>
+<h3 id=interface-event>{{Event}}接口</h3>
 
 <pre class=idl>
 [Exposed=*]
@@ -357,102 +381,87 @@ dictionary EventInit {
 };
 </pre>
 
-<p>An {{Event}} object is simply named an <dfn export id=concept-event>event</dfn>. It allows for
-signaling that something has occurred, e.g., that an image has completed downloading.</p>
+<p>一个{{Event}}对象可以简单的被称为一个<dfn export id=concept-event lt="event">事件</dfn>。它允许用
+信号的方式通知某些事情已经发生，例如图像已经完成下载。</p>
 
-<p>A <dfn export>potential event target</dfn> is null or an {{EventTarget}} object.
+<p><dfn export lt="potential event target">event的target属性值可能</dfn>为null或{{EventTarget}}对象。
 
-<p>An <a>event</a> has an associated <dfn export for=Event>target</dfn> (a
-<a>potential event target</a>). Unless stated otherwise it is null.
+每个<a lt="event">事件</a>都与<dfn export for=Event>target</dfn>(该属性值可能为null或{{EventTarget}}对象)有关，
+除非另有说明，否则为空。
 
-<p>An <a>event</a> has an associated <dfn export for=Event>relatedTarget</dfn> (a
-<a>potential event target</a>). Unless stated otherwise it is null.
+每个<a lt="event">事件</a>都可能与<dfn export for=Event>relatedTarget</dfn>(该属性值可能为null或{{EventTarget}}对象)有关，
+除非另有说明，否则为空。
 
-<p class=note>Other specifications use <a for=Event>relatedTarget</a> to define a
-<code>relatedTarget</code> attribute. [[UIEVENTS]]
+<p class=note><a for=Event>relatedTarget</a>属性主要存在于{{FocusEvent}}、{{MouseEvent}}和{{TouchEvent}}在这些事件类型中，
+它指的是与事件相关的元素。例如，在{{MouseEvent}}中，该属性可以引用用户将光标移动到的元素，或者他们单击的元素。在{{FocusEvent}}中，
+该属性可以指用户将焦点移动到的元素，或者他们模糊处理的元素。在{{TouchEvent}}中，该属性可以引用在多点触摸手势中触摸的元素。
+<a for=Event>relatedTarget</a>属性的确切含义可能因具体事件和使用它的上下文而异。[[UIEVENTS]]
 
-<p>An <a>event</a> has an associated <dfn export for=Event>touch target list</dfn> (a
-<a for=/>list</a> of zero or more <a>potential event targets</a>). Unless stated otherwise it is the
-empty list.
+每个<a lt="event">事件</a>都可能与<dfn export for=Event>targetTouches</dfn>(该属性值可能为由0个或多个null或
+{{EventTarget}}对象组成的<a for=/ lt="list">列表</a>)有关，除非另有说明，否则为空。
 
-<p class=note>The <a for=Event>touch target list</a> is for the exclusive use of defining the
-{{TouchEvent}} interface and related interfaces. [[TOUCH-EVENTS]]
+<p class=note><a for=Event>targetTouches</a>属性仅存在于{{TouchEvent}}事件类型，它用于标识当前处于活动状态并与事件的目标元素相交的触摸点列表，
+该属性是一个Touch对象数组，每个对象代表设备表面上的一个触摸点。它可用于确定页面上特定元素上发生的多点触摸手势的细节，
+例如涉及的手指数量和屏幕上每个触摸点的位置。通过使用该属性列表中对象的<a for=Event>target</a>属性，它还可以用于识别页面上当前正在被用户触摸的元素。[[TOUCH-EVENTS]]
 
-<p>An <a>event</a> has an associated <dfn export for=Event>path</dfn>. A <a for=Event>path</a> is a
-<a for=/>list</a> of <a for=/>structs</a>. Each <a for=/>struct</a> consists of an
-<dfn for=Event/path>invocation target</dfn> (an {{EventTarget}} object), an
-<dfn for=Event/path>invocation-target-in-shadow-tree</dfn> (a boolean), a
-<dfn for=Event/path>shadow-adjusted target</dfn> (a <a>potential event target</a>), a
-<dfn id=event-path-relatedtarget for=Event/path>relatedTarget</dfn> (a
-<a>potential event target</a>), a <dfn for=Event/path>touch target list</dfn> (a <a for=/>list</a>
-of <a>potential event targets</a>), a <dfn for=Event/path>root-of-closed-tree</dfn> (a boolean), and
-a <dfn for=Event/path>slot-in-closed-tree</dfn> (a boolean). A <a for=Event>path</a> is initially
-the empty list.</p>
+<p>每个<a lt="event">事件</a>都与<dfn export for=Event>path</dfn>有关。<a for=Event>path</a>属性值是一个<a for=/ lt="structs">
+结构体</a><a for=/ lt="list">列表</a>。每个<a for=/ lt="structs">结构体</a>都包含了
+<dfn for=Event/path>invocation target</dfn>(属性值为{{EventTarget}}对象)，
+<dfn for=Event/path>invocation-target-in-shadow-tree</dfn>(属性值为Boolean)，
+<dfn for=Event/path>shadow-adjusted target</dfn>(属性值为{{EventTarget}}对象)，
+<dfn id=event-path-relatedtarget for=Event/path>relatedTarget</dfn>(属性值为{{EventTarget}}对象)，
+<dfn for=Event/path>touch target list</dfn>(属性值为{{EventTarget}}对象组成的<a for=/ lt="list">列表</a>)，
+<dfn for=Event/path>root-of-closed-tree</dfn>(属性值为Boolean)，
+<dfn for=Event/path>slot-in-closed-tree</dfn>(属性值为Boolean)，<a for=Event>path</a>的初始值为空列表。</p>
 
 <dl class=domintro>
  <dt><code><var>event</var> = new <a constructor lt="Event()">Event</a>(<var>type</var> [, <var>eventInitDict</var>])</code>
- <dd>Returns a new <var>event</var> whose
- {{Event/type}} attribute value is set to
- <var>type</var>. The <var>eventInitDict</var> argument
- allows for setting the {{Event/bubbles}} and
- {{Event/cancelable}} attributes via object
- members of the same name.
+ <dd>返回一个新事件，设置{{Event/type}}属性
+ 为传入的type参数。eventInitDict参数允许通过
+ 同名对象成员设置{{Event/bubbles}}和{{Event/cancelable}}属性。
 
  <dt><code><var>event</var> . {{Event/type}}</code>
- <dd>Returns the type of <var>event</var>, e.g.
- "<code>click</code>", "<code>hashchange</code>", or
- "<code>submit</code>".
+ <dd>返回事件的类型，例如"<code>click</code>"、
+ "<code>hashchange</code>"或"<code>submit</code>"。
 
  <dt><code><var>event</var> . {{Event/target}}</code>
- <dd>Returns the object to which <var>event</var> is <a>dispatched</a> (its
- <a for=Event>target</a>).
+ <dd>返回事件被<a lt="dispatched">分派</a>到的对象（它的<a for=Event>target</a>）。
 
  <dt><code><var>event</var> . {{Event/currentTarget}}</code>
- <dd>Returns the object whose <a>event listener</a>'s <a for="event listener">callback</a> is currently being
- invoked.
+ <dd>返回当前正在调用<a lt="event listener">事件侦听器</a>回调的对象。
 
  <dt><code><var>event</var> . {{Event/composedPath()}}</code>
- <dd>Returns the <a for=Event/path>invocation target</a> objects of <var>event</var>'s
- <a for=Event>path</a> (objects on which listeners will be invoked), except for any
- <a for=/>nodes</a> in <a for=/>shadow trees</a> of which the <a for=/>shadow root</a>'s
- <a for=ShadowRoot>mode</a> is "<code>closed</code>" that are not reachable from <var>event</var>'s
- {{Event/currentTarget}}.
+ <dd>返回 <a for=Event>path</a>的<a for=Event/path>invocation target</a>对象(这些对象将调用侦听器)，
+ <a for=/>shadow trees</a>中<a for=/ lt="shadow root">根节点</a>的<a for=ShadowRoot>mode</a>属性为
+ "closed"且无法从事件的{{Event/currentTarget}}属性访问的节点将不被返回。
 
  <dt><code><var>event</var> . {{Event/eventPhase}}</code>
- <dd>Returns the <a>event</a>'s phase, which is one of {{Event/NONE}},
- {{Event/CAPTURING_PHASE}},
- {{Event/AT_TARGET}}, and
- {{Event/BUBBLING_PHASE}}.
+ <dd>返回<a lt="event">事件</a>的阶段，它的值为{{Event/NONE}}(无，值为0)、{{Event/CAPTURING_PHASE}}(捕获阶段，值为1)、
+ {{Event/AT_TARGET}}(调度阶段，值为2)和{{Event/BUBBLING_PHASE}}(冒泡阶段，值为3)之一。
 
  <dt><code><var>event</var> . <a method for=Event lt="stopPropagation()">stopPropagation</a>()</code>
- <dd>When <a>dispatched</a> in a <a>tree</a>, invoking this method prevents
- <var>event</var> from reaching any objects other than the current object.
+ <dd>调用此方法可防止事件到达当前对象以外的任何对象(该方法不仅可以阻止事件冒泡，且在捕获阶段仍然能阻止)。
 
  <dt><code><var>event</var> . <a method for=Event lt="stopImmediatePropagation()">stopImmediatePropagation</a>()</code>
- <dd>Invoking this method prevents <var>event</var> from reaching
- any registered <a>event listeners</a> after the current one finishes running and, when
- <a>dispatched</a> in a <a>tree</a>, also prevents <var>event</var> from reaching any
- other objects.
+ <dd>调用此方法可防止事件到达当前对象以外的任何对象，除此之外，调用此方法可防止事件在当前事件完成运行后到达当前对象已注册的同类型
+ (event的type相同)的<a lt="event listeners">事件侦听器</a>。
 
  <dt><code><var>event</var> . {{Event/bubbles}}</code>
- <dd>Returns true or false depending on how <var>event</var> was initialized. True if
- <var>event</var> goes through its <a for=Event>target</a>'s <a for=tree>ancestors</a> in reverse
- <a>tree order</a>; otherwise false.
-
+ <dd>返回true或false，true代表允许事件按照树的逆向顺序从<a for=Event lt="target">目标</a>向外传播到外部元素(事件冒泡)，反之则不允许
+ 
  <dt><code><var>event</var> . {{Event/cancelable}}</code>
- <dd>Returns true or false depending on how <var>event</var> was initialized. Its return
- value does not always carry meaning, but true can indicate that part of the operation
- during which <var>event</var> was <a>dispatched</a>, can be canceled by invoking the
- {{Event/preventDefault()}} method.
+ <dd>根据事件的初始化方式返回true或false。它的返回值并不总是有意义的，因为它仅表示事件的默认行为是否可以取消，
+ 即使该event.cancelable属性是true，也不能保证调用{{Event/preventDefault()}}方法实际上会阻止触发默认行为。
+ 这是因为 {{Event/preventDefault()}}方法只有在默认行为发生之前被调用时才有效。如果已经触发了默认行为，则调用
+  {{Event/preventDefault()}}不会有任何效果。true表示允许通过调用 {{Event/preventDefault()}}方法取消
+  <a lt="dispatched">分派</a>事件的部分操作，false表示不允许。
 
  <dt><code><var>event</var> . <a method for=Event lt="preventDefault()">preventDefault</a>()</code>
- <dd>If invoked when the {{Event/cancelable}} attribute value is true, and while executing a
- listener for the <var>event</var> with {{AddEventListenerOptions/passive}} set to false, signals to
- the operation that caused <var>event</var> to be <a>dispatched</a> that it needs to be canceled.
+ <dd>如果在{{Event/cancelable}}属性值为true时调用，并且在为{{AddEventListenerOptions/passive}}属性设置
+ 为false的事件执行侦听器时，向导致事件被<a lt="dispatched">分派</a>的操作发出信号，表明它需要被取消。
 
  <dt><code><var>event</var> . {{Event/defaultPrevented}}</code>
- <dd>Returns true if {{Event/preventDefault()}} was invoked successfully to indicate cancelation;
- otherwise false.
+ <dd>如果成功调用{{Event/preventDefault()}}以指示取消，则返回true；否则返回false。
 
  <dt><code><var>event</var> . {{Event/composed}}</code>
  <dd>Returns true or false depending on how <var>event</var> was initialized. True if
