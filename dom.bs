@@ -649,7 +649,7 @@ dictionary EventInit {
 <hr>
 
 <p>通过<var>type</var>， <var>bubbles</var>和<var>cancelable</var>
-<dfn export for=Event id=concept-event-initialize lt="initialize">初始化</dfn><var>事件</var>，将运行一下步骤:
+<dfn export for=Event id=concept-event-initialize lt="initialize">初始化</dfn>事件，将运行一下步骤:
 
 <ol>
  <li><p>设置<var>event</var>的<a>initialized flag</a>。
@@ -689,15 +689,13 @@ partial interface Window {
 };
 </pre>
 
-<p>Each {{Window}} object has an associated <dfn for=Window>current event</dfn> (undefined or an
-{{Event}} object). Unless stated otherwise it is undefined.
+<p>{{Window}}对象中存在一个关联的<dfn for=Window lt="current event">当前事件</dfn>(属性值为undefined或{{Event}}对象)。
+除非另有说明，否则它是未定义的。
 
-<p>The <dfn attribute for=Window><code>event</code></dfn> getter steps are to return <a>this</a>'s
-<a for=Window>current event</a>.
+<p><dfn attribute for=Window><code>event</code></dfn>get()方法返回<a>this</a>的<a for=Window lt="current event">当前事件</a>.
 
-<p class=note>Web developers are strongly encouraged to instead rely on the {{Event}} object passed
-to event listeners, as that will result in more portable code. This attribute is not available in
-workers or worklets, and is inaccurate for events dispatched in <a>shadow trees</a>.
+<p class=note>强烈建议Web开发人员使用传递给事件侦听器的{{Event}}对象替代该属性，因为这将产生移植性更高的代码，
+且此属性在worker或worklet中不可用，对于影子树中调度的事件也不准确。
 
 
 <h3 id=interface-customevent>Interface {{CustomEvent}}</h3>
