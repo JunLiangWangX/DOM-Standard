@@ -70,7 +70,7 @@ a[href].issue-return {
      <ol class="toc">
       <li><a href="#introduction-to-dom-events"><span class="secno">2.1</span> <span class="content">DOM事件简介</span></a>
       <li><a href="#interface-event"><span class="secno">2.2</span> <span class="content"><code class="idl"><span>Event</span></code>接口</span></a>
-      <li><a href="#interface-window-extensions"><span class="secno">2.3</span> <span class="content">Legacy extensions to the <code class="idl"><span>Window</span></code> interface</span></a>
+      <li><a href="#interface-window-extensions"><span class="secno">2.3</span> <span class="content">遗留扩展：<code class="idl"><span>Window</span></code>接口</span></a>
       <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content">Interface <code class="idl"><span>CustomEvent</span></code></span></a>
       <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">Constructing events</span></a>
       <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">Defining event interfaces</span></a>
@@ -911,10 +911,10 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
     <li>
      <p><a data-link-type="dfn" href="#concept-event-initialize" id="ref-for-concept-event-initialize">初始化</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①④">this</a>的<var>type</var>，<var>bubbles</var>和<var>cancelable</var>。 </p>
    </ol>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-event-initevent" id="ref-for-dom-event-initevent">initEvent()</a></code>方法与<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③①">事件</a>构造函数是冗余的，<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③②">事件</a>构造函数是一种更加现代和
+   <p class="note" role="note"><code class="idl"><a data-link-type="idl" href="#dom-event-initevent" id="ref-for-dom-event-initevent">initEvent()</a></code>方法与<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③①">事件</a>构造函数是冗余的，<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③②">事件</a>构造函数是一种更加现代和
 标准的创建事件的方式，而<code class="idl"><a data-link-type="idl" href="#dom-event-initevent" id="ref-for-dom-event-initevent①">initEvent()</a></code>方法是一种已被废弃的旧方法，且它无法设置事件的<code class="idl"><a data-link-type="idl" href="#dom-event-composed" id="ref-for-dom-event-composed②">composed</a></code>属性。
-由于它是遗留问题，因此才保留它。</p>
-   <h3 class="heading settled" data-level="2.3" id="interface-window-extensions"><span class="secno">2.3. </span><span class="content">Legacy extensions to the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window">Window</a></code> interface</span><a class="self-link" href="#interface-window-extensions"></a></h3>
+由于它是遗留问题，因此才保留它。 </p>
+   <h3 class="heading settled" data-level="2.3" id="interface-window-extensions"><span class="secno">2.3. </span><span class="content">遗留扩展：<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window">Window</a></code>接口</span><a class="self-link" href="#interface-window-extensions"></a></h3>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window①"><c- g>Window</c-></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Replaceable" id="ref-for-Replaceable"><c- g>Replaceable</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> (<a data-link-type="idl-name" href="#event" id="ref-for-event③"><c- n>Event</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④"><c- b>undefined</c-></a>) <a class="idl-code" data-link-type="attribute" data-readonly data-type="(Event or undefined)" href="#dom-window-event" id="ref-for-dom-window-event"><c- g>event</c-></a>; // legacy
 };
@@ -13137,7 +13137,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-window">
    <a href="https://html.spec.whatwg.org/multipage/window-object.html#window">https://html.spec.whatwg.org/multipage/window-object.html#window</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-window">2.3. Legacy extensions to the Window interface</a> <a href="#ref-for-window①">(2)</a> <a href="#ref-for-window②">(3)</a>
+    <li><a href="#ref-for-window">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-window①">(2)</a> <a href="#ref-for-window②">(3)</a>
     <li><a href="#ref-for-window③">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-window④">2.9. Dispatching events</a> <a href="#ref-for-window⑤">(2)</a> <a href="#ref-for-window⑥">(3)</a> <a href="#ref-for-window⑦">(4)</a>
    </ul>
@@ -14146,7 +14146,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-Replaceable">
    <a href="https://webidl.spec.whatwg.org/#Replaceable">https://webidl.spec.whatwg.org/#Replaceable</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-Replaceable">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-Replaceable">2.3. 遗留扩展：Window接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-SameObject">
@@ -14334,7 +14334,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#this">https://webidl.spec.whatwg.org/#this</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-this">2.2. Event接口</a> <a href="#ref-for-this①">(2)</a> <a href="#ref-for-this②">(3)</a> <a href="#ref-for-this③">(4)</a> <a href="#ref-for-this④">(5)</a> <a href="#ref-for-this⑤">(6)</a> <a href="#ref-for-this⑥">(7)</a> <a href="#ref-for-this⑦">(8)</a> <a href="#ref-for-this⑧">(9)</a> <a href="#ref-for-this⑨">(10)</a> <a href="#ref-for-this①⓪">(11)</a> <a href="#ref-for-this①①">(12)</a> <a href="#ref-for-this①②">(13)</a> <a href="#ref-for-this①③">(14)</a> <a href="#ref-for-this①④">(15)</a>
-    <li><a href="#ref-for-this①⑤">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-this①⑤">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-this①⑥">2.4. Interface CustomEvent</a> <a href="#ref-for-this①⑦">(2)</a> <a href="#ref-for-this①⑧">(3)</a>
     <li><a href="#ref-for-this①⑨">2.7. Interface EventTarget</a> <a href="#ref-for-this②⓪">(2)</a> <a href="#ref-for-this②①">(3)</a> <a href="#ref-for-this②②">(4)</a>
     <li><a href="#ref-for-this②③">3.1. Interface AbortController</a> <a href="#ref-for-this②④">(2)</a> <a href="#ref-for-this②⑤">(3)</a>
@@ -14390,7 +14390,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#idl-undefined">https://webidl.spec.whatwg.org/#idl-undefined</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-undefined">2.2. Event接口</a> <a href="#ref-for-idl-undefined①">(2)</a> <a href="#ref-for-idl-undefined②">(3)</a> <a href="#ref-for-idl-undefined③">(4)</a>
-    <li><a href="#ref-for-idl-undefined④">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-idl-undefined④">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-idl-undefined⑤">2.4. Interface CustomEvent</a>
     <li><a href="#ref-for-idl-undefined⑥">2.7. Interface EventTarget</a> <a href="#ref-for-idl-undefined⑦">(2)</a> <a href="#ref-for-idl-undefined⑧">(3)</a>
     <li><a href="#ref-for-idl-undefined⑨">3.1. Interface AbortController</a>
@@ -15687,7 +15687,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-event">2.1. DOM事件简介</a>
     <li><a href="#ref-for-event①">2.2. Event接口</a> <a href="#ref-for-event②">(2)</a>
-    <li><a href="#ref-for-event③">2.3. Legacy extensions to the Window interface</a> <a href="#ref-for-event④">(2)</a> <a href="#ref-for-event⑤">(3)</a>
+    <li><a href="#ref-for-event③">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-event④">(2)</a> <a href="#ref-for-event⑤">(3)</a>
     <li><a href="#ref-for-event⑥">2.4. Interface CustomEvent</a> <a href="#ref-for-event⑦">(2)</a>
     <li><a href="#ref-for-event⑧">2.5. Constructing events</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
     <li><a href="#ref-for-event①②">2.6. Defining event interfaces</a> <a href="#ref-for-event①③">(2)</a>
@@ -16027,14 +16027,14 @@ APIs</a>
   <aside class="dfn-panel" data-for="window-current-event">
    <b><a href="#window-current-event">#window-current-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-window-current-event">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-window-current-event">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-window-current-event①">2.9. Dispatching events</a> <a href="#ref-for-window-current-event②">(2)</a> <a href="#ref-for-window-current-event③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-window-event">
    <b><a href="#dom-window-event">#dom-window-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-window-event">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-dom-window-event">2.3. 遗留扩展：Window接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="customevent">
@@ -16572,7 +16572,7 @@ APIs</a>
    <b><a href="#concept-shadow-tree">#concept-shadow-tree</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-shadow-tree">2.2. Event接口</a>
-    <li><a href="#ref-for-concept-shadow-tree①">2.3. Legacy extensions to the Window interface</a>
+    <li><a href="#ref-for-concept-shadow-tree①">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-concept-shadow-tree②">4.2.1. Document tree</a>
     <li><a href="#ref-for-concept-shadow-tree③">4.2.2. Shadow tree</a> <a href="#ref-for-concept-shadow-tree④">(2)</a> <a href="#ref-for-concept-shadow-tree⑤">(3)</a>
     <li><a href="#ref-for-concept-shadow-tree⑥">4.2.2.1. Slots</a> <a href="#ref-for-concept-shadow-tree⑦">(2)</a>
