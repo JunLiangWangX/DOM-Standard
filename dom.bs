@@ -677,11 +677,11 @@ dictionary EventInit {
  <li><p><a lt="Initialize">初始化</a><a>this</a>的<var>type</var>，<var>bubbles</var>和<var>cancelable</var>。
 </ol>
 
-{{Event/initEvent()}}方法与<a lt="event">事件</a>构造函数是冗余的，<a lt="event">事件</a>构造函数是一种更加现代和
+<p class="note">{{Event/initEvent()}}方法与<a lt="event">事件</a>构造函数是冗余的，<a lt="event">事件</a>构造函数是一种更加现代和
 标准的创建事件的方式，而{{Event/initEvent()}}方法是一种已被废弃的旧方法，且它无法设置事件的{{Event/composed}}属性。
 由于它是遗留问题，因此才保留它。
 
-<h3 id=interface-window-extensions>Legacy extensions to the {{Window}} interface</h3>
+<h3 id=interface-window-extensions>遗留扩展：{{Window}}接口</h3>
 
 <pre class=idl>
 partial interface Window {
