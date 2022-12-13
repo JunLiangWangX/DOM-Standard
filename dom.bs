@@ -570,134 +570,116 @@ dictionary EventInit {
  <li><p>返回<var>composedPath</var>。
 </ol>
 
-<p>The <dfn attribute for=Event><code>eventPhase</code></dfn> attribute must return the value it was
-initialized to, which must be one of the following:
+<p><dfn attribute for=Event><code>eventPhase</code></dfn>属性必须返回它被初始化的值，它必须是以下之一：
 
 <dl>
- <dt><dfn const for=Event>NONE</dfn> (numeric value 0)
- <dd><a>Events</a> not currently
- <a>dispatched</a> are in this phase.
+ <dt><dfn const for=Event>NONE</dfn> (值为0)
+ <dd>处于<a>event</a>未<a lt="dispatched">分派</a>阶段(事件处于未分派阶段)。
 
- <dt><dfn const for=Event>CAPTURING_PHASE</dfn> (numeric value 1)
- <dd>When an <a>event</a> is <a>dispatched</a> to an object that <a>participates</a> in a
- <a>tree</a> it will be in this phase before it reaches its <a for=Event>target</a>.
+ <dt><dfn const for=Event>CAPTURING_PHASE</dfn> (值为1)
+ <dd>当<a>event</a>被<a lt="dispatched">分派</a>给<a lt="participates">参与</a><a lt="tree">树</a>的对象时，
+ 它将在到达<a for=Event>target</a>之前处于此阶段(事件处于捕获阶段)。
 
- <dt><dfn const for=Event>AT_TARGET</dfn> (numeric value 2)
- <dd>When an <a>event</a> is <a>dispatched</a> it will be in this phase on its
- <a for=Event>target</a>.
+ <dt><dfn const for=Event>AT_TARGET</dfn> (值为2)
+ <dd>当一个<a lt="event">事件</a>被<a lt="dispatched">分派</a>时，它将在它的<a for=Event>target</a>上处于这个阶段(事件处于到达目标阶段)。
 
  <dt><dfn const for=Event>BUBBLING_PHASE</dfn> (numeric value 3)
- <dd>When an <a>event</a> is <a>dispatched</a> to an object that <a>participates</a> in a
- <a>tree</a> it will be in this phase after it reaches its <a for=Event>target</a>.
+ <dd>当<a lt="event">事件</a>被<a lt="dispatched">分派</a>给<a lt="participates">参与</a><a lt="tree">树</a>的对象时，
+ 它将在到达其<a for=Event>target</a>后处于此阶段(事件处于冒泡阶段)。
 </dl>
 
-<p>Initially the attribute must be initialized to {{Event/NONE}}.
+<p>该属性必须初始化为{{Event/NONE}}
 
 <hr>
 
-<p>Each <a>event</a> has the following associated flags that are all initially unset:
+<p>每个<a lt="event">事件</a>都有以下关联的标志，这些标志最初都是未设置的：
 
 <ul>
- <li><dfn export for=Event id=stop-propagation-flag>stop propagation flag</dfn>
- <li><dfn export for=Event id=stop-immediate-propagation-flag>stop immediate propagation flag</dfn>
- <li><dfn export for=Event id=canceled-flag>canceled flag</dfn>
- <li><dfn export for=Event id=in-passive-listener-flag>in passive listener flag</dfn>
- <li><dfn export for=Event id=composed-flag>composed flag</dfn>
- <li><dfn export for=Event id=initialized-flag>initialized flag</dfn>
- <li><dfn export for=Event id=dispatch-flag>dispatch flag</dfn>
+ <li><dfn export for=Event id=stop-propagation-flag>stop propagation flag</dfn>(停止传播标志)
+ <li><dfn export for=Event id=stop-immediate-propagation-flag>stop immediate propagation flag</dfn>(停止直系传播标志)
+ <li><dfn export for=Event id=canceled-flag>canceled flag</dfn>(取消标志)
+ <li><dfn export for=Event id=in-passive-listener-flag>in passive listener flag</dfn>(被动监听标志)
+ <li><dfn export for=Event id=composed-flag>composed flag</dfn>(组合标志)
+ <li><dfn export for=Event id=initialized-flag>initialized flag</dfn>(初始化标志)
+ <li><dfn export for=Event id=dispatch-flag>dispatch flag</dfn>(分派标志)
 </ul>
 
-<p>The <dfn method for=Event><code>stopPropagation()</code></dfn> method steps are to set
-<a>this</a>'s <a>stop propagation flag</a>.</p>
+<p><dfn method for=Event><code>stopPropagation()</code></dfn>方法将会设置<a>this</a>的<a>stop propagation flag</a>。</p>
 
-<p>The <dfn attribute for=Event><code>cancelBubble</code></dfn> getter steps are to return true if
-<a>this</a>'s <a>stop propagation flag</a> is set; otherwise false.
+<p>如果<a>this</a>的<a>stop propagation flag</a>被设置，<dfn attribute for=Event><code>cancelBubble</code></dfn>
+的get()方法将会返回true，否则返回false。
 
-<p>The {{Event/cancelBubble}} setter steps are to set <a>this</a>'s <a>stop propagation flag</a> if
-the given value is true; otherwise do nothing.
+<p>{{Event/cancelBubble}}的set()方法是在给定值为true时设置<a>this</a>的<a>stop propagation flag</a>；否则什么也不做。
 
-<p>The <dfn method for=Event><code>stopImmediatePropagation()</code></dfn> method steps are to set
-<a>this</a>'s <a>stop propagation flag</a> and <a>this</a>'s
-<a>stop immediate propagation flag</a>.
+<p><dfn method for=Event><code>stopImmediatePropagation()</code></dfn>方法将会设置<a>this</a>的<a>stop propagation flag</a>
+和<a>this</a>的<a>stop immediate propagation flag</a>。
 
-<p>The <dfn attribute for=Event><code>bubbles</code></dfn> and
-<dfn attribute for=Event><code>cancelable</code></dfn> attributes must return the values they were
-initialized to.
+<p><dfn attribute for=Event><code>bubbles</code></dfn>和<dfn attribute for=Event><code>cancelable</code></dfn>
+必须返回其初始化的值。
 
-<p>To <dfn>set the canceled flag</dfn>, given an <a>event</a> <var>event</var>, if
-<var>event</var>'s {{Event/cancelable}} attribute value is true and <var>event</var>'s
-<a>in passive listener flag</a> is unset, then set <var>event</var>'s <a>canceled flag</a>, and do
-nothing otherwise.
+<p>给定一个<a lt="event">事件</a>，如果其{{Event/cancelable}}属性为true并且其<a>in passive listener flag</a>未被设置， 
+则将设置它的<a>canceled flag</a>。
 
-<p>The <dfn attribute for=Event><code>returnValue</code></dfn> getter steps are to return false if
-<a>this</a>'s <a>canceled flag</a> is set; otherwise true.
+<p>如果<a>this</a>的<a>canceled flag</a>被设置，则<dfn attribute for=Event><code>returnValue</code></dfn>的get()方法
+将返回false，否则返回true。
 
-<p>The {{Event/returnValue}} setter steps are to <a>set the canceled flag</a> with <a>this</a> if
-the given value is false; otherwise do nothing.
+<p>{{Event/returnValue}}的set()方法是在给定值为false时设置<a>this</a>的<a>canceled flag</a>；否则什么也不做。
 
-<p>The <dfn method for=Event><code>preventDefault()</code></dfn> method steps are to
-<a>set the canceled flag</a> with <a>this</a>.
+<p><dfn method for=Event><code>preventDefault()</code></dfn>方法将会设置<a>this</a>的<a>canceled flag</a>。
 
-<p class=note>There are scenarios where invoking {{Event/preventDefault()}} has no
-effect. User agents are encouraged to log the precise cause in a developer console, to aid
-debugging.
+<p class=note>在某些情况下调用{{Event/preventDefault()}}无效。鼓励用户代理在开发人员控制台中记录准确的原因，以帮助调试。
 
-<p>The <dfn attribute for=Event><code>defaultPrevented</code></dfn> getter steps are to return true
-if <a>this</a>'s <a>canceled flag</a> is set; otherwise false.
+<p>如果<a>this</a>的<a>canceled flag</a>被设置，则<dfn attribute for=Event><code>defaultPrevented</code></dfn>的get()方法
+将返回true；否则放返回false。
 
-<p>The <dfn attribute for=Event><code>composed</code></dfn> getter steps are to return true if
-<a>this</a>'s <a>composed flag</a> is set; otherwise false.
+<p>如果<a>this</a>的<a>composed flag</a>被设置，则<dfn attribute for=Event><code>composed</code></dfn>的get()方法将返回true;
+否则返回false。
 
 <hr>
 
-<p>The <dfn attribute for=Event><code>isTrusted</code></dfn> attribute must return the value it was
-initialized to. When an <a>event</a> is created the attribute must be initialized to false.
+<p><dfn attribute for=Event><code>isTrusted</code></dfn>属性必须返回它被初始化的值。创建<a lt="event">事件</a>时，
+必须将属性初始化为 false。
 
-<p class=note>{{Event/isTrusted}} is a convenience that indicates whether an
-<a>event</a> is <a>dispatched</a> by the user agent (as opposed to using
-{{EventTarget/dispatchEvent()}}). The sole legacy exception is {{HTMLElement/click()}}, which causes
-the user agent to dispatch an <a>event</a> whose {{Event/isTrusted}} attribute is initialized to
-false.
+<p class=note>{{Event/isTrusted}}表示<a lt="event">事件</a>是否由用户代理<a lt="dispatched">分派</a>(调用
+{{EventTarget/dispatchEvent()}}分派该属性则为false)。唯一的遗留异常是{{HTMLElement/click()}}方法，它会导致用户代理分派一个
+{{Event/isTrusted}}属性初始化为false的<a lt="event">事件</a>。
 
-<p>The <dfn attribute for=Event><code>timeStamp</code></dfn> attribute must return the value it was
-initialized to.
+<p><dfn attribute for=Event><code>timeStamp</code></dfn>属性必须返回它被初始化的值。
 
 <hr>
 
-<p>To <dfn export for=Event id=concept-event-initialize>initialize</dfn> an <var>event</var>, with
-<var>type</var>, <var>bubbles</var>, and <var>cancelable</var>, run these steps:
+<p>通过<var>type</var>， <var>bubbles</var>和<var>cancelable</var>
+<dfn export for=Event id=concept-event-initialize lt="initialize">初始化</dfn><var>事件</var>，将运行一下步骤:
 
 <ol>
- <li><p>Set <var>event</var>'s <a>initialized flag</a>.
+ <li><p>设置<var>event</var>的<a>initialized flag</a>。
 
- <li><p>Unset <var>event</var>'s <a>stop propagation flag</a>,
- <a>stop immediate propagation flag</a>, and <a>canceled flag</a>.
+ <li><p>取消<var>event</var>的<a>stop propagation flag</a>，<a>stop immediate propagation flag</a>和<a>canceled flag</a>。
 
- <li><p>Set <var>event</var>'s {{Event/isTrusted}} attribute to false.
+ <li><p>设置<var>event</var>的{{Event/isTrusted}}属性为false。
 
- <li><p>Set <var>event</var>'s <a for=Event>target</a> to null.
+ <li><p>设置<var>event</var>的<a for=Event>target</a>为null。
 
- <li><p>Set <var>event</var>'s {{Event/type}} attribute to <var>type</var>.
+ <li><p>设置<var>event</var>的{{Event/type}}属性为<var>type</var>参数。
 
- <li><p>Set <var>event</var>'s {{Event/bubbles}} attribute to <var>bubbles</var>.
+ <li><p>设置<var>event</var>的{{Event/bubbles}}属性为<var>bubbles</var>参数。
 
- <li><p>Set <var>event</var>'s {{Event/cancelable}} attribute to <var>cancelable</var>.
+ <li><p>设置<var>event</var>的{{Event/cancelable}}属性为<var>cancelable</var>参数。
 </ol>
 
-<p>The
-<dfn method for=Event><code>initEvent(<var>type</var>, <var>bubbles</var>, <var>cancelable</var>)</code></dfn>
-method steps are:
+<p>
+<dfn method for=Event><code>initEvent(<var>type</var>， <var>bubbles</var>， <var>cancelable</var>)</code></dfn>
+方法执行步骤:
 
 <ol>
- <li><p>If <a>this</a>'s <a>dispatch flag</a> is set, then return.
+ <li><p>如果<a>this</a>的<a>dispatch flag</a>被设置，则return。
 
- <li><p><a>Initialize</a> <a>this</a> with <var>type</var>, <var>bubbles</var>, and
- <var>cancelable</var>.
+ <li><p><a lt="Initialize">初始化</a><a>this</a>的<var>type</var>，<var>bubbles</var>和<var>cancelable</var>。
 </ol>
 
-<p class=note>{{Event/initEvent()}} is redundant with <a>event</a> constructors and
-incapable of setting {{Event/composed}}. It has to be supported for legacy content.
-
+{{Event/initEvent()}}方法与<a lt="event">事件</a>构造函数是冗余的，<a lt="event">事件</a>构造函数是一种更加现代和
+标准的创建事件的方式，而{{Event/initEvent()}}方法是一种已被废弃的旧方法，且它无法设置事件的{{Event/composed}}属性。
+由于它是遗留问题，因此才保留它。
 
 <h3 id=interface-window-extensions>Legacy extensions to the {{Window}} interface</h3>
 
