@@ -71,7 +71,7 @@ a[href].issue-return {
       <li><a href="#introduction-to-dom-events"><span class="secno">2.1</span> <span class="content">DOM事件简介</span></a>
       <li><a href="#interface-event"><span class="secno">2.2</span> <span class="content"><code class="idl"><span>Event</span></code>接口</span></a>
       <li><a href="#interface-window-extensions"><span class="secno">2.3</span> <span class="content">遗留扩展：<code class="idl"><span>Window</span></code>接口</span></a>
-      <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content">Interface <code class="idl"><span>CustomEvent</span></code></span></a>
+      <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content"><code class="idl"><span>CustomEvent</span></code>接口</span></a>
       <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">Constructing events</span></a>
       <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">Defining event interfaces</span></a>
       <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content">Interface <code class="idl"><span>EventTarget</span></code></span></a>
@@ -924,7 +924,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    <p><dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export id="dom-window-event"><code>event</code></dfn>get()方法返回<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑤">this</a>的<a data-link-type="dfn" href="#window-current-event" id="ref-for-window-current-event">当前事件</a>. </p>
    <p class="note" role="note">强烈建议Web开发人员使用传递给事件侦听器的<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event⑤">Event</a></code>对象替代该属性，因为这将产生移植性更高的代码，
 且此属性在worker或worklet中不可用，对于影子树中调度的事件也不准确。 </p>
-   <h3 class="heading settled" data-level="2.4" id="interface-customevent"><span class="secno">2.4. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent">CustomEvent</a></code></span><a class="self-link" href="#interface-customevent"></a></h3>
+   <h3 class="heading settled" data-level="2.4" id="interface-customevent"><span class="secno">2.4. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent">CustomEvent</a></code>接口</span><a class="self-link" href="#interface-customevent"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -954,7 +954,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any②"><c- b>any</c-></a> <dfn class="idl-code" data-default="null" data-dfn-for="CustomEventInit" data-dfn-type="dict-member" data-export data-type="any " id="dom-customeventinit-detail"><code><c- g>detail</c-></code><a class="self-link" href="#dom-customeventinit-detail"></a></dfn> = <c- b>null</c->;
 };
 </pre>
-   <p><a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③③">Events</a> using the <code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent①">CustomEvent</a></code> interface can be used to carry custom data.</p>
+   <p><a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③③">事件</a>使用<code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent①">CustomEvent</a></code>定义能够携带自定义数据。</p>
    <dl class="domintro">
     <dt>
      <div class="mdn-anno wrapped">
@@ -974,10 +974,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
       </div>
      </div>
      <code><var>event</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-customevent-customevent" id="ref-for-dom-customevent-customevent">CustomEvent</a>(<var>type</var> [, <var>eventInitDict</var>])</code> 
-    <dd>Works analogously to the constructor for <code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event⑦">Event</a></code> except
- that the <var>eventInitDict</var> argument now
- allows for setting the <code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail①">detail</a></code> attribute
- too. 
+    <dd>与<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event⑦">Event</a></code>构造函数类似，除了<code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail①">detail</a></code>参数现在也允许设置detail属性。 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -996,19 +993,17 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
       </div>
      </div>
      <code><var>event</var> . <code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail②">detail</a></code></code> 
-    <dd>Returns any custom data <var>event</var> was created with.
- Typically used for synthetic events. 
+    <dd>返回事件创建时自定义的数据，通常适用于合成事件。 
    </dl>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="CustomEvent" data-dfn-type="attribute" data-export id="dom-customevent-detail"><code>detail</code></dfn> attribute must return the value it
-was initialized to. </p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="CustomEvent" data-dfn-type="method" data-export data-lt="initCustomEvent(type, bubbles, cancelable, detail)|initCustomEvent(type, bubbles, cancelable)|initCustomEvent(type, bubbles)|initCustomEvent(type)" id="dom-customevent-initcustomevent"><code>initCustomEvent(<var>type</var>, <var>bubbles</var>, <var>cancelable</var>, <var>detail</var>)</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="CustomEvent" data-dfn-type="attribute" data-export id="dom-customevent-detail"><code>detail</code></dfn>属性必须返回它被初始化的值。 </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="CustomEvent" data-dfn-type="method" data-export data-lt="initCustomEvent(type, bubbles, cancelable, detail)|initCustomEvent(type, bubbles, cancelable)|initCustomEvent(type, bubbles)|initCustomEvent(type)" id="dom-customevent-initcustomevent"><code>initCustomEvent(<var>type</var>, <var>bubbles</var>, <var>cancelable</var>, <var>detail</var>)</code></dfn> 方法执行步骤: </p>
    <ol>
     <li>
-     <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥">this</a>’s <a data-link-type="dfn" href="#dispatch-flag" id="ref-for-dispatch-flag①">dispatch flag</a> is set, then return. </p>
+     <p>如果<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥">this</a>的<a data-link-type="dfn" href="#dispatch-flag" id="ref-for-dispatch-flag①">dispatch flag</a>被设置，则直接return。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#concept-event-initialize" id="ref-for-concept-event-initialize①">Initialize</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑦">this</a> with <var>type</var>, <var>bubbles</var>, and <var>cancelable</var>. </p>
+     <p><a data-link-type="dfn" href="#concept-event-initialize" id="ref-for-concept-event-initialize①">初始化</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑦">this</a>的<var>type</var>， <var>bubbles</var>和<var>cancelable</var>。 </p>
     <li>
-     <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑧">this</a>’s <code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail③">detail</a></code> attribute to <var>detail</var>. </p>
+     <p>设<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑧">this</a>的<code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail③">detail</a></code>属性为传入的<var>detail</var>参数. </p>
    </ol>
    <h3 class="heading settled" data-level="2.5" id="constructing-events"><span class="secno">2.5. </span><span class="content">Constructing events</span><a class="self-link" href="#constructing-events"></a></h3>
    <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications">Specifications</a> may define <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-event-constructor-ext">event constructing steps</dfn> for all or some <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③④">events</a>. The algorithm is passed an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑤">event</a> <var>event</var> and an <code class="idl"><a data-link-type="idl" href="#dictdef-eventinit" id="ref-for-dictdef-eventinit②">EventInit</a></code> <var>eventInitDict</var> as indicated in the <a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps">inner event creation steps</a>.</p>
@@ -13963,7 +13958,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#idl-DOMString">https://webidl.spec.whatwg.org/#idl-DOMString</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-DOMString">2.2. Event接口</a> <a href="#ref-for-idl-DOMString①">(2)</a> <a href="#ref-for-idl-DOMString②">(3)</a>
-    <li><a href="#ref-for-idl-DOMString③">2.4. Interface CustomEvent</a> <a href="#ref-for-idl-DOMString④">(2)</a>
+    <li><a href="#ref-for-idl-DOMString③">2.4. CustomEvent接口</a> <a href="#ref-for-idl-DOMString④">(2)</a>
     <li><a href="#ref-for-idl-DOMString⑤">2.7. Interface EventTarget</a> <a href="#ref-for-idl-DOMString⑥">(2)</a>
     <li><a href="#ref-for-idl-DOMString⑦">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-idl-DOMString⑧">4.2.6. Mixin ParentNode</a> <a href="#ref-for-idl-DOMString⑨">(2)</a> <a href="#ref-for-idl-DOMString①⓪">(3)</a> <a href="#ref-for-idl-DOMString①①">(4)</a> <a href="#ref-for-idl-DOMString①②">(5)</a>
@@ -14207,7 +14202,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-idl-any">
    <a href="https://webidl.spec.whatwg.org/#idl-any">https://webidl.spec.whatwg.org/#idl-any</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-any">2.4. Interface CustomEvent</a> <a href="#ref-for-idl-any①">(2)</a> <a href="#ref-for-idl-any②">(3)</a>
+    <li><a href="#ref-for-idl-any">2.4. CustomEvent接口</a> <a href="#ref-for-idl-any①">(2)</a> <a href="#ref-for-idl-any②">(3)</a>
     <li><a href="#ref-for-idl-any③">3.1. Interface AbortController</a>
     <li><a href="#ref-for-idl-any④">3.2. Interface AbortSignal</a> <a href="#ref-for-idl-any⑤">(2)</a>
     <li><a href="#ref-for-idl-any⑥">9.1. Interface XSLTProcessor</a> <a href="#ref-for-idl-any⑦">(2)</a>
@@ -14223,7 +14218,7 @@ APIs</a>
    <a href="https://webidl.spec.whatwg.org/#idl-boolean">https://webidl.spec.whatwg.org/#idl-boolean</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-boolean">2.2. Event接口</a> <a href="#ref-for-idl-boolean①">(2)</a> <a href="#ref-for-idl-boolean②">(3)</a> <a href="#ref-for-idl-boolean③">(4)</a> <a href="#ref-for-idl-boolean④">(5)</a> <a href="#ref-for-idl-boolean⑤">(6)</a> <a href="#ref-for-idl-boolean⑥">(7)</a> <a href="#ref-for-idl-boolean⑦">(8)</a> <a href="#ref-for-idl-boolean⑧">(9)</a> <a href="#ref-for-idl-boolean⑨">(10)</a> <a href="#ref-for-idl-boolean①⓪">(11)</a> <a href="#ref-for-idl-boolean①①">(12)</a>
-    <li><a href="#ref-for-idl-boolean①②">2.4. Interface CustomEvent</a> <a href="#ref-for-idl-boolean①③">(2)</a>
+    <li><a href="#ref-for-idl-boolean①②">2.4. CustomEvent接口</a> <a href="#ref-for-idl-boolean①③">(2)</a>
     <li><a href="#ref-for-idl-boolean①④">2.7. Interface EventTarget</a> <a href="#ref-for-idl-boolean①⑤">(2)</a> <a href="#ref-for-idl-boolean①⑥">(3)</a> <a href="#ref-for-idl-boolean①⑦">(4)</a> <a href="#ref-for-idl-boolean①⑧">(5)</a> <a href="#ref-for-idl-boolean①⑨">(6)</a>
     <li><a href="#ref-for-idl-boolean②⓪">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-idl-boolean②①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-boolean②②">(2)</a> <a href="#ref-for-idl-boolean②③">(3)</a> <a href="#ref-for-idl-boolean②④">(4)</a> <a href="#ref-for-idl-boolean②⑤">(5)</a> <a href="#ref-for-idl-boolean②⑥">(6)</a>
@@ -14335,7 +14330,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-this">2.2. Event接口</a> <a href="#ref-for-this①">(2)</a> <a href="#ref-for-this②">(3)</a> <a href="#ref-for-this③">(4)</a> <a href="#ref-for-this④">(5)</a> <a href="#ref-for-this⑤">(6)</a> <a href="#ref-for-this⑥">(7)</a> <a href="#ref-for-this⑦">(8)</a> <a href="#ref-for-this⑧">(9)</a> <a href="#ref-for-this⑨">(10)</a> <a href="#ref-for-this①⓪">(11)</a> <a href="#ref-for-this①①">(12)</a> <a href="#ref-for-this①②">(13)</a> <a href="#ref-for-this①③">(14)</a> <a href="#ref-for-this①④">(15)</a>
     <li><a href="#ref-for-this①⑤">2.3. 遗留扩展：Window接口</a>
-    <li><a href="#ref-for-this①⑥">2.4. Interface CustomEvent</a> <a href="#ref-for-this①⑦">(2)</a> <a href="#ref-for-this①⑧">(3)</a>
+    <li><a href="#ref-for-this①⑥">2.4. CustomEvent接口</a> <a href="#ref-for-this①⑦">(2)</a> <a href="#ref-for-this①⑧">(3)</a>
     <li><a href="#ref-for-this①⑨">2.7. Interface EventTarget</a> <a href="#ref-for-this②⓪">(2)</a> <a href="#ref-for-this②①">(3)</a> <a href="#ref-for-this②②">(4)</a>
     <li><a href="#ref-for-this②③">3.1. Interface AbortController</a> <a href="#ref-for-this②④">(2)</a> <a href="#ref-for-this②⑤">(3)</a>
     <li><a href="#ref-for-this②⑥">3.2. Interface AbortSignal</a> <a href="#ref-for-this②⑦">(2)</a> <a href="#ref-for-this②⑧">(3)</a> <a href="#ref-for-this②⑨">(4)</a>
@@ -14391,7 +14386,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-idl-undefined">2.2. Event接口</a> <a href="#ref-for-idl-undefined①">(2)</a> <a href="#ref-for-idl-undefined②">(3)</a> <a href="#ref-for-idl-undefined③">(4)</a>
     <li><a href="#ref-for-idl-undefined④">2.3. 遗留扩展：Window接口</a>
-    <li><a href="#ref-for-idl-undefined⑤">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-idl-undefined⑤">2.4. CustomEvent接口</a>
     <li><a href="#ref-for-idl-undefined⑥">2.7. Interface EventTarget</a> <a href="#ref-for-idl-undefined⑦">(2)</a> <a href="#ref-for-idl-undefined⑧">(3)</a>
     <li><a href="#ref-for-idl-undefined⑨">3.1. Interface AbortController</a>
     <li><a href="#ref-for-idl-undefined①⓪">3.2. Interface AbortSignal</a>
@@ -15688,7 +15683,7 @@ APIs</a>
     <li><a href="#ref-for-event">2.1. DOM事件简介</a>
     <li><a href="#ref-for-event①">2.2. Event接口</a> <a href="#ref-for-event②">(2)</a>
     <li><a href="#ref-for-event③">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-event④">(2)</a> <a href="#ref-for-event⑤">(3)</a>
-    <li><a href="#ref-for-event⑥">2.4. Interface CustomEvent</a> <a href="#ref-for-event⑦">(2)</a>
+    <li><a href="#ref-for-event⑥">2.4. CustomEvent接口</a> <a href="#ref-for-event⑦">(2)</a>
     <li><a href="#ref-for-event⑧">2.5. Constructing events</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
     <li><a href="#ref-for-event①②">2.6. Defining event interfaces</a> <a href="#ref-for-event①③">(2)</a>
     <li><a href="#ref-for-event①④">2.7. Interface EventTarget</a> <a href="#ref-for-event①⑤">(2)</a>
@@ -15712,7 +15707,7 @@ APIs</a>
    <b><a href="#dictdef-eventinit">#dictdef-eventinit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-eventinit">2.2. Event接口</a>
-    <li><a href="#ref-for-dictdef-eventinit①">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-dictdef-eventinit①">2.4. CustomEvent接口</a>
     <li><a href="#ref-for-dictdef-eventinit②">2.5. Constructing events</a> <a href="#ref-for-dictdef-eventinit③">(2)</a>
    </ul>
   </aside>
@@ -15721,7 +15716,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-concept-event">2.1. DOM事件简介</a> <a href="#ref-for-concept-event①">(2)</a> <a href="#ref-for-concept-event②">(3)</a> <a href="#ref-for-concept-event③">(4)</a> <a href="#ref-for-concept-event④">(5)</a> <a href="#ref-for-concept-event⑤">(6)</a> <a href="#ref-for-concept-event⑥">(7)</a> <a href="#ref-for-concept-event⑦">(8)</a> <a href="#ref-for-concept-event⑧">(9)</a> <a href="#ref-for-concept-event⑨">(10)</a> <a href="#ref-for-concept-event①⓪">(11)</a> <a href="#ref-for-concept-event①①">(12)</a> <a href="#ref-for-concept-event①②">(13)</a> <a href="#ref-for-concept-event①③">(14)</a> <a href="#ref-for-concept-event①④">(15)</a>
     <li><a href="#ref-for-concept-event①⑤">2.2. Event接口</a> <a href="#ref-for-concept-event①⑥">(2)</a> <a href="#ref-for-concept-event①⑦">(3)</a> <a href="#ref-for-concept-event①⑧">(4)</a> <a href="#ref-for-concept-event①⑨">(5)</a> <a href="#ref-for-concept-event②⓪">(6)</a> <a href="#ref-for-concept-event②①">(7)</a> <a href="#ref-for-concept-event②②">(8)</a> <a href="#ref-for-concept-event②③">(9)</a> <a href="#ref-for-concept-event②④">(10)</a> <a href="#ref-for-concept-event②⑤">(11)</a> <a href="#ref-for-concept-event②⑥">(12)</a> <a href="#ref-for-concept-event②⑦">(13)</a> <a href="#ref-for-concept-event②⑧">(14)</a> <a href="#ref-for-concept-event②⑨">(15)</a> <a href="#ref-for-concept-event③⓪">(16)</a> <a href="#ref-for-concept-event③①">(17)</a> <a href="#ref-for-concept-event③②">(18)</a>
-    <li><a href="#ref-for-concept-event③③">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-concept-event③③">2.4. CustomEvent接口</a>
     <li><a href="#ref-for-concept-event③④">2.5. Constructing events</a> <a href="#ref-for-concept-event③⑤">(2)</a>
     <li><a href="#ref-for-concept-event③⑥">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event③⑦">(2)</a> <a href="#ref-for-concept-event③⑧">(3)</a> <a href="#ref-for-concept-event③⑨">(4)</a> <a href="#ref-for-concept-event④⓪">(5)</a> <a href="#ref-for-concept-event④①">(6)</a> <a href="#ref-for-concept-event④②">(7)</a> <a href="#ref-for-concept-event④③">(8)</a> <a href="#ref-for-concept-event④④">(9)</a> <a href="#ref-for-concept-event④⑤">(10)</a> <a href="#ref-for-concept-event④⑥">(11)</a>
     <li><a href="#ref-for-concept-event④⑦">2.10. Firing events</a> <a href="#ref-for-concept-event④⑧">(2)</a>
@@ -15928,7 +15923,7 @@ APIs</a>
    <b><a href="#dispatch-flag">#dispatch-flag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dispatch-flag">2.2. Event接口</a>
-    <li><a href="#ref-for-dispatch-flag①">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-dispatch-flag①">2.4. CustomEvent接口</a>
     <li><a href="#ref-for-dispatch-flag②">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-dispatch-flag③">2.9. Dispatching events</a> <a href="#ref-for-dispatch-flag④">(2)</a>
    </ul>
@@ -16021,7 +16016,7 @@ APIs</a>
    <b><a href="#concept-event-initialize">#concept-event-initialize</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-event-initialize">2.2. Event接口</a>
-    <li><a href="#ref-for-concept-event-initialize①">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-concept-event-initialize①">2.4. CustomEvent接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="window-current-event">
@@ -16040,7 +16035,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="customevent">
    <b><a href="#customevent">#customevent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-customevent">2.4. Interface CustomEvent</a> <a href="#ref-for-customevent①">(2)</a>
+    <li><a href="#ref-for-customevent">2.4. CustomEvent接口</a> <a href="#ref-for-customevent①">(2)</a>
     <li><a href="#ref-for-customevent②">2.6. Defining event interfaces</a>
     <li><a href="#ref-for-customevent③">4.5. Interface Document</a>
    </ul>
@@ -16048,25 +16043,25 @@ APIs</a>
   <aside class="dfn-panel" data-for="dom-customevent-customevent">
    <b><a href="#dom-customevent-customevent">#dom-customevent-customevent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-customevent-customevent">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-dom-customevent-customevent">2.4. CustomEvent接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-customeventinit">
    <b><a href="#dictdef-customeventinit">#dictdef-customeventinit</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-customeventinit">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-dictdef-customeventinit">2.4. CustomEvent接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-customevent-detail">
    <b><a href="#dom-customevent-detail">#dom-customevent-detail</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-customevent-detail">2.4. Interface CustomEvent</a> <a href="#ref-for-dom-customevent-detail①">(2)</a> <a href="#ref-for-dom-customevent-detail②">(3)</a> <a href="#ref-for-dom-customevent-detail③">(4)</a>
+    <li><a href="#ref-for-dom-customevent-detail">2.4. CustomEvent接口</a> <a href="#ref-for-dom-customevent-detail①">(2)</a> <a href="#ref-for-dom-customevent-detail②">(3)</a> <a href="#ref-for-dom-customevent-detail③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-customevent-initcustomevent">
    <b><a href="#dom-customevent-initcustomevent">#dom-customevent-initcustomevent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-customevent-initcustomevent">2.4. Interface CustomEvent</a>
+    <li><a href="#ref-for-dom-customevent-initcustomevent">2.4. CustomEvent接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-event-constructor-ext">
