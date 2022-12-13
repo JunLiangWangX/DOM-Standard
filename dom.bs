@@ -698,7 +698,7 @@ partial interface Window {
 且此属性在worker或worklet中不可用，对于影子树中调度的事件也不准确。
 
 
-<h3 id=interface-customevent>Interface {{CustomEvent}}</h3>
+<h3 id=interface-customevent>{{CustomEvent}}接口</h3>
 
 <pre class=idl>
 [Exposed=*]
@@ -715,35 +715,27 @@ dictionary CustomEventInit : EventInit {
 };
 </pre>
 
-<a>Events</a> using the
-{{CustomEvent}} interface can be used to carry custom data.
+<a lt="Events">事件</a>使用{{CustomEvent}}定义能够携带自定义数据。
 
 <dl class=domintro>
  <dt><code><var>event</var> = new <a constructor lt="CustomEvent()">CustomEvent</a>(<var>type</var> [, <var>eventInitDict</var>])</code>
- <dd>Works analogously to the constructor for {{Event}} except
- that the <var>eventInitDict</var> argument now
- allows for setting the {{CustomEvent/detail}} attribute
- too.
+ <dd>与{{Event}}构造函数类似，除了{{CustomEvent/detail}}参数现在也允许设置detail属性。
 
  <dt><code><var>event</var> . {{CustomEvent/detail}}</code>
- <dd>Returns any custom data <var>event</var> was created with.
- Typically used for synthetic events.
+ <dd>返回事件创建时自定义的数据，通常适用于合成事件。
 </dl>
 
-<p>The <dfn attribute for=CustomEvent><code>detail</code></dfn> attribute must return the value it
-was initialized to.
+<p><dfn attribute for=CustomEvent><code>detail</code></dfn>属性必须返回它被初始化的值。
 
-<p>The
-<dfn method for=CustomEvent><code>initCustomEvent(<var>type</var>, <var>bubbles</var>, <var>cancelable</var>, <var>detail</var>)</code></dfn>
-method steps are:
+<p><dfn method for=CustomEvent><code>initCustomEvent(<var>type</var>, <var>bubbles</var>, <var>cancelable</var>, <var>detail</var>)</code></dfn>
+方法执行步骤:
 
 <ol>
- <li><p>If <a>this</a>'s <a>dispatch flag</a> is set, then return.
+ <li><p>如果<a>this</a>的<a>dispatch flag</a>被设置，则直接return。
 
- <li><p><a>Initialize</a> <a>this</a> with <var>type</var>, <var>bubbles</var>, and
- <var>cancelable</var>.
+ <li><p><a lt="Initialize">初始化</a><a>this</a>的<var>type</var>， <var>bubbles</var>和<var>cancelable</var>。
 
- <li><p>Set <a>this</a>'s {{CustomEvent/detail}} attribute to <var>detail</var>.
+ <li><p>设<a>this</a>的{{CustomEvent/detail}}属性为传入的<var>detail</var>参数.
 </ol>
 
 
