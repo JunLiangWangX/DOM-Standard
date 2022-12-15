@@ -72,7 +72,7 @@ a[href].issue-return {
       <li><a href="#interface-event"><span class="secno">2.2</span> <span class="content"><code class="idl"><span>Event</span></code>接口</span></a>
       <li><a href="#interface-window-extensions"><span class="secno">2.3</span> <span class="content">遗留扩展：<code class="idl"><span>Window</span></code>接口</span></a>
       <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content"><code class="idl"><span>CustomEvent</span></code>接口</span></a>
-      <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">创建事件</span></a>
+      <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">事件构造过程</span></a>
       <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">Defining event interfaces</span></a>
       <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content">Interface <code class="idl"><span>EventTarget</span></code></span></a>
       <li><a href="#observing-event-listeners"><span class="secno">2.8</span> <span class="content">Observing event listeners</span></a>
@@ -1005,15 +1005,15 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
     <li>
      <p>设<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑧">this</a>的<code class="idl"><a data-link-type="idl" href="#dom-customevent-detail" id="ref-for-dom-customevent-detail③">detail</a></code>属性为传入的<var>detail</var>参数. </p>
    </ol>
-   <h3 class="heading settled" data-level="2.5" id="constructing-events"><span class="secno">2.5. </span><span class="content">创建事件</span><a class="self-link" href="#constructing-events"></a></h3>
+   <h3 class="heading settled" data-level="2.5" id="constructing-events"><span class="secno">2.5. </span><span class="content">事件构造过程</span><a class="self-link" href="#constructing-events"></a></h3>
    <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications">规范</a>定义了所有或一些<dfn data-dfn-type="dfn" data-export id="concept-event-constructor-ext">事件创建过程<a class="self-link" href="#concept-event-constructor-ext"></a></dfn>。
-如<a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps">内部事件创建步骤</a>所示，向算法传递一个<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③④">event</a>类型的<var>event</var>参数以及一个<code class="idl"><a data-link-type="idl" href="#dictdef-eventinit" id="ref-for-dictdef-eventinit②">EventInit</a></code>类型的 <var>eventInitDict</var>参数。</p>
+如<a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps">内部事件创建步骤</a>所示，向算法传递一个<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③④">event</a>参数以及一个<code class="idl"><a data-link-type="idl" href="#dictdef-eventinit" id="ref-for-dictdef-eventinit②">EventInit</a></code>参数。</p>
    <p class="note" role="note">这种构造方法可以被<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event⑧">Event</a></code>子类使用，这些<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event⑨">Event</a></code>子类具有比其初始化字典成员和IDL属性之间的简单1:1映射更复杂的结构。 </p>
    <p>当一个<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①⓪">Event</a></code>接口或者一个继承于<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①①">Event</a></code>的接口的<dfn data-dfn-for="Event" data-dfn-type="dfn" data-export id="concept-event-constructor">constructor<a class="self-link" href="#concept-event-constructor"></a></dfn>(构造函数)被调用，
 给定参数type和eventInitDict，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>使用this interface，null，now，<var>eventInitDict</var>四个参数运行<a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps①">内部事件创建步骤</a>，
+     <p>使用事件接口，null，now，<var>eventInitDict</var>四个参数运行<a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps①">内部事件创建步骤</a>，
  将返回结果赋值给<var>event</var>。 </p>
     <li>
      <p>使用<var>type</var>参数初始化<var>event</var>的<code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑥">type</a></code>属性。 </p>
@@ -1021,46 +1021,39 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
      <p>返回<var>event</var>。 </p>
    </ol>
    <p>使用Event接口或继承其的接口<dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="creating an event|create an event" id="concept-event-create">创建事件</dfn>，
-给定可选择的<a data-link-type="dfn" href="https://tc39.es/ecma262/#realm" id="ref-for-realm">realm</a>类型的<var>realm</var>参数，将运行以下步骤：</p>
+给定可选择的<a data-link-type="dfn" href="https://tc39.es/ecma262/#realm" id="ref-for-realm">realm</a>参数，将运行以下步骤：</p>
    <ol>
     <li>
-     <p>If <var>realm</var> is not given, then set it to null. </p>
+     <p>如果未给定参数<var>realm</var>，则设置其为null。 </p>
     <li>
-     <p>Let <var>dictionary</var> be the result of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">converting</a> the JavaScript value undefined to the dictionary type accepted by <var>eventInterface</var>’s
-  constructor. (This dictionary type will either be <code class="idl"><a data-link-type="idl" href="#dictdef-eventinit" id="ref-for-dictdef-eventinit③">EventInit</a></code> or a dictionary that inherits from
-  it.) </p>
-     <p class="XXX">This does not work if members are required; see <a href="https://github.com/whatwg/dom/issues/600">whatwg/dom#600</a>. </p>
+     <p>将JavaScript中undefined值<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">转换</a>为构造函数接受的字典类型(该字典类型要么是<code class="idl"><a data-link-type="idl" href="#dictdef-eventinit" id="ref-for-dictdef-eventinit③">EventInit</a></code> 要么是从它继承的字典)，设<var>dictionary</var>为其返回结果。 </p>
+     <p class="XXX">如果字典存在强制成员，这将不起作用；请参阅<a href="https://github.com/whatwg/dom/issues/600">whatwg/dom#600</a>。 </p>
     <li>
-     <p>Let <var>event</var> be the result of running the <a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps②">inner event creation steps</a> with <var>eventInterface</var>, <var>realm</var>, the time of the occurrence that the event is
-  signaling, and <var>dictionary</var>. </p>
-     <p class="example" id="example-timestamp-initialization"><a class="self-link" href="#example-timestamp-initialization"></a>In macOS the time of the occurrence for input
-  actions is available via the <code>timestamp</code> property of <code>NSEvent</code> objects. </p>
+     <p>使用事件接口、<var>realm</var>、事件发出信号的发生时间、<var>dictionary</var>四个参数运行<a data-link-type="dfn" href="#inner-event-creation-steps" id="ref-for-inner-event-creation-steps②">内部事件创建步骤</a>，
+  设<var>event</var>为其返回结果。 </p>
+     <p class="example" id="example-timestamp-initialization"><a class="self-link" href="#example-timestamp-initialization"></a>在macOS中，输入操作的发生时间可通过NSEvent对象的<code>timestamp</code>属性获得。 </p>
     <li>
-     <p>Initialize <var>event</var>’s <code class="idl"><a data-link-type="idl" href="#dom-event-istrusted" id="ref-for-dom-event-istrusted⑤">isTrusted</a></code> attribute to true. </p>
+     <p>初始化<var>event</var>的<code class="idl"><a data-link-type="idl" href="#dom-event-istrusted" id="ref-for-dom-event-istrusted⑤">isTrusted</a></code>属性为true。 </p>
     <li>
-     <p>Return <var>event</var>. </p>
+     <p>返回<var>event</var>。 </p>
    </ol>
-   <p class="note" role="note"><a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create">Create an event</a> is meant to be used by other specifications which need to
-separately <a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create①">create</a> and <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑥">dispatch</a> events, instead of simply <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire">firing</a> them. It ensures the event’s attributes are initialized to the
-correct defaults.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="inner-event-creation-steps">inner event creation steps</dfn>, given an <var>interface</var>, <var>realm</var>, <var>time</var>, and <var>dictionary</var>, are as follows:</p>
+   <p class="note" role="note"><a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create">创建事件</a>旨在供其他规范使用，这些规范需要单独<a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create①">创建</a> 和<a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑥">分发</a>事件，而不是简单地<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire">触发</a>它们。它确保事件的属性被初始化为正确的默认值。</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="inner event creation steps" data-noexport id="inner-event-creation-steps">内部事件创建步骤</dfn>，给定参数<var>interface</var>、 <var>realm</var>、<var>time</var>和<var>dictionary</var>，将运行：</p>
    <ol>
     <li>
-     <p>Let <var>event</var> be the result of creating a new object using <var>eventInterface</var>. If <var>realm</var> is non-null, then use that realm; otherwise, use the default behavior defined in
-  Web IDL. </p>
-     <p class="XXX">As of the time of this writing Web IDL does not yet define any default behavior;
-  see <a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>. </p>
+     <p>让<var>event</var>成为使用传入interface参数创建新对象的结果。如果<var>realm</var>不为null，则使用该参数；
+  否则使用webIDL中定义的默认行为设<var>event</var>为其返回结果。 </p>
+     <p class="XXX">截至撰写本文时，Web IDL 尚未定义任何默认行为；参见<a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>。 </p>
     <li>
-     <p>Set <var>event</var>’s <a data-link-type="dfn" href="#initialized-flag" id="ref-for-initialized-flag①">initialized flag</a>. </p>
+     <p>设置<var>event</var>的<a data-link-type="dfn" href="#initialized-flag" id="ref-for-initialized-flag①">initialized flag</a>. </p>
     <li>
-     <p>Initialize <var>event</var>’s <code class="idl"><a data-link-type="idl" href="#dom-event-timestamp" id="ref-for-dom-event-timestamp②">timeStamp</a></code> attribute to the <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-relative-high-resolution-coarse-time" id="ref-for-dfn-relative-high-resolution-coarse-time">relative high resolution coarse time</a> given <var>time</var> and <var>event</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a>. </p>
+     <p>给定<var>time</var>和<var>event</var>的<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">相关全局对象</a>，将<var>event</var>的<code class="idl"><a data-link-type="idl" href="#dom-event-timestamp" id="ref-for-dom-event-timestamp②">timeStamp</a></code> 属初始化为<a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-relative-high-resolution-coarse-time" id="ref-for-dfn-relative-high-resolution-coarse-time">相对高分辨率的粗略时间</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">For each</a> <var>member</var> → <var>value</var> in <var>dictionary</var>, if <var>event</var> has an attribute whose <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a> is <var>member</var>, then
- initialize that attribute to <var>value</var>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate">遍历</a><var>dictionary</var>的每个成员以及其<var>value</var>，如果<var>event</var> 存在与字典成员相同的<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-identifier" id="ref-for-dfn-identifier">identifier</a>，则将<var>event</var>的属性初始化为成员的<var>value</var>。 </p>
     <li>
-     <p>Run the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-constructor-ext" id="ref-for-concept-event-constructor-ext">event constructing steps</a> with <var>event</var> and <var>dictionary</var>. </p>
+     <p>使用<var>event</var>和<var>dictionary</var>参数运行<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-constructor-ext" id="ref-for-concept-event-constructor-ext">事件构造步骤</a>。 </p>
     <li>
-     <p>Return <var>event</var>. </p>
+     <p>返回<var>event</var>。 </p>
    </ol>
    <h3 class="heading settled" data-level="2.6" id="defining-event-interfaces"><span class="secno">2.6. </span><span class="content">Defining event interfaces</span><a class="self-link" href="#defining-event-interfaces"></a></h3>
    <p>In general, when defining a new interface that inherits from <code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①②">Event</a></code> please always ask
@@ -12996,7 +12989,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-concept-event-constructor-ext">
    <a href="https://dom.spec.whatwg.org/#concept-event-constructor-ext">https://dom.spec.whatwg.org/#concept-event-constructor-ext</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-event-constructor-ext">2.5. 创建事件</a>
+    <li><a href="#ref-for-concept-event-constructor-ext">2.5. 事件构造过程</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event-touch-target-list">
@@ -13008,7 +13001,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-realm">
    <a href="https://tc39.es/ecma262/#realm">https://tc39.es/ecma262/#realm</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-realm">2.5. 创建事件</a>
+    <li><a href="#ref-for-realm">2.5. 事件构造过程</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-surrounding-agent">
@@ -13050,7 +13043,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-dfn-relative-high-resolution-coarse-time">
    <a href="https://w3c.github.io/hr-time/#dfn-relative-high-resolution-coarse-time">https://w3c.github.io/hr-time/#dfn-relative-high-resolution-coarse-time</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-relative-high-resolution-coarse-time">2.5. 创建事件</a>
+    <li><a href="#ref-for-dfn-relative-high-resolution-coarse-time">2.5. 事件构造过程</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-beforeunloadevent">
@@ -13365,7 +13358,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-relevant-global">2.5. 创建事件</a>
+    <li><a href="#ref-for-concept-relevant-global">2.5. 事件构造过程</a>
     <li><a href="#ref-for-concept-relevant-global①">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-concept-relevant-global②">4.5. Interface Document</a> <a href="#ref-for-concept-relevant-global③">(2)</a> <a href="#ref-for-concept-relevant-global④">(3)</a>
    </ul>
@@ -13616,7 +13609,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-map-iterate">
    <a href="https://infra.spec.whatwg.org/#map-iterate">https://infra.spec.whatwg.org/#map-iterate</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-iterate">2.5. 创建事件</a>
+    <li><a href="#ref-for-map-iterate">2.5. 事件构造过程</a>
     <li><a href="#ref-for-map-iterate①">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
@@ -14257,7 +14250,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-dfn-convert-ecmascript-to-idl-value">
    <a href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value">https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-convert-ecmascript-to-idl-value">2.5. 创建事件</a>
+    <li><a href="#ref-for-dfn-convert-ecmascript-to-idl-value">2.5. 事件构造过程</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-dictionary">
@@ -14270,7 +14263,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-dfn-identifier">
    <a href="https://webidl.spec.whatwg.org/#dfn-identifier">https://webidl.spec.whatwg.org/#dfn-identifier</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-identifier">2.5. 创建事件</a>
+    <li><a href="#ref-for-dfn-identifier">2.5. 事件构造过程</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-implements">
@@ -15402,7 +15395,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="other-applicable-specifications">
    <b><a href="#other-applicable-specifications">#other-applicable-specifications</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-other-applicable-specifications">2.5. 创建事件</a>
+    <li><a href="#ref-for-other-applicable-specifications">2.5. 事件构造过程</a>
     <li><a href="#ref-for-other-applicable-specifications①">4.2.3. Mutation algorithms</a> <a href="#ref-for-other-applicable-specifications②">(2)</a> <a href="#ref-for-other-applicable-specifications③">(3)</a>
     <li><a href="#ref-for-other-applicable-specifications④">4.4. Interface Node</a> <a href="#ref-for-other-applicable-specifications⑤">(2)</a>
     <li><a href="#ref-for-other-applicable-specifications⑥">4.5. Interface Document</a>
@@ -15691,7 +15684,7 @@ APIs</a>
     <li><a href="#ref-for-event①">2.2. Event接口</a> <a href="#ref-for-event②">(2)</a>
     <li><a href="#ref-for-event③">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-event④">(2)</a> <a href="#ref-for-event⑤">(3)</a>
     <li><a href="#ref-for-event⑥">2.4. CustomEvent接口</a> <a href="#ref-for-event⑦">(2)</a>
-    <li><a href="#ref-for-event⑧">2.5. 创建事件</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
+    <li><a href="#ref-for-event⑧">2.5. 事件构造过程</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
     <li><a href="#ref-for-event①②">2.6. Defining event interfaces</a> <a href="#ref-for-event①③">(2)</a>
     <li><a href="#ref-for-event①④">2.7. Interface EventTarget</a> <a href="#ref-for-event①⑤">(2)</a>
     <li><a href="#ref-for-event①⑥">2.10. Firing events</a>
@@ -15715,7 +15708,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dictdef-eventinit">2.2. Event接口</a>
     <li><a href="#ref-for-dictdef-eventinit①">2.4. CustomEvent接口</a>
-    <li><a href="#ref-for-dictdef-eventinit②">2.5. 创建事件</a> <a href="#ref-for-dictdef-eventinit③">(2)</a>
+    <li><a href="#ref-for-dictdef-eventinit②">2.5. 事件构造过程</a> <a href="#ref-for-dictdef-eventinit③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-event">
@@ -15724,7 +15717,7 @@ APIs</a>
     <li><a href="#ref-for-concept-event">2.1. DOM事件简介</a> <a href="#ref-for-concept-event①">(2)</a> <a href="#ref-for-concept-event②">(3)</a> <a href="#ref-for-concept-event③">(4)</a> <a href="#ref-for-concept-event④">(5)</a> <a href="#ref-for-concept-event⑤">(6)</a> <a href="#ref-for-concept-event⑥">(7)</a> <a href="#ref-for-concept-event⑦">(8)</a> <a href="#ref-for-concept-event⑧">(9)</a> <a href="#ref-for-concept-event⑨">(10)</a> <a href="#ref-for-concept-event①⓪">(11)</a> <a href="#ref-for-concept-event①①">(12)</a> <a href="#ref-for-concept-event①②">(13)</a> <a href="#ref-for-concept-event①③">(14)</a> <a href="#ref-for-concept-event①④">(15)</a>
     <li><a href="#ref-for-concept-event①⑤">2.2. Event接口</a> <a href="#ref-for-concept-event①⑥">(2)</a> <a href="#ref-for-concept-event①⑦">(3)</a> <a href="#ref-for-concept-event①⑧">(4)</a> <a href="#ref-for-concept-event①⑨">(5)</a> <a href="#ref-for-concept-event②⓪">(6)</a> <a href="#ref-for-concept-event②①">(7)</a> <a href="#ref-for-concept-event②②">(8)</a> <a href="#ref-for-concept-event②③">(9)</a> <a href="#ref-for-concept-event②④">(10)</a> <a href="#ref-for-concept-event②⑤">(11)</a> <a href="#ref-for-concept-event②⑥">(12)</a> <a href="#ref-for-concept-event②⑦">(13)</a> <a href="#ref-for-concept-event②⑧">(14)</a> <a href="#ref-for-concept-event②⑨">(15)</a> <a href="#ref-for-concept-event③⓪">(16)</a> <a href="#ref-for-concept-event③①">(17)</a> <a href="#ref-for-concept-event③②">(18)</a>
     <li><a href="#ref-for-concept-event③③">2.4. CustomEvent接口</a>
-    <li><a href="#ref-for-concept-event③④">2.5. 创建事件</a>
+    <li><a href="#ref-for-concept-event③④">2.5. 事件构造过程</a>
     <li><a href="#ref-for-concept-event③⑤">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event③⑥">(2)</a> <a href="#ref-for-concept-event③⑦">(3)</a> <a href="#ref-for-concept-event③⑧">(4)</a> <a href="#ref-for-concept-event③⑨">(5)</a> <a href="#ref-for-concept-event④⓪">(6)</a> <a href="#ref-for-concept-event④①">(7)</a> <a href="#ref-for-concept-event④②">(8)</a> <a href="#ref-for-concept-event④③">(9)</a> <a href="#ref-for-concept-event④④">(10)</a> <a href="#ref-for-concept-event④⑤">(11)</a>
     <li><a href="#ref-for-concept-event④⑥">2.10. Firing events</a> <a href="#ref-for-concept-event④⑦">(2)</a>
     <li><a href="#ref-for-concept-event④⑧">2.11. Action versus occurrence</a> <a href="#ref-for-concept-event④⑨">(2)</a> <a href="#ref-for-concept-event⑤⓪">(3)</a> <a href="#ref-for-concept-event⑤①">(4)</a>
@@ -15810,7 +15803,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-event-type">2.1. DOM事件简介</a> <a href="#ref-for-dom-event-type①">(2)</a>
     <li><a href="#ref-for-dom-event-type②">2.2. Event接口</a> <a href="#ref-for-dom-event-type③">(2)</a> <a href="#ref-for-dom-event-type④">(3)</a> <a href="#ref-for-dom-event-type⑤">(4)</a>
-    <li><a href="#ref-for-dom-event-type⑥">2.5. 创建事件</a>
+    <li><a href="#ref-for-dom-event-type⑥">2.5. 事件构造过程</a>
     <li><a href="#ref-for-dom-event-type⑦">2.7. Interface EventTarget</a> <a href="#ref-for-dom-event-type⑧">(2)</a> <a href="#ref-for-dom-event-type⑨">(3)</a>
     <li><a href="#ref-for-dom-event-type①⓪">2.9. Dispatching events</a> <a href="#ref-for-dom-event-type①①">(2)</a> <a href="#ref-for-dom-event-type①②">(3)</a> <a href="#ref-for-dom-event-type①③">(4)</a> <a href="#ref-for-dom-event-type①④">(5)</a> <a href="#ref-for-dom-event-type①⑤">(6)</a>
     <li><a href="#ref-for-dom-event-type①⑥">2.10. Firing events</a>
@@ -15921,7 +15914,7 @@ APIs</a>
    <b><a href="#initialized-flag">#initialized-flag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-initialized-flag">2.2. Event接口</a>
-    <li><a href="#ref-for-initialized-flag①">2.5. 创建事件</a>
+    <li><a href="#ref-for-initialized-flag①">2.5. 事件构造过程</a>
     <li><a href="#ref-for-initialized-flag②">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-initialized-flag③">4.5. Interface Document</a>
    </ul>
@@ -16004,7 +15997,7 @@ APIs</a>
    <b><a href="#dom-event-istrusted">#dom-event-istrusted</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-istrusted">2.2. Event接口</a> <a href="#ref-for-dom-event-istrusted①">(2)</a> <a href="#ref-for-dom-event-istrusted②">(3)</a> <a href="#ref-for-dom-event-istrusted③">(4)</a> <a href="#ref-for-dom-event-istrusted④">(5)</a>
-    <li><a href="#ref-for-dom-event-istrusted⑤">2.5. 创建事件</a>
+    <li><a href="#ref-for-dom-event-istrusted⑤">2.5. 事件构造过程</a>
     <li><a href="#ref-for-dom-event-istrusted⑥">2.7. Interface EventTarget</a>
     <li><a href="#ref-for-dom-event-istrusted⑦">2.9. Dispatching events</a>
     <li><a href="#ref-for-dom-event-istrusted⑧">2.10. Firing events</a>
@@ -16015,7 +16008,7 @@ APIs</a>
    <b><a href="#dom-event-timestamp">#dom-event-timestamp</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-timestamp">2.2. Event接口</a> <a href="#ref-for-dom-event-timestamp①">(2)</a>
-    <li><a href="#ref-for-dom-event-timestamp②">2.5. 创建事件</a>
+    <li><a href="#ref-for-dom-event-timestamp②">2.5. 事件构造过程</a>
     <li><a href="#ref-for-dom-event-timestamp③">4.5. Interface Document</a>
    </ul>
   </aside>
@@ -16074,7 +16067,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-event-create">
    <b><a href="#concept-event-create">#concept-event-create</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-event-create">2.5. 创建事件</a> <a href="#ref-for-concept-event-create①">(2)</a>
+    <li><a href="#ref-for-concept-event-create">2.5. 事件构造过程</a> <a href="#ref-for-concept-event-create①">(2)</a>
     <li><a href="#ref-for-concept-event-create②">2.10. Firing events</a> <a href="#ref-for-concept-event-create③">(2)</a>
     <li><a href="#ref-for-concept-event-create④">4.5. Interface Document</a>
    </ul>
@@ -16082,7 +16075,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="inner-event-creation-steps">
    <b><a href="#inner-event-creation-steps">#inner-event-creation-steps</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-inner-event-creation-steps">2.5. 创建事件</a> <a href="#ref-for-inner-event-creation-steps①">(2)</a> <a href="#ref-for-inner-event-creation-steps②">(3)</a>
+    <li><a href="#ref-for-inner-event-creation-steps">2.5. 事件构造过程</a> <a href="#ref-for-inner-event-creation-steps①">(2)</a> <a href="#ref-for-inner-event-creation-steps②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventtarget">
@@ -16303,7 +16296,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-concept-event-dispatch">2.1. DOM事件简介</a> <a href="#ref-for-concept-event-dispatch①">(2)</a> <a href="#ref-for-concept-event-dispatch②">(3)</a> <a href="#ref-for-concept-event-dispatch③">(4)</a> <a href="#ref-for-concept-event-dispatch④">(5)</a> <a href="#ref-for-concept-event-dispatch⑤">(6)</a> <a href="#ref-for-concept-event-dispatch⑥">(7)</a>
     <li><a href="#ref-for-concept-event-dispatch⑦">2.2. Event接口</a> <a href="#ref-for-concept-event-dispatch⑧">(2)</a> <a href="#ref-for-concept-event-dispatch⑨">(3)</a> <a href="#ref-for-concept-event-dispatch①⓪">(4)</a> <a href="#ref-for-concept-event-dispatch①①">(5)</a> <a href="#ref-for-concept-event-dispatch①②">(6)</a> <a href="#ref-for-concept-event-dispatch①③">(7)</a> <a href="#ref-for-concept-event-dispatch①④">(8)</a> <a href="#ref-for-concept-event-dispatch①⑤">(9)</a>
-    <li><a href="#ref-for-concept-event-dispatch①⑥">2.5. 创建事件</a>
+    <li><a href="#ref-for-concept-event-dispatch①⑥">2.5. 事件构造过程</a>
     <li><a href="#ref-for-concept-event-dispatch①⑦">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event-dispatch①⑧">(2)</a> <a href="#ref-for-concept-event-dispatch①⑨">(3)</a> <a href="#ref-for-concept-event-dispatch②⓪">(4)</a> <a href="#ref-for-concept-event-dispatch②①">(5)</a> <a href="#ref-for-concept-event-dispatch②②">(6)</a>
     <li><a href="#ref-for-concept-event-dispatch②③">2.10. Firing events</a> <a href="#ref-for-concept-event-dispatch②④">(2)</a>
     <li><a href="#ref-for-concept-event-dispatch②⑤">4.8. Interface ShadowRoot</a>
@@ -16330,7 +16323,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-event-fire">
    <b><a href="#concept-event-fire">#concept-event-fire</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-event-fire">2.5. 创建事件</a>
+    <li><a href="#ref-for-concept-event-fire">2.5. 事件构造过程</a>
     <li><a href="#ref-for-concept-event-fire①">2.10. Firing events</a> <a href="#ref-for-concept-event-fire②">(2)</a> <a href="#ref-for-concept-event-fire③">(3)</a> <a href="#ref-for-concept-event-fire④">(4)</a>
     <li><a href="#ref-for-concept-event-fire⑤">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-concept-event-fire⑥">4.3. Mutation observers</a>
