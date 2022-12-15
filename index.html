@@ -73,7 +73,7 @@ a[href].issue-return {
       <li><a href="#interface-window-extensions"><span class="secno">2.3</span> <span class="content">遗留扩展：<code class="idl"><span>Window</span></code>接口</span></a>
       <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content"><code class="idl"><span>CustomEvent</span></code>接口</span></a>
       <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">事件构造过程</span></a>
-      <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">Defining event interfaces</span></a>
+      <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">定义事件接口</span></a>
       <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content">Interface <code class="idl"><span>EventTarget</span></code></span></a>
       <li><a href="#observing-event-listeners"><span class="secno">2.8</span> <span class="content">Observing event listeners</span></a>
       <li><a href="#dispatching-events"><span class="secno">2.9</span> <span class="content">Dispatching events</span></a>
@@ -1042,7 +1042,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    <ol>
     <li>
      <p>让<var>event</var>成为使用传入interface参数创建新对象的结果。如果<var>realm</var>不为null，则使用该参数；
-  否则使用webIDL中定义的默认行为设<var>event</var>为其返回结果。 </p>
+  否则使用webIDL中定义的默认行为。 </p>
      <p class="XXX">截至撰写本文时，Web IDL 尚未定义任何默认行为；参见<a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>。 </p>
     <li>
      <p>设置<var>event</var>的<a data-link-type="dfn" href="#initialized-flag" id="ref-for-initialized-flag①">initialized flag</a>. </p>
@@ -1055,13 +1055,10 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
     <li>
      <p>返回<var>event</var>。 </p>
    </ol>
-   <h3 class="heading settled" data-level="2.6" id="defining-event-interfaces"><span class="secno">2.6. </span><span class="content">Defining event interfaces</span><a class="self-link" href="#defining-event-interfaces"></a></h3>
-   <p>In general, when defining a new interface that inherits from <code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①②">Event</a></code> please always ask
-feedback from the <a href="https://whatwg.org/">WHATWG</a> or the <a href="https://www.w3.org/2008/webapps/">W3C WebApps WG</a> community.</p>
-   <p>The <code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent②">CustomEvent</a></code> interface can be used as starting point.
-However, do not introduce any <code>init<var>*</var>Event()</code> methods as they are redundant with constructors. Interfaces that inherit
-from the <code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①③">Event</a></code> interface that have such a method only have it
-for historical reasons.</p>
+   <h3 class="heading settled" data-level="2.6" id="defining-event-interfaces"><span class="secno">2.6. </span><span class="content">定义事件接口</span><a class="self-link" href="#defining-event-interfaces"></a></h3>
+   <p>通常，在定义继承自<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①②">Event</a></code>的新接口时，请始终征求<a href="https://whatwg.org/">WHATWG</a>或 <a href="https://www.w3.org/2008/webapps/">W3C WebApps WG</a>社区的反馈。</p>
+   <p><code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent②">CustomEvent</a></code>接口可以用作起点。但是，不要引入任何<code class="idl"><a data-link-type="idl" href="#dom-event-initevent" id="ref-for-dom-event-initevent②">initEvent()</a></code>方法，因为它们相对于构造函数是冗余的。
+继承自具有此类方法的<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①③">Event</a></code>接口的接口仅出于历史原因而保留它。</p>
    <h3 class="heading settled" data-level="2.7" id="interface-eventtarget"><span class="secno">2.7. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①③">EventTarget</a></code></span><a class="self-link" href="#interface-eventtarget"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -15685,7 +15682,7 @@ APIs</a>
     <li><a href="#ref-for-event③">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-event④">(2)</a> <a href="#ref-for-event⑤">(3)</a>
     <li><a href="#ref-for-event⑥">2.4. CustomEvent接口</a> <a href="#ref-for-event⑦">(2)</a>
     <li><a href="#ref-for-event⑧">2.5. 事件构造过程</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
-    <li><a href="#ref-for-event①②">2.6. Defining event interfaces</a> <a href="#ref-for-event①③">(2)</a>
+    <li><a href="#ref-for-event①②">2.6. 定义事件接口</a> <a href="#ref-for-event①③">(2)</a>
     <li><a href="#ref-for-event①④">2.7. Interface EventTarget</a> <a href="#ref-for-event①⑤">(2)</a>
     <li><a href="#ref-for-event①⑥">2.10. Firing events</a>
     <li><a href="#ref-for-event①⑦">4.5. Interface Document</a> <a href="#ref-for-event①⑧">(2)</a> <a href="#ref-for-event①⑨">(3)</a> <a href="#ref-for-event②⓪">(4)</a>
@@ -15701,6 +15698,7 @@ APIs</a>
    <b><a href="#dom-event-initevent">#dom-event-initevent</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-initevent">2.2. Event接口</a> <a href="#ref-for-dom-event-initevent①">(2)</a>
+    <li><a href="#ref-for-dom-event-initevent②">2.6. 定义事件接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-eventinit">
@@ -16036,7 +16034,7 @@ APIs</a>
    <b><a href="#customevent">#customevent</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-customevent">2.4. CustomEvent接口</a> <a href="#ref-for-customevent①">(2)</a>
-    <li><a href="#ref-for-customevent②">2.6. Defining event interfaces</a>
+    <li><a href="#ref-for-customevent②">2.6. 定义事件接口</a>
     <li><a href="#ref-for-customevent③">4.5. Interface Document</a>
    </ul>
   </aside>
