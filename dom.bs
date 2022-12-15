@@ -791,7 +791,7 @@ dictionary CustomEventInit : EventInit {
 <ol>
  <li>
   <p>让<var>event</var>成为使用传入interface参数创建新对象的结果。如果<var>realm</var>不为null，则使用该参数；
-  否则使用webIDL中定义的默认行为设<var>event</var>为其返回结果。
+  否则使用webIDL中定义的默认行为。
 
   <p class=XXX>截至撰写本文时，Web IDL 尚未定义任何默认行为；参见<a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>。
   
@@ -809,17 +809,13 @@ dictionary CustomEventInit : EventInit {
 </ol>
 
 
-<h3 id=defining-event-interfaces>Defining event interfaces</h3>
+<h3 id=defining-event-interfaces>定义事件接口</h3>
 
-In general, when defining a new interface that inherits from {{Event}} please always ask
-feedback from the <a href=https://whatwg.org/>WHATWG</a> or the
-<a href=https://www.w3.org/2008/webapps/>W3C WebApps WG</a> community.
+通常，在定义继承自{{Event}}的新接口时，请始终征求<a href=https://whatwg.org/>WHATWG</a>或
+<a href=https://www.w3.org/2008/webapps/>W3C WebApps WG</a>社区的反馈。
 
-The {{CustomEvent}} interface can be used as starting point.
-However, do not introduce any <code>init<var ignore>*</var>Event()</code>
-methods as they are redundant with constructors. Interfaces that inherit
-from the {{Event}} interface that have such a method only have it
-for historical reasons.
+{{CustomEvent}}接口可以用作起点。但是，不要引入任何{{Event/initEvent()}}方法，因为它们相对于构造函数是冗余的。
+继承自具有此类方法的{{Event}}接口的接口仅出于历史原因而保留它。
 
 
 <h3 id=interface-eventtarget>Interface {{EventTarget}}</h3>
