@@ -739,33 +739,29 @@ dictionary CustomEventInit : EventInit {
 </ol>
 
 
-<h3 id=constructing-events>Constructing events</h3>
+<h3 id=constructing-events>创建事件</h3>
 
-<a lt="Other applicable specifications">Specifications</a> may define
-<dfn export id=concept-event-constructor-ext>event constructing steps</dfn> for all or some
-<a for=/>events</a>. The algorithm is passed an <a>event</a> <var>event</var> and an {{EventInit}}
-<var>eventInitDict</var> as indicated in the <a>inner event creation steps</a>.
 
-<p class=note>This construct can be used by {{Event}} subclasses that have a more complex structure
-than a simple 1:1 mapping between their initializing dictionary members and IDL attributes.
+<a lt="Other applicable specifications">规范</a>定义了所有或一些<dfn export id=concept-event-constructor-ext>事件创建过程</dfn>。
+如<a lt="inner event creation steps">内部事件创建步骤</a>所示，向算法传递一个<a>event</a>类型的<var>event</var>参数以及一个{{EventInit}}类型的
+<var>eventInitDict</var>参数。
 
-<p>When a <dfn export for=Event id=concept-event-constructor>constructor</dfn> of the {{Event}}
-interface, or of an interface that inherits from the {{Event}} interface, is invoked, these steps
-must be run, given the arguments <var>type</var> and <var>eventInitDict</var>:
+<p class=note>这种构造方法可以被{{Event}}子类使用，这些{{Event}}子类具有比其初始化字典成员和IDL属性之间的简单1:1映射更复杂的结构。
+
+<p>当一个{{Event}}接口或者一个继承于{{Event}}的接口的<dfn export for=Event id=concept-event-constructor>constructor</dfn>(构造函数)被调用，
+给定参数type和eventInitDict，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>event</var> be the result of running the <a>inner event creation steps</a> with
- this interface, null, now, and <var>eventInitDict</var>.
+ <li><p>使用this interface，null，now，<var>eventInitDict</var>四个参数运行<a lt="inner event creation steps">内部事件创建步骤</a>，
+ 将返回结果赋值给<var>event</var>。
 
- <li><p>Initialize <var>event</var>'s {{Event/type}} attribute to <var>type</var>.
+ <li><p>使用<var>type</var>参数初始化<var>event</var>的{{Event/type}}属性。
 
- <li><p>Return <var>event</var>.
+ <li><p>返回<var>event</var>。
 </ol>
 
-<p>To
-<dfn export id=concept-event-create lt="creating an event|create an event">create an event</dfn>
-using <var>eventInterface</var>, which must be either {{Event}} or an interface that inherits from
-it, and optionally given a <a>realm</a> <var>realm</var>, run these steps:</p>
+<p>使用Event接口或继承其的接口<dfn export id=concept-event-create lt="creating an event|create an event">创建事件</dfn>，
+给定可选择的<a>realm</a>类型的<var>realm</var>参数，将运行以下步骤：</p>
 
 <ol>
  <li><p>If <var>realm</var> is not given, then set it to null.
