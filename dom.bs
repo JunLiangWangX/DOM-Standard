@@ -739,12 +739,11 @@ dictionary CustomEventInit : EventInit {
 </ol>
 
 
-<h3 id=constructing-events>创建事件</h3>
+<h3 id=constructing-events>事件构造过程</h3>
 
 
 <a lt="Other applicable specifications">规范</a>定义了所有或一些<dfn export id=concept-event-constructor-ext>事件创建过程</dfn>。
-如<a lt="inner event creation steps">内部事件创建步骤</a>所示，向算法传递一个<a>event</a>类型的<var>event</var>参数以及一个{{EventInit}}类型的
-<var>eventInitDict</var>参数。
+如<a lt="inner event creation steps">内部事件创建步骤</a>所示，向算法传递一个<a>event</a>参数以及一个{{EventInit}}参数。
 
 <p class=note>这种构造方法可以被{{Event}}子类使用，这些{{Event}}子类具有比其初始化字典成员和IDL属性之间的简单1:1映射更复杂的结构。
 
@@ -752,7 +751,7 @@ dictionary CustomEventInit : EventInit {
 给定参数type和eventInitDict，将运行以下步骤：
 
 <ol>
- <li><p>使用this interface，null，now，<var>eventInitDict</var>四个参数运行<a lt="inner event creation steps">内部事件创建步骤</a>，
+ <li><p>使用事件接口，null，now，<var>eventInitDict</var>四个参数运行<a lt="inner event creation steps">内部事件创建步骤</a>，
  将返回结果赋值给<var>event</var>。
 
  <li><p>使用<var>type</var>参数初始化<var>event</var>的{{Event/type}}属性。
@@ -761,63 +760,52 @@ dictionary CustomEventInit : EventInit {
 </ol>
 
 <p>使用Event接口或继承其的接口<dfn export id=concept-event-create lt="creating an event|create an event">创建事件</dfn>，
-给定可选择的<a>realm</a>类型的<var>realm</var>参数，将运行以下步骤：</p>
+给定可选择的<a>realm</a>参数，将运行以下步骤：</p>
 
 <ol>
- <li><p>If <var>realm</var> is not given, then set it to null.
+ <li><p>如果未给定参数<var>realm</var>，则设置其为null。
 
  <li>
-  <p>Let <var>dictionary</var> be the result of <a lt="converted to an IDL value">converting</a>
-  the JavaScript value undefined to the dictionary type accepted by <var>eventInterface</var>'s
-  constructor. (This dictionary type will either be {{EventInit}} or a dictionary that inherits from
-  it.)
+  <p>将JavaScript中undefined值<a lt="converted to an IDL value">转换</a>为构造函数接受的字典类型(该字典类型要么是{{EventInit}}
+  要么是从它继承的字典)，设<var>dictionary</var>为其返回结果。
 
-  <p class=XXX>This does not work if members are required; see
-  <a href="https://github.com/whatwg/dom/issues/600">whatwg/dom#600</a>.
+  <p class=XXX>如果字典存在强制成员，这将不起作用；请参阅<a href="https://github.com/whatwg/dom/issues/600">whatwg/dom#600</a>。
 
  <li>
-  <p>Let <var>event</var> be the result of running the <a>inner event creation steps</a> with
-  <var>eventInterface</var>, <var>realm</var>, the time of the occurrence that the event is
-  signaling, and <var>dictionary</var>.
+  <p>使用事件接口、<var>realm</var>、事件发出信号的发生时间、<var>dictionary</var>四个参数运行<a lt="inner event creation steps">内部事件创建步骤</a>，
+  设<var>event</var>为其返回结果。
 
-  <p class=example id=example-timestamp-initialization>In macOS the time of the occurrence for input
-  actions is available via the <code>timestamp</code> property of <code>NSEvent</code> objects.
+  <p class=example id=example-timestamp-initialization>在macOS中，输入操作的发生时间可通过NSEvent对象的<code>timestamp</code>属性获得。
 
- <li><p>Initialize <var>event</var>'s {{Event/isTrusted}} attribute to true.
+ <li><p>初始化<var>event</var>的{{Event/isTrusted}}属性为true。
 
- <li><p>Return <var>event</var>.
+ <li><p>返回<var>event</var>。
 </ol>
 
-<p class=note><a>Create an event</a> is meant to be used by other specifications which need to
-separately <a lt="create an event">create</a> and <a>dispatch</a> events, instead of simply
-<a lt="fire an event">firing</a> them. It ensures the event's attributes are initialized to the
-correct defaults.</p>
+<p class=note><a lt="Create an event">创建事件</a>旨在供其他规范使用，这些规范需要单独<a lt="create an event">创建</a>
+和<a lt="dispatch">分发</a>事件，而不是简单地<a lt="fire an event">触发</a>它们。它确保事件的属性被初始化为正确的默认值。</p>
 
-<p>The <dfn noexport>inner event creation steps</dfn>, given an <var>interface</var>,
-<var>realm</var>, <var>time</var>, and <var>dictionary</var>, are as follows:</p>
+<p><dfn noexport lt="inner event creation steps">内部事件创建步骤</dfn>，给定参数<var>interface</var>、
+<var>realm</var>、<var>time</var>和<var>dictionary</var>，将运行：</p>
 
 <ol>
  <li>
-  <p>Let <var>event</var> be the result of creating a new object using <var>eventInterface</var>. If
-  <var>realm</var> is non-null, then use that realm; otherwise, use the default behavior defined in
-  Web IDL.
+  <p>让<var>event</var>成为使用传入interface参数创建新对象的结果。如果<var>realm</var>不为null，则使用该参数；
+  否则使用webIDL中定义的默认行为设<var>event</var>为其返回结果。
 
-  <p class=XXX>As of the time of this writing Web IDL does not yet define any default behavior;
-  see <a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>.
+  <p class=XXX>截至撰写本文时，Web IDL 尚未定义任何默认行为；参见<a href="https://github.com/whatwg/webidl/issues/135">whatwg/webidl#135</a>。
+  
+ <li><p>设置<var>event</var>的<a>initialized flag</a>.
 
- <li><p>Set <var>event</var>'s <a>initialized flag</a>.
+ <li><p>给定<var>time</var>和<var>event</var>的<a lt="relevant global object">相关全局对象</a>，将<var>event</var>的{{Event/timeStamp}}
+ 属初始化为<a lt="relative high resolution coarse time">相对高分辨率的粗略时间</a>。
 
- <li><p>Initialize <var>event</var>'s {{Event/timeStamp}} attribute to the
- <a>relative high resolution coarse time</a> given <var>time</var> and <var>event</var>'s
- <a>relevant global object</a>.
+ <li><p><a for=map lt="For each">遍历</a><var>dictionary</var>的每个成员以及其<var>value</var>，如果<var>event</var>
+ 存在与字典成员相同的<a spec=webidl>identifier</a>，则将<var>event</var>的属性初始化为成员的<var>value</var>。
 
- <li><p><a for=map>For each</a> <var>member</var> → <var>value</var> in <var>dictionary</var>, if
- <var>event</var> has an attribute whose <a spec=webidl>identifier</a> is <var>member</var>, then
- initialize that attribute to <var>value</var>.
+ <li><p>使用<var>event</var>和<var>dictionary</var>参数运行<a lt="event constructing steps">事件构造步骤</a>。
 
- <li><p>Run the <a>event constructing steps</a> with <var>event</var> and <var>dictionary</var>.
-
- <li><p>Return <var>event</var>.
+ <li><p>返回<var>event</var>。
 </ol>
 
 
