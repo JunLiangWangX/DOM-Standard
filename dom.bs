@@ -818,7 +818,7 @@ dictionary CustomEventInit : EventInit {
 继承自具有此类方法的{{Event}}接口的接口仅出于历史原因而保留它。
 
 
-<h3 id=interface-eventtarget>Interface {{EventTarget}}</h3>
+<h3 id=interface-eventtarget>{{EventTarget}}接口</h3>
 
 <pre class=idl>
 [Exposed=*]
@@ -845,45 +845,40 @@ dictionary AddEventListenerOptions : EventListenerOptions {
 };
 </pre>
 
-<p>An {{EventTarget}} object represents a target to which an <a>event</a> can be <a>dispatched</a>
-when something has occurred.
+<p>{{EventTarget}}对象代表一个目标，事件发生时可以将<a lt="event">事件</a><a lt="dispatched">分派</a>到该目标。
 
-<p>Each {{EventTarget}} object has an associated <dfn for=EventTarget>event listener list</dfn> (a
-<a for=/>list</a> of zero or more <a>event listeners</a>). It is initially the empty list.
+<p>每个{{EventTarget}}对象都有一个相关的<dfn for=EventTarget lt="event listener list">事件监听列表</dfn>
+(零个或多个事件侦听器的列表)。它最初为一个空列表。
 <!-- Intentionally not exported. -->
 
-<p>An <dfn export id=concept-event-listener>event listener</dfn> can be used to observe a specific
-<a>event</a> and consists of:
+<p><dfn export id=concept-event-listener lt="event listener">事件监听器</dfn>用于观察特定的事件<a>event</a>，
+它由以下内容组成：
 
 <ul class=brief>
- <li><dfn for="event listener">type</dfn> (a string)
- <li><dfn for="event listener">callback</dfn> (null or an {{EventListener}} object)
- <li><dfn for="event listener">capture</dfn> (a boolean, initially false)
- <li><dfn for="event listener">passive</dfn> (null or a boolean, initially null)
- <li><dfn for="event listener">once</dfn> (a boolean, initially false)
- <li><dfn for="event listener">signal</dfn> (null or an {{AbortSignal}} object)
- <li><dfn for="event listener">removed</dfn> (a boolean for bookkeeping purposes, initially false)
+ <li><dfn for="event listener">type</dfn>(类型，string)
+ <li><dfn for="event listener">callback</dfn>(回调函数，null或{{EventListener}})
+ <li><dfn for="event listener">capture</dfn>(是否捕获阶段触发，boolean，初值为false)
+ <li><dfn for="event listener">passive</dfn>(是否允许调用event.preventDefault()，null或boolean，初值null)
+ <li><dfn for="event listener">once</dfn>(是否仅调用一次，boolean，初值false)
+ <li><dfn for="event listener">signal</dfn>(信号对象，允许使用{{AbortController/abort()}}方法移除监听器，null或{{AbortSignal}})
+ <li><dfn for="event listener">removed</dfn> (用于内部处理，boolean，初值false)
 </ul>
 
-<p class=note>Although <a for="event listener">callback</a> is an {{EventListener}}
-object, an <a>event listener</a> is a broader concept as can be seen above.
+<p class=note>尽管<a for="event listener">callback</a>是一个{{EventListener}}对象，但<a lt="event listener">事件监听器</a>
+是一个更广泛的概念，如上所示。
 
-<p>Each {{EventTarget}} object also has an associated <dfn export>get the parent</dfn> algorithm,
-which takes an <a>event</a> <var>event</var>, and returns an {{EventTarget}} object. Unless
-specified otherwise it returns null.
+<p>每个{{EventTarget}}对象还有一个相关的<dfn export lt="get the parent">获取父级</dfn>算法，它接受一个<a>event</a>参数，
+并返回一个{{EventTarget}}对象。除非另有说明，否则返回 null。
 
-<p class=note><a for=/>Nodes</a>, <a for=/>shadow roots</a>, and <a>documents</a>
-override the <a>get the parent</a> algorithm.
+<p class=note><a for=/>Nodes</a>, <a for=/>shadow roots</a>以及<a>documents</a>
+覆盖了<a lt="get the parent">获取父级</a>算法。
 
-<p>Each {{EventTarget}} object can have an associated
-<dfn export for=EventTarget>activation behavior</dfn> algorithm. The
-<a for=EventTarget>activation behavior</a> algorithm is passed an <a>event</a>, as indicated in the
-<a>dispatch</a> algorithm.</p>
+<p>每个{{EventTarget}}对象有一个相关的<dfn export for=EventTarget lt="activation behavior">激活行为</dfn>算法。
+如<a lt="dispatch">调度</a>算法中所示，需要向<a for=EventTarget lt="activation behavior">激活行为</a>算法传递一个
+<a>event</a>。</p>
 
-<p class=note>This exists because user agents perform certain actions for certain
-{{EventTarget}} objects, e.g., the <{area}> element, in response to synthetic {{MouseEvent}}
-<a>events</a> whose {{Event/type}} attribute is <code>click</code>. Web compatibility prevented it
-from being removed and it is now the enshrined way of defining an activation of something. [[!HTML]]
+<p class=note>它的存在是因为用户代理对某些{{EventTarget}}对象执行某些操作，例如<{area}>元素，以响应其{{Event/type}}属性为
+<code>click</code>的{{MouseEvent}}事件。考虑Web平台兼容性问题，它没有被删除。在定义任何激活时，它现在也是被尊重的方式。[[!HTML]]
 
 <p>Each {{EventTarget}} object that has <a for=EventTarget>activation behavior</a>, can additionally
 have both (not either) a <dfn export for=EventTarget>legacy-pre-activation behavior</dfn> algorithm
