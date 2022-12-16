@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-15">2022-12-15</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-16">2022-12-16</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -74,7 +74,7 @@ a[href].issue-return {
       <li><a href="#interface-customevent"><span class="secno">2.4</span> <span class="content"><code class="idl"><span>CustomEvent</span></code>接口</span></a>
       <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">事件构造过程</span></a>
       <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">定义事件接口</span></a>
-      <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content">Interface <code class="idl"><span>EventTarget</span></code></span></a>
+      <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content"><code class="idl"><span>EventTarget</span></code>接口</span></a>
       <li><a href="#observing-event-listeners"><span class="secno">2.8</span> <span class="content">Observing event listeners</span></a>
       <li><a href="#dispatching-events"><span class="secno">2.9</span> <span class="content">Dispatching events</span></a>
       <li><a href="#firing-events"><span class="secno">2.10</span> <span class="content">Firing events</span></a>
@@ -1059,7 +1059,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    <p>通常，在定义继承自<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①②">Event</a></code>的新接口时，请始终征求<a href="https://whatwg.org/">WHATWG</a>或 <a href="https://www.w3.org/2008/webapps/">W3C WebApps WG</a>社区的反馈。</p>
    <p><code class="idl"><a data-link-type="idl" href="#customevent" id="ref-for-customevent②">CustomEvent</a></code>接口可以用作起点。但是，不要引入任何<code class="idl"><a data-link-type="idl" href="#dom-event-initevent" id="ref-for-dom-event-initevent②">initEvent()</a></code>方法，因为它们相对于构造函数是冗余的。
 继承自具有此类方法的<code class="idl"><a data-link-type="idl" href="#event" id="ref-for-event①③">Event</a></code>接口的接口仅出于历史原因而保留它。</p>
-   <h3 class="heading settled" data-level="2.7" id="interface-eventtarget"><span class="secno">2.7. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①③">EventTarget</a></code></span><a class="self-link" href="#interface-eventtarget"></a></h3>
+   <h3 class="heading settled" data-level="2.7" id="interface-eventtarget"><span class="secno">2.7. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①③">EventTarget</a></code>接口</span><a class="self-link" href="#interface-eventtarget"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -1101,26 +1101,26 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
   <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①"><c- n>AbortSignal</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AddEventListenerOptions" data-dfn-type="dict-member" data-export data-type="AbortSignal " id="dom-addeventlisteneroptions-signal"><code><c- g>signal</c-></code></dfn>;
 };
 </pre>
-   <p>An <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①④">EventTarget</a></code> object represents a target to which an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑤">event</a> can be <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑦">dispatched</a> when something has occurred. </p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑤">EventTarget</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-noexport id="eventtarget-event-listener-list">event listener list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a> of zero or more <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⓪">event listeners</a>). It is initially the empty list. </p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-event-listener">event listener</dfn> can be used to observe a specific <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑥">event</a> and consists of: </p>
+   <p><code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①④">EventTarget</a></code>对象代表一个目标，事件发生时可以将<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑤">事件</a><a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑦">分派</a>到该目标。 </p>
+   <p>每个<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑤">EventTarget</a></code>对象都有一个相关的<dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-lt="event listener list" data-noexport id="eventtarget-event-listener-list">事件监听列表</dfn> (零个或多个事件侦听器的列表)。它最初为一个空列表。 </p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="event listener" id="concept-event-listener">事件监听器</dfn>用于观察特定的事件<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑥">event</a>，
+它由以下内容组成： </p>
    <ul class="brief">
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-type">type</dfn> (a string) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-callback">callback</dfn> (null or an <code class="idl"><a data-link-type="idl" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener②">EventListener</a></code> object) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-capture">capture</dfn> (a boolean, initially false) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-passive">passive</dfn> (null or a boolean, initially null) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-once">once</dfn> (a boolean, initially false) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-signal">signal</dfn> (null or an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②">AbortSignal</a></code> object) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-removed">removed</dfn> (a boolean for bookkeeping purposes, initially false) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-type">type</dfn>(类型，string) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-callback">callback</dfn>(回调函数，null或<code class="idl"><a data-link-type="idl" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener②">EventListener</a></code>) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-capture">capture</dfn>(是否捕获阶段触发，boolean，初值为false) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-passive">passive</dfn>(是否允许调用event.preventDefault()，null或boolean，初值null) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-once">once</dfn>(是否仅调用一次，boolean，初值false) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-signal">signal</dfn>(信号对象，允许使用<code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort①">abort()</a></code>方法移除监听器，null或<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②">AbortSignal</a></code>) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-removed">removed</dfn> (用于内部处理，boolean，初值false) 
    </ul>
-   <p class="note" role="note">Although <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①">callback</a> is an <code class="idl"><a data-link-type="idl" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener③">EventListener</a></code> object, an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①①">event listener</a> is a broader concept as can be seen above. </p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑥">EventTarget</a></code> object also has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="get-the-parent">get the parent</dfn> algorithm,
-which takes an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑦">event</a> <var>event</var>, and returns an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑦">EventTarget</a></code> object. Unless
-specified otherwise it returns null. </p>
-   <p class="note" role="note"><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node">Nodes</a>, <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①">shadow roots</a>, and <a data-link-type="dfn" href="#concept-document" id="ref-for-concept-document②">documents</a> override the <a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent">get the parent</a> algorithm. </p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑧">EventTarget</a></code> object can have an associated <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export id="eventtarget-activation-behavior">activation behavior</dfn> algorithm. The <a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior">activation behavior</a> algorithm is passed an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑧">event</a>, as indicated in the <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑧">dispatch</a> algorithm.</p>
-   <p class="note" role="note">This exists because user agents perform certain actions for certain <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑨">EventTarget</a></code> objects, e.g., the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element">area</a></code> element, in response to synthetic <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent②">MouseEvent</a></code> <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑨">events</a> whose <code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑦">type</a></code> attribute is <code>click</code>. Web compatibility prevented it
-from being removed and it is now the enshrined way of defining an activation of something. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
+   <p class="note" role="note">尽管<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①">callback</a>是一个<code class="idl"><a data-link-type="idl" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener③">EventListener</a></code>对象，但<a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⓪">事件监听器</a> 是一个更广泛的概念，如上所示。 </p>
+   <p>每个<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑥">EventTarget</a></code>对象还有一个相关的<dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="get the parent" id="get-the-parent">获取父级</dfn>算法，它接受一个<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑦">event</a>参数，
+并返回一个<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑦">EventTarget</a></code>对象。除非另有说明，否则返回 null。 </p>
+   <p class="note" role="note"><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node">Nodes</a>, <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①">shadow roots</a>以及<a data-link-type="dfn" href="#concept-document" id="ref-for-concept-document②">documents</a> 覆盖了<a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent">获取父级</a>算法。 </p>
+   <p>每个<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑧">EventTarget</a></code>对象有一个相关的<dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export data-lt="activation behavior" id="eventtarget-activation-behavior">激活行为</dfn>算法。
+如<a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑧">调度</a>算法中所示，需要向<a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior">激活行为</a>算法传递一个 <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑧">event</a>。</p>
+   <p class="note" role="note">它的存在是因为用户代理对某些<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget①⑨">EventTarget</a></code>对象执行某些操作，例如<code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element">area</a></code>元素，以响应其<code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑦">type</a></code>属性为 <code>click</code>的<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent②">MouseEvent</a></code>事件。考虑Web平台兼容性问题，它没有被删除。在定义任何激活时，它现在也是被尊重的方式。<a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
    <p>Each <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⓪">EventTarget</a></code> object that has <a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior①">activation behavior</a>, can additionally
 have both (not either) a <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export id="eventtarget-legacy-pre-activation-behavior">legacy-pre-activation behavior</dfn> algorithm
 and a <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export id="eventtarget-legacy-canceled-activation-behavior">legacy-canceled-activation behavior</dfn> algorithm. </p>
@@ -1149,7 +1149,7 @@ are not to be used for anything else. <a data-link-type="biblio" href="#biblio-h
      <code><var>target</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-eventtarget-eventtarget" id="ref-for-dom-eventtarget-eventtarget①">EventTarget</a>();</code> 
     <dd>
      <p>Creates a new <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②①">EventTarget</a></code> object, which can be used by developers to <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑨">dispatch</a> and
- listen for <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⓪">events</a>. </p>
+ listen for <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑨">events</a>. </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1171,7 +1171,7 @@ are not to be used for anything else. <a data-link-type="biblio" href="#biblio-h
      </div>
      <code><var>target</var> . <a class="idl-code" data-link-type="method" href="#dom-eventtarget-addeventlistener" id="ref-for-dom-eventtarget-addeventlistener③">addEventListener</a>(<var>type</var>, <var>callback</var> [, <var>options</var>])</code> 
     <dd>
-     <p>Appends an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①②">event listener</a> for <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④①">events</a> whose <code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑧">type</a></code> attribute value is <var>type</var>. The <var>callback</var> argument sets the <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback②">callback</a> that will be invoked when the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④②">event</a> is <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②⓪">dispatched</a>. </p>
+     <p>Appends an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①①">event listener</a> for <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⓪">events</a> whose <code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑧">type</a></code> attribute value is <var>type</var>. The <var>callback</var> argument sets the <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback②">callback</a> that will be invoked when the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④①">event</a> is <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②⓪">dispatched</a>. </p>
      <p>The <var>options</var> argument sets listener-specific options. For compatibility this can be a
   boolean, in which case the method behaves exactly as if the value was specified as <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture">capture</a></code>. </p>
      <div class="mdn-anno wrapped">
@@ -1192,13 +1192,13 @@ are not to be used for anything else. <a data-link-type="biblio" href="#biblio-h
        </div>
       </div>
      </div>
-     <p>When set to true, <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture①">capture</a></code> prevents <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback③">callback</a> from being invoked when the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④③">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase②">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-bubbling_phase" id="ref-for-dom-event-bubbling_phase②">BUBBLING_PHASE</a></code>. When false (or not present), <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback④">callback</a> will not be invoked when <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④④">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase③">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-capturing_phase" id="ref-for-dom-event-capturing_phase②">CAPTURING_PHASE</a></code>. Either way, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑤">callback</a> will be invoked if <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑤">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase④">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-at_target" id="ref-for-dom-event-at_target②">AT_TARGET</a></code>. </p>
+     <p>When set to true, <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture①">capture</a></code> prevents <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback③">callback</a> from being invoked when the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④②">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase②">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-bubbling_phase" id="ref-for-dom-event-bubbling_phase②">BUBBLING_PHASE</a></code>. When false (or not present), <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback④">callback</a> will not be invoked when <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④③">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase③">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-capturing_phase" id="ref-for-dom-event-capturing_phase②">CAPTURING_PHASE</a></code>. Either way, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑤">callback</a> will be invoked if <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④④">event</a>’s <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase④">eventPhase</a></code> attribute value is <code class="idl"><a data-link-type="idl" href="#dom-event-at_target" id="ref-for-dom-event-at_target②">AT_TARGET</a></code>. </p>
      <p>When set to true, <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive①">passive</a></code> indicates that the <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑥">callback</a> will not cancel the event by invoking <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault⑨">preventDefault()</a></code>. This is used to enable performance optimizations described in <a href="#observing-event-listeners">§ 2.8 Observing event listeners</a>. </p>
      <p>When set to true, <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-once" id="ref-for-dom-addeventlisteneroptions-once">once</a></code> indicates that the <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑦">callback</a> will only be invoked once after which the event listener will
   be removed. </p>
      <p>If an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③">AbortSignal</a></code> is passed for <var>options</var>’s <code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal">signal</a></code>,
   then the event listener will be removed when signal is aborted. </p>
-     <p>The <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①③">event listener</a> is appended to <var>target</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list">event listener list</a> and is not appended if it has the same <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type">type</a>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑧">callback</a>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture②">capture</a>. </p>
+     <p>The <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①②">event listener</a> is appended to <var>target</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list">event listener list</a> and is not appended if it has the same <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type">type</a>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑧">callback</a>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture②">capture</a>. </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1220,7 +1220,7 @@ are not to be used for anything else. <a data-link-type="biblio" href="#biblio-h
      </div>
      <code><var>target</var> . <a class="idl-code" data-link-type="method" href="#dom-eventtarget-removeeventlistener" id="ref-for-dom-eventtarget-removeeventlistener②">removeEventListener</a>(<var>type</var>, <var>callback</var> [, <var>options</var>])</code> 
     <dd>
-     <p>Removes the <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①④">event listener</a> in <var>target</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list①">event listener list</a> with the same <var>type</var>, <var>callback</var>, and <var>options</var>. </p>
+     <p>Removes the <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①③">event listener</a> in <var>target</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list①">event listener list</a> with the same <var>type</var>, <var>callback</var>, and <var>options</var>. </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1294,7 +1294,7 @@ participate in a tree structure.</p>
     <li>
      <p>Return false. </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="add-an-event-listener">add an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑤">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑤">event listener</a> <var>listener</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="add-an-event-listener">add an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑤">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①④">event listener</a> <var>listener</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>eventTarget</var> is a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope" id="ref-for-serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> object, its <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker" id="ref-for-serviceworkerglobalscope-service-worker">service worker</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-script-resource" id="ref-for-dfn-script-resource">script resource</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-has-ever-been-evaluated-flag" id="ref-for-dfn-has-ever-been-evaluated-flag">has ever been evaluated flag</a> is set, and <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type①">type</a> matches the <code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑨">type</a></code> attribute value of any of the <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-service-worker-events" id="ref-for-dfn-service-worker-events">service worker events</a>, then <a data-link-type="dfn" href="https://console.spec.whatwg.org/#report-a-warning-to-the-console" id="ref-for-report-a-warning-to-the-console">report a warning to the console</a> that this might not give
@@ -1306,7 +1306,7 @@ participate in a tree structure.</p>
     <li>
      <p>If <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-passive" id="ref-for-event-listener-passive">passive</a> is null, then set it to the <a data-link-type="dfn" href="#default-passive-value" id="ref-for-default-passive-value">default passive value</a> given <var>type</var> and <var>eventTarget</var>. </p>
     <li>
-     <p>If <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list②">event listener list</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑥">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type②">type</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type③">type</a>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①⓪">callback</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①①">callback</a>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture③">capture</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture④">capture</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append②">append</a> <var>listener</var> to <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list③">event listener list</a>. </p>
+     <p>If <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list②">event listener list</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑤">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type②">type</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type③">type</a>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①⓪">callback</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①①">callback</a>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture③">capture</a> is <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture④">capture</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append②">append</a> <var>listener</var> to <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list③">event listener list</a>. </p>
     <li>
      <p>If <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-signal" id="ref-for-event-listener-signal①">signal</a> is not null, then <a data-link-type="dfn" href="#abortsignal-add" id="ref-for-abortsignal-add">add the following</a> abort steps to it: </p>
      <ol>
@@ -1321,9 +1321,9 @@ the same code path. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </
      <p>Let <var>capture</var>, <var>passive</var>, <var>once</var>, and <var>signal</var> be the
  result of <a data-link-type="dfn" href="#event-flatten-more" id="ref-for-event-flatten-more">flattening more</a> <var>options</var>. </p>
     <li>
-     <p><a data-link-type="dfn" href="#add-an-event-listener" id="ref-for-add-an-event-listener①">Add an event listener</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑨">this</a> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑦">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type④">type</a> is <var>type</var>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①②">callback</a> is <var>callback</var>, <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture⑤">capture</a> is <var>capture</var>, <a data-link-type="dfn" href="#event-listener-passive" id="ref-for-event-listener-passive①">passive</a> is <var>passive</var>, <a data-link-type="dfn" href="#event-listener-once" id="ref-for-event-listener-once">once</a> is <var>once</var>, and <a data-link-type="dfn" href="#event-listener-signal" id="ref-for-event-listener-signal②">signal</a> is <var>signal</var>. </p>
+     <p><a data-link-type="dfn" href="#add-an-event-listener" id="ref-for-add-an-event-listener①">Add an event listener</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑨">this</a> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑥">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type④">type</a> is <var>type</var>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①②">callback</a> is <var>callback</var>, <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture⑤">capture</a> is <var>capture</var>, <a data-link-type="dfn" href="#event-listener-passive" id="ref-for-event-listener-passive①">passive</a> is <var>passive</var>, <a data-link-type="dfn" href="#event-listener-once" id="ref-for-event-listener-once">once</a> is <var>once</var>, and <a data-link-type="dfn" href="#event-listener-signal" id="ref-for-event-listener-signal②">signal</a> is <var>signal</var>. </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="remove-an-event-listener">remove an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑥">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑧">event listener</a> <var>listener</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="remove-an-event-listener">remove an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑥">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑦">event listener</a> <var>listener</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>eventTarget</var> is a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope" id="ref-for-serviceworkerglobalscope①">ServiceWorkerGlobalScope</a></code> object and its <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker" id="ref-for-serviceworkerglobalscope-service-worker①">service worker</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-set-of-event-types-to-handle" id="ref-for-dfn-set-of-event-types-to-handle">set of event types to handle</a> contains <var>type</var>, then <a data-link-type="dfn" href="https://console.spec.whatwg.org/#report-a-warning-to-the-console" id="ref-for-report-a-warning-to-the-console①">report a warning to the console</a> that this might not give the expected results. <a data-link-type="biblio" href="#biblio-service-workers">[SERVICE-WORKERS]</a> </p>
@@ -1338,7 +1338,7 @@ the same code path. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </
     <li>
      <p>Let <var>capture</var> be the result of <a data-link-type="dfn" href="#concept-flatten-options" id="ref-for-concept-flatten-options①">flattening</a> <var>options</var>. </p>
     <li>
-     <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪">this</a>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list⑥">event listener list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">contains</a> an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑨">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type⑤">type</a> is <var>type</var>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①③">callback</a> is <var>callback</var>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture⑥">capture</a> is <var>capture</var>, then <a data-link-type="dfn" href="#remove-an-event-listener" id="ref-for-remove-an-event-listener②">remove an event listener</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②①">this</a> and that <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②⓪">event listener</a>. </p>
+     <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪">this</a>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list⑥">event listener list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">contains</a> an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑧">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type⑤">type</a> is <var>type</var>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①③">callback</a> is <var>callback</var>, and <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture⑥">capture</a> is <var>capture</var>, then <a data-link-type="dfn" href="#remove-an-event-listener" id="ref-for-remove-an-event-listener②">remove an event listener</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②①">this</a> and that <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑨">event listener</a>. </p>
    </ol>
    <p class="note" role="note">The event listener list will not contain multiple event listeners with equal <var>type</var>, <var>callback</var>, and <var>capture</var>, as <a data-link-type="dfn" href="#add-an-event-listener" id="ref-for-add-an-event-listener②">add an event listener</a> prevents that. </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="EventTarget" data-dfn-type="method" data-export id="dom-eventtarget-dispatchevent"><code>dispatchEvent(<var>event</var>)</code></dfn> method steps
@@ -1353,11 +1353,11 @@ are: </p>
      <p>Return the result of <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②②">dispatching</a> <var>event</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②②">this</a>. </p>
    </ol>
    <h3 class="heading settled" data-level="2.8" id="observing-event-listeners"><span class="secno">2.8. </span><span class="content">Observing event listeners</span><a class="self-link" href="#observing-event-listeners"></a></h3>
-   <p>In general, developers do not expect the presence of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②①">event listener</a> to be observable.
-The impact of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②②">event listener</a> is determined by its <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①④">callback</a>. That is, a developer
-adding a no-op <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②③">event listener</a> would not expect it to have any side effects. </p>
+   <p>In general, developers do not expect the presence of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②⓪">event listener</a> to be observable.
+The impact of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②①">event listener</a> is determined by its <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①④">callback</a>. That is, a developer
+adding a no-op <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②②">event listener</a> would not expect it to have any side effects. </p>
    <p>Unfortunately, some event APIs have been designed such that implementing them efficiently
-requires observing <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②④">event listeners</a>. This can make the presence of listeners observable in
+requires observing <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②③">event listeners</a>. This can make the presence of listeners observable in
 that even empty listeners can have a dramatic performance impact on the behavior of the application.
 For example, touch and wheel events which can be used to block asynchronous scrolling. In some cases
 this problem can be mitigated by specifying the event to be <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑦">cancelable</a></code> only when there is
@@ -1382,7 +1382,7 @@ of non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneropti
      <p>If <var>target</var> is not <var>relatedTarget</var> or <var>target</var> is <var>event</var>’s <a data-link-type="dfn" href="#event-relatedtarget" id="ref-for-event-relatedtarget③">relatedTarget</a>, then: </p>
      <ol>
       <li>
-       <p>Let <var>touchTargets</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>. </p>
+       <p>Let <var>touchTargets</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a>. </p>
       <li>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②">For each</a> <var>touchTarget</var> of <var>event</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#event-touch-target-list" id="ref-for-event-touch-target-list">touch target list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append③">append</a> the result of <a data-link-type="dfn" href="#retarget" id="ref-for-retarget①">retargeting</a> <var>touchTarget</var> against <var>target</var> to <var>touchTargets</var>. </p>
       <li>
@@ -1417,7 +1417,7 @@ of non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneropti
         <li>
          <p>Let <var>relatedTarget</var> be the result of <a data-link-type="dfn" href="#retarget" id="ref-for-retarget②">retargeting</a> <var>event</var>’s <a data-link-type="dfn" href="#event-relatedtarget" id="ref-for-event-relatedtarget④">relatedTarget</a> against <var>parent</var>. </p>
         <li>
-         <p>Let <var>touchTargets</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a>. </p>
+         <p>Let <var>touchTargets</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>. </p>
         <li>
          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate③">For each</a> <var>touchTarget</var> of <var>event</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#event-touch-target-list" id="ref-for-event-touch-target-list①">touch target list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append④">append</a> the result of <a data-link-type="dfn" href="#retarget" id="ref-for-retarget③">retargeting</a> <var>touchTarget</var> against <var>parent</var> to <var>touchTargets</var>. </p>
         <li>
@@ -1537,7 +1537,7 @@ run these steps: </p>
      <p>Initialize <var>event</var>’s <code class="idl"><a data-link-type="idl" href="#dom-event-currenttarget" id="ref-for-dom-event-currenttarget⑤">currentTarget</a></code> attribute to <var>struct</var>’s <a data-link-type="dfn" href="#event-path-invocation-target" id="ref-for-event-path-invocation-target⑤">invocation target</a>. </p>
     <li>
      <p>Let <var>listeners</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-clone" id="ref-for-list-clone">clone</a> of <var>event</var>’s <code class="idl"><a data-link-type="idl" href="#dom-event-currenttarget" id="ref-for-dom-event-currenttarget⑥">currentTarget</a></code> attribute value’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list⑦">event listener list</a>. </p>
-     <p class="note" role="note">This avoids <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②⑤">event listeners</a> added after this point from being
+     <p class="note" role="note">This avoids <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②④">event listeners</a> added after this point from being
   run. Note that removal still has an effect due to the <a data-link-type="dfn" href="#event-listener-removed" id="ref-for-event-listener-removed①">removed</a> field. </p>
     <li>
      <p>Let <var>invocationTargetInShadowTree</var> be <var>struct</var>’s <a data-link-type="dfn" href="#event-path-invocation-target-in-shadow-tree" id="ref-for-event-path-invocation-target-in-shadow-tree①">invocation-target-in-shadow-tree</a>. </p>
@@ -1648,10 +1648,10 @@ initialized, and a <var>legacy target override flag</var>, run these steps: </p>
     <li>
      <p>Return the result of <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②③">dispatching</a> <var>event</var> at <var>target</var>, with <var>legacy target override flag</var> set if set. </p>
    </ol>
-   <p class="note" role="note">Fire in the context of DOM is short for <a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create③">creating</a>, initializing, and <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②④">dispatching</a> an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑥">event</a>. <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> makes that process easier to write down. </p>
+   <p class="note" role="note">Fire in the context of DOM is short for <a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create③">creating</a>, initializing, and <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②④">dispatching</a> an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑤">event</a>. <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> makes that process easier to write down. </p>
    <div class="example" id="firing-events-example">
     <a class="self-link" href="#firing-events-example"></a> 
-    <p>If the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑦">event</a> needs its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑦">bubbles</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑨">cancelable</a></code> attribute initialized,
+    <p>If the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑥">event</a> needs its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑦">bubbles</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑨">cancelable</a></code> attribute initialized,
  one could write "<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code>submit</code> at <var>target</var> with its <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable①⓪">cancelable</a></code> attribute initialized to true". </p>
     <p>Or, when a custom constructor is needed, "<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire③">fire an event</a> named <code>click</code> at <var>target</var> using <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent④">MouseEvent</a></code> with its <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-uievent-detail" id="ref-for-dom-uievent-detail">detail</a></code> attribute initialized to 1". </p>
     <p>Occasionally the return value is important: </p>
@@ -1663,20 +1663,20 @@ initialized, and a <var>legacy target override flag</var>, run these steps: </p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="2.11" id="action-versus-occurrence"><span class="secno">2.11. </span><span class="content">Action versus occurrence</span><span id="action-versus-occurance"></span><a class="self-link" href="#action-versus-occurrence"></a></h3>
-   <p>An <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑧">event</a> signifies an occurrence, not an action. Phrased differently, it
+   <p>An <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑦">event</a> signifies an occurrence, not an action. Phrased differently, it
 represents a notification from an algorithm and can be used to influence the future course
-of that algorithm (e.g., through invoking <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①②">preventDefault()</a></code>). <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑨">Events</a> must not be
+of that algorithm (e.g., through invoking <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①②">preventDefault()</a></code>). <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑧">Events</a> must not be
 used as actions or initiators that cause some algorithm to start running. That is not what
 they are for. </p>
    <p class="note" role="note">This is called out here specifically because previous
-iterations of the DOM had a concept of "default actions" associated with <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event⑤⓪">events</a> that gave folks all the wrong ideas. <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event⑤①">Events</a> do not represent or cause actions, they
+iterations of the DOM had a concept of "default actions" associated with <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑨">events</a> that gave folks all the wrong ideas. <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event⑤⓪">Events</a> do not represent or cause actions, they
 can only be used to influence an ongoing one. </p>
    <h2 class="heading settled" data-level="3" id="aborting-ongoing-activities"><span class="secno">3. </span><span class="content">Aborting ongoing activities</span><a class="self-link" href="#aborting-ongoing-activities"></a></h2>
    <p>Though promises do not have a built-in aborting mechanism, many APIs using them require abort
-semantics. <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller">AbortController</a></code> is meant to support these requirements by providing an <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort①">abort()</a></code> method that toggles the state of a corresponding <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal④">AbortSignal</a></code> object.
+semantics. <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller">AbortController</a></code> is meant to support these requirements by providing an <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort②">abort()</a></code> method that toggles the state of a corresponding <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal④">AbortSignal</a></code> object.
 The API which wishes to support aborting can accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑤">AbortSignal</a></code> object, and use its state to
 determine how to proceed. </p>
-   <p>APIs that rely upon <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller①">AbortController</a></code> are encouraged to respond to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort②">abort()</a></code> by rejecting any unsettled promise with the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑥">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason">abort reason</a>. </p>
+   <p>APIs that rely upon <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller①">AbortController</a></code> are encouraged to respond to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort③">abort()</a></code> by rejecting any unsettled promise with the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑥">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason">abort reason</a>. </p>
    <div class="example" id="aborting-ongoing-activities-example">
     <a class="self-link" href="#aborting-ongoing-activities-example"></a> 
     <p>A hypothetical <code>doAmazingness({ ... })</code> method could accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑦">AbortSignal</a></code> object
@@ -1741,7 +1741,7 @@ example of an API where the latter made sense. </p>
 
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⓪"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="AbortSignal" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal"><c- g>signal</c-></a>;
 
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑨"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort③"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any③"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortController/abort(reason), AbortController/abort()" data-dfn-type="argument" data-export id="dom-abortcontroller-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortcontroller-abort-reason-reason"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑨"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort④"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any③"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortController/abort(reason), AbortController/abort()" data-dfn-type="argument" data-export id="dom-abortcontroller-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortcontroller-abort-reason-reason"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
@@ -1803,7 +1803,7 @@ example of an API where the latter made sense. </p>
      </div>
      <code><var>controller</var> . <a class="idl-code" data-link-type="attribute" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal②">signal</a></code> 
     <dd>Returns the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①②">AbortSignal</a></code> object associated with this object. 
-    <dt><code><var>controller</var> . <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort④">abort</a>(<var>reason</var>)</code> 
+    <dt><code><var>controller</var> . <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑤">abort</a>(<var>reason</var>)</code> 
     <dd>Invoking this method will store <var>reason</var> in this object’s <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①③">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason②">abort reason</a>, and signal to any observers that the associated activity is to be
  aborted. If <var>reason</var> is undefined, then an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑦">DOMException</a></code> will be stored. 
    </dl>
@@ -1970,7 +1970,7 @@ specified otherwise, its value is the empty set. </p>
    </ol>
    <p>To <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-remove">remove<a class="self-link" href="#abortsignal-remove"></a></dfn> an algorithm <var>algorithm</var> from an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑤">AbortSignal</a></code> <var>signal</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove②">remove</a> <var>algorithm</var> from <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms①">abort algorithms</a>. </p>
    <p class="note" role="note">The <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms②">abort algorithms</a> enable APIs with complex
-requirements to react in a reasonable way to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑤">abort()</a></code>. For example, a given API’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑧">abort reason</a> might need to be propagated to a cross-thread environment, such as a
+requirements to react in a reasonable way to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑥">abort()</a></code>. For example, a given API’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑧">abort reason</a> might need to be propagated to a cross-thread environment, such as a
 service worker. </p>
    <p>The static <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="method" data-export data-lt="abort(reason)|abort()" id="dom-abortsignal-abort"><code>abort(<var>reason</var>)</code></dfn> method steps
 are: </p>
@@ -3868,7 +3868,7 @@ run these steps: </p>
  at <var>slot</var>. </p>
    </ol>
    <hr>
-   <p>Each <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤⑧">node</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="registered-observer-list">registered observer list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑦">list</a> of
+   <p>Each <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤⑧">node</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="registered-observer-list">registered observer list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a> of
 zero or more <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer">registered observers</a>), which is initially empty. </p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="registered-observer">registered observer</dfn> consists of an <dfn class="dfn-paneled" data-dfn-for="registered observer" data-dfn-type="dfn" data-noexport id="registered-observer-observer">observer</dfn> (a <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver①">MutationObserver</a></code> object) and <dfn class="dfn-paneled" data-dfn-for="registered observer" data-dfn-type="dfn" data-noexport id="registered-observer-options">options</dfn> (a <code class="idl"><a data-link-type="idl" href="#dictdef-mutationobserverinit" id="ref-for-dictdef-mutationobserverinit">MutationObserverInit</a></code> dictionary). </p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="transient-registered-observer">transient registered observer</dfn> is a <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer①">registered observer</a> that also consists of a <dfn class="dfn-paneled" data-dfn-for="transient registered observer" data-dfn-type="dfn" data-noexport id="transient-registered-observer-source">source</dfn> (a <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer②">registered observer</a>). </p>
@@ -3917,7 +3917,7 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
    <p>Each <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑤">MutationObserver</a></code> object has these associated concepts: </p>
    <ul>
     <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-noexport id="concept-mo-callback">callback</dfn> set on creation. 
-    <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-noexport id="mutationobserver-node-list">node list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a> of <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥③">nodes</a>), which is initially empty. 
+    <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-noexport id="mutationobserver-node-list">node list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑦">list</a> of <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥③">nodes</a>), which is initially empty. 
     <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-export id="concept-mo-queue">record queue</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#queue" id="ref-for-queue">queue</a> of zero or more <code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord②">MutationRecord</a></code> objects), which is initially empty. 
    </ul>
    <dl class="domintro">
@@ -6257,7 +6257,7 @@ are: </p>
     <li>
      <p>Return <var>event</var>. </p>
    </ol>
-   <p class="note" role="note"><a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event⑤②">Event</a> constructors ought to be used instead. </p>
+   <p class="note" role="note"><a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event⑤①">Event</a> constructors ought to be used instead. </p>
    <hr>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -6947,7 +6947,7 @@ given a <var>document</var>, <var>localName</var>, <var>namespace</var>, and opt
     <li>
      <p>Return <var>result</var>. </p>
    </ol>
-   <p><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑤">Elements</a> also have an <dfn class="dfn-paneled" data-dfn-for="Element" data-dfn-type="dfn" data-export id="concept-element-attribute">attribute list</dfn>, which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a> exposed through a <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap①">NamedNodeMap</a></code>. Unless explicitly given when an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑥">element</a> is created, its <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑦">attribute list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty⑤">is empty</a>. </p>
+   <p><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑤">Elements</a> also have an <dfn class="dfn-paneled" data-dfn-for="Element" data-dfn-type="dfn" data-export id="concept-element-attribute">attribute list</dfn>, which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a> exposed through a <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap①">NamedNodeMap</a></code>. Unless explicitly given when an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑥">element</a> is created, its <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑦">attribute list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty⑤">is empty</a>. </p>
    <p>An <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑦">element</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="has an attribute" id="concept-element-attribute-has">has</dfn> an <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②④">attribute</a> <var>A</var> if its <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑧">attribute list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">contains</a> <var>A</var>. </p>
    <p>This and <a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications⑦">other specifications</a> may define <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-element-attributes-change-ext">attribute change steps</dfn> for <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑧⑧">elements</a>. The algorithm is passed <var>element</var>, <var>localName</var>, <var>oldValue</var>, <var>value</var>, and <var>namespace</var>. </p>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="handle-attribute-changes">handle attribute changes</dfn> for an <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②⑤">attribute</a> <var>attribute</var> with <var>element</var>, <var>oldValue</var>, and <var>newValue</var>, run these steps: </p>
@@ -7533,7 +7533,7 @@ if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-f
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="attribute" data-export id="dom-element-attributes"><code>attributes</code></dfn> getter steps are to return the
 associated <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap②">NamedNodeMap</a></code>. </p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-getattributenames"><code>getAttributeNames()</code></dfn> method steps are to return the <a data-link-type="dfn" href="#concept-attribute-qualified-name" id="ref-for-concept-attribute-qualified-name⑧">qualified names</a> of the <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute⑤⓪">attributes</a> in <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥⑧">this</a>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute①⑤">attribute list</a>, in order; otherwise a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">list</a>. </p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-getattributenames"><code>getAttributeNames()</code></dfn> method steps are to return the <a data-link-type="dfn" href="#concept-attribute-qualified-name" id="ref-for-concept-attribute-qualified-name⑧">qualified names</a> of the <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute⑤⓪">attributes</a> in <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥⑧">this</a>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute①⑤">attribute list</a>, in order; otherwise a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a>. </p>
    <p class="note" role="note">These are not guaranteed to be unique. </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Element" data-dfn-type="method" data-export id="dom-element-getattribute"><code>getAttribute(<var>qualifiedName</var>)</code></dfn> method
 steps are: </p>
@@ -12968,7 +12968,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-report-a-warning-to-the-console">
    <a href="https://console.spec.whatwg.org/#report-a-warning-to-the-console">https://console.spec.whatwg.org/#report-a-warning-to-the-console</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-report-a-warning-to-the-console">2.7. Interface EventTarget</a> <a href="#ref-for-report-a-warning-to-the-console①">(2)</a>
+    <li><a href="#ref-for-report-a-warning-to-the-console">2.7. EventTarget接口</a> <a href="#ref-for-report-a-warning-to-the-console①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-range-getboundingclientrect">
@@ -13129,14 +13129,14 @@ if ("serviceWorker" in navigator) {
    <a href="https://html.spec.whatwg.org/multipage/window-object.html#window">https://html.spec.whatwg.org/multipage/window-object.html#window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-window">2.3. 遗留扩展：Window接口</a> <a href="#ref-for-window①">(2)</a> <a href="#ref-for-window②">(3)</a>
-    <li><a href="#ref-for-window③">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-window③">2.7. EventTarget接口</a>
     <li><a href="#ref-for-window④">2.9. Dispatching events</a> <a href="#ref-for-window⑤">(2)</a> <a href="#ref-for-window⑥">(3)</a> <a href="#ref-for-window⑦">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-the-area-element">
    <a href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element">https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-the-area-element">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-the-area-element">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-document-window">
@@ -13232,7 +13232,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-event-handlers">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-handlers">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-event-handlers">2.7. EventTarget接口</a>
     <li><a href="#ref-for-event-handlers①">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-event-handlers②">4.8. Interface ShadowRoot</a>
    </ul>
@@ -13287,7 +13287,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-the-input-element">
    <a href="https://html.spec.whatwg.org/multipage/input.html#the-input-element">https://html.spec.whatwg.org/multipage/input.html#the-input-element</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-the-input-element">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-the-input-element">2.7. EventTarget接口</a>
     <li><a href="#ref-for-the-input-element①">4.4. Interface Node</a>
    </ul>
   </aside>
@@ -13408,7 +13408,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-the-body-element-2">
    <a href="https://html.spec.whatwg.org/multipage/dom.html#the-body-element-2">https://html.spec.whatwg.org/multipage/dom.html#the-body-element-2</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-the-body-element-2">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-the-body-element-2">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-timer-task-source">
@@ -13446,7 +13446,7 @@ APIs</a>
    <a href="https://infra.spec.whatwg.org/#list-append">https://infra.spec.whatwg.org/#list-append</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-append">2.2. Event接口</a> <a href="#ref-for-list-append①">(2)</a>
-    <li><a href="#ref-for-list-append②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-list-append②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-append③">2.9. Dispatching events</a> <a href="#ref-for-list-append④">(2)</a> <a href="#ref-for-list-append⑤">(3)</a>
     <li><a href="#ref-for-list-append⑥">4.2.2.3. Finding slots and slottables</a> <a href="#ref-for-list-append⑦">(2)</a>
     <li><a href="#ref-for-list-append⑧">4.2.3. Mutation algorithms</a>
@@ -13538,7 +13538,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-list-contain">
    <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-contain">2.7. Interface EventTarget</a> <a href="#ref-for-list-contain①">(2)</a>
+    <li><a href="#ref-for-list-contain">2.7. EventTarget接口</a> <a href="#ref-for-list-contain①">(2)</a>
     <li><a href="#ref-for-list-contain②">4.2.2.3. Finding slots and slottables</a>
     <li><a href="#ref-for-list-contain③">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-list-contain④">4.9. Interface Element</a> <a href="#ref-for-list-contain⑤">(2)</a>
@@ -13570,7 +13570,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-list-contain">
    <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-contain">2.7. Interface EventTarget</a> <a href="#ref-for-list-contain①">(2)</a>
+    <li><a href="#ref-for-list-contain">2.7. EventTarget接口</a> <a href="#ref-for-list-contain①">(2)</a>
     <li><a href="#ref-for-list-contain②">4.2.2.3. Finding slots and slottables</a>
     <li><a href="#ref-for-list-contain③">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-list-contain④">4.9. Interface Element</a> <a href="#ref-for-list-contain⑤">(2)</a>
@@ -13580,7 +13580,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-map-exists">
    <a href="https://infra.spec.whatwg.org/#map-exists">https://infra.spec.whatwg.org/#map-exists</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-exists">2.7. Interface EventTarget</a> <a href="#ref-for-map-exists①">(2)</a>
+    <li><a href="#ref-for-map-exists">2.7. EventTarget接口</a> <a href="#ref-for-map-exists①">(2)</a>
     <li><a href="#ref-for-map-exists②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-map-exists③">(2)</a> <a href="#ref-for-map-exists④">(3)</a> <a href="#ref-for-map-exists⑤">(4)</a>
     <li><a href="#ref-for-map-exists⑥">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-exists⑦">(2)</a> <a href="#ref-for-map-exists⑧">(3)</a> <a href="#ref-for-map-exists⑨">(4)</a>
     <li><a href="#ref-for-map-exists①⓪">4.5. Interface Document</a> <a href="#ref-for-map-exists①①">(2)</a>
@@ -13590,7 +13590,7 @@ APIs</a>
    <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-iterate">1.2. Ordered sets：有序集</a>
-    <li><a href="#ref-for-list-iterate①">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-list-iterate①">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-iterate②">2.9. Dispatching events</a> <a href="#ref-for-list-iterate③">(2)</a> <a href="#ref-for-list-iterate④">(3)</a> <a href="#ref-for-list-iterate⑤">(4)</a> <a href="#ref-for-list-iterate⑥">(5)</a>
     <li><a href="#ref-for-list-iterate⑦">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-list-iterate⑧">4.2.2.3. Finding slots and slottables</a>
@@ -13668,11 +13668,10 @@ APIs</a>
    <a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list">2.2. Event接口</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a> <a href="#ref-for-list③">(4)</a>
-    <li><a href="#ref-for-list④">2.7. Interface EventTarget</a>
-    <li><a href="#ref-for-list⑤">2.9. Dispatching events</a> <a href="#ref-for-list⑥">(2)</a>
-    <li><a href="#ref-for-list⑦">4.3. Mutation observers</a>
-    <li><a href="#ref-for-list⑧">4.3.1. Interface MutationObserver</a>
-    <li><a href="#ref-for-list⑨">4.9. Interface Element</a> <a href="#ref-for-list①⓪">(2)</a>
+    <li><a href="#ref-for-list④">2.9. Dispatching events</a> <a href="#ref-for-list⑤">(2)</a>
+    <li><a href="#ref-for-list⑥">4.3. Mutation observers</a>
+    <li><a href="#ref-for-list⑦">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-list⑧">4.9. Interface Element</a> <a href="#ref-for-list⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ordered-map">
@@ -13701,7 +13700,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-list-remove">
    <a href="https://infra.spec.whatwg.org/#list-remove">https://infra.spec.whatwg.org/#list-remove</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-remove">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-list-remove">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-remove①">2.9. Dispatching events</a>
     <li><a href="#ref-for-list-remove②">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-list-remove③">4.2.3. Mutation algorithms</a>
@@ -13832,37 +13831,37 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-serviceworkerglobalscope">
    <a href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope">https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-serviceworkerglobalscope">2.7. Interface EventTarget</a> <a href="#ref-for-serviceworkerglobalscope①">(2)</a>
+    <li><a href="#ref-for-serviceworkerglobalscope">2.7. EventTarget接口</a> <a href="#ref-for-serviceworkerglobalscope①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-has-ever-been-evaluated-flag">
    <a href="https://w3c.github.io/ServiceWorker/#dfn-has-ever-been-evaluated-flag">https://w3c.github.io/ServiceWorker/#dfn-has-ever-been-evaluated-flag</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-has-ever-been-evaluated-flag">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-has-ever-been-evaluated-flag">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-script-resource">
    <a href="https://w3c.github.io/ServiceWorker/#dfn-script-resource">https://w3c.github.io/ServiceWorker/#dfn-script-resource</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-script-resource">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-script-resource">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-serviceworkerglobalscope-service-worker">
    <a href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker">https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-serviceworkerglobalscope-service-worker">2.7. Interface EventTarget</a> <a href="#ref-for-serviceworkerglobalscope-service-worker①">(2)</a>
+    <li><a href="#ref-for-serviceworkerglobalscope-service-worker">2.7. EventTarget接口</a> <a href="#ref-for-serviceworkerglobalscope-service-worker①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-service-worker-events">
    <a href="https://w3c.github.io/ServiceWorker/#dfn-service-worker-events">https://w3c.github.io/ServiceWorker/#dfn-service-worker-events</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-service-worker-events">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-service-worker-events">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-set-of-event-types-to-handle">
    <a href="https://w3c.github.io/ServiceWorker/#dfn-set-of-event-types-to-handle">https://w3c.github.io/ServiceWorker/#dfn-set-of-event-types-to-handle</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-set-of-event-types-to-handle">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-set-of-event-types-to-handle">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-compositionevent">
@@ -13888,7 +13887,7 @@ APIs</a>
    <a href="https://www.w3.org/TR/uievents/#mouseevent">https://www.w3.org/TR/uievents/#mouseevent</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mouseevent">2.2. Event接口</a> <a href="#ref-for-mouseevent①">(2)</a>
-    <li><a href="#ref-for-mouseevent②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-mouseevent②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-mouseevent③">2.9. Dispatching events</a>
     <li><a href="#ref-for-mouseevent④">2.10. Firing events</a>
     <li><a href="#ref-for-mouseevent⑤">4.5. Interface Document</a>
@@ -13931,7 +13930,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-idl-DOMException">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-idl-DOMException①">1.4. Namespaces：命名空间</a> <a href="#ref-for-idl-DOMException②">(2)</a> <a href="#ref-for-idl-DOMException③">(3)</a> <a href="#ref-for-idl-DOMException④">(4)</a> <a href="#ref-for-idl-DOMException⑤">(5)</a>
-    <li><a href="#ref-for-idl-DOMException⑥">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-idl-DOMException⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-idl-DOMException⑦">3.1. Interface AbortController</a>
     <li><a href="#ref-for-idl-DOMException⑧">3.2. Interface AbortSignal</a> <a href="#ref-for-idl-DOMException⑨">(2)</a> <a href="#ref-for-idl-DOMException①⓪">(3)</a> <a href="#ref-for-idl-DOMException①①">(4)</a> <a href="#ref-for-idl-DOMException①②">(5)</a>
     <li><a href="#ref-for-idl-DOMException①③">4.2.3. Mutation algorithms</a> <a href="#ref-for-idl-DOMException①④">(2)</a> <a href="#ref-for-idl-DOMException①⑤">(3)</a> <a href="#ref-for-idl-DOMException①⑥">(4)</a> <a href="#ref-for-idl-DOMException①⑦">(5)</a> <a href="#ref-for-idl-DOMException①⑧">(6)</a> <a href="#ref-for-idl-DOMException①⑨">(7)</a> <a href="#ref-for-idl-DOMException②⓪">(8)</a> <a href="#ref-for-idl-DOMException②①">(9)</a> <a href="#ref-for-idl-DOMException②②">(10)</a> <a href="#ref-for-idl-DOMException②③">(11)</a> <a href="#ref-for-idl-DOMException②④">(12)</a> <a href="#ref-for-idl-DOMException②⑤">(13)</a>
@@ -13955,7 +13954,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-idl-DOMString">2.2. Event接口</a> <a href="#ref-for-idl-DOMString①">(2)</a> <a href="#ref-for-idl-DOMString②">(3)</a>
     <li><a href="#ref-for-idl-DOMString③">2.4. CustomEvent接口</a> <a href="#ref-for-idl-DOMString④">(2)</a>
-    <li><a href="#ref-for-idl-DOMString⑤">2.7. Interface EventTarget</a> <a href="#ref-for-idl-DOMString⑥">(2)</a>
+    <li><a href="#ref-for-idl-DOMString⑤">2.7. EventTarget接口</a> <a href="#ref-for-idl-DOMString⑥">(2)</a>
     <li><a href="#ref-for-idl-DOMString⑦">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-idl-DOMString⑧">4.2.6. Mixin ParentNode</a> <a href="#ref-for-idl-DOMString⑨">(2)</a> <a href="#ref-for-idl-DOMString①⓪">(3)</a> <a href="#ref-for-idl-DOMString①①">(4)</a> <a href="#ref-for-idl-DOMString①②">(5)</a>
     <li><a href="#ref-for-idl-DOMString①③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-idl-DOMString①④">(2)</a> <a href="#ref-for-idl-DOMString①⑤">(3)</a>
@@ -14064,7 +14063,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-invalidstateerror">
    <a href="https://webidl.spec.whatwg.org/#invalidstateerror">https://webidl.spec.whatwg.org/#invalidstateerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-invalidstateerror">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-invalidstateerror">2.7. EventTarget接口</a>
     <li><a href="#ref-for-invalidstateerror①">5.5. Interface Range</a>
     <li><a href="#ref-for-invalidstateerror②">6. Traversal</a>
    </ul>
@@ -14215,7 +14214,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-idl-boolean">2.2. Event接口</a> <a href="#ref-for-idl-boolean①">(2)</a> <a href="#ref-for-idl-boolean②">(3)</a> <a href="#ref-for-idl-boolean③">(4)</a> <a href="#ref-for-idl-boolean④">(5)</a> <a href="#ref-for-idl-boolean⑤">(6)</a> <a href="#ref-for-idl-boolean⑥">(7)</a> <a href="#ref-for-idl-boolean⑦">(8)</a> <a href="#ref-for-idl-boolean⑧">(9)</a> <a href="#ref-for-idl-boolean⑨">(10)</a> <a href="#ref-for-idl-boolean①⓪">(11)</a> <a href="#ref-for-idl-boolean①①">(12)</a>
     <li><a href="#ref-for-idl-boolean①②">2.4. CustomEvent接口</a> <a href="#ref-for-idl-boolean①③">(2)</a>
-    <li><a href="#ref-for-idl-boolean①④">2.7. Interface EventTarget</a> <a href="#ref-for-idl-boolean①⑤">(2)</a> <a href="#ref-for-idl-boolean①⑥">(3)</a> <a href="#ref-for-idl-boolean①⑦">(4)</a> <a href="#ref-for-idl-boolean①⑧">(5)</a> <a href="#ref-for-idl-boolean①⑨">(6)</a>
+    <li><a href="#ref-for-idl-boolean①④">2.7. EventTarget接口</a> <a href="#ref-for-idl-boolean①⑤">(2)</a> <a href="#ref-for-idl-boolean①⑥">(3)</a> <a href="#ref-for-idl-boolean①⑦">(4)</a> <a href="#ref-for-idl-boolean①⑧">(5)</a> <a href="#ref-for-idl-boolean①⑨">(6)</a>
     <li><a href="#ref-for-idl-boolean②⓪">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-idl-boolean②①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-boolean②②">(2)</a> <a href="#ref-for-idl-boolean②③">(3)</a> <a href="#ref-for-idl-boolean②④">(4)</a> <a href="#ref-for-idl-boolean②⑤">(5)</a> <a href="#ref-for-idl-boolean②⑥">(6)</a>
     <li><a href="#ref-for-idl-boolean②⑦">4.4. Interface Node</a> <a href="#ref-for-idl-boolean②⑧">(2)</a> <a href="#ref-for-idl-boolean②⑨">(3)</a> <a href="#ref-for-idl-boolean③⓪">(4)</a> <a href="#ref-for-idl-boolean③①">(5)</a> <a href="#ref-for-idl-boolean③②">(6)</a> <a href="#ref-for-idl-boolean③③">(7)</a> <a href="#ref-for-idl-boolean③④">(8)</a>
@@ -14253,7 +14252,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-dfn-dictionary">
    <a href="https://webidl.spec.whatwg.org/#dfn-dictionary">https://webidl.spec.whatwg.org/#dfn-dictionary</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dfn-dictionary">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-dictionary">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dfn-dictionary①">4.5. Interface Document</a> <a href="#ref-for-dfn-dictionary②">(2)</a>
    </ul>
   </aside>
@@ -14327,7 +14326,7 @@ APIs</a>
     <li><a href="#ref-for-this">2.2. Event接口</a> <a href="#ref-for-this①">(2)</a> <a href="#ref-for-this②">(3)</a> <a href="#ref-for-this③">(4)</a> <a href="#ref-for-this④">(5)</a> <a href="#ref-for-this⑤">(6)</a> <a href="#ref-for-this⑥">(7)</a> <a href="#ref-for-this⑦">(8)</a> <a href="#ref-for-this⑧">(9)</a> <a href="#ref-for-this⑨">(10)</a> <a href="#ref-for-this①⓪">(11)</a> <a href="#ref-for-this①①">(12)</a> <a href="#ref-for-this①②">(13)</a> <a href="#ref-for-this①③">(14)</a> <a href="#ref-for-this①④">(15)</a>
     <li><a href="#ref-for-this①⑤">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-this①⑥">2.4. CustomEvent接口</a> <a href="#ref-for-this①⑦">(2)</a> <a href="#ref-for-this①⑧">(3)</a>
-    <li><a href="#ref-for-this①⑨">2.7. Interface EventTarget</a> <a href="#ref-for-this②⓪">(2)</a> <a href="#ref-for-this②①">(3)</a> <a href="#ref-for-this②②">(4)</a>
+    <li><a href="#ref-for-this①⑨">2.7. EventTarget接口</a> <a href="#ref-for-this②⓪">(2)</a> <a href="#ref-for-this②①">(3)</a> <a href="#ref-for-this②②">(4)</a>
     <li><a href="#ref-for-this②③">3.1. Interface AbortController</a> <a href="#ref-for-this②④">(2)</a> <a href="#ref-for-this②⑤">(3)</a>
     <li><a href="#ref-for-this②⑥">3.2. Interface AbortSignal</a> <a href="#ref-for-this②⑦">(2)</a> <a href="#ref-for-this②⑧">(3)</a> <a href="#ref-for-this②⑨">(4)</a>
     <li><a href="#ref-for-this③⓪">4.2.4. Mixin NonElementParentNode</a>
@@ -14361,7 +14360,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dfn-throw">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-dfn-throw①">1.4. Namespaces：命名空间</a> <a href="#ref-for-dfn-throw②">(2)</a> <a href="#ref-for-dfn-throw③">(3)</a> <a href="#ref-for-dfn-throw④">(4)</a> <a href="#ref-for-dfn-throw⑤">(5)</a>
-    <li><a href="#ref-for-dfn-throw⑥">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dfn-throw⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dfn-throw⑦">4.2.3. Mutation algorithms</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
     <li><a href="#ref-for-dfn-throw②⓪">4.2.6. Mixin ParentNode</a> <a href="#ref-for-dfn-throw②①">(2)</a> <a href="#ref-for-dfn-throw②②">(3)</a>
     <li><a href="#ref-for-dfn-throw②③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dfn-throw②④">(2)</a> <a href="#ref-for-dfn-throw②⑤">(3)</a>
@@ -14383,7 +14382,7 @@ APIs</a>
     <li><a href="#ref-for-idl-undefined">2.2. Event接口</a> <a href="#ref-for-idl-undefined①">(2)</a> <a href="#ref-for-idl-undefined②">(3)</a> <a href="#ref-for-idl-undefined③">(4)</a>
     <li><a href="#ref-for-idl-undefined④">2.3. 遗留扩展：Window接口</a>
     <li><a href="#ref-for-idl-undefined⑤">2.4. CustomEvent接口</a>
-    <li><a href="#ref-for-idl-undefined⑥">2.7. Interface EventTarget</a> <a href="#ref-for-idl-undefined⑦">(2)</a> <a href="#ref-for-idl-undefined⑧">(3)</a>
+    <li><a href="#ref-for-idl-undefined⑥">2.7. EventTarget接口</a> <a href="#ref-for-idl-undefined⑦">(2)</a> <a href="#ref-for-idl-undefined⑧">(3)</a>
     <li><a href="#ref-for-idl-undefined⑨">3.1. Interface AbortController</a>
     <li><a href="#ref-for-idl-undefined①⓪">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-idl-undefined①①">4.2.6. Mixin ParentNode</a> <a href="#ref-for-idl-undefined①②">(2)</a> <a href="#ref-for-idl-undefined①③">(3)</a>
@@ -15683,7 +15682,7 @@ APIs</a>
     <li><a href="#ref-for-event⑥">2.4. CustomEvent接口</a> <a href="#ref-for-event⑦">(2)</a>
     <li><a href="#ref-for-event⑧">2.5. 事件构造过程</a> <a href="#ref-for-event⑨">(2)</a> <a href="#ref-for-event①⓪">(3)</a> <a href="#ref-for-event①①">(4)</a>
     <li><a href="#ref-for-event①②">2.6. 定义事件接口</a> <a href="#ref-for-event①③">(2)</a>
-    <li><a href="#ref-for-event①④">2.7. Interface EventTarget</a> <a href="#ref-for-event①⑤">(2)</a>
+    <li><a href="#ref-for-event①④">2.7. EventTarget接口</a> <a href="#ref-for-event①⑤">(2)</a>
     <li><a href="#ref-for-event①⑥">2.10. Firing events</a>
     <li><a href="#ref-for-event①⑦">4.5. Interface Document</a> <a href="#ref-for-event①⑧">(2)</a> <a href="#ref-for-event①⑨">(3)</a> <a href="#ref-for-event②⓪">(4)</a>
    </ul>
@@ -15716,10 +15715,10 @@ APIs</a>
     <li><a href="#ref-for-concept-event①⑤">2.2. Event接口</a> <a href="#ref-for-concept-event①⑥">(2)</a> <a href="#ref-for-concept-event①⑦">(3)</a> <a href="#ref-for-concept-event①⑧">(4)</a> <a href="#ref-for-concept-event①⑨">(5)</a> <a href="#ref-for-concept-event②⓪">(6)</a> <a href="#ref-for-concept-event②①">(7)</a> <a href="#ref-for-concept-event②②">(8)</a> <a href="#ref-for-concept-event②③">(9)</a> <a href="#ref-for-concept-event②④">(10)</a> <a href="#ref-for-concept-event②⑤">(11)</a> <a href="#ref-for-concept-event②⑥">(12)</a> <a href="#ref-for-concept-event②⑦">(13)</a> <a href="#ref-for-concept-event②⑧">(14)</a> <a href="#ref-for-concept-event②⑨">(15)</a> <a href="#ref-for-concept-event③⓪">(16)</a> <a href="#ref-for-concept-event③①">(17)</a> <a href="#ref-for-concept-event③②">(18)</a>
     <li><a href="#ref-for-concept-event③③">2.4. CustomEvent接口</a>
     <li><a href="#ref-for-concept-event③④">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-concept-event③⑤">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event③⑥">(2)</a> <a href="#ref-for-concept-event③⑦">(3)</a> <a href="#ref-for-concept-event③⑧">(4)</a> <a href="#ref-for-concept-event③⑨">(5)</a> <a href="#ref-for-concept-event④⓪">(6)</a> <a href="#ref-for-concept-event④①">(7)</a> <a href="#ref-for-concept-event④②">(8)</a> <a href="#ref-for-concept-event④③">(9)</a> <a href="#ref-for-concept-event④④">(10)</a> <a href="#ref-for-concept-event④⑤">(11)</a>
-    <li><a href="#ref-for-concept-event④⑥">2.10. Firing events</a> <a href="#ref-for-concept-event④⑦">(2)</a>
-    <li><a href="#ref-for-concept-event④⑧">2.11. Action versus occurrence</a> <a href="#ref-for-concept-event④⑨">(2)</a> <a href="#ref-for-concept-event⑤⓪">(3)</a> <a href="#ref-for-concept-event⑤①">(4)</a>
-    <li><a href="#ref-for-concept-event⑤②">4.5. Interface Document</a>
+    <li><a href="#ref-for-concept-event③⑤">2.7. EventTarget接口</a> <a href="#ref-for-concept-event③⑥">(2)</a> <a href="#ref-for-concept-event③⑦">(3)</a> <a href="#ref-for-concept-event③⑧">(4)</a> <a href="#ref-for-concept-event③⑨">(5)</a> <a href="#ref-for-concept-event④⓪">(6)</a> <a href="#ref-for-concept-event④①">(7)</a> <a href="#ref-for-concept-event④②">(8)</a> <a href="#ref-for-concept-event④③">(9)</a> <a href="#ref-for-concept-event④④">(10)</a>
+    <li><a href="#ref-for-concept-event④⑤">2.10. Firing events</a> <a href="#ref-for-concept-event④⑥">(2)</a>
+    <li><a href="#ref-for-concept-event④⑦">2.11. Action versus occurrence</a> <a href="#ref-for-concept-event④⑧">(2)</a> <a href="#ref-for-concept-event④⑨">(3)</a> <a href="#ref-for-concept-event⑤⓪">(4)</a>
+    <li><a href="#ref-for-concept-event⑤①">4.5. Interface Document</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-target">
@@ -15802,7 +15801,7 @@ APIs</a>
     <li><a href="#ref-for-dom-event-type">2.1. DOM事件简介</a> <a href="#ref-for-dom-event-type①">(2)</a>
     <li><a href="#ref-for-dom-event-type②">2.2. Event接口</a> <a href="#ref-for-dom-event-type③">(2)</a> <a href="#ref-for-dom-event-type④">(3)</a> <a href="#ref-for-dom-event-type⑤">(4)</a>
     <li><a href="#ref-for-dom-event-type⑥">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-dom-event-type⑦">2.7. Interface EventTarget</a> <a href="#ref-for-dom-event-type⑧">(2)</a> <a href="#ref-for-dom-event-type⑨">(3)</a>
+    <li><a href="#ref-for-dom-event-type⑦">2.7. EventTarget接口</a> <a href="#ref-for-dom-event-type⑧">(2)</a> <a href="#ref-for-dom-event-type⑨">(3)</a>
     <li><a href="#ref-for-dom-event-type①⓪">2.9. Dispatching events</a> <a href="#ref-for-dom-event-type①①">(2)</a> <a href="#ref-for-dom-event-type①②">(3)</a> <a href="#ref-for-dom-event-type①③">(4)</a> <a href="#ref-for-dom-event-type①④">(5)</a> <a href="#ref-for-dom-event-type①⑤">(6)</a>
     <li><a href="#ref-for-dom-event-type①⑥">2.10. Firing events</a>
     <li><a href="#ref-for-dom-event-type①⑦">4.5. Interface Document</a> <a href="#ref-for-dom-event-type①⑧">(2)</a>
@@ -15838,7 +15837,7 @@ APIs</a>
    <b><a href="#dom-event-eventphase">#dom-event-eventphase</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-eventphase">2.2. Event接口</a> <a href="#ref-for-dom-event-eventphase①">(2)</a>
-    <li><a href="#ref-for-dom-event-eventphase②">2.7. Interface EventTarget</a> <a href="#ref-for-dom-event-eventphase③">(2)</a> <a href="#ref-for-dom-event-eventphase④">(3)</a>
+    <li><a href="#ref-for-dom-event-eventphase②">2.7. EventTarget接口</a> <a href="#ref-for-dom-event-eventphase③">(2)</a> <a href="#ref-for-dom-event-eventphase④">(3)</a>
     <li><a href="#ref-for-dom-event-eventphase⑤">2.9. Dispatching events</a> <a href="#ref-for-dom-event-eventphase⑥">(2)</a> <a href="#ref-for-dom-event-eventphase⑦">(3)</a> <a href="#ref-for-dom-event-eventphase⑧">(4)</a> <a href="#ref-for-dom-event-eventphase⑨">(5)</a>
    </ul>
   </aside>
@@ -15853,7 +15852,7 @@ APIs</a>
    <b><a href="#dom-event-capturing_phase">#dom-event-capturing_phase</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-capturing_phase">2.2. Event接口</a> <a href="#ref-for-dom-event-capturing_phase①">(2)</a>
-    <li><a href="#ref-for-dom-event-capturing_phase②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dom-event-capturing_phase②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dom-event-capturing_phase③">2.9. Dispatching events</a>
    </ul>
   </aside>
@@ -15861,7 +15860,7 @@ APIs</a>
    <b><a href="#dom-event-at_target">#dom-event-at_target</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-at_target">2.2. Event接口</a> <a href="#ref-for-dom-event-at_target①">(2)</a>
-    <li><a href="#ref-for-dom-event-at_target②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dom-event-at_target②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dom-event-at_target③">2.9. Dispatching events</a> <a href="#ref-for-dom-event-at_target④">(2)</a>
    </ul>
   </aside>
@@ -15869,7 +15868,7 @@ APIs</a>
    <b><a href="#dom-event-bubbling_phase">#dom-event-bubbling_phase</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-bubbling_phase">2.2. Event接口</a> <a href="#ref-for-dom-event-bubbling_phase①">(2)</a>
-    <li><a href="#ref-for-dom-event-bubbling_phase②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dom-event-bubbling_phase②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dom-event-bubbling_phase③">2.9. Dispatching events</a>
    </ul>
   </aside>
@@ -15913,7 +15912,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-initialized-flag">2.2. Event接口</a>
     <li><a href="#ref-for-initialized-flag①">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-initialized-flag②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-initialized-flag②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-initialized-flag③">4.5. Interface Document</a>
    </ul>
   </aside>
@@ -15922,7 +15921,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dispatch-flag">2.2. Event接口</a>
     <li><a href="#ref-for-dispatch-flag①">2.4. CustomEvent接口</a>
-    <li><a href="#ref-for-dispatch-flag②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dispatch-flag②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dispatch-flag③">2.9. Dispatching events</a> <a href="#ref-for-dispatch-flag④">(2)</a>
    </ul>
   </aside>
@@ -15958,7 +15957,7 @@ APIs</a>
    <b><a href="#dom-event-cancelable">#dom-event-cancelable</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-event-cancelable">2.2. Event接口</a> <a href="#ref-for-dom-event-cancelable①">(2)</a> <a href="#ref-for-dom-event-cancelable②">(3)</a> <a href="#ref-for-dom-event-cancelable③">(4)</a> <a href="#ref-for-dom-event-cancelable④">(5)</a> <a href="#ref-for-dom-event-cancelable⑤">(6)</a>
-    <li><a href="#ref-for-dom-event-cancelable⑥">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dom-event-cancelable⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dom-event-cancelable⑦">2.8. Observing event listeners</a> <a href="#ref-for-dom-event-cancelable⑧">(2)</a>
     <li><a href="#ref-for-dom-event-cancelable⑨">2.10. Firing events</a> <a href="#ref-for-dom-event-cancelable①⓪">(2)</a>
    </ul>
@@ -15974,7 +15973,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-event-preventdefault">2.1. DOM事件简介</a>
     <li><a href="#ref-for-dom-event-preventdefault①">2.2. Event接口</a> <a href="#ref-for-dom-event-preventdefault②">(2)</a> <a href="#ref-for-dom-event-preventdefault③">(3)</a> <a href="#ref-for-dom-event-preventdefault④">(4)</a> <a href="#ref-for-dom-event-preventdefault⑤">(5)</a> <a href="#ref-for-dom-event-preventdefault⑥">(6)</a> <a href="#ref-for-dom-event-preventdefault⑦">(7)</a> <a href="#ref-for-dom-event-preventdefault⑧">(8)</a>
-    <li><a href="#ref-for-dom-event-preventdefault⑨">2.7. Interface EventTarget</a> <a href="#ref-for-dom-event-preventdefault①⓪">(2)</a>
+    <li><a href="#ref-for-dom-event-preventdefault⑨">2.7. EventTarget接口</a> <a href="#ref-for-dom-event-preventdefault①⓪">(2)</a>
     <li><a href="#ref-for-dom-event-preventdefault①①">2.8. Observing event listeners</a>
     <li><a href="#ref-for-dom-event-preventdefault①②">2.11. Action versus occurrence</a>
    </ul>
@@ -15996,7 +15995,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-event-istrusted">2.2. Event接口</a> <a href="#ref-for-dom-event-istrusted①">(2)</a> <a href="#ref-for-dom-event-istrusted②">(3)</a> <a href="#ref-for-dom-event-istrusted③">(4)</a> <a href="#ref-for-dom-event-istrusted④">(5)</a>
     <li><a href="#ref-for-dom-event-istrusted⑤">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-dom-event-istrusted⑥">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dom-event-istrusted⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dom-event-istrusted⑦">2.9. Dispatching events</a>
     <li><a href="#ref-for-dom-event-istrusted⑧">2.10. Firing events</a>
     <li><a href="#ref-for-dom-event-istrusted⑨">4.5. Interface Document</a>
@@ -16081,7 +16080,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-eventtarget">2.1. DOM事件简介</a>
     <li><a href="#ref-for-eventtarget①">2.2. Event接口</a> <a href="#ref-for-eventtarget②">(2)</a> <a href="#ref-for-eventtarget③">(3)</a> <a href="#ref-for-eventtarget④">(4)</a> <a href="#ref-for-eventtarget⑤">(5)</a> <a href="#ref-for-eventtarget⑥">(6)</a> <a href="#ref-for-eventtarget⑦">(7)</a> <a href="#ref-for-eventtarget⑧">(8)</a> <a href="#ref-for-eventtarget⑨">(9)</a> <a href="#ref-for-eventtarget①⓪">(10)</a> <a href="#ref-for-eventtarget①①">(11)</a> <a href="#ref-for-eventtarget①②">(12)</a>
-    <li><a href="#ref-for-eventtarget①③">2.7. Interface EventTarget</a> <a href="#ref-for-eventtarget①④">(2)</a> <a href="#ref-for-eventtarget①⑤">(3)</a> <a href="#ref-for-eventtarget①⑥">(4)</a> <a href="#ref-for-eventtarget①⑦">(5)</a> <a href="#ref-for-eventtarget①⑧">(6)</a> <a href="#ref-for-eventtarget①⑨">(7)</a> <a href="#ref-for-eventtarget②⓪">(8)</a> <a href="#ref-for-eventtarget②①">(9)</a> <a href="#ref-for-eventtarget②②">(10)</a> <a href="#ref-for-eventtarget②③">(11)</a> <a href="#ref-for-eventtarget②④">(12)</a> <a href="#ref-for-eventtarget②⑤">(13)</a> <a href="#ref-for-eventtarget②⑥">(14)</a> <a href="#ref-for-eventtarget②⑦">(15)</a>
+    <li><a href="#ref-for-eventtarget①③">2.7. EventTarget接口</a> <a href="#ref-for-eventtarget①④">(2)</a> <a href="#ref-for-eventtarget①⑤">(3)</a> <a href="#ref-for-eventtarget①⑥">(4)</a> <a href="#ref-for-eventtarget①⑦">(5)</a> <a href="#ref-for-eventtarget①⑧">(6)</a> <a href="#ref-for-eventtarget①⑨">(7)</a> <a href="#ref-for-eventtarget②⓪">(8)</a> <a href="#ref-for-eventtarget②①">(9)</a> <a href="#ref-for-eventtarget②②">(10)</a> <a href="#ref-for-eventtarget②③">(11)</a> <a href="#ref-for-eventtarget②④">(12)</a> <a href="#ref-for-eventtarget②⑤">(13)</a> <a href="#ref-for-eventtarget②⑥">(14)</a> <a href="#ref-for-eventtarget②⑦">(15)</a>
     <li><a href="#ref-for-eventtarget②⑧">2.9. Dispatching events</a>
     <li><a href="#ref-for-eventtarget②⑨">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-eventtarget③⓪">4.4. Interface Node</a>
@@ -16090,51 +16089,51 @@ APIs</a>
   <aside class="dfn-panel" data-for="callbackdef-eventlistener">
    <b><a href="#callbackdef-eventlistener">#callbackdef-eventlistener</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-callbackdef-eventlistener">2.7. Interface EventTarget</a> <a href="#ref-for-callbackdef-eventlistener①">(2)</a> <a href="#ref-for-callbackdef-eventlistener②">(3)</a> <a href="#ref-for-callbackdef-eventlistener③">(4)</a>
+    <li><a href="#ref-for-callbackdef-eventlistener">2.7. EventTarget接口</a> <a href="#ref-for-callbackdef-eventlistener①">(2)</a> <a href="#ref-for-callbackdef-eventlistener②">(3)</a> <a href="#ref-for-callbackdef-eventlistener③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-eventlisteneroptions">
    <b><a href="#dictdef-eventlisteneroptions">#dictdef-eventlisteneroptions</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-eventlisteneroptions">2.7. Interface EventTarget</a> <a href="#ref-for-dictdef-eventlisteneroptions①">(2)</a>
+    <li><a href="#ref-for-dictdef-eventlisteneroptions">2.7. EventTarget接口</a> <a href="#ref-for-dictdef-eventlisteneroptions①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-eventlisteneroptions-capture">
    <b><a href="#dom-eventlisteneroptions-capture">#dom-eventlisteneroptions-capture</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-eventlisteneroptions-capture">2.7. Interface EventTarget</a> <a href="#ref-for-dom-eventlisteneroptions-capture①">(2)</a> <a href="#ref-for-dom-eventlisteneroptions-capture②">(3)</a>
+    <li><a href="#ref-for-dom-eventlisteneroptions-capture">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventlisteneroptions-capture①">(2)</a> <a href="#ref-for-dom-eventlisteneroptions-capture②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-addeventlisteneroptions">
    <b><a href="#dictdef-addeventlisteneroptions">#dictdef-addeventlisteneroptions</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-addeventlisteneroptions">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-dictdef-addeventlisteneroptions">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-addeventlisteneroptions-passive">
    <b><a href="#dom-addeventlisteneroptions-passive">#dom-addeventlisteneroptions-passive</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-addeventlisteneroptions-passive">2.2. Event接口</a>
-    <li><a href="#ref-for-dom-addeventlisteneroptions-passive①">2.7. Interface EventTarget</a> <a href="#ref-for-dom-addeventlisteneroptions-passive②">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive③">(3)</a>
+    <li><a href="#ref-for-dom-addeventlisteneroptions-passive①">2.7. EventTarget接口</a> <a href="#ref-for-dom-addeventlisteneroptions-passive②">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive③">(3)</a>
     <li><a href="#ref-for-dom-addeventlisteneroptions-passive④">2.8. Observing event listeners</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑤">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑥">(3)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑦">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-addeventlisteneroptions-once">
    <b><a href="#dom-addeventlisteneroptions-once">#dom-addeventlisteneroptions-once</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-addeventlisteneroptions-once">2.7. Interface EventTarget</a> <a href="#ref-for-dom-addeventlisteneroptions-once①">(2)</a>
+    <li><a href="#ref-for-dom-addeventlisteneroptions-once">2.7. EventTarget接口</a> <a href="#ref-for-dom-addeventlisteneroptions-once①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-addeventlisteneroptions-signal">
    <b><a href="#dom-addeventlisteneroptions-signal">#dom-addeventlisteneroptions-signal</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-addeventlisteneroptions-signal">2.7. Interface EventTarget</a> <a href="#ref-for-dom-addeventlisteneroptions-signal①">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-signal②">(3)</a>
+    <li><a href="#ref-for-dom-addeventlisteneroptions-signal">2.7. EventTarget接口</a> <a href="#ref-for-dom-addeventlisteneroptions-signal①">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-signal②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventtarget-event-listener-list">
    <b><a href="#eventtarget-event-listener-list">#eventtarget-event-listener-list</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventtarget-event-listener-list">2.7. Interface EventTarget</a> <a href="#ref-for-eventtarget-event-listener-list①">(2)</a> <a href="#ref-for-eventtarget-event-listener-list②">(3)</a> <a href="#ref-for-eventtarget-event-listener-list③">(4)</a> <a href="#ref-for-eventtarget-event-listener-list④">(5)</a> <a href="#ref-for-eventtarget-event-listener-list⑤">(6)</a> <a href="#ref-for-eventtarget-event-listener-list⑥">(7)</a>
+    <li><a href="#ref-for-eventtarget-event-listener-list">2.7. EventTarget接口</a> <a href="#ref-for-eventtarget-event-listener-list①">(2)</a> <a href="#ref-for-eventtarget-event-listener-list②">(3)</a> <a href="#ref-for-eventtarget-event-listener-list③">(4)</a> <a href="#ref-for-eventtarget-event-listener-list④">(5)</a> <a href="#ref-for-eventtarget-event-listener-list⑤">(6)</a> <a href="#ref-for-eventtarget-event-listener-list⑥">(7)</a>
     <li><a href="#ref-for-eventtarget-event-listener-list⑦">2.9. Dispatching events</a> <a href="#ref-for-eventtarget-event-listener-list⑧">(2)</a>
    </ul>
   </aside>
@@ -16143,15 +16142,15 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-concept-event-listener">2.1. DOM事件简介</a> <a href="#ref-for-concept-event-listener①">(2)</a> <a href="#ref-for-concept-event-listener②">(3)</a> <a href="#ref-for-concept-event-listener③">(4)</a> <a href="#ref-for-concept-event-listener④">(5)</a> <a href="#ref-for-concept-event-listener⑤">(6)</a> <a href="#ref-for-concept-event-listener⑥">(7)</a> <a href="#ref-for-concept-event-listener⑦">(8)</a>
     <li><a href="#ref-for-concept-event-listener⑧">2.2. Event接口</a> <a href="#ref-for-concept-event-listener⑨">(2)</a>
-    <li><a href="#ref-for-concept-event-listener①⓪">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event-listener①①">(2)</a> <a href="#ref-for-concept-event-listener①②">(3)</a> <a href="#ref-for-concept-event-listener①③">(4)</a> <a href="#ref-for-concept-event-listener①④">(5)</a> <a href="#ref-for-concept-event-listener①⑤">(6)</a> <a href="#ref-for-concept-event-listener①⑥">(7)</a> <a href="#ref-for-concept-event-listener①⑦">(8)</a> <a href="#ref-for-concept-event-listener①⑧">(9)</a> <a href="#ref-for-concept-event-listener①⑨">(10)</a> <a href="#ref-for-concept-event-listener②⓪">(11)</a>
-    <li><a href="#ref-for-concept-event-listener②①">2.8. Observing event listeners</a> <a href="#ref-for-concept-event-listener②②">(2)</a> <a href="#ref-for-concept-event-listener②③">(3)</a> <a href="#ref-for-concept-event-listener②④">(4)</a>
-    <li><a href="#ref-for-concept-event-listener②⑤">2.9. Dispatching events</a>
+    <li><a href="#ref-for-concept-event-listener①⓪">2.7. EventTarget接口</a> <a href="#ref-for-concept-event-listener①①">(2)</a> <a href="#ref-for-concept-event-listener①②">(3)</a> <a href="#ref-for-concept-event-listener①③">(4)</a> <a href="#ref-for-concept-event-listener①④">(5)</a> <a href="#ref-for-concept-event-listener①⑤">(6)</a> <a href="#ref-for-concept-event-listener①⑥">(7)</a> <a href="#ref-for-concept-event-listener①⑦">(8)</a> <a href="#ref-for-concept-event-listener①⑧">(9)</a> <a href="#ref-for-concept-event-listener①⑨">(10)</a>
+    <li><a href="#ref-for-concept-event-listener②⓪">2.8. Observing event listeners</a> <a href="#ref-for-concept-event-listener②①">(2)</a> <a href="#ref-for-concept-event-listener②②">(3)</a> <a href="#ref-for-concept-event-listener②③">(4)</a>
+    <li><a href="#ref-for-concept-event-listener②④">2.9. Dispatching events</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-listener-type">
    <b><a href="#event-listener-type">#event-listener-type</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-listener-type">2.7. Interface EventTarget</a> <a href="#ref-for-event-listener-type①">(2)</a> <a href="#ref-for-event-listener-type②">(3)</a> <a href="#ref-for-event-listener-type③">(4)</a> <a href="#ref-for-event-listener-type④">(5)</a> <a href="#ref-for-event-listener-type⑤">(6)</a>
+    <li><a href="#ref-for-event-listener-type">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-type①">(2)</a> <a href="#ref-for-event-listener-type②">(3)</a> <a href="#ref-for-event-listener-type③">(4)</a> <a href="#ref-for-event-listener-type④">(5)</a> <a href="#ref-for-event-listener-type⑤">(6)</a>
     <li><a href="#ref-for-event-listener-type⑥">2.9. Dispatching events</a>
    </ul>
   </aside>
@@ -16159,7 +16158,7 @@ APIs</a>
    <b><a href="#event-listener-callback">#event-listener-callback</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-event-listener-callback">2.1. DOM事件简介</a>
-    <li><a href="#ref-for-event-listener-callback①">2.7. Interface EventTarget</a> <a href="#ref-for-event-listener-callback②">(2)</a> <a href="#ref-for-event-listener-callback③">(3)</a> <a href="#ref-for-event-listener-callback④">(4)</a> <a href="#ref-for-event-listener-callback⑤">(5)</a> <a href="#ref-for-event-listener-callback⑥">(6)</a> <a href="#ref-for-event-listener-callback⑦">(7)</a> <a href="#ref-for-event-listener-callback⑧">(8)</a> <a href="#ref-for-event-listener-callback⑨">(9)</a> <a href="#ref-for-event-listener-callback①⓪">(10)</a> <a href="#ref-for-event-listener-callback①①">(11)</a> <a href="#ref-for-event-listener-callback①②">(12)</a> <a href="#ref-for-event-listener-callback①③">(13)</a>
+    <li><a href="#ref-for-event-listener-callback①">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-callback②">(2)</a> <a href="#ref-for-event-listener-callback③">(3)</a> <a href="#ref-for-event-listener-callback④">(4)</a> <a href="#ref-for-event-listener-callback⑤">(5)</a> <a href="#ref-for-event-listener-callback⑥">(6)</a> <a href="#ref-for-event-listener-callback⑦">(7)</a> <a href="#ref-for-event-listener-callback⑧">(8)</a> <a href="#ref-for-event-listener-callback⑨">(9)</a> <a href="#ref-for-event-listener-callback①⓪">(10)</a> <a href="#ref-for-event-listener-callback①①">(11)</a> <a href="#ref-for-event-listener-callback①②">(12)</a> <a href="#ref-for-event-listener-callback①③">(13)</a>
     <li><a href="#ref-for-event-listener-callback①④">2.8. Observing event listeners</a>
     <li><a href="#ref-for-event-listener-callback①⑤">2.9. Dispatching events</a> <a href="#ref-for-event-listener-callback①⑥">(2)</a>
    </ul>
@@ -16168,41 +16167,41 @@ APIs</a>
    <b><a href="#event-listener-capture">#event-listener-capture</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-event-listener-capture">2.1. DOM事件简介</a> <a href="#ref-for-event-listener-capture①">(2)</a>
-    <li><a href="#ref-for-event-listener-capture②">2.7. Interface EventTarget</a> <a href="#ref-for-event-listener-capture③">(2)</a> <a href="#ref-for-event-listener-capture④">(3)</a> <a href="#ref-for-event-listener-capture⑤">(4)</a> <a href="#ref-for-event-listener-capture⑥">(5)</a>
+    <li><a href="#ref-for-event-listener-capture②">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-capture③">(2)</a> <a href="#ref-for-event-listener-capture④">(3)</a> <a href="#ref-for-event-listener-capture⑤">(4)</a> <a href="#ref-for-event-listener-capture⑥">(5)</a>
     <li><a href="#ref-for-event-listener-capture⑦">2.9. Dispatching events</a> <a href="#ref-for-event-listener-capture⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-listener-passive">
    <b><a href="#event-listener-passive">#event-listener-passive</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-listener-passive">2.7. Interface EventTarget</a> <a href="#ref-for-event-listener-passive①">(2)</a>
+    <li><a href="#ref-for-event-listener-passive">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-passive①">(2)</a>
     <li><a href="#ref-for-event-listener-passive②">2.9. Dispatching events</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-listener-once">
    <b><a href="#event-listener-once">#event-listener-once</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-listener-once">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-event-listener-once">2.7. EventTarget接口</a>
     <li><a href="#ref-for-event-listener-once①">2.9. Dispatching events</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-listener-signal">
    <b><a href="#event-listener-signal">#event-listener-signal</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-listener-signal">2.7. Interface EventTarget</a> <a href="#ref-for-event-listener-signal①">(2)</a> <a href="#ref-for-event-listener-signal②">(3)</a>
+    <li><a href="#ref-for-event-listener-signal">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-signal①">(2)</a> <a href="#ref-for-event-listener-signal②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-listener-removed">
    <b><a href="#event-listener-removed">#event-listener-removed</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-listener-removed">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-event-listener-removed">2.7. EventTarget接口</a>
     <li><a href="#ref-for-event-listener-removed①">2.9. Dispatching events</a> <a href="#ref-for-event-listener-removed②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="get-the-parent">
    <b><a href="#get-the-parent">#get-the-parent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-get-the-parent">2.7. Interface EventTarget</a> <a href="#ref-for-get-the-parent①">(2)</a> <a href="#ref-for-get-the-parent②">(3)</a>
+    <li><a href="#ref-for-get-the-parent">2.7. EventTarget接口</a> <a href="#ref-for-get-the-parent①">(2)</a> <a href="#ref-for-get-the-parent②">(3)</a>
     <li><a href="#ref-for-get-the-parent③">2.9. Dispatching events</a> <a href="#ref-for-get-the-parent④">(2)</a>
     <li><a href="#ref-for-get-the-parent⑤">4.4. Interface Node</a>
     <li><a href="#ref-for-get-the-parent⑥">4.5. Interface Document</a>
@@ -16212,73 +16211,73 @@ APIs</a>
   <aside class="dfn-panel" data-for="eventtarget-activation-behavior">
    <b><a href="#eventtarget-activation-behavior">#eventtarget-activation-behavior</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventtarget-activation-behavior">2.7. Interface EventTarget</a> <a href="#ref-for-eventtarget-activation-behavior①">(2)</a> <a href="#ref-for-eventtarget-activation-behavior②">(3)</a>
+    <li><a href="#ref-for-eventtarget-activation-behavior">2.7. EventTarget接口</a> <a href="#ref-for-eventtarget-activation-behavior①">(2)</a> <a href="#ref-for-eventtarget-activation-behavior②">(3)</a>
     <li><a href="#ref-for-eventtarget-activation-behavior③">2.9. Dispatching events</a> <a href="#ref-for-eventtarget-activation-behavior④">(2)</a> <a href="#ref-for-eventtarget-activation-behavior⑤">(3)</a> <a href="#ref-for-eventtarget-activation-behavior⑥">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventtarget-legacy-pre-activation-behavior">
    <b><a href="#eventtarget-legacy-pre-activation-behavior">#eventtarget-legacy-pre-activation-behavior</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventtarget-legacy-pre-activation-behavior">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-eventtarget-legacy-pre-activation-behavior">2.7. EventTarget接口</a>
     <li><a href="#ref-for-eventtarget-legacy-pre-activation-behavior①">2.9. Dispatching events</a> <a href="#ref-for-eventtarget-legacy-pre-activation-behavior②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventtarget-legacy-canceled-activation-behavior">
    <b><a href="#eventtarget-legacy-canceled-activation-behavior">#eventtarget-legacy-canceled-activation-behavior</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventtarget-legacy-canceled-activation-behavior">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-eventtarget-legacy-canceled-activation-behavior">2.7. EventTarget接口</a>
     <li><a href="#ref-for-eventtarget-legacy-canceled-activation-behavior①">2.9. Dispatching events</a> <a href="#ref-for-eventtarget-legacy-canceled-activation-behavior②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-flatten-options">
    <b><a href="#concept-flatten-options">#concept-flatten-options</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-flatten-options">2.7. Interface EventTarget</a> <a href="#ref-for-concept-flatten-options①">(2)</a>
+    <li><a href="#ref-for-concept-flatten-options">2.7. EventTarget接口</a> <a href="#ref-for-concept-flatten-options①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="event-flatten-more">
    <b><a href="#event-flatten-more">#event-flatten-more</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-flatten-more">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-event-flatten-more">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-eventtarget-eventtarget">
    <b><a href="#dom-eventtarget-eventtarget">#dom-eventtarget-eventtarget</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-eventtarget-eventtarget">2.7. Interface EventTarget</a> <a href="#ref-for-dom-eventtarget-eventtarget①">(2)</a>
+    <li><a href="#ref-for-dom-eventtarget-eventtarget">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-eventtarget①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="default-passive-value">
    <b><a href="#default-passive-value">#default-passive-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-default-passive-value">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-default-passive-value">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="add-an-event-listener">
    <b><a href="#add-an-event-listener">#add-an-event-listener</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-add-an-event-listener">2.7. Interface EventTarget</a> <a href="#ref-for-add-an-event-listener①">(2)</a> <a href="#ref-for-add-an-event-listener②">(3)</a>
+    <li><a href="#ref-for-add-an-event-listener">2.7. EventTarget接口</a> <a href="#ref-for-add-an-event-listener①">(2)</a> <a href="#ref-for-add-an-event-listener②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-eventtarget-addeventlistener">
    <b><a href="#dom-eventtarget-addeventlistener">#dom-eventtarget-addeventlistener</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-eventtarget-addeventlistener">2.1. DOM事件简介</a> <a href="#ref-for-dom-eventtarget-addeventlistener①">(2)</a>
-    <li><a href="#ref-for-dom-eventtarget-addeventlistener②">2.7. Interface EventTarget</a> <a href="#ref-for-dom-eventtarget-addeventlistener③">(2)</a>
+    <li><a href="#ref-for-dom-eventtarget-addeventlistener②">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-addeventlistener③">(2)</a>
     <li><a href="#ref-for-dom-eventtarget-addeventlistener④">3. Aborting ongoing activities</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="remove-an-event-listener">
    <b><a href="#remove-an-event-listener">#remove-an-event-listener</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-remove-an-event-listener">2.7. Interface EventTarget</a> <a href="#ref-for-remove-an-event-listener①">(2)</a> <a href="#ref-for-remove-an-event-listener②">(3)</a>
+    <li><a href="#ref-for-remove-an-event-listener">2.7. EventTarget接口</a> <a href="#ref-for-remove-an-event-listener①">(2)</a> <a href="#ref-for-remove-an-event-listener②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-eventtarget-removeeventlistener">
    <b><a href="#dom-eventtarget-removeeventlistener">#dom-eventtarget-removeeventlistener</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-eventtarget-removeeventlistener">2.1. DOM事件简介</a>
-    <li><a href="#ref-for-dom-eventtarget-removeeventlistener①">2.7. Interface EventTarget</a> <a href="#ref-for-dom-eventtarget-removeeventlistener②">(2)</a>
+    <li><a href="#ref-for-dom-eventtarget-removeeventlistener①">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-removeeventlistener②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-eventtarget-dispatchevent">
@@ -16286,7 +16285,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-eventtarget-dispatchevent">2.1. DOM事件简介</a>
     <li><a href="#ref-for-dom-eventtarget-dispatchevent①">2.2. Event接口</a>
-    <li><a href="#ref-for-dom-eventtarget-dispatchevent②">2.7. Interface EventTarget</a> <a href="#ref-for-dom-eventtarget-dispatchevent③">(2)</a>
+    <li><a href="#ref-for-dom-eventtarget-dispatchevent②">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-dispatchevent③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-event-dispatch">
@@ -16295,7 +16294,7 @@ APIs</a>
     <li><a href="#ref-for-concept-event-dispatch">2.1. DOM事件简介</a> <a href="#ref-for-concept-event-dispatch①">(2)</a> <a href="#ref-for-concept-event-dispatch②">(3)</a> <a href="#ref-for-concept-event-dispatch③">(4)</a> <a href="#ref-for-concept-event-dispatch④">(5)</a> <a href="#ref-for-concept-event-dispatch⑤">(6)</a> <a href="#ref-for-concept-event-dispatch⑥">(7)</a>
     <li><a href="#ref-for-concept-event-dispatch⑦">2.2. Event接口</a> <a href="#ref-for-concept-event-dispatch⑧">(2)</a> <a href="#ref-for-concept-event-dispatch⑨">(3)</a> <a href="#ref-for-concept-event-dispatch①⓪">(4)</a> <a href="#ref-for-concept-event-dispatch①①">(5)</a> <a href="#ref-for-concept-event-dispatch①②">(6)</a> <a href="#ref-for-concept-event-dispatch①③">(7)</a> <a href="#ref-for-concept-event-dispatch①④">(8)</a> <a href="#ref-for-concept-event-dispatch①⑤">(9)</a>
     <li><a href="#ref-for-concept-event-dispatch①⑥">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-concept-event-dispatch①⑦">2.7. Interface EventTarget</a> <a href="#ref-for-concept-event-dispatch①⑧">(2)</a> <a href="#ref-for-concept-event-dispatch①⑨">(3)</a> <a href="#ref-for-concept-event-dispatch②⓪">(4)</a> <a href="#ref-for-concept-event-dispatch②①">(5)</a> <a href="#ref-for-concept-event-dispatch②②">(6)</a>
+    <li><a href="#ref-for-concept-event-dispatch①⑦">2.7. EventTarget接口</a> <a href="#ref-for-concept-event-dispatch①⑧">(2)</a> <a href="#ref-for-concept-event-dispatch①⑨">(3)</a> <a href="#ref-for-concept-event-dispatch②⓪">(4)</a> <a href="#ref-for-concept-event-dispatch②①">(5)</a> <a href="#ref-for-concept-event-dispatch②②">(6)</a>
     <li><a href="#ref-for-concept-event-dispatch②③">2.10. Firing events</a> <a href="#ref-for-concept-event-dispatch②④">(2)</a>
     <li><a href="#ref-for-concept-event-dispatch②⑤">4.8. Interface ShadowRoot</a>
    </ul>
@@ -16359,16 +16358,17 @@ APIs</a>
    <b><a href="#dom-abortcontroller-abort">#dom-abortcontroller-abort</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-abortcontroller-abort">2.1. DOM事件简介</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort①">3. Aborting ongoing activities</a> <a href="#ref-for-dom-abortcontroller-abort②">(2)</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort③">3.1. Interface AbortController</a> <a href="#ref-for-dom-abortcontroller-abort④">(2)</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort⑤">3.2. Interface AbortSignal</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort①">2.7. EventTarget接口</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort②">3. Aborting ongoing activities</a> <a href="#ref-for-dom-abortcontroller-abort③">(2)</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort④">3.1. Interface AbortController</a> <a href="#ref-for-dom-abortcontroller-abort⑤">(2)</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort⑥">3.2. Interface AbortSignal</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal">
    <b><a href="#abortsignal">#abortsignal</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abortsignal">2.1. DOM事件简介</a>
-    <li><a href="#ref-for-abortsignal①">2.7. Interface EventTarget</a> <a href="#ref-for-abortsignal②">(2)</a> <a href="#ref-for-abortsignal③">(3)</a>
+    <li><a href="#ref-for-abortsignal①">2.7. EventTarget接口</a> <a href="#ref-for-abortsignal②">(2)</a> <a href="#ref-for-abortsignal③">(3)</a>
     <li><a href="#ref-for-abortsignal④">3. Aborting ongoing activities</a> <a href="#ref-for-abortsignal⑤">(2)</a> <a href="#ref-for-abortsignal⑥">(3)</a> <a href="#ref-for-abortsignal⑦">(4)</a> <a href="#ref-for-abortsignal⑧">(5)</a> <a href="#ref-for-abortsignal⑨">(6)</a>
     <li><a href="#ref-for-abortsignal①⓪">3.1. Interface AbortController</a> <a href="#ref-for-abortsignal①①">(2)</a> <a href="#ref-for-abortsignal①②">(3)</a> <a href="#ref-for-abortsignal①③">(4)</a> <a href="#ref-for-abortsignal①④">(5)</a> <a href="#ref-for-abortsignal①⑤">(6)</a>
     <li><a href="#ref-for-abortsignal①⑥">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal①⑦">(2)</a> <a href="#ref-for-abortsignal①⑧">(3)</a> <a href="#ref-for-abortsignal①⑨">(4)</a> <a href="#ref-for-abortsignal②⓪">(5)</a> <a href="#ref-for-abortsignal②①">(6)</a> <a href="#ref-for-abortsignal②②">(7)</a> <a href="#ref-for-abortsignal②③">(8)</a> <a href="#ref-for-abortsignal②④">(9)</a> <a href="#ref-for-abortsignal②⑤">(10)</a> <a href="#ref-for-abortsignal②⑥">(11)</a> <a href="#ref-for-abortsignal②⑦">(12)</a> <a href="#ref-for-abortsignal②⑧">(13)</a> <a href="#ref-for-abortsignal②⑨">(14)</a> <a href="#ref-for-abortsignal③⓪">(15)</a> <a href="#ref-for-abortsignal③①">(16)</a> <a href="#ref-for-abortsignal③②">(17)</a> <a href="#ref-for-abortsignal③③">(18)</a> <a href="#ref-for-abortsignal③④">(19)</a> <a href="#ref-for-abortsignal③⑤">(20)</a>
@@ -16389,7 +16389,7 @@ APIs</a> <a href="#ref-for-abortsignal-abort-reason①⑥">(2)</a> <a href="#ref
   <aside class="dfn-panel" data-for="abortsignal-aborted">
    <b><a href="#abortsignal-aborted">#abortsignal-aborted</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abortsignal-aborted">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-abortsignal-aborted">2.7. EventTarget接口</a>
     <li><a href="#ref-for-abortsignal-aborted①">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal-aborted②">(2)</a> <a href="#ref-for-abortsignal-aborted③">(3)</a> <a href="#ref-for-abortsignal-aborted④">(4)</a> <a href="#ref-for-abortsignal-aborted⑤">(5)</a> <a href="#ref-for-abortsignal-aborted⑥">(6)</a> <a href="#ref-for-abortsignal-aborted⑦">(7)</a>
     <li><a href="#ref-for-abortsignal-aborted⑧">3.3. Using AbortController and AbortSignal objects in
 APIs</a> <a href="#ref-for-abortsignal-aborted⑨">(2)</a>
@@ -16406,7 +16406,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="abortsignal-add">
    <b><a href="#abortsignal-add">#abortsignal-add</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abortsignal-add">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-abortsignal-add">2.7. EventTarget接口</a>
     <li><a href="#ref-for-abortsignal-add①">3.2. Interface AbortSignal</a>
     <li><a href="#ref-for-abortsignal-add②">3.3. Using AbortController and AbortSignal objects in
 APIs</a>
@@ -16464,7 +16464,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-node">
    <b><a href="#concept-node">#concept-node</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node">2.7. Interface EventTarget</a> <a href="#ref-for-concept-node①">(2)</a> <a href="#ref-for-concept-node②">(3)</a> <a href="#ref-for-concept-node③">(4)</a>
+    <li><a href="#ref-for-concept-node">2.7. EventTarget接口</a> <a href="#ref-for-concept-node①">(2)</a> <a href="#ref-for-concept-node②">(3)</a> <a href="#ref-for-concept-node③">(4)</a>
     <li><a href="#ref-for-concept-node④">2.9. Dispatching events</a> <a href="#ref-for-concept-node⑤">(2)</a> <a href="#ref-for-concept-node⑥">(3)</a>
     <li><a href="#ref-for-concept-node⑦">4.1. Introduction to "The DOM"</a> <a href="#ref-for-concept-node⑧">(2)</a> <a href="#ref-for-concept-node⑨">(3)</a>
     <li><a href="#ref-for-concept-node①⓪">4.2. Node tree</a> <a href="#ref-for-concept-node①①">(2)</a> <a href="#ref-for-concept-node①②">(3)</a> <a href="#ref-for-concept-node①③">(4)</a> <a href="#ref-for-concept-node①④">(5)</a> <a href="#ref-for-concept-node①⑤">(6)</a> <a href="#ref-for-concept-node①⑥">(7)</a> <a href="#ref-for-concept-node①⑦">(8)</a> <a href="#ref-for-concept-node①⑧">(9)</a> <a href="#ref-for-concept-node①⑨">(10)</a> <a href="#ref-for-concept-node②⓪">(11)</a> <a href="#ref-for-concept-node②①">(12)</a> <a href="#ref-for-concept-node②②">(13)</a> <a href="#ref-for-concept-node②③">(14)</a>
@@ -16537,7 +16537,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="document-element">
    <b><a href="#document-element">#document-element</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-document-element">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-document-element">2.7. EventTarget接口</a>
     <li><a href="#ref-for-document-element①">4.4. Interface Node</a> <a href="#ref-for-document-element②">(2)</a> <a href="#ref-for-document-element③">(3)</a> <a href="#ref-for-document-element④">(4)</a>
     <li><a href="#ref-for-document-element⑤">4.5. Interface Document</a> <a href="#ref-for-document-element⑥">(2)</a>
     <li><a href="#ref-for-document-element⑦">4.5.1. Interface DOMImplementation</a>
@@ -17348,7 +17348,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="concept-node-document">
    <b><a href="#concept-node-document">#concept-node-document</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-document">2.7. Interface EventTarget</a> <a href="#ref-for-concept-node-document①">(2)</a> <a href="#ref-for-concept-node-document②">(3)</a>
+    <li><a href="#ref-for-concept-node-document">2.7. EventTarget接口</a> <a href="#ref-for-concept-node-document①">(2)</a> <a href="#ref-for-concept-node-document②">(3)</a>
     <li><a href="#ref-for-concept-node-document③">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-node-document④">(2)</a> <a href="#ref-for-concept-node-document⑤">(3)</a>
     <li><a href="#ref-for-concept-node-document⑥">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-node-document⑦">(2)</a> <a href="#ref-for-concept-node-document⑧">(3)</a> <a href="#ref-for-concept-node-document⑨">(4)</a> <a href="#ref-for-concept-node-document①⓪">(5)</a>
     <li><a href="#ref-for-concept-node-document①①">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-document①②">(2)</a> <a href="#ref-for-concept-node-document①③">(3)</a>
@@ -17731,7 +17731,7 @@ APIs</a>
    <b><a href="#concept-document">#concept-document</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-document">2.1. DOM事件简介</a> <a href="#ref-for-concept-document①">(2)</a>
-    <li><a href="#ref-for-concept-document②">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-concept-document②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-concept-document③">4.1. Introduction to "The DOM"</a>
     <li><a href="#ref-for-concept-document④">4.2.1. Document tree</a> <a href="#ref-for-concept-document⑤">(2)</a> <a href="#ref-for-concept-document⑥">(3)</a> <a href="#ref-for-concept-document⑦">(4)</a>
     <li><a href="#ref-for-concept-document⑧">4.2.2. Shadow tree</a>
@@ -18189,7 +18189,7 @@ APIs</a>
    <b><a href="#concept-shadow-root">#concept-shadow-root</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-shadow-root">2.2. Event接口</a>
-    <li><a href="#ref-for-concept-shadow-root①">2.7. Interface EventTarget</a>
+    <li><a href="#ref-for-concept-shadow-root①">2.7. EventTarget接口</a>
     <li><a href="#ref-for-concept-shadow-root②">2.9. Dispatching events</a> <a href="#ref-for-concept-shadow-root③">(2)</a> <a href="#ref-for-concept-shadow-root④">(3)</a> <a href="#ref-for-concept-shadow-root⑤">(4)</a>
     <li><a href="#ref-for-concept-shadow-root⑥">4.2.2. Shadow tree</a> <a href="#ref-for-concept-shadow-root⑦">(2)</a> <a href="#ref-for-concept-shadow-root⑧">(3)</a>
     <li><a href="#ref-for-concept-shadow-root⑨">4.2.2.3. Finding slots and slottables</a> <a href="#ref-for-concept-shadow-root①⓪">(2)</a> <a href="#ref-for-concept-shadow-root①①">(3)</a>
