@@ -1080,7 +1080,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    </div>
 <pre class="idl highlight def">[Exposed=*]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="eventtarget"><code><c- g>EventTarget</c-></code></dfn> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-eventtarget-eventtarget" id="ref-for-dom-eventtarget-eventtarget"><c- g>constructor</c-></a>();
+  <dfn class="dfn-paneled idl-code" data-dfn-for="EventTarget" data-dfn-type="constructor" data-export data-lt="EventTarget()|constructor()" id="dom-eventtarget-eventtarget"><code><c- g>constructor</c-></code></dfn>();
 
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-eventtarget-addeventlistener" id="ref-for-dom-eventtarget-addeventlistener②"><c- g>addEventListener</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString⑤"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="EventTarget/addEventListener(type, callback, options), EventTarget/addEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-addeventlistener-type-callback-options-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-eventtarget-addeventlistener-type-callback-options-type"></a></dfn>, <a data-link-type="idl-name" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener"><c- n>EventListener</c-></a>? <dfn class="idl-code" data-dfn-for="EventTarget/addEventListener(type, callback, options), EventTarget/addEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-addeventlistener-type-callback-options-callback"><code><c- g>callback</c-></code><a class="self-link" href="#dom-eventtarget-addeventlistener-type-callback-options-callback"></a></dfn>, <c- b>optional</c-> (<a data-link-type="idl-name" href="#dictdef-addeventlisteneroptions" id="ref-for-dictdef-addeventlisteneroptions"><c- n>AddEventListenerOptions</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①④"><c- b>boolean</c-></a>) <dfn class="idl-code" data-dfn-for="EventTarget/addEventListener(type, callback, options), EventTarget/addEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-addeventlistener-type-callback-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-eventtarget-addeventlistener-type-callback-options-options"></a></dfn> = {});
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-eventtarget-removeeventlistener" id="ref-for-dom-eventtarget-removeeventlistener①"><c- g>removeEventListener</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString⑥"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="EventTarget/removeEventListener(type, callback, options), EventTarget/removeEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-removeeventlistener-type-callback-options-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-eventtarget-removeeventlistener-type-callback-options-type"></a></dfn>, <a data-link-type="idl-name" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener①"><c- n>EventListener</c-></a>? <dfn class="idl-code" data-dfn-for="EventTarget/removeEventListener(type, callback, options), EventTarget/removeEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-removeeventlistener-type-callback-options-callback"><code><c- g>callback</c-></code><a class="self-link" href="#dom-eventtarget-removeeventlistener-type-callback-options-callback"></a></dfn>, <c- b>optional</c-> (<a data-link-type="idl-name" href="#dictdef-eventlisteneroptions" id="ref-for-dictdef-eventlisteneroptions"><c- n>EventListenerOptions</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①⑤"><c- b>boolean</c-></a>) <dfn class="idl-code" data-dfn-for="EventTarget/removeEventListener(type, callback, options), EventTarget/removeEventListener(type, callback)" data-dfn-type="argument" data-export id="dom-eventtarget-removeeventlistener-type-callback-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-eventtarget-removeeventlistener-type-callback-options-options"></a></dfn> = {});
@@ -1124,26 +1124,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    <p>每个具有<a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior①">激活行为</a>的<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⓪">EventTarget</a></code>对象都可以另外具有(或都不具有) <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export data-lt="legacy-pre-activation behavior" id="eventtarget-legacy-pre-activation-behavior">遗留预激活行为</dfn>算法和 <dfn class="dfn-paneled" data-dfn-for="EventTarget" data-dfn-type="dfn" data-export data-lt="legacy-canceled-activation behavior" id="eventtarget-legacy-canceled-activation-behavior">遗留取消激活行为</dfn>算法。 </p>
    <p class="note" role="note">这些算法仅适用于checkbox和radio <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/input.html#the-input-element" id="ref-for-the-input-element">input</a></code>元素，不能用于其他任何内容。<a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
    <dl class="domintro">
-    <dt>
-     <div class="mdn-anno wrapped">
-      <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
-      <div class="feature">
-       <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/EventTarget" title="The EventTarget() constructor creates a new EventTarget object instance.">EventTarget/EventTarget</a></p>
-       <p class="all-engines-text">In all current engines.</p>
-       <div class="support">
-        <span class="firefox yes"><span>Firefox</span><span>59+</span></span><span class="safari yes"><span>Safari</span><span>14+</span></span><span class="chrome yes"><span>Chrome</span><span>64+</span></span>
-        <hr>
-        <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-        <hr>
-        <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-        <hr>
-        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-        <hr>
-        <span class="nodejs yes"><span>Node.js</span><span>15.0.0+</span></span>
-       </div>
-      </div>
-     </div>
-     <code><var>target</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-eventtarget-eventtarget" id="ref-for-dom-eventtarget-eventtarget①">EventTarget</a>();</code> 
+    <dt><code><var>target</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-eventtarget-eventtarget" id="ref-for-dom-eventtarget-eventtarget">EventTarget</a>();</code> 
     <dd>
      <p>创建一个<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②①">EventTarget</a></code>对象，开发人员能够使用该对象<a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch①⑨">调度</a>和监听<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event③⑨">事件</a>。 </p>
     <dt>
@@ -1239,56 +1220,70 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
      <p>如果任一事件的<code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑥">cancelable</a></code>属性值为false或其<code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①⓪">preventDefault()</a></code>方法未被调用，则将事件<a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②①">分派</a>到目标并返回true；
  否则返回false。 </p>
    </dl>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="Event" data-dfn-type="dfn" data-export id="concept-flatten-options">flatten</dfn> <var>options</var>, run these
-steps: </p>
+   <p><dfn class="dfn-paneled" data-dfn-for="Event" data-dfn-type="dfn" data-export id="concept-flatten-options">flatten</dfn>(将一个多层嵌套的数据结构转换为一个单层的数据结构) <var>options</var>，将<var>options</var>转换为一个布尔值，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>If <var>options</var> is a boolean, then return <var>options</var>. </p>
+     <p>如果<var>options</var>是布尔值，则直接返回<var>options</var>。 </p>
     <li>
-     <p>Return <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture②">capture</a></code>"]. </p>
+     <p>否则，则返回options中<code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture②">capture</a></code>对象内容。 </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="Event" data-dfn-type="dfn" data-export id="event-flatten-more">flatten more</dfn> <var>options</var>, run these
-steps: </p>
+   <p><dfn class="dfn-paneled" data-dfn-for="Event" data-dfn-type="dfn" data-export id="event-flatten-more">flatten more</dfn> <var>options</var>，将<var>options</var> 对象转换为一组单独的值，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>capture</var> be the result of <a data-link-type="dfn" href="#concept-flatten-options" id="ref-for-concept-flatten-options">flattening</a> <var>options</var>. </p>
+     <p>函数首先调用<a data-link-type="dfn" href="#concept-flatten-options" id="ref-for-concept-flatten-options">flattening</a>(第一个例子)，将<var>options</var>对象转换为一个名为<var>capture</var>的布尔值。 </p>
     <li>
-     <p>Let <var>once</var> be false. </p>
+     <p>设<var>once</var>为false。 </p>
     <li>
-     <p>Let <var>passive</var> and <var>signal</var> be null. </p>
+     <p>设<var>passive</var>和<var>signal</var>为null。 </p>
     <li>
-     <p>If <var>options</var> is a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a>, then: </p>
+     <p>如<var>options</var>是一个<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary">dictionary</a>(字典), 则： </p>
      <ol>
       <li>
-       <p>Set <var>once</var> to <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-once" id="ref-for-dom-addeventlisteneroptions-once①">once</a></code>"]. </p>
+       <p>设<var>once</var>为options中<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-once" id="ref-for-dom-addeventlisteneroptions-once①">once</a></code>对象的值。 </p>
       <li>
-       <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive②">passive</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists">exists</a>, then set <var>passive</var> to <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive③">passive</a></code>"]. </p>
+       <p>如果<var>options</var>中的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive②">passive</a></code>对象存在，则设<var>passive</var>为 <var>options</var>中<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive③">passive</a></code>对象的值。 </p>
       <li>
-       <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal①">signal</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">exists</a>, then set <var>signal</var> to <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal②">signal</a></code>"]. </p>
+       <p>如果<var>options</var>中的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal①">signal</a></code>对象存在，则设<var>signal</var>为 <var>options</var>中<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal②">signal</a></code>对象的值。 </p>
      </ol>
     <li>
-     <p>Return <var>capture</var>, <var>passive</var>, <var>once</var>, and <var>signal</var>. </p>
+     <p>返回<var>capture</var>、<var>passive</var>、<var>once</var>和<var>signal</var>。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="EventTarget" data-dfn-type="constructor" data-export data-lt="EventTarget()|constructor()" id="dom-eventtarget-eventtarget"><code>new EventTarget()</code></dfn> constructor steps are to do nothing. </p>
-   <p class="note" role="note">Because of the defaults stated elsewhere, the returned <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②②">EventTarget</a></code>'s <a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent①">get the parent</a> algorithm will return null, and it will have no <a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior②">activation behavior</a>, <a data-link-type="dfn" href="#eventtarget-legacy-pre-activation-behavior" id="ref-for-eventtarget-legacy-pre-activation-behavior">legacy-pre-activation behavior</a>, or <a data-link-type="dfn" href="#eventtarget-legacy-canceled-activation-behavior" id="ref-for-eventtarget-legacy-canceled-activation-behavior">legacy-canceled-activation behavior</a>. </p>
-   <p class="note" role="note">In the future we could allow custom <a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent②">get the parent</a> algorithms. Let us know
-if this would be useful for your programs. For now, all author-created <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②③">EventTarget</a></code>s do not
-participate in a tree structure.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="default-passive-value">default passive value</dfn>, given an event type <var>type</var> and an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②④">EventTarget</a></code> <var>eventTarget</var>, is determined as follows: </p>
+   <p>使用EventTarget构造函数创建一个新对象时，不需要执行任何操作。 </p>
+   <p class="note" role="note">使用<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②②">EventTarget</a></code>构造函数创建的对象其他行为与属性的默认值： </p>
    <ol>
     <li>
-     <p>Return true if all of the following are true: </p>
+     <p><a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent①">get the parent</a>算法为null。这是一个指向父级对象的算法，它通常用于在事件冒泡过程中向上遍历事件路径。
+   这个算法的默认值为null，意味着默认情况下，这个对象没有父级对象。 </p>
+    <li>
+     <p>没有<a data-link-type="dfn" href="#eventtarget-activation-behavior" id="ref-for-eventtarget-activation-behavior②">激活行为</a>。激活行为指当事件触发时，对象所执行的操作。例如，如果对象是一个按钮，
+   那么激活行为可能是触发点击事件，执行回调函数。这个对象没有激活行为，意味着默认情况下，这个对象不会执行任何操作。 </p>
+    <li>
+     <p>没有<a data-link-type="dfn" href="#eventtarget-legacy-pre-activation-behavior" id="ref-for-eventtarget-legacy-pre-activation-behavior">遗留预激活行为</a>。遗留预激活行为指的是在旧版本的浏览器中，某些事件
+   可能会在事件触发前执行的操作。 </p>
+    <li>
+     <p>没有<a data-link-type="dfn" href="#eventtarget-legacy-canceled-activation-behavior" id="ref-for-eventtarget-legacy-canceled-activation-behavior">遗留取消激活行为</a>。遗留取消激活行为是指在旧版本的浏览器中，
+   可能会使用特定的方式来阻止事件的默认行为，例如使用preventDefault()方法来阻止事件的默认行为。 </p>
+   </ol>
+   <p></p>
+   <p class="note" role="note">将来我们可以允许自定义<a data-link-type="dfn" href="#get-the-parent" id="ref-for-get-the-parent②">get the parent</a>算法。让我们知道这是否对您的程序有用。
+目前，所有作者创建的<code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②③">EventTarget</a></code>都不参与树结构。 </p>
+   <p>给定参数<var>type</var>和<var>eventTarget</var>，确定<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="default passive value" data-noexport id="default-passive-value">passive默认值</dfn>流程如下： </p>
+   <ol>
+    <li>
+     <p>以下两个条件都满足，则返回true： </p>
      <ul>
       <li>
-       <p><var>type</var> is one of "<code>touchstart</code>", "<code>touchmove</code>",
-   "<code>wheel</code>", or "<code>mousewheel</code>". <a data-link-type="biblio" href="#biblio-touch-events">[TOUCH-EVENTS]</a> <a data-link-type="biblio" href="#biblio-uievents">[UIEVENTS]</a> </p>
+       <p><var>type</var>为"<code>touchstart</code>"，"<code>touchmove</code>"，
+   "<code>wheel</code>"或者"<code>mousewheel</code>"。<a data-link-type="biblio" href="#biblio-touch-events">[TOUCH-EVENTS]</a> <a data-link-type="biblio" href="#biblio-uievents">[UIEVENTS]</a> </p>
       <li>
-       <p><var>eventTarget</var> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window③">Window</a></code> object, or is a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①">node</a> whose <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document">node document</a> is <var>eventTarget</var>, or is a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②">node</a> whose <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document①">node document</a>’s <a data-link-type="dfn" href="#document-element" id="ref-for-document-element">document element</a> is <var>eventTarget</var>, or is a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node③">node</a> whose <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document②">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#the-body-element-2" id="ref-for-the-body-element-2">body element</a> is <var>eventTarget</var>. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
+       <p><var>eventTarget</var>是一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window③">Window</a></code>对象，或者是一个<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①">node</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document">node document</a>对象，
+   或者是一个<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②">node</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document①">node document</a>的<a data-link-type="dfn" href="#document-element" id="ref-for-document-element">document element</a>对象，
+   或者是一个<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node③">node</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document②">node document</a>的<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#the-body-element-2" id="ref-for-the-body-element-2">body element</a>对象。 <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
      </ul>
     <li>
-     <p>Return false. </p>
+     <p>否则，返回false。 </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="add-an-event-listener">add an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑤">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①④">event listener</a> <var>listener</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="add-an-event-listener">add an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②④">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①④">event listener</a> <var>listener</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>eventTarget</var> is a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope" id="ref-for-serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> object, its <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker" id="ref-for-serviceworkerglobalscope-service-worker">service worker</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-script-resource" id="ref-for-dfn-script-resource">script resource</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-has-ever-been-evaluated-flag" id="ref-for-dfn-has-ever-been-evaluated-flag">has ever been evaluated flag</a> is set, and <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type①">type</a> matches the <code class="idl"><a data-link-type="idl" href="#dom-event-type" id="ref-for-dom-event-type⑨">type</a></code> attribute value of any of the <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-service-worker-events" id="ref-for-dfn-service-worker-events">service worker events</a>, then <a data-link-type="dfn" href="https://console.spec.whatwg.org/#report-a-warning-to-the-console" id="ref-for-report-a-warning-to-the-console">report a warning to the console</a> that this might not give
@@ -1317,7 +1312,7 @@ the same code path. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </
     <li>
      <p><a data-link-type="dfn" href="#add-an-event-listener" id="ref-for-add-an-event-listener①">Add an event listener</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑨">this</a> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑥">event listener</a> whose <a data-link-type="dfn" href="#event-listener-type" id="ref-for-event-listener-type④">type</a> is <var>type</var>, <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①②">callback</a> is <var>callback</var>, <a data-link-type="dfn" href="#event-listener-capture" id="ref-for-event-listener-capture⑤">capture</a> is <var>capture</var>, <a data-link-type="dfn" href="#event-listener-passive" id="ref-for-event-listener-passive①">passive</a> is <var>passive</var>, <a data-link-type="dfn" href="#event-listener-once" id="ref-for-event-listener-once">once</a> is <var>once</var>, and <a data-link-type="dfn" href="#event-listener-signal" id="ref-for-event-listener-signal②">signal</a> is <var>signal</var>. </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="remove-an-event-listener">remove an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑥">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑦">event listener</a> <var>listener</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="remove-an-event-listener">remove an event listener</dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑤">EventTarget</a></code> object <var>eventTarget</var> and an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑦">event listener</a> <var>listener</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>eventTarget</var> is a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope" id="ref-for-serviceworkerglobalscope①">ServiceWorkerGlobalScope</a></code> object and its <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-service-worker" id="ref-for-serviceworkerglobalscope-service-worker①">service worker</a>’s <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#dfn-set-of-event-types-to-handle" id="ref-for-dfn-set-of-event-types-to-handle">set of event types to handle</a> contains <var>type</var>, then <a data-link-type="dfn" href="https://console.spec.whatwg.org/#report-a-warning-to-the-console" id="ref-for-report-a-warning-to-the-console①">report a warning to the console</a> that this might not give the expected results. <a data-link-type="biblio" href="#biblio-service-workers">[SERVICE-WORKERS]</a> </p>
@@ -1325,7 +1320,7 @@ the same code path. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </
      <p>Set <var>listener</var>’s <a data-link-type="dfn" href="#event-listener-removed" id="ref-for-event-listener-removed">removed</a> to true and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove">remove</a> <var>listener</var> from <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list④">event listener list</a>. </p>
    </ol>
    <p class="note" role="note">HTML needs this to define event handlers. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
-   <p>To <dfn data-dfn-type="dfn" data-export id="remove-all-event-listeners">remove all event listeners<a class="self-link" href="#remove-all-event-listeners"></a></dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑦">EventTarget</a></code> object <var>eventTarget</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">for each</a> <var>listener</var> of <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list⑤">event listener list</a>, <a data-link-type="dfn" href="#remove-an-event-listener" id="ref-for-remove-an-event-listener①">remove an event listener</a> with <var>eventTarget</var> and <var>listener</var>. </p>
+   <p>To <dfn data-dfn-type="dfn" data-export id="remove-all-event-listeners">remove all event listeners<a class="self-link" href="#remove-all-event-listeners"></a></dfn>, given an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑥">EventTarget</a></code> object <var>eventTarget</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">for each</a> <var>listener</var> of <var>eventTarget</var>’s <a data-link-type="dfn" href="#eventtarget-event-listener-list" id="ref-for-eventtarget-event-listener-list⑤">event listener list</a>, <a data-link-type="dfn" href="#remove-an-event-listener" id="ref-for-remove-an-event-listener①">remove an event listener</a> with <var>eventTarget</var> and <var>listener</var>. </p>
    <p class="note" role="note">HTML needs this to define <code>document.open()</code>. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="EventTarget" data-dfn-type="method" data-export data-lt="removeEventListener(type, callback, options)|removeEventListener(type, callback)" id="dom-eventtarget-removeeventlistener"><code>removeEventListener(<var>type</var>, <var>callback</var>, <var>options</var>)</code></dfn> method steps are: </p>
    <ol>
@@ -1440,7 +1435,7 @@ of non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneropti
       <li>
        <p>Let <var>clearTargetsStruct</var> be the last struct in <var>event</var>’s <a data-link-type="dfn" href="#event-path" id="ref-for-event-path④">path</a> whose <a data-link-type="dfn" href="#event-path-shadow-adjusted-target" id="ref-for-event-path-shadow-adjusted-target">shadow-adjusted target</a> is non-null. </p>
       <li>
-       <p>Let <var>clearTargets</var> be true if <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-shadow-adjusted-target" id="ref-for-event-path-shadow-adjusted-target①">shadow-adjusted target</a>, <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-relatedtarget" id="ref-for-event-path-relatedtarget">relatedTarget</a>, or an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑧">EventTarget</a></code> object in <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-touch-target-list" id="ref-for-event-path-touch-target-list">touch target list</a> is a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤">node</a> and its <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root④">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root③">shadow root</a>; otherwise false. </p>
+       <p>Let <var>clearTargets</var> be true if <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-shadow-adjusted-target" id="ref-for-event-path-shadow-adjusted-target①">shadow-adjusted target</a>, <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-relatedtarget" id="ref-for-event-path-relatedtarget">relatedTarget</a>, or an <code class="idl"><a data-link-type="idl" href="#eventtarget" id="ref-for-eventtarget②⑦">EventTarget</a></code> object in <var>clearTargetsStruct</var>’s <a data-link-type="dfn" href="#event-path-touch-target-list" id="ref-for-event-path-touch-target-list">touch target list</a> is a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤">node</a> and its <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root④">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root③">shadow root</a>; otherwise false. </p>
       <li>
        <p>If <var>activationTarget</var> is non-null and <var>activationTarget</var> has <a data-link-type="dfn" href="#eventtarget-legacy-pre-activation-behavior" id="ref-for-eventtarget-legacy-pre-activation-behavior①">legacy-pre-activation behavior</a>, then run <var>activationTarget</var>’s <a data-link-type="dfn" href="#eventtarget-legacy-pre-activation-behavior" id="ref-for-eventtarget-legacy-pre-activation-behavior②">legacy-pre-activation behavior</a>. </p>
       <li>
@@ -1832,7 +1827,7 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
     </div>
    </div>
 <pre class="idl highlight def">[Exposed=*]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="abortsignal"><code><c- g>AbortSignal</c-></code></dfn> : <a data-link-type="idl-name" href="#eventtarget" id="ref-for-eventtarget②⑨"><c- n>EventTarget</c-></a> {
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="abortsignal"><code><c- g>AbortSignal</c-></code></dfn> : <a data-link-type="idl-name" href="#eventtarget" id="ref-for-eventtarget②⑧"><c- n>EventTarget</c-></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑦"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-abort" id="ref-for-dom-abortsignal-abort"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any④"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/abort(reason), AbortSignal/abort()" data-dfn-type="argument" data-export id="dom-abortsignal-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortsignal-abort-reason-reason"></a></dfn>);
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑧"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-timeout" id="ref-for-dom-abortsignal-timeout"><c- g>timeout</c-></a>([<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/timeout(milliseconds)" data-dfn-type="argument" data-export id="dom-abortsignal-timeout-milliseconds-milliseconds"><code><c- g>milliseconds</c-></code><a class="self-link" href="#dom-abortsignal-timeout-milliseconds-milliseconds"></a></dfn>);
 
@@ -4036,9 +4031,9 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export data-lt="observe(target, options)|observe(target)" id="dom-mutationobserver-observe"><code>observe(<var>target</var>, <var>options</var>)</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p>If either <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue②">attributeOldValue</a></code>"] or <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter②">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes③">attributes</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes④">attributes</a></code>"] to true. </p>
+     <p>If either <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue②">attributeOldValue</a></code>"] or <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter②">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes③">attributes</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes④">attributes</a></code>"] to true. </p>
     <li>
-     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue②">characterDataOldValue</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists④">exists</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata②">characterData</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata③">characterData</a></code>"] to
+     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue②">characterDataOldValue</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②">exists</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata②">characterData</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata③">characterData</a></code>"] to
  true. </p>
     <li>
      <p>If none of <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist①">childList</a></code>"], <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑤">attributes</a></code>"], and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata④">characterData</a></code>"] is true, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑥">throw</a> a <code>TypeError</code>. </p>
@@ -4097,9 +4092,9 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
        <p>If none of the following are true </p>
        <ul class="brief">
         <li><var>node</var> is not <var>target</var> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree③">subtree</a></code>"] is false 
-        <li><var>type</var> is "<code>attributes</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑧">attributes</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥">exist</a> or is false 
-        <li><var>type</var> is "<code>attributes</code>", <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter④">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑦">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter⑤">attributeFilter</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>name</var> or <var>namespace</var> is non-null 
-        <li><var>type</var> is "<code>characterData</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑥">characterData</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑧">exist</a> or is false 
+        <li><var>type</var> is "<code>attributes</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑧">attributes</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists④">exist</a> or is false 
+        <li><var>type</var> is "<code>attributes</code>", <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter④">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter⑤">attributeFilter</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>name</var> or <var>namespace</var> is non-null 
+        <li><var>type</var> is "<code>characterData</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑥">characterData</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥">exist</a> or is false 
         <li><var>type</var> is "<code>childList</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist②">childList</a></code>"] is false 
        </ul>
        <p>then: </p>
@@ -4107,7 +4102,7 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
         <li>
          <p>Let <var>mo</var> be <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑥">observer</a>. </p>
         <li>
-         <p>If <var>interestedObservers</var>[<var>mo</var>] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑨">exist</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">set</a> <var>interestedObservers</var>[<var>mo</var>] to null. </p>
+         <p>If <var>interestedObservers</var>[<var>mo</var>] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑦">exist</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">set</a> <var>interestedObservers</var>[<var>mo</var>] to null. </p>
         <li>
          <p>If either <var>type</var> is "<code>attributes</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue④">attributeOldValue</a></code>"] is true, or <var>type</var> is
      "<code>characterData</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue④">characterDataOldValue</a></code>"] is true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">set</a> <var>interestedObservers</var>[<var>mo</var>] to <var>oldValue</var>. </p>
@@ -4217,7 +4212,7 @@ reference to the <a data-link-type="dfn" href="#concept-node" id="ref-for-concep
     </div>
    </div>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="node"><code><c- g>Node</c-></code></dfn> : <a data-link-type="idl-name" href="#eventtarget" id="ref-for-eventtarget③⓪"><c- n>EventTarget</c-></a> {
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="node"><code><c- g>Node</c-></code></dfn> : <a data-link-type="idl-name" href="#eventtarget" id="ref-for-eventtarget②⑨"><c- n>EventTarget</c-></a> {
   <c- b>const</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑤"><c- b>unsigned</c-> <c- b>short</c-></a> <a class="idl-code" data-link-type="const" href="#dom-node-element_node" id="ref-for-dom-node-element_node"><c- g>ELEMENT_NODE</c-></a> = 1;
   <c- b>const</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑥"><c- b>unsigned</c-> <c- b>short</c-></a> <a class="idl-code" data-link-type="const" href="#dom-node-attribute_node" id="ref-for-dom-node-attribute_node"><c- g>ATTRIBUTE_NODE</c-></a> = 2;
   <c- b>const</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑦"><c- b>unsigned</c-> <c- b>short</c-></a> <a class="idl-code" data-link-type="const" href="#dom-node-text_node" id="ref-for-dom-node-text_node"><c- g>TEXT_NODE</c-></a> = 3;
@@ -5916,7 +5911,7 @@ name <var>localName</var></a> for <a data-link-type="dfn" href="https://webidl.s
     <li>
      <p>Let <var>is</var> be null. </p>
     <li>
-     <p>If <var>options</var> is a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-elementcreationoptions-is" id="ref-for-dom-elementcreationoptions-is②">is</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⓪">exists</a>, then set <var>is</var> to it. </p>
+     <p>If <var>options</var> is a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary①">dictionary</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-elementcreationoptions-is" id="ref-for-dom-elementcreationoptions-is②">is</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑧">exists</a>, then set <var>is</var> to it. </p>
     <li>
      <p>Let <var>namespace</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#html-namespace" id="ref-for-html-namespace①⓪">HTML namespace</a>, if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①②⑨">this</a> is an <a data-link-type="dfn" href="#html-document" id="ref-for-html-document⑦">HTML document</a> or <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③⓪">this</a>’s <a data-link-type="dfn" href="#concept-document-content-type" id="ref-for-concept-document-content-type⑤">content type</a> is
  "<code>application/xhtml+xml</code>"; otherwise null. </p>
@@ -5932,7 +5927,7 @@ name <var>localName</var></a> for <a data-link-type="dfn" href="https://webidl.s
     <li>
      <p>Let <var>is</var> be null. </p>
     <li>
-     <p>If <var>options</var> is a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary②">dictionary</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-elementcreationoptions-is" id="ref-for-dom-elementcreationoptions-is③">is</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①①">exists</a>, then set <var>is</var> to it. </p>
+     <p>If <var>options</var> is a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-dictionary" id="ref-for-dfn-dictionary②">dictionary</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-elementcreationoptions-is" id="ref-for-dom-elementcreationoptions-is③">is</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑨">exists</a>, then set <var>is</var> to it. </p>
     <li>
      <p>Return the result of <a data-link-type="dfn" href="#concept-create-element" id="ref-for-concept-create-element②">creating an element</a> given <var>document</var>, <var>localName</var>, <var>namespace</var>, <var>prefix</var>, <var>is</var>, and with the <var>synchronous custom elements</var> flag set. </p>
    </ol>
@@ -13574,10 +13569,9 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-map-exists">
    <a href="https://infra.spec.whatwg.org/#map-exists">https://infra.spec.whatwg.org/#map-exists</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-exists">2.7. EventTarget接口</a> <a href="#ref-for-map-exists①">(2)</a>
-    <li><a href="#ref-for-map-exists②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-map-exists③">(2)</a> <a href="#ref-for-map-exists④">(3)</a> <a href="#ref-for-map-exists⑤">(4)</a>
-    <li><a href="#ref-for-map-exists⑥">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-exists⑦">(2)</a> <a href="#ref-for-map-exists⑧">(3)</a> <a href="#ref-for-map-exists⑨">(4)</a>
-    <li><a href="#ref-for-map-exists①⓪">4.5. Interface Document</a> <a href="#ref-for-map-exists①①">(2)</a>
+    <li><a href="#ref-for-map-exists">4.3.1. Interface MutationObserver</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a>
+    <li><a href="#ref-for-map-exists④">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-exists⑤">(2)</a> <a href="#ref-for-map-exists⑥">(3)</a> <a href="#ref-for-map-exists⑦">(4)</a>
+    <li><a href="#ref-for-map-exists⑧">4.5. Interface Document</a> <a href="#ref-for-map-exists⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
@@ -14798,7 +14792,7 @@ APIs</a>
 
 [Exposed=*]
 <c- b>interface</c-> <a href="#eventtarget"><code><c- g>EventTarget</c-></code></a> {
-  <a class="idl-code" data-link-type="constructor" href="#dom-eventtarget-eventtarget"><c- g>constructor</c-></a>();
+  <a href="#dom-eventtarget-eventtarget"><code><c- g>constructor</c-></code></a>();
 
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-eventtarget-addeventlistener"><c- g>addEventListener</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-eventtarget-addeventlistener-type-callback-options-type"><code><c- g>type</c-></code></a>, <a data-link-type="idl-name" href="#callbackdef-eventlistener"><c- n>EventListener</c-></a>? <a href="#dom-eventtarget-addeventlistener-type-callback-options-callback"><code><c- g>callback</c-></code></a>, <c- b>optional</c-> (<a data-link-type="idl-name" href="#dictdef-addeventlisteneroptions"><c- n>AddEventListenerOptions</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a>) <a href="#dom-eventtarget-addeventlistener-type-callback-options-options"><code><c- g>options</c-></code></a> = {});
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-eventtarget-removeeventlistener"><c- g>removeEventListener</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-eventtarget-removeeventlistener-type-callback-options-type"><code><c- g>type</c-></code></a>, <a data-link-type="idl-name" href="#callbackdef-eventlistener"><c- n>EventListener</c-></a>? <a href="#dom-eventtarget-removeeventlistener-type-callback-options-callback"><code><c- g>callback</c-></code></a>, <c- b>optional</c-> (<a data-link-type="idl-name" href="#dictdef-eventlisteneroptions"><c- n>EventListenerOptions</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a>) <a href="#dom-eventtarget-removeeventlistener-type-callback-options-options"><code><c- g>options</c-></code></a> = {});
@@ -16074,10 +16068,16 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-eventtarget">2.1. DOM事件简介</a>
     <li><a href="#ref-for-eventtarget①">2.2. Event接口</a> <a href="#ref-for-eventtarget②">(2)</a> <a href="#ref-for-eventtarget③">(3)</a> <a href="#ref-for-eventtarget④">(4)</a> <a href="#ref-for-eventtarget⑤">(5)</a> <a href="#ref-for-eventtarget⑥">(6)</a> <a href="#ref-for-eventtarget⑦">(7)</a> <a href="#ref-for-eventtarget⑧">(8)</a> <a href="#ref-for-eventtarget⑨">(9)</a> <a href="#ref-for-eventtarget①⓪">(10)</a> <a href="#ref-for-eventtarget①①">(11)</a> <a href="#ref-for-eventtarget①②">(12)</a>
-    <li><a href="#ref-for-eventtarget①③">2.7. EventTarget接口</a> <a href="#ref-for-eventtarget①④">(2)</a> <a href="#ref-for-eventtarget①⑤">(3)</a> <a href="#ref-for-eventtarget①⑥">(4)</a> <a href="#ref-for-eventtarget①⑦">(5)</a> <a href="#ref-for-eventtarget①⑧">(6)</a> <a href="#ref-for-eventtarget①⑨">(7)</a> <a href="#ref-for-eventtarget②⓪">(8)</a> <a href="#ref-for-eventtarget②①">(9)</a> <a href="#ref-for-eventtarget②②">(10)</a> <a href="#ref-for-eventtarget②③">(11)</a> <a href="#ref-for-eventtarget②④">(12)</a> <a href="#ref-for-eventtarget②⑤">(13)</a> <a href="#ref-for-eventtarget②⑥">(14)</a> <a href="#ref-for-eventtarget②⑦">(15)</a>
-    <li><a href="#ref-for-eventtarget②⑧">2.9. Dispatching events</a>
-    <li><a href="#ref-for-eventtarget②⑨">3.2. Interface AbortSignal</a>
-    <li><a href="#ref-for-eventtarget③⓪">4.4. Interface Node</a>
+    <li><a href="#ref-for-eventtarget①③">2.7. EventTarget接口</a> <a href="#ref-for-eventtarget①④">(2)</a> <a href="#ref-for-eventtarget①⑤">(3)</a> <a href="#ref-for-eventtarget①⑥">(4)</a> <a href="#ref-for-eventtarget①⑦">(5)</a> <a href="#ref-for-eventtarget①⑧">(6)</a> <a href="#ref-for-eventtarget①⑨">(7)</a> <a href="#ref-for-eventtarget②⓪">(8)</a> <a href="#ref-for-eventtarget②①">(9)</a> <a href="#ref-for-eventtarget②②">(10)</a> <a href="#ref-for-eventtarget②③">(11)</a> <a href="#ref-for-eventtarget②④">(12)</a> <a href="#ref-for-eventtarget②⑤">(13)</a> <a href="#ref-for-eventtarget②⑥">(14)</a>
+    <li><a href="#ref-for-eventtarget②⑦">2.9. Dispatching events</a>
+    <li><a href="#ref-for-eventtarget②⑧">3.2. Interface AbortSignal</a>
+    <li><a href="#ref-for-eventtarget②⑨">4.4. Interface Node</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-eventtarget-eventtarget">
+   <b><a href="#dom-eventtarget-eventtarget">#dom-eventtarget-eventtarget</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-eventtarget-eventtarget">2.7. EventTarget接口</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="callbackdef-eventlistener">
@@ -16233,12 +16233,6 @@ APIs</a>
    <b><a href="#event-flatten-more">#event-flatten-more</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-event-flatten-more">2.7. EventTarget接口</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-eventtarget-eventtarget">
-   <b><a href="#dom-eventtarget-eventtarget">#dom-eventtarget-eventtarget</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-eventtarget-eventtarget">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-eventtarget①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="default-passive-value">
