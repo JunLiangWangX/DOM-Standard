@@ -988,120 +988,111 @@ dictionary AddEventListenerOptions : EventListenerOptions {
    <li><p>|type|为"<code>touchstart</code>"，"<code>touchmove</code>"，
    "<code>wheel</code>"或者"<code>mousewheel</code>"。[[TOUCH-EVENTS]] [[UIEVENTS]]
 
-   <li><p>|eventTarget|是一个{{Window}}对象，或者是一个<a for=/>node</a>的<a>node document</a>对象，
-   或者是一个<a for=/>node</a>的<a>node document</a>的<a>document element</a>对象，
-   或者是一个<a for=/>node</a>的<a>node document</a>的<a lt="the body element">body element</a>对象。 [[!HTML]]
+   <li><p>|eventTarget|是一个{{Window}}对象，或者是一个<a>document</a>对象，或者是一个<a>document element</a>对象，或者是一个
+   <a lt="the body element">body element</a>对象。 [[!HTML]]
   </ul>
 
  <li><p>否则，返回false。
 </ol>
 
-<p>To <dfn export>add an event listener</dfn>, given an {{EventTarget}} object
-<var>eventTarget</var> and an <a>event listener</a> <var>listener</var>, run these steps:
+<p><dfn export lt="add an event listener">添加一个事件监听器</dfn>，给定参数{{EventTarget}}
+(<var>eventTarget</var>)和<a>event listener</a>(<var>listener</var>)，将运行以下步骤：
 
 <ol>
- <li><p>If <var>eventTarget</var> is a {{ServiceWorkerGlobalScope}} object, its
- <a for="ServiceWorkerGlobalScope">service worker</a>'s
- <a for="service worker">script resource</a>'s
- <a for="script resource">has ever been evaluated flag</a> is set, and <var>listener</var>'s
- <a for="event listener">type</a> matches the {{Event/type}} attribute value of any of the
- <a>service worker events</a>, then <a>report a warning to the console</a> that this might not give
- the expected results. [[!SERVICE-WORKERS]]
+ <li><p>如果<var>eventTarget</var>是一个{{ServiceWorkerGlobalScope}}对象,则设置它的
+ <a for="ServiceWorkerGlobalScope">service worker</a>的
+ <a for="service worker" lt="script resource">脚本资源</a>的
+ <a for="script resource">has ever been evaluated flag</a>，并且<var>listener</var>的
+ <a for="event listener">type</a>属性匹配任何
+ <a lt="service worker events">service worker事件</a>的type属性值，然后
+ <a lt="report a warning to the console">向控制台报告警告</a>(这可能不会给出预期的结果)。
+ [[!SERVICE-WORKERS]]
 
- <li><p>If <var>listener</var>'s <a for="event listener">signal</a> is not null and is
- [=AbortSignal/aborted=], then return.
+ <li><p>如果<var>listener</var>的<a for="event listener">signal</a>值不为空，且为
+ [=AbortSignal/aborted=]，则直接return。
 
- <li><p>If <var>listener</var>'s <a for="event listener">callback</a> is null, then return.
+ <li><p>如果<var>listener</var>的<a for="event listener" lt="callback">回调函数</a>为空，则直接return。
 
- <li><p>If <var>listener</var>'s <a for="event listener">passive</a> is null, then set it to the
- <a>default passive value</a> given |type| and |eventTarget|.
+ <li><p>如果<var>listener</var>的<a for="event listener">passive</a>值为null，
+ 则给定参数|type|和|eventTarget|确定<a lt="default passive value">passive默认值</a>。
 
- <li><p>If <var>eventTarget</var>'s <a>event listener list</a> does not <a for=list>contain</a> an
- <a>event listener</a> whose <a for="event listener">type</a> is <var>listener</var>'s
- <a for="event listener">type</a>, <a for="event listener">callback</a> is <var>listener</var>'s
- <a for="event listener">callback</a>, and <a for="event listener">capture</a> is
- <var>listener</var>'s <a for="event listener">capture</a>, then <a for=list>append</a>
- <var>listener</var> to <var>eventTarget</var>'s <a>event listener list</a>.
+ <li><p>如果<var>eventTarget</var>的<a>event listener list</a>不<a for=list lt="contain">包含</a>
+ <a for="event listener">type</a>属性值为<var>listener</var>的<a for="event listener">type</a>属性值、
+ <a for="event listener">callback</a>属性值为<var>listener</var>的<a for="event listener">callback</a>属性值、
+ <a for="event listener">capture</a>属性值为<var>listener</var>的<a for="event listener">capture</a>属性值的
+ <a lt="event listener">事件监听器</a>，则将<var>listener</var><a for=list lt="append">添加</a>到<var>eventTarget</var>
+ 的<a>event listener list</a>中。
 
  <li>
-  <p>If <var>listener</var>'s <a for="event listener">signal</a> is not null, then
-  <a for=AbortSignal lt=add>add the following</a> abort steps to it:
+  <p>如果<var>listener</var>的<a for="event listener">signal</a>值不为null，则向其<a for=AbortSignal lt=add>添加</a>以下中止步骤：
 
   <ol>
-   <li><a>Remove an event listener</a> with <var>eventTarget</var> and <var>listener</var>.
+   <li>使用<var>eventTarget</var>和<var>listener</var><a lt="Remove an event listener">移除事件监听器</a>。
   </ol>
 </ol>
 
-<p class=note>The <a>add an event listener</a> concept exists to ensure <a>event handlers</a> use
-the same code path. [[HTML]]
+<p class=note><a lt="add an event listener">添加事件侦听器</a>概念的存在是为了确保<a lt="event handlers">事件处理程序</a>使用相同的代码路径。[[HTML]]
 
-<p>The
-<dfn method for=EventTarget><code>addEventListener(<var>type</var>, <var>callback</var>, <var>options</var>)</code></dfn>
-method steps are:
+<p><dfn method for=EventTarget><code>addEventListener(<var>type</var>, <var>callback</var>, <var>options</var>)</code></dfn>
+方法将执行以下步骤：
 
 <ol>
- <li><p>Let <var>capture</var>, <var>passive</var>, <var>once</var>, and <var>signal</var> be the
- result of <a lt="flatten more">flattening more</a> <var>options</var>.
+ <li><p>设<var>capture</var>, <var>passive</var>, <var>once</var>以及<var>signal</var>为<a lt="flatten more">flattening more</a><var>options</var>
+ 的返回值。
 
- <li><p><a>Add an event listener</a> with <a>this</a> and an <a>event listener</a> whose
- <a for="event listener">type</a> is <var>type</var>, <a for="event listener">callback</a> is
- <var>callback</var>, <a for="event listener">capture</a> is <var>capture</var>,
- <a for="event listener">passive</a> is <var>passive</var>, <a for="event listener">once</a> is
- <var>once</var>, and <a for="event listener">signal</a> is <var>signal</var>.
+ <li><p>使用<var>type</var>、<var>callback</var>、<var>capture</var>、<var>passive</var>、<var>once</var>以及<var>signal</var>向<a>this</a>
+ <a lt="add an event listener">添加事件侦听器</a>。
 </ol>
 
-<p>To <dfn export>remove an event listener</dfn>, given an {{EventTarget}} object
-<var>eventTarget</var> and an <a>event listener</a> <var>listener</var>, run these steps:
+<p><dfn export lt="remove an event listener">删除事件监听器</dfn>，给定参数{{EventTarget}}(<var>eventTarget</var>)
+和<a>event listener</a>(<var>listener</var>)，将运行以下步骤：
 
 <ol>
- <li><p>If <var>eventTarget</var> is a {{ServiceWorkerGlobalScope}} object and its
- <a for="ServiceWorkerGlobalScope">service worker</a>'s
- <a for="service worker">set of event types to handle</a> contains <var>type</var>, then
- <a>report a warning to the console</a> that this might not give the expected results.
+ <li><p>如果<var>eventTarget</var>是一个{{ServiceWorkerGlobalScope}}对象并且它的
+ <a for="ServiceWorkerGlobalScope">service worker</a>的
+ <a for="service worker" lt="set of event types to handle">要处理的事件类型集</a>中包含<var>type</var>，则
+ <a lt="report a warning to the console">向控制台报告警告</a>(这可能不会给出预期的结果)。
  [[!SERVICE-WORKERS]]
 
- <li><p>Set <var>listener</var>'s <a for="event listener">removed</a> to true and
- <a for=list>remove</a> <var>listener</var> from <var>eventTarget</var>'s
- <a for=EventTarget>event listener list</a>.
+ <li><p>设<var>listener</var>的<a for="event listener">removed</a>属性为true且
+ <a for=list lt="remove">删除</a><var>eventTarget</var>的
+ <a for=EventTarget>event listener list</a>属性中的<var>listener</var>。
 </ol>
 
-<p class=note>HTML needs this to define event handlers. [[HTML]]
+<p class=note>HTML需要它来定义事件处理程序。[[HTML]]
 
-<p>To <dfn export>remove all event listeners</dfn>, given an {{EventTarget}} object
-<var>eventTarget</var>, <a for=list>for each</a> <var>listener</var> of <var>eventTarget</var>'s
-<a for=EventTarget>event listener list</a>, <a>remove an event listener</a> with
-<var>eventTarget</var> and <var>listener</var>.
+<p><dfn export lt="remove all event listeners">移除所有事件监听器</dfn>，给定参数{{EventTarget}}(<var>eventTarget</var>)，
+<a for=list lt="for each">遍历</a><var>eventTarget</var>的<a for=EventTarget>event listener list</a>属性中的每个事件监听器，
+使用<var>eventTarget</var>与<var>listener</var>删除事件监听器。
 
-<p class=note>HTML needs this to define <code>document.open()</code>. [[HTML]]
+<p class=note>HTML需要它来定义<code>document.open()</code>。[[HTML]]
 
-<p>The
-<dfn method for=EventTarget><code>removeEventListener(<var>type</var>, <var>callback</var>, <var>options</var>)</code></dfn>
-method steps are:
+<p><dfn method for=EventTarget><code>removeEventListener(<var>type</var>, <var>callback</var>, <var>options</var>)</code></dfn>
+方法将运行以下步骤：
 
 <ol>
- <li><p>Let <var>capture</var> be the result of <a>flattening</a> <var>options</var>.
+ <li><p>设<var>capture</var>为<a>flattening</a> <var>options</var>的返回结果。
 
- <li><p>If <a>this</a>'s <a for=EventTarget>event listener list</a> <a for=list>contains</a> an
- <a>event listener</a> whose <a for="event listener">type</a> is <var>type</var>,
- <a for="event listener">callback</a> is <var>callback</var>, and
- <a for="event listener">capture</a> is <var>capture</var>, then <a>remove an event listener</a>
- with <a>this</a> and that <a>event listener</a>.
+ <li><p>如果<a>this</a>的
+ 如果<a>this</a>的<a for=EventTarget>event listener list</a>属性值<a for=list lt="contains">包含</a>一个
+ <a for="event listener">type</a>属性为给定的<var>type</var>参数、
+ <a for="event listener">callback</a>属性为给定的<var>callback</var>参数以及
+ <a for="event listener">capture</a>属性为给定的<var>capture</var>参数的<a lt="event listener">事件监听器</a>，
+ 则使用<a>this</a>以及<a>event listener</a><a lt="remove an event listener">删除事件监听器</a>。
 </ol>
 
-<p class=note>The event listener list will not contain multiple event listeners with equal
-<var>type</var>, <var>callback</var>, and <var>capture</var>, as <a>add an event listener</a>
-prevents that.
+<p class=note><a for=EventTarget>event listener list</a>不会包含多个具有相同<var>type</var>、<var>callback</var>
+以及<var>capture</var>的事件监听器，因为<a lt="add an event listener">添加事件侦听器</a>会阻止这种情况。
 
-<p>The <dfn method for=EventTarget><code>dispatchEvent(<var>event</var>)</code></dfn> method steps
-are:
+<p><dfn method for=EventTarget><code>dispatchEvent(<var>event</var>)</code></dfn>方法将会运行以下步骤：
 
 <ol>
- <li><p>If <var>event</var>'s <a>dispatch flag</a> is set, or if its <a>initialized flag</a> is not
- set, then <a>throw</a> an "{{InvalidStateError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>event</var>的<a>dispatch flag</a>被设置，或者它的<a>initialized flag</a>没有被设置，
+ 则<a lt="throw">抛出</a>一个"{{InvalidStateError!!exception}}(无效状态错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>Initialize <var>event</var>'s {{Event/isTrusted}} attribute to false.
+ <li><p>初始化<var>event</var>的{{Event/isTrusted}}属性为false。
 
- <li><p>Return the result of <a>dispatching</a> <var>event</var> to <a>this</a>.
+ <li><p>将<a lt="dispatching">调度</a><var>event</var>的结果返回给<a>this</a>.
 </ol>
 
 
