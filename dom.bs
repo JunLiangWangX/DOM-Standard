@@ -924,70 +924,76 @@ dictionary AddEventListenerOptions : EventListenerOptions {
  
 </dl>
 
-<p>To <dfn export for=Event id=concept-flatten-options>flatten</dfn> <var>options</var>, run these
-steps:
+<p><dfn export for=Event id=concept-flatten-options>flatten</dfn>(将一个多层嵌套的数据结构转换为一个单层的数据结构)
+<var>options</var>，将<var>options</var>转换为一个布尔值，将运行以下步骤：
 
 <ol>
- <li><p>If <var>options</var> is a boolean, then return <var>options</var>.
+ <li><p>如果<var>options</var>是布尔值，则直接返回<var>options</var>。
 
- <li><p>Return |options|["{{EventListenerOptions/capture}}"].
+ <li><p>否则，则返回options中{{EventListenerOptions/capture}}对象内容。
 </ol>
 
-<p>To <dfn export for=Event>flatten more</dfn><!-- sorry --> <var>options</var>, run these
-steps:
+<p><dfn export for=Event lt="flatten more">flatten more</dfn><!-- sorry --> <var>options</var>，将<var>options</var>
+对象转换为一组单独的值，将运行以下步骤：
+
 
 <ol>
- <li><p>Let <var>capture</var> be the result of <a>flattening</a> <var>options</var>.
+ <li><p>函数首先调用<a>flattening</a>(第一个例子)，将<var>options</var>对象转换为一个名为<var>capture</var>的布尔值。
 
- <li><p>Let <var>once</var> be false.
+ <li><p>设<var>once</var>为false。
 
- <li><p>Let |passive| and |signal| be null.
+ <li><p>设|passive|和|signal|为null。
 
  <li>
-  <p>If |options| is a <a for=/>dictionary</a>, then:
+  <p>如|options|是一个<a for=/>dictionary</a>(字典), 则：
 
   <ol>
-   <li><p>Set |once| to |options|["{{AddEventListenerOptions/once}}"].
+   <li><p>设|once|为options中{{AddEventListenerOptions/once}}对象的值。
 
-   <li><p>If |options|["{{AddEventListenerOptions/passive}}"] [=map/exists=], then set |passive| to
-   |options|["{{AddEventListenerOptions/passive}}"].
+   <li><p>如果|options|中的{{AddEventListenerOptions/passive}}对象存在，则设|passive|为
+   |options|中{{AddEventListenerOptions/passive}}对象的值。
 
-   <li><p>If |options|["{{AddEventListenerOptions/signal}}"] [=map/exists=], then set |signal| to
-   |options|["{{AddEventListenerOptions/signal}}"].
+   <li><p>如果|options|中的{{AddEventListenerOptions/signal}}对象存在，则设|signal|为
+   |options|中{{AddEventListenerOptions/signal}}对象的值。
   </ol>
 
- <li><p>Return <var>capture</var>, <var>passive</var>, <var>once</var>, and <var>signal</var>.
+ <li><p>返回<var>capture</var>、<var>passive</var>、<var>once</var>和<var>signal</var>。
 </ol>
 
-<p>The <dfn constructor for=EventTarget lt=EventTarget()><code>new EventTarget()</code></dfn>
-constructor steps are to do nothing.
+<p>使用EventTarget构造函数创建一个新对象时，不需要执行任何操作。
 
-<p class=note>Because of the defaults stated elsewhere, the returned {{EventTarget}}'s
-<a>get the parent</a> algorithm will return null, and it will have no <a>activation behavior</a>,
-<a>legacy-pre-activation behavior</a>, or <a>legacy-canceled-activation behavior</a>.
+<p class=note>使用{{EventTarget}}构造函数创建的对象其他行为与属性的默认值：
+  <ol>
+   <li><p><a>get the parent</a>算法为null。这是一个指向父级对象的算法，它通常用于在事件冒泡过程中向上遍历事件路径。
+   这个算法的默认值为null，意味着默认情况下，这个对象没有父级对象。
+   <li><p>没有<a lt="activation behavior">激活行为</a>。激活行为指当事件触发时，对象所执行的操作。例如，如果对象是一个按钮，
+   那么激活行为可能是触发点击事件，执行回调函数。这个对象没有激活行为，意味着默认情况下，这个对象不会执行任何操作。
+   <li><p>没有<a lt="legacy-pre-activation behavior">遗留预激活行为</a>。遗留预激活行为指的是在旧版本的浏览器中，某些事件
+   可能会在事件触发前执行的操作。   
+   <li><p>没有<a lt="legacy-canceled-activation behavior">遗留取消激活行为</a>。遗留取消激活行为是指在旧版本的浏览器中，
+   可能会使用特定的方式来阻止事件的默认行为，例如使用preventDefault()方法来阻止事件的默认行为。
+  </ol>
+</p>
 
-<p class=note>In the future we could allow custom <a>get the parent</a> algorithms. Let us know
-if this would be useful for your programs. For now, all author-created {{EventTarget}}s do not
-participate in a tree structure.</p>
+<p class=note>将来我们可以允许自定义<a>get the parent</a>算法。让我们知道这是否对您的程序有用。
+目前，所有作者创建的{{EventTarget}}都不参与树结构。
 
-<p>The <dfn>default passive value</dfn>, given an event type |type| and an {{EventTarget}}
-|eventTarget|, is determined as follows:
+<p>给定参数|type|和|eventTarget|，确定<dfn lt="default passive value">passive默认值</dfn>流程如下：
 
 <ol>
  <li>
-  <p>Return true if all of the following are true:
+  <p>以下两个条件都满足，则返回true：
 
   <ul>
-   <li><p>|type| is one of "<code>touchstart</code>", "<code>touchmove</code>",
-   "<code>wheel</code>", or "<code>mousewheel</code>". [[TOUCH-EVENTS]] [[UIEVENTS]]
+   <li><p>|type|为"<code>touchstart</code>"，"<code>touchmove</code>"，
+   "<code>wheel</code>"或者"<code>mousewheel</code>"。[[TOUCH-EVENTS]] [[UIEVENTS]]
 
-   <li><p>|eventTarget| is a {{Window}} object, or is a <a for=/>node</a> whose <a>node document</a>
-   is |eventTarget|, or is a <a for=/>node</a> whose <a>node document</a>'s <a>document element</a>
-   is |eventTarget|, or is a <a for=/>node</a> whose <a>node document</a>'s
-   <a lt="the body element">body element</a> is |eventTarget|. [[!HTML]]
+   <li><p>|eventTarget|是一个{{Window}}对象，或者是一个<a for=/>node</a>的<a>node document</a>对象，
+   或者是一个<a for=/>node</a>的<a>node document</a>的<a>document element</a>对象，
+   或者是一个<a for=/>node</a>的<a>node document</a>的<a lt="the body element">body element</a>对象。 [[!HTML]]
   </ul>
 
- <li><p>Return false.
+ <li><p>否则，返回false。
 </ol>
 
 <p>To <dfn export>add an event listener</dfn>, given an {{EventTarget}} object
