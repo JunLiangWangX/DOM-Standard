@@ -858,7 +858,7 @@ dictionary AddEventListenerOptions : EventListenerOptions {
  <li><dfn for="event listener">type</dfn>(类型，string)
  <li><dfn for="event listener">callback</dfn>(回调函数，null或{{EventListener}})
  <li><dfn for="event listener">capture</dfn>(是否捕获阶段触发，boolean，初值为false)
- <li><dfn for="event listener">passive</dfn>(是否允许调用event.preventDefault()，null或boolean，初值null)
+ <li><dfn for="event listener">passive</dfn>(是否不允许调用event.preventDefault()，null或boolean，初值null)
  <li><dfn for="event listener">once</dfn>(是否仅调用一次，boolean，初值false)
  <li><dfn for="event listener">signal</dfn>(信号对象，允许使用{{AbortController/abort()}}方法移除监听器，null或{{AbortSignal}})
  <li><dfn for="event listener">removed</dfn> (用于内部处理，boolean，初值false)
@@ -1096,24 +1096,19 @@ dictionary AddEventListenerOptions : EventListenerOptions {
 </ol>
 
 
-<h3 id=observing-event-listeners>Observing event listeners</h3>
+<h3 id=observing-event-listeners>观察事件监听器</h3>
 
-<p>In general, developers do not expect the presence of an <a>event listener</a> to be observable.
-The impact of an <a>event listener</a> is determined by its <a for="event listener">callback</a>. That is, a developer
-adding a no-op <a>event listener</a> would not expect it to have any side effects.
+<p>通常，开发人员不希望<a lt="event listener">事件侦听器</a>的存在或不存在是可被观察到的。
+<a lt="event listener">事件侦听器</a>的效果由其<a for="event listener" lt="callback">回调函数</a>决定。
+也就是说，开发人员添加不执行任何操作的<a lt="event listener">事件侦听器</a>时不希望有任何副作用。
 
-<p>Unfortunately, some event APIs have been designed such that implementing them efficiently
-requires observing <a>event listeners</a>. This can make the presence of listeners observable in
-that even empty listeners can have a dramatic performance impact on the behavior of the application.
-For example, touch and wheel events which can be used to block asynchronous scrolling. In some cases
-this problem can be mitigated by specifying the event to be {{Event/cancelable}} only when there is
-at least one non-{{AddEventListenerOptions/passive}} listener. For example,
-non-{{AddEventListenerOptions/passive}} {{TouchEvent}} listeners must block scrolling, but if all
-listeners are {{AddEventListenerOptions/passive}} then scrolling can be allowed to start
-<a>in parallel</a> by making the {{TouchEvent}} uncancelable (so that calls to
-{{Event/preventDefault()}} are ignored). So code dispatching an event is able to observe the absence
-of non-{{AddEventListenerOptions/passive}} listeners, and use that to clear the {{Event/cancelable}}
-property of the event being dispatched.
+<p>不幸的是，一些事件API被设计为需要观察<a lt="event listener">事件侦听器</a>才能有效实现。
+也就是说，即使是什么都不做的侦听器也会显着影响应用程序行为的处理能力，从而使其可以观察到是否有侦听器。
+例如，使用触摸/滚轮事件可以阻止异步滚动。在某些情况下，可以通过指定事件仅在至少有一个non-{{AddEventListenerOptions/passive}}(passive为false)
+侦听器时才可取消来缓解此问题。例如，non-{{AddEventListenerOptions/passive}}{{TouchEvent}}侦听器必须阻止滚动，
+但如果所有侦听器都是{{AddEventListenerOptions/passive}}的，则可以通过使{{TouchEvent}}不可取消(以便忽略对
+{{Event/preventDefault()}}的调用)来允许滚动并行开始。因此，调度事件的代码能够观察到是否存在non-{{AddEventListenerOptions/passive}}
+侦听器，并使用它来清除正在调度的事件的{{Event/cancelable}}属性。
 
 <p>Ideally, any new event APIs are defined such that they do not need this property. (Use
 <a href="https://github.com/whatwg/dom/issues">whatwg/dom</a> for discussion.)
