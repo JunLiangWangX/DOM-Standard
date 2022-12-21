@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-20">2022-12-20</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-21">2022-12-21</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -75,7 +75,7 @@ a[href].issue-return {
       <li><a href="#constructing-events"><span class="secno">2.5</span> <span class="content">事件构造过程</span></a>
       <li><a href="#defining-event-interfaces"><span class="secno">2.6</span> <span class="content">定义事件接口</span></a>
       <li><a href="#interface-eventtarget"><span class="secno">2.7</span> <span class="content"><code class="idl"><span>EventTarget</span></code>接口</span></a>
-      <li><a href="#observing-event-listeners"><span class="secno">2.8</span> <span class="content">Observing event listeners</span></a>
+      <li><a href="#observing-event-listeners"><span class="secno">2.8</span> <span class="content">观察事件监听器</span></a>
       <li><a href="#dispatching-events"><span class="secno">2.9</span> <span class="content">Dispatching events</span></a>
       <li><a href="#firing-events"><span class="secno">2.10</span> <span class="content">Firing events</span></a>
       <li><a href="#action-versus-occurrence"><span class="secno">2.11</span> <span class="content">Action versus occurrence</span></a>
@@ -1109,7 +1109,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-type">type</dfn>(类型，string) 
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-callback">callback</dfn>(回调函数，null或<code class="idl"><a data-link-type="idl" href="#callbackdef-eventlistener" id="ref-for-callbackdef-eventlistener②">EventListener</a></code>) 
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-capture">capture</dfn>(是否捕获阶段触发，boolean，初值为false) 
-    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-passive">passive</dfn>(是否允许调用event.preventDefault()，null或boolean，初值null) 
+    <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-passive">passive</dfn>(是否不允许调用event.preventDefault()，null或boolean，初值null) 
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-once">once</dfn>(是否仅调用一次，boolean，初值false) 
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-signal">signal</dfn>(信号对象，允许使用<code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort①">abort()</a></code>方法移除监听器，null或<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②">AbortSignal</a></code>) 
     <li><dfn class="dfn-paneled" data-dfn-for="event listener" data-dfn-type="dfn" data-noexport id="event-listener-removed">removed</dfn> (用于内部处理，boolean，初值false) 
@@ -1169,7 +1169,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
       </div>
      </div>
      <p>当<var>options</var>的<code class="idl"><a data-link-type="idl" href="#dom-eventlisteneroptions-capture" id="ref-for-dom-eventlisteneroptions-capture①">capture</a></code>设置为true时，会阻止在<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④②">事件</a>的<code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase②">eventPhase</a></code>属性值为<code class="idl"><a data-link-type="idl" href="#dom-event-bubbling_phase" id="ref-for-dom-event-bubbling_phase②">BUBBLING_PHASE</a></code> (事件处于冒泡阶段)时调用<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback③">回调函数</a>。如果设置为false(或不存在)，则当<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④③">事件</a>的<code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase③">eventPhase</a></code>属性值为 <code class="idl"><a data-link-type="idl" href="#dom-event-capturing_phase" id="ref-for-dom-event-capturing_phase②">CAPTURING_PHASE</a></code>(事件处于捕获阶段)时不会调用<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback④">回调函数</a>。无论哪种方式，当<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④④">事件</a>的 <code class="idl"><a data-link-type="idl" href="#dom-event-eventphase" id="ref-for-dom-event-eventphase④">eventPhase</a></code>属性值为<code class="idl"><a data-link-type="idl" href="#dom-event-at_target" id="ref-for-dom-event-at_target②">AT_TARGET</a></code>(事件处于到达目标阶段)时，都会调用<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑤">回调函数</a>。 </p>
-     <p>当<var>options</var>的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive①">passive</a></code>设置为true时，表示<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑥">回调函数</a>不会通过调用 <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault⑨">preventDefault()</a></code>来取消事件。这用于启用<a href="#observing-event-listeners">§ 2.8 Observing event listeners</a>描述的性能优化。 </p>
+     <p>当<var>options</var>的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive①">passive</a></code>设置为true时，表示<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑥">回调函数</a>不会通过调用 <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault⑨">preventDefault()</a></code>来取消事件。这用于启用<a href="#observing-event-listeners">§ 2.8 观察事件监听器</a>描述的性能优化。 </p>
      <p>当<var>options</var>的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-once" id="ref-for-dom-addeventlisteneroptions-once">once</a></code>设置为true时，表示<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback⑦">回调函数</a>只会被调用一次，
   之后事件监听器将被删除。 </p>
      <p>如果为<var>options</var>的<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-signal" id="ref-for-dom-addeventlisteneroptions-signal">signal</a></code>参数传递了<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③">AbortSignal</a></code>信号，则当信号被中止时事件侦听器将被删除。 </p>
@@ -1340,19 +1340,14 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
     <li>
      <p>将<a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②②">调度</a><var>event</var>的结果返回给<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②③">this</a>. </p>
    </ol>
-   <h3 class="heading settled" data-level="2.8" id="observing-event-listeners"><span class="secno">2.8. </span><span class="content">Observing event listeners</span><a class="self-link" href="#observing-event-listeners"></a></h3>
-   <p>In general, developers do not expect the presence of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑨">event listener</a> to be observable.
-The impact of an <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②⓪">event listener</a> is determined by its <a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①③">callback</a>. That is, a developer
-adding a no-op <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②①">event listener</a> would not expect it to have any side effects. </p>
-   <p>Unfortunately, some event APIs have been designed such that implementing them efficiently
-requires observing <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②②">event listeners</a>. This can make the presence of listeners observable in
-that even empty listeners can have a dramatic performance impact on the behavior of the application.
-For example, touch and wheel events which can be used to block asynchronous scrolling. In some cases
-this problem can be mitigated by specifying the event to be <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑦">cancelable</a></code> only when there is
-at least one non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive④">passive</a></code> listener. For example,
-non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑤">passive</a></code> <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/touch-events/#idl-def-touchevent" id="ref-for-idl-def-touchevent③">TouchEvent</a></code> listeners must block scrolling, but if all
-listeners are <code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑥">passive</a></code> then scrolling can be allowed to start <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a> by making the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/touch-events/#idl-def-touchevent" id="ref-for-idl-def-touchevent④">TouchEvent</a></code> uncancelable (so that calls to <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①①">preventDefault()</a></code> are ignored). So code dispatching an event is able to observe the absence
-of non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑦">passive</a></code> listeners, and use that to clear the <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑧">cancelable</a></code> property of the event being dispatched. </p>
+   <h3 class="heading settled" data-level="2.8" id="observing-event-listeners"><span class="secno">2.8. </span><span class="content">观察事件监听器</span><a class="self-link" href="#observing-event-listeners"></a></h3>
+   <p>通常，开发人员不希望<a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener①⑨">事件侦听器</a>的存在或不存在是可被观察到的。 <a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②⓪">事件侦听器</a>的效果由其<a data-link-type="dfn" href="#event-listener-callback" id="ref-for-event-listener-callback①③">回调函数</a>决定。
+也就是说，开发人员添加不执行任何操作的<a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②①">事件侦听器</a>时不希望有任何副作用。 </p>
+   <p>不幸的是，一些事件API被设计为需要观察<a data-link-type="dfn" href="#concept-event-listener" id="ref-for-concept-event-listener②②">事件侦听器</a>才能有效实现。
+也就是说，即使是什么都不做的侦听器也会显着影响应用程序行为的处理能力，从而使其可以观察到是否有侦听器。
+例如，使用触摸/滚轮事件可以阻止异步滚动。在某些情况下，可以通过指定事件仅在至少有一个non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive④">passive</a></code>(passive为false)
+侦听器时才可取消来缓解此问题。例如，non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑤">passive</a></code><code class="idl"><a data-link-type="idl" href="https://w3c.github.io/touch-events/#idl-def-touchevent" id="ref-for-idl-def-touchevent③">TouchEvent</a></code>侦听器必须阻止滚动，
+但如果所有侦听器都是<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑥">passive</a></code>的，则可以通过使<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/touch-events/#idl-def-touchevent" id="ref-for-idl-def-touchevent④">TouchEvent</a></code>不可取消(以便忽略对 <code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①①">preventDefault()</a></code>的调用)来允许滚动并行开始。因此，调度事件的代码能够观察到是否存在non-<code class="idl"><a data-link-type="idl" href="#dom-addeventlisteneroptions-passive" id="ref-for-dom-addeventlisteneroptions-passive⑦">passive</a></code> 侦听器，并使用它来清除正在调度的事件的<code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑦">cancelable</a></code>属性。 </p>
    <p>Ideally, any new event APIs are defined such that they do not need this property. (Use <a href="https://github.com/whatwg/dom/issues">whatwg/dom</a> for discussion.) </p>
    <h3 class="heading settled" data-level="2.9" id="dispatching-events"><span class="secno">2.9. </span><span class="content">Dispatching events</span><a class="self-link" href="#dispatching-events"></a></h3>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-event-dispatch">dispatch</dfn> an <var>event</var> to a <var>target</var>, with an optional <var>legacy target override flag</var> and an optional <var>legacyOutputDidListenersThrowFlag</var>, run these steps: </p>
@@ -1639,8 +1634,8 @@ initialized, and a <var>legacy target override flag</var>, run these steps: </p>
    <p class="note" role="note">Fire in the context of DOM is short for <a data-link-type="dfn" href="#concept-event-create" id="ref-for-concept-event-create③">creating</a>, initializing, and <a data-link-type="dfn" href="#concept-event-dispatch" id="ref-for-concept-event-dispatch②④">dispatching</a> an <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑤">event</a>. <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire①">Fire an event</a> makes that process easier to write down. </p>
    <div class="example" id="firing-events-example">
     <a class="self-link" href="#firing-events-example"></a> 
-    <p>If the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑥">event</a> needs its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑦">bubbles</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑨">cancelable</a></code> attribute initialized,
- one could write "<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code>submit</code> at <var>target</var> with its <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable①⓪">cancelable</a></code> attribute initialized to true". </p>
+    <p>If the <a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑥">event</a> needs its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑦">bubbles</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑧">cancelable</a></code> attribute initialized,
+ one could write "<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code>submit</code> at <var>target</var> with its <code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑨">cancelable</a></code> attribute initialized to true". </p>
     <p>Or, when a custom constructor is needed, "<a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire③">fire an event</a> named <code>click</code> at <var>target</var> using <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent④">MouseEvent</a></code> with its <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-uievent-detail" id="ref-for-dom-uievent-detail">detail</a></code> attribute initialized to 1". </p>
     <p>Occasionally the return value is important: </p>
     <ol>
@@ -2108,7 +2103,7 @@ the following: </p>
         </ol>
       </ol>
      <li>
-      <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>: </p>
+      <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: </p>
       <ol>
        <li>
         <p>Let <var>amazingResult</var> be the result of doing some amazing things. </p>
@@ -12915,7 +12910,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://w3c.github.io/touch-events/#idl-def-touchevent">https://w3c.github.io/touch-events/#idl-def-touchevent</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-def-touchevent">2.2. Event接口</a> <a href="#ref-for-idl-def-touchevent①">(2)</a> <a href="#ref-for-idl-def-touchevent②">(3)</a>
-    <li><a href="#ref-for-idl-def-touchevent③">2.8. Observing event listeners</a> <a href="#ref-for-idl-def-touchevent④">(2)</a>
+    <li><a href="#ref-for-idl-def-touchevent③">2.8. 观察事件监听器</a> <a href="#ref-for-idl-def-touchevent④">(2)</a>
     <li><a href="#ref-for-idl-def-touchevent⑤">4.5. Interface Document</a> <a href="#ref-for-idl-def-touchevent⑥">(2)</a>
    </ul>
   </aside>
@@ -13267,8 +13262,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-in-parallel">
    <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-in-parallel">2.8. Observing event listeners</a>
-    <li><a href="#ref-for-in-parallel①">3.3. Using AbortController and AbortSignal objects in
+    <li><a href="#ref-for-in-parallel">3.3. Using AbortController and AbortSignal objects in
 APIs</a>
    </ul>
   </aside>
@@ -15945,8 +15939,8 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-event-cancelable">2.2. Event接口</a> <a href="#ref-for-dom-event-cancelable①">(2)</a> <a href="#ref-for-dom-event-cancelable②">(3)</a> <a href="#ref-for-dom-event-cancelable③">(4)</a> <a href="#ref-for-dom-event-cancelable④">(5)</a> <a href="#ref-for-dom-event-cancelable⑤">(6)</a>
     <li><a href="#ref-for-dom-event-cancelable⑥">2.7. EventTarget接口</a>
-    <li><a href="#ref-for-dom-event-cancelable⑦">2.8. Observing event listeners</a> <a href="#ref-for-dom-event-cancelable⑧">(2)</a>
-    <li><a href="#ref-for-dom-event-cancelable⑨">2.10. Firing events</a> <a href="#ref-for-dom-event-cancelable①⓪">(2)</a>
+    <li><a href="#ref-for-dom-event-cancelable⑦">2.8. 观察事件监听器</a>
+    <li><a href="#ref-for-dom-event-cancelable⑧">2.10. Firing events</a> <a href="#ref-for-dom-event-cancelable⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-event-returnvalue">
@@ -15961,7 +15955,7 @@ APIs</a>
     <li><a href="#ref-for-dom-event-preventdefault">2.1. DOM事件简介</a>
     <li><a href="#ref-for-dom-event-preventdefault①">2.2. Event接口</a> <a href="#ref-for-dom-event-preventdefault②">(2)</a> <a href="#ref-for-dom-event-preventdefault③">(3)</a> <a href="#ref-for-dom-event-preventdefault④">(4)</a> <a href="#ref-for-dom-event-preventdefault⑤">(5)</a> <a href="#ref-for-dom-event-preventdefault⑥">(6)</a> <a href="#ref-for-dom-event-preventdefault⑦">(7)</a> <a href="#ref-for-dom-event-preventdefault⑧">(8)</a>
     <li><a href="#ref-for-dom-event-preventdefault⑨">2.7. EventTarget接口</a> <a href="#ref-for-dom-event-preventdefault①⓪">(2)</a>
-    <li><a href="#ref-for-dom-event-preventdefault①①">2.8. Observing event listeners</a>
+    <li><a href="#ref-for-dom-event-preventdefault①①">2.8. 观察事件监听器</a>
     <li><a href="#ref-for-dom-event-preventdefault①②">2.11. Action versus occurrence</a>
    </ul>
   </aside>
@@ -16108,7 +16102,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-addeventlisteneroptions-passive">2.2. Event接口</a>
     <li><a href="#ref-for-dom-addeventlisteneroptions-passive①">2.7. EventTarget接口</a> <a href="#ref-for-dom-addeventlisteneroptions-passive②">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive③">(3)</a>
-    <li><a href="#ref-for-dom-addeventlisteneroptions-passive④">2.8. Observing event listeners</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑤">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑥">(3)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑦">(4)</a>
+    <li><a href="#ref-for-dom-addeventlisteneroptions-passive④">2.8. 观察事件监听器</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑤">(2)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑥">(3)</a> <a href="#ref-for-dom-addeventlisteneroptions-passive⑦">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-addeventlisteneroptions-once">
@@ -16136,7 +16130,7 @@ APIs</a>
     <li><a href="#ref-for-concept-event-listener">2.1. DOM事件简介</a> <a href="#ref-for-concept-event-listener①">(2)</a> <a href="#ref-for-concept-event-listener②">(3)</a> <a href="#ref-for-concept-event-listener③">(4)</a> <a href="#ref-for-concept-event-listener④">(5)</a> <a href="#ref-for-concept-event-listener⑤">(6)</a> <a href="#ref-for-concept-event-listener⑥">(7)</a> <a href="#ref-for-concept-event-listener⑦">(8)</a>
     <li><a href="#ref-for-concept-event-listener⑧">2.2. Event接口</a> <a href="#ref-for-concept-event-listener⑨">(2)</a>
     <li><a href="#ref-for-concept-event-listener①⓪">2.7. EventTarget接口</a> <a href="#ref-for-concept-event-listener①①">(2)</a> <a href="#ref-for-concept-event-listener①②">(3)</a> <a href="#ref-for-concept-event-listener①③">(4)</a> <a href="#ref-for-concept-event-listener①④">(5)</a> <a href="#ref-for-concept-event-listener①⑤">(6)</a> <a href="#ref-for-concept-event-listener①⑥">(7)</a> <a href="#ref-for-concept-event-listener①⑦">(8)</a> <a href="#ref-for-concept-event-listener①⑧">(9)</a>
-    <li><a href="#ref-for-concept-event-listener①⑨">2.8. Observing event listeners</a> <a href="#ref-for-concept-event-listener②⓪">(2)</a> <a href="#ref-for-concept-event-listener②①">(3)</a> <a href="#ref-for-concept-event-listener②②">(4)</a>
+    <li><a href="#ref-for-concept-event-listener①⑨">2.8. 观察事件监听器</a> <a href="#ref-for-concept-event-listener②⓪">(2)</a> <a href="#ref-for-concept-event-listener②①">(3)</a> <a href="#ref-for-concept-event-listener②②">(4)</a>
     <li><a href="#ref-for-concept-event-listener②③">2.9. Dispatching events</a>
    </ul>
   </aside>
@@ -16152,7 +16146,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-event-listener-callback">2.1. DOM事件简介</a>
     <li><a href="#ref-for-event-listener-callback①">2.7. EventTarget接口</a> <a href="#ref-for-event-listener-callback②">(2)</a> <a href="#ref-for-event-listener-callback③">(3)</a> <a href="#ref-for-event-listener-callback④">(4)</a> <a href="#ref-for-event-listener-callback⑤">(5)</a> <a href="#ref-for-event-listener-callback⑥">(6)</a> <a href="#ref-for-event-listener-callback⑦">(7)</a> <a href="#ref-for-event-listener-callback⑧">(8)</a> <a href="#ref-for-event-listener-callback⑨">(9)</a> <a href="#ref-for-event-listener-callback①⓪">(10)</a> <a href="#ref-for-event-listener-callback①①">(11)</a> <a href="#ref-for-event-listener-callback①②">(12)</a>
-    <li><a href="#ref-for-event-listener-callback①③">2.8. Observing event listeners</a>
+    <li><a href="#ref-for-event-listener-callback①③">2.8. 观察事件监听器</a>
     <li><a href="#ref-for-event-listener-callback①④">2.9. Dispatching events</a> <a href="#ref-for-event-listener-callback①⑤">(2)</a>
    </ul>
   </aside>
