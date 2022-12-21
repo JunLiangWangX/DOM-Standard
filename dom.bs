@@ -1113,206 +1113,187 @@ dictionary AddEventListenerOptions : EventListenerOptions {
 <p>理想情况下，任何新的事件 API 都被定义为不需要此属性。(在<a href="https://github.com/whatwg/dom/issues">whatwg/dom</a>进行讨论)
 
 
-<h3 id=dispatching-events>Dispatching events</h3>
+<h3 id=dispatching-events>分派事件</h3>
 
-<p>To <dfn export id=concept-event-dispatch>dispatch</dfn> an <var>event</var> to a
-<var>target</var>, with an optional <var>legacy target override flag</var> and an optional
-<var>legacyOutputDidListenersThrowFlag</var>, run these steps:
+<p><dfn export id=concept-event-dispatch lt="dispatch">分派</dfn>事件到<var>target</var>，
+给定可选参数<var>legacy target override flag</var>与<var>legacyOutputDidListenersThrowFlag</var>，
+将运行以下步骤：
 
 <ol>
- <li><p>Set <var>event</var>'s <a>dispatch flag</a>.
+ <li><p>设<var>event</var>的<a>dispatch flag</a>。
 
  <li>
-  <p>Let <var>targetOverride</var> be <var>target</var>, if <var>legacy target override flag</var>
-  is not given, and <var>target</var>'s <a>associated <code>Document</code></a> otherwise.
+  <p>如果没给定<var>legacy target override flag</var>参数，则设<var>targetOverride</var>为原来的事件目标，也就是<var>target</var>，
+  否则<var>targetOverride</var>的值就是<var>target</var>元素所属的文档(即<var>target</var>的<a>associated Document</a>)。
   [[!HTML]]
 
-  <p class=note><var>legacy target override flag</var> is only used by HTML and only when
-  <var>target</var> is a {{Window}} object.
+  <p class=note><var>legacy target override flag</var>指示事件目标是否应该被覆盖。它仅当<var>target</var>是一个{{Window}}对象时由HTML使用。
+  也就是说，如果 target 不是一个 Window 对象，则无论遗留目标覆盖标志是 true 还是 false，事件目标都不会被覆盖。这个限制是为了防止黑客攻击。
+  例如，如果一个黑客能够使用遗留目标覆盖标志来改变事件目标，那么他可能会尝试将事件目标设置为某个假的文档，从而在用户点击了该文档时执行恶意脚本。
 
- <li><p>Let <var>activationTarget</var> be null.
+ <li><p>设<var>activationTarget</var>为null。
 
- <li><p>Let <var>relatedTarget</var> be the result of <a>retargeting</a> <var>event</var>'s
- <a for=Event>relatedTarget</a> against <var>target</var>.
+ <li><p>设<var>relatedTarget</var>为<var>event</var>的<a for=Event>relatedTarget</a><a lt="retargeting">重定向</a>到<var>target</var>的结果。
 
  <li>
-  <p>If <var>target</var> is not <var>relatedTarget</var> or <var>target</var> is <var>event</var>'s
-  <a for=Event>relatedTarget</a>, then:
+  <p>如果<var>target</var>不是<var>relatedTarget</var>或者<var>target</var>是<var>event</var>的
+  <a for=Event>relatedTarget</a>，则：
 
   <ol>
-   <li><p>Let <var>touchTargets</var> be a new <a for=/>list</a>.
+   <li><p>设<var>touchTargets</var>为新的<a for=/>list</a>。
 
-   <li><p><a for=list>For each</a> <var>touchTarget</var> of <var>event</var>'s
-   <a for=Event>touch target list</a>, <a for=list>append</a> the result of <a>retargeting</a>
-   <var>touchTarget</var> against <var>target</var> to <var>touchTargets</var>.
+   <li><p><a for=list lt="For each">遍历</a><var>event</var>的<a for=Event>touch target list</a>属性中的<var>touchTarget</var>，
+   将<var>touchTarget</var><a lt="retargeting">重定向</a>到<var>target</var>的结果<a for=list lt="append">添加</a>到<var>touchTargets</var>。
 
-   <li><p><a>Append to an event path</a> with <var>event</var>, <var>target</var>,
-   <var>targetOverride</var>, <var>relatedTarget</var>, <var>touchTargets</var>, and false.
+   <li><p>给定<var>event</var>、<var>target</var>、<var>targetOverride</var>、<var>relatedTarget</var>、<var>touchTargets</var>和false参数，
+   执行<a lt="Append to an event path">添加事件路径</a>步骤。
 
-   <li><p>Let <var>isActivationEvent</var> be true, if <var>event</var> is a {{MouseEvent}} object
-   and <var>event</var>'s {{Event/type}} attribute is "<code>click</code>"; otherwise false.
+   <li><p>如果<var>event</var>是{{MouseEvent}}对象且<var>event</var>的{{Event/type}}属性为"<code>click</code>"，则设<var>isActivationEvent</var>为true，
+   否则设为false。
 
-   <li><p>If <var>isActivationEvent</var> is true and <var>target</var> has
-   <a for=EventTarget>activation behavior</a>, then set <var>activationTarget</var> to
-   <var>target</var>.
+   <li><p>如果<var>isActivationEvent</var>为true且<var>target</var>存在<a for=EventTarget lt="activation behavior">激活行为</a>，
+   则设<var>activationTarget</var>为<var>target</var>。
 
-   <li><p>Let <var>slottable</var> be <var>target</var>, if <var>target</var> is a <a>slottable</a>
-   and is <a for=slottable>assigned</a>, and null otherwise.
+   <li><p>如果<var>target</var>是<a for=slottable lt="assigned">已分配</a>的<a>slottable</a>，则设<var>slottable</var>为<var>target</var>，否则为null。
 
-   <li><p>Let <var>slot-in-closed-tree</var> be false.
+   <li><p>设<var>slot-in-closed-tree</var>为false。
 
-   <li><p>Let <var>parent</var> be the result of invoking <var>target</var>'s <a>get the parent</a>
-   with <var>event</var>.
+   <li><p>给定参数<var>event</var>调用<var>target</var>的<a>get the parent</a>算法，设<var>parent</var>为其返回结果。
 
    <li>
-    <p>While <var>parent</var> is non-null:</p>
+    <p>当<var>parent</var>不为null：</p>
 
     <ol>
      <li>
-      <p>If <var>slottable</var> is non-null:
+      <p>如果<var>slottable</var>不为null。
 
       <ol>
-       <li><p>Assert: <var>parent</var> is a <a for=/>slot</a>.
+       <li><p>确定：<var>parent</var>是一个<a for=/>slot</a>。
 
-       <li><p>Set <var>slottable</var> to null.
+       <li><p>设<var>slottable</var>为null。
 
-       <li><p>If <var>parent</var>'s <a for=tree>root</a> is a <a for=/>shadow root</a> whose
-       <a for=ShadowRoot>mode</a> is "<code>closed</code>", then set <var>slot-in-closed-tree</var>
-       to true.
+       <li><p>如果var>parent</var>的<a for=tree>root</a>是一个<a for=ShadowRoot>mode</a>属性为"<code>closed</code>"的<a for=/>shadow root</a>，
+       则设<var>slot-in-closed-tree</var>为true。
       </ol>
 
-     <li><p>If <var>parent</var> is a <a>slottable</a> and is <a for=slottable>assigned</a>, then
-     set <var>slottable</var> to <var>parent</var>.
+     <li><p>如果<var>parent</var>是一个 <a for=slottable lt="assigned">已分配</a>的<a>slottable</a>，则设<var>slottable</var>为<var>parent</var>。
 
-     <li><p>Let <var>relatedTarget</var> be the result of <a>retargeting</a> <var>event</var>'s
-     <a for=Event>relatedTarget</a> against <var>parent</var>.
+     <li><p>设<var>relatedTarget</var>为<var>event</var>的<var>relatedTarget</var><a lt="retargeting">重定向</a>到<var>parent</var>的结果。
 
-     <li><p>Let <var>touchTargets</var> be a new <a for=/>list</a>.
+     <li><p>设<var>touchTargets</var>为新的<a for=/>list</a>。
 
-     <li><p><a for=list>For each</a> <var>touchTarget</var> of <var>event</var>'s
-     <a for=Event>touch target list</a>, <a for=list>append</a> the result of <a>retargeting</a>
-     <var>touchTarget</var> against <var>parent</var> to <var>touchTargets</var>.
+     <li><p><a for=list lt="For each">遍历</a><var>event</var>的<a for=Event>touch target list</a>属性中的<var>touchTarget</var>，
+     将<var>touchTarget</var><a lt="retargeting">重定向</a>到<var>parent</var>的结果添加到<var>touchTargets</var>。
 
      <li>
-      <p>If <var>parent</var> is a {{Window}} object, or <var>parent</var> is a <a for=/>node</a>
-      and <var>target</var>'s <a for=tree>root</a> is a <a>shadow-including inclusive ancestor</a>
-      of <var>parent</var>, then:
+      <p>如果<var>parent</var>是一个{{Window}}对象，或者<var>parent</var>是一个<a for=/>node</a>并且<var>target</var>的<a for=tree>root</a>
+      是<var>parent</var>的<a lt="shadow-including inclusive ancestor">shadow-including包容性祖先</a>，则：
 
       <ol>
-       <li><p>If <var>isActivationEvent</var> is true, <var>event</var>'s {{Event/bubbles}}
-       attribute is true, <var>activationTarget</var> is null, and <var>parent</var> has
-       <a for=EventTarget>activation behavior</a>, then set <var>activationTarget</var> to
-       <var>parent</var>.
+       <li><p>如果<var>isActivationEvent</var>为true，<var>event</var>的{{Event/bubbles}}属性为true，
+       var>activationTarget</var>为unll以及<var>parent</var>存在<a for=EventTarget lt="activation behavior">激活行为</a>，
+       则设<var>activationTarget</var>为<var>parent</var>。
 
-       <li><p><a>Append to an event path</a> with <var>event</var>, <var>parent</var>, null,
-       <var>relatedTarget</var>, <var>touchTargets</var>, and <var>slot-in-closed-tree</var>.
+       <li><p>给定<var>event</var>、<var>parent</var>、null、<var>relatedTarget</var>、<var>touchTargets</var>和<var>slot-in-closed-tree</var>参数，
+       执行<a lt="Append to an event path">添加事件路径</a>步骤。
       </ol>
 
-     <li><p>Otherwise, if <var>parent</var> is <var>relatedTarget</var>, then set <var>parent</var>
-     to null.
+     <li><p>否则，如果<var>parent</var>是<var>relatedTarget</var>，则设<var>parent</var>为null。
 
      <li>
-      <p>Otherwise, set <var>target</var> to <var>parent</var> and then:
+      <p>否则，设<var>target</var>为<var>parent</var>并且：
 
       <ol>
-       <li><p>If <var>isActivationEvent</var> is true, <var>activationTarget</var> is null, and
-       <var>target</var> has <a for=EventTarget>activation behavior</a>, then set
-       <var>activationTarget</var> to <var>target</var>.
+       <li><p>如果<var>isActivationEvent</var>为true，<var>activationTarget</var>为null以及<var>target</var>
+       存在<a for=EventTarget lt="activation behavior">激活行为</a>，则设<var>activationTarget</var>为<var>target</var>。
 
-       <li><p><a>Append to an event path</a> with <var>event</var>, <var>parent</var>,
-       <var>target</var>, <var>relatedTarget</var>, <var>touchTargets</var>, and
-       <var>slot-in-closed-tree</var>.
+       <li><p>给定<var>event</var>、<var>parent</var>、<var>target</var>、<var>relatedTarget</var>、<var>touchTargets</var>
+       和<var>slot-in-closed-tree</var>参数，执行<a lt="Append to an event path">添加事件路径</a>步骤。
       </ol>
 
-     <li><p>If <var>parent</var> is non-null, then set <var>parent</var> to the result of invoking
-     <var>parent</var>'s <a>get the parent</a> with <var>event</var>.
+     <li><p>如果<var>parent</var>不为null，给定参数<var>event</var>调用<var>parent</var>的<a>get the parent</a>算法，
+     设<var>parent</var>为其结果。
 
-     <li><p>Set <var>slot-in-closed-tree</var> to false.
+     <li><p>设<var>slot-in-closed-tree</var>为false。
     </ol>
 
-   <li><p>Let <var>clearTargetsStruct</var> be the last struct in <var>event</var>'s
-   <a for=Event>path</a> whose <a for=Event/path>shadow-adjusted target</a> is non-null.
+   <li><p>让<var>clearTargetsStruct</var>成为<var>event</var>的<a for=Event>path</a>中<a for=Event/path>shadow-adjusted target</a>
+   不为null的最后一个结构。
 
-   <li><p>Let <var>clearTargets</var> be true if <var>clearTargetsStruct</var>'s
-   <a for=Event/path>shadow-adjusted target</a>, <var>clearTargetsStruct</var>'s
-   <a for=Event/path>relatedTarget</a>, or an {{EventTarget}} object in
-   <var>clearTargetsStruct</var>'s <a for=Event/path>touch target list</a> is a <a for=/>node</a>
-   and its <a for=tree>root</a> is a <a for=/>shadow root</a>; otherwise false.
+   <li><p>如果<var>clearTargetsStruct</var>的<a for=Event/path>shadow-adjusted target</a>、<var>clearTargetsStruct</var>
+   的<a for=Event/path>relatedTarget</a>或<var>clearTargetsStruct</var>的<a for=Event/path>touch target list</a>
+   中的{{EventTarget}}对象是一个<a for=/>node</a>且它的<a for=tree>root</a>是<a for=/>shadow root</a>，
+   则设<var>clearTargets</var>为true，否则为false。
 
-   <li><p>If <var>activationTarget</var> is non-null and <var>activationTarget</var> has
-   <a for=EventTarget>legacy-pre-activation behavior</a>, then run <var>activationTarget</var>'s
-   <a for=EventTarget>legacy-pre-activation behavior</a>.
+   <li><p>如果<var>activationTarget</var>不为null且<var>activationTarget</var>存在
+   <a for=EventTarget lt="legacy-pre-activation behavior">遗留预激活行为</a>，则执行
+   <var>activationTarget</var>的<a for=EventTarget lt="legacy-pre-activation behavior">遗留预激活行为</a>。
 
    <li>
-    <p><a for=list>For each</a> <var>struct</var> in <var>event</var>'s <a for=Event>path</a>, in
-    reverse order:
+    <p>以倒序<a for=list lt="For each">遍历</a><var>event</var>的<a for=Event>path</a>结构：
 
     <ol>
-     <li><p>If <var>struct</var>'s <a for=Event/path>shadow-adjusted target</a> is non-null, then
-     set <var>event</var>'s {{Event/eventPhase}} attribute to {{Event/AT_TARGET}}.
+     <li><p>如果结构的<a for=Event/path>shadow-adjusted target</a>不为null，则设<var>event</var>
+     的{{Event/eventPhase}}属性为{{Event/AT_TARGET}}。
 
-     <li><p>Otherwise, set <var>event</var>'s {{Event/eventPhase}} attribute to
-     {{Event/CAPTURING_PHASE}}.
+     <li><p>否则，则设<var>event</var>的{{Event/eventPhase}}属性为{{Event/CAPTURING_PHASE}}。
 
-     <li><p><a>Invoke</a> with <var>struct</var>, <var>event</var>, "<code>capturing</code>", and
-     <var>legacyOutputDidListenersThrowFlag</var> if given.
+     <li><p>给定参数<var>struct</var>、<var>event</var>、"<code>capturing</code>"以及
+     <var>legacyOutputDidListenersThrowFlag</var><a lt="Invoke">调用事件监听器</a>。
     </ol>
 
    <li>
-    <p><a for=list>For each</a> <var>struct</var> in <var>event</var>'s <a for=Event>path</a>:
+    <p><a for=list lt="For each">遍历</a><var>struct</var>的<a for=Event>path</a>结构：
 
     <ol>
-     <li><p>If <var>struct</var>'s <a for=Event/path>shadow-adjusted target</a> is non-null, then
-     set <var>event</var>'s {{Event/eventPhase}} attribute to {{Event/AT_TARGET}}.
+     <li><p>如果结构的<a for=Event/path>shadow-adjusted target</a>不为null，
+     则设<var>event</var>的{{Event/eventPhase}}属性为{{Event/AT_TARGET}}。
 
      <li>
-      <p>Otherwise:
+      <p>否则：
 
       <ol>
-       <li><p>If <var>event</var>'s {{Event/bubbles}} attribute is false, then
-       <a for=iteration>continue</a>.
+       <li><p>如果<var>event</var>的{{Event/bubbles}}属性值为false，则<a for=iteration>continue</a>。
 
-       <li><p>Set <var>event</var>'s {{Event/eventPhase}} attribute to {{Event/BUBBLING_PHASE}}.
+       <li><p>设<var>event</var>的{{Event/eventPhase}}属性值为{{Event/BUBBLING_PHASE}}。
       </ol>
 
-     <li><p><a>Invoke</a> with <var>struct</var>, <var>event</var>, "<code>bubbling</code>", and
-     <var>legacyOutputDidListenersThrowFlag</var> if given.
+     <li><p>给定参数<var>struct</var>、<var>event</var>、"<code>bubbling</code>"以及
+     <var>legacyOutputDidListenersThrowFlag</var><a lt="Invoke">调用事件监听器</a>。
     </ol>
   </ol>
 
- <li><p>Set <var>event</var>'s {{Event/eventPhase}} attribute to {{Event/NONE}}.
+ <li><p>设<var>event</var>的{{Event/eventPhase}}属性值为{{Event/NONE}}。
 
- <li><p>Set <var>event</var>'s {{Event/currentTarget}} attribute to null.
+ <li><p>设<var>event</var>的{{Event/currentTarget}}属性值为null。
 
- <li><p>Set <var>event</var>'s <a for=Event>path</a> to the empty list.
+ <li><p>设置<var>event</var>的<a for=Event>path</a>属性值为空list。
 
- <li><p>Unset <var>event</var>'s <a>dispatch flag</a>, <a>stop propagation flag</a>, and
- <a>stop immediate propagation flag</a>.
+ <li><p>取消设置<var>event</var>的<a>dispatch flag</a>，<a>stop propagation flag</a>以及<a>stop immediate propagation flag</a>。
 
- <li>
-  <p>If <var>clearTargets</var>, then:
+ <li> 
+  <p>如果<var>clearTargets</var>为true，则：
 
   <ol>
-   <li><p>Set <var>event</var>'s <a for=Event>target</a> to null.
+   <li><p>设<var>event</var>的<a for=Event>target</a>为null。
 
-   <li><p>Set <var>event</var>'s <a for=Event>relatedTarget</a> to null.
+   <li><p>设<var>event</var>的<a for=Event>relatedTarget</a>为null。
 
-   <li><p>Set <var>event</var>'s <a for=Event>touch target list</a> to the empty list.
+   <li><p>设<var>event</var>的<a for=Event>touch target list</a>为空list。
   </ol>
 
  <li>
-  <p>If <var>activationTarget</var> is non-null, then:
+  <p>如果<var>activationTarget</var>不为空，则：
 
   <ol>
-   <li><p>If <var>event</var>'s <a>canceled flag</a> is unset, then run
-   <var>activationTarget</var>'s <a for=EventTarget>activation behavior</a> with <var>event</var>.
+   <li><p>如果<var>event</var>的<a>canceled flag</a>没被设置，则给定<var>event</var>参数运行
+   <var>activationTarget</var>的<a for=EventTarget lt="activation behavior">激活行为</a>。
 
-   <li><p>Otherwise, if <var>activationTarget</var> has
-   <a for=EventTarget>legacy-canceled-activation behavior</a>, then run
-   <var>activationTarget</var>'s <a for=EventTarget>legacy-canceled-activation behavior</a>.
+   <li><p>否则，如果<var>activationTarget</var>存在<a for=EventTarget lt="legacy-canceled-activation behavior">遗留取消激活行为</a>，
+   则运行<var>activationTarget</var>的<a for=EventTarget lt="legacy-canceled-activation behavior">遗留取消激活行为</a>。
   </ol>
 
- <li><p>Return false if <var>event</var>'s <a>canceled flag</a> is set; otherwise true.
+ <li><p>如果<var>event</var>的<a>canceled flag</a>被设置则返回false，否则返回true。
 </ol>
 
 <p>To <dfn noexport id=concept-event-path-append>append to an event path</dfn>, given an
