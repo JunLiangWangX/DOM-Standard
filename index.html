@@ -1648,7 +1648,7 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
    <div class="example" id="firing-events-example">
     <a class="self-link" href="#firing-events-example"></a> 
     <p>如果<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑤">event</a>需要初始化<code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑦">bubbles</a></code>或<code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑧">cancelable</a></code>这些属性，一种方法是写成"在<var>target</var> <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire②">触发</a>一个名为<code>submit</code>的事件，其<code class="idl"><a data-link-type="idl" href="#dom-event-cancelable" id="ref-for-dom-event-cancelable⑨">cancelable</a></code>属性初始化为true"。 </p>
-    <p>或者，当需要自定义构造函数时，"使用<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent④">MouseEvent</a></code>将其<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-uievent-detail" id="ref-for-dom-uievent-detail">detail</a></code>属性初始化为1，在var>target <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire③">触发</a>一个名为<code>click</code>的事件"。 </p>
+    <p>或者，当需要自定义构造函数时，"使用<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#mouseevent" id="ref-for-mouseevent④">MouseEvent</a></code>将其<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-uievent-detail" id="ref-for-dom-uievent-detail">detail</a></code>属性初始化为1，在<var>target</var> <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire③">触发</a>一个名为<code>click</code>的事件"。 </p>
     <p>有时候返回值也是非常重要的： </p>
     <ol>
      <li>
