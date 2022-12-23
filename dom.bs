@@ -1484,7 +1484,7 @@ dictionary AddEventListenerOptions : EventListenerOptions {
  <p>如果<a>event</a>需要初始化{{Event/bubbles}}或{{Event/cancelable}}这些属性，一种方法是写成"在<var>target</var>
  <a lt="fire an event">触发</a>一个名为<code>submit</code>的事件，其{{Event/cancelable}}属性初始化为true"。
 
- <p>或者，当需要自定义构造函数时，"使用{{MouseEvent}}将其{{UIEvent/detail}}属性初始化为1，在var>target</var>
+ <p>或者，当需要自定义构造函数时，"使用{{MouseEvent}}将其{{UIEvent/detail}}属性初始化为1，在<var>target</var>
  <a lt="fire an event">触发</a>一个名为<code>click</code>的事件"。
 
  <p>有时候返回值也是非常重要的：
