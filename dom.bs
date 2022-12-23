@@ -1296,82 +1296,75 @@ dictionary AddEventListenerOptions : EventListenerOptions {
  <li><p>如果<var>event</var>的<a>canceled flag</a>被设置则返回false，否则返回true。
 </ol>
 
-<p>To <dfn noexport id=concept-event-path-append>append to an event path</dfn>, given an
-<var>event</var>, <var>invocationTarget</var>, <var>shadowAdjustedTarget</var>,
-<var>relatedTarget</var>, <var>touchTargets</var>, and a <var>slot-in-closed-tree</var>, run these
-steps:</p>
+<p>给定参数<var>event</var>、<var>invocationTarget</var>、<var>shadowAdjustedTarget</var>、<var>relatedTarget</var>、
+<var>touchTargets</var>以及<var>slot-in-closed-tree</var>，<dfn noexport id=concept-event-path-append lt="append to an event path">添加到事件的path</dfn>，
+将运行以下步骤：
 
 <ol>
- <li><p>Let <var>invocationTargetInShadowTree</var> be false.
+ <li><p>设<var>invocationTargetInShadowTree</var>为false。
 
- <li><p>If <var>invocationTarget</var> is a <a for=/>node</a> and its <a for=tree>root</a> is a
- <a for=/>shadow root</a>, then set <var>invocationTargetInShadowTree</var> to true.
+ <li><p>如果<var>invocationTarget</var>是<a for=/>node</a>对象且它的<a for=tree>root</a>是<a for=/>shadow root</a>，
+ 则设<var>invocationTargetInShadowTree</var>为true。
 
- <li><p>Let <var>root-of-closed-tree</var> be false.
+ <li><p>设<var>root-of-closed-tree</var>为false。
 
- <li><p>If <var>invocationTarget</var> is a <a for=/>shadow root</a> whose <a for=ShadowRoot>mode</a>
- is "<code>closed</code>", then set <var>root-of-closed-tree</var> to true.
+ <li><p><var>invocationTarget</var>是属性<a for=ShadowRoot>mode</a>为"<code>closed</code>"的<a for=/>shadow root</a>，
+ 则设<var>root-of-closed-tree</var>为true。
 
- <li><p><a for=list>Append</a> a new <a for=/>struct</a> to <var>event</var>'s <a for=Event>path</a>
- whose <a for=Event/path>invocation target</a> is <var>invocationTarget</var>,
- <a for=Event/path>invocation-target-in-shadow-tree</a> is <var>invocationTargetInShadowTree</var>,
- <a for=Event/path>shadow-adjusted target</a> is <var>shadowAdjustedTarget</var>,
- <a for=Event/path>relatedTarget</a> is <var>relatedTarget</var>,
- <a for=Event/path>touch target list</a> is <var>touchTargets</var>,
- <a for=Event/path>root-of-closed-tree</a> is <var>root-of-closed-tree</var>, and
- <a for=Event/path>slot-in-closed-tree</a> is <var>slot-in-closed-tree</var>.
+ <li><p>构造新的结构，将
+ <var>invocationTarget</var>赋值给<a for=Event/path>invocation target</a>、
+ <var>invocationTargetInShadowTree</var>赋值给<a for=Event/path>invocation-target-in-shadow-tree</a>、
+ <var>shadowAdjustedTarget</var>赋值给<a for=Event/path>shadow-adjusted target</a>、
+ <var>relatedTarget</var>赋值给<a for=Event/path>relatedTarget</a>、
+ <var>touchTargets</var>赋值给<a for=Event/path>touch target list</a>、
+ <var>root-of-closed-tree</var>赋值给<a for=Event/path>root-of-closed-tree</a>、
+ <var>slot-in-closed-tree</var>赋值给<a for=Event/path>slot-in-closed-tree</a>，
+ 并将其<a for=list lt="Append">添加</a>到<var>event</var>的<a for=Event>path</a>属性中。
 </ol>
 
-<p>To <dfn noexport id=concept-event-listener-invoke>invoke</dfn>, given a <var>struct</var>,
-<var>event</var>, <var>phase</var>, and an optional <var>legacyOutputDidListenersThrowFlag</var>,
-run these steps:
+<p>给定参数<var>struct</var>、<var>event</var>、<var>phase</var>以及可选定参数<var>legacyOutputDidListenersThrowFlag</var>，
+<dfn noexport id=concept-event-listener-invoke lt="invoke">调用事件监听器</dfn>事件监听器，将运行以下步骤：
 
 <ol>
- <li><p>Set <var>event</var>'s <a for=Event>target</a> to the
- <a for=Event/path>shadow-adjusted target</a> of the last struct in <var>event</var>'s
- <a for=Event>path</a>, that is either <var>struct</var> or preceding <var>struct</var>, whose
- <a for=Event/path>shadow-adjusted target</a> is non-null.
+ <li><p>设<var>event</var>的<a for=Event>target</a>为<var>event</var>的<a for=Event>path</a>属性值中最后一个
+ <a for=Event/path>shadow-adjusted target</a>值为非空的结构中的<a for=Event/path>shadow-adjusted target</a>。
 
- <li><p>Set <var>event</var>'s <a for=Event>relatedTarget</a> to <var>struct</var>'s
- <a for=Event/path>relatedTarget</a>.
+ <li><p>设<var>event</var>的 <a for=Event>relatedTarget</a>为<var>struct</var>的<a for=Event/path>relatedTarget</a>属性值。
 
- <li><p>Set <var>event</var>'s <a for=Event>touch target list</a> to <var>struct</var>'s
- <a for=Event/path>touch target list</a>.
+ <li><p>设<var>event</var>的<a for=Event>touch target list</a>为<var>struct</var>的<a for=Event/path>touch target list</a>
+ 属性值。
 
- <li><p>If <var>event</var>'s <a>stop propagation flag</a> is set, then return.
+ <li><p>如果<var>event</var>的<a>stop propagation flag</a>被设置，则直接return。
 
- <li><p>Initialize <var>event</var>'s {{Event/currentTarget}} attribute to <var>struct</var>'s
- <a for=Event/path>invocation target</a>.
+ <li><p>初始化<var>event</var>的{{Event/currentTarget}}属性值为<var>struct</var>的<a for=Event/path>invocation target</a>
+ 属性值。
 
  <li>
-  <p>Let <var>listeners</var> be a <a for=list>clone</a> of <var>event</var>'s
-  {{Event/currentTarget}} attribute value's <a for=EventTarget>event listener list</a>.
+  <p>设<var>listeners</var>为<var>event</var>的{{Event/currentTarget}}属性值中的<a for=EventTarget>event listener list</a>
+  的<a for=list lt="clone">克隆</a>。
 
-  <p class=note>This avoids <a>event listeners</a> added after this point from being
-  run. Note that removal still has an effect due to the <a for="event listener">removed</a> field.
+  <p class=note>这避免了在此之后添加的<a>event listeners</a>被运行。请注意，由于<a for="event listener" lt="removed">删除</a>
+  了字段，删除仍然有效。
 
- <li><p>Let <var>invocationTargetInShadowTree</var> be <var>struct</var>'s
- <a for=Event/path>invocation-target-in-shadow-tree</a>.
+ <li><p>设<var>invocationTargetInShadowTree</var>为<var>struct</var>的
+ <a for=Event/path>invocation-target-in-shadow-tree</a>。
 
- <li><p>Let <var>found</var> be the result of running <a>inner invoke</a> with <var>event</var>,
- <var>listeners</var>, <var>phase</var>, <var>invocationTargetInShadowTree</var>, and
- <var>legacyOutputDidListenersThrowFlag</var> if given.
+ <li><p>给定<var>event</var>、<var>listeners</var>、<var>phase</var>、<var>invocationTargetInShadowTree</var>以及可选的
+ <var>legacyOutputDidListenersThrowFlag</var>参数运行<a lt="inner invoke">内部调用事件监听器</a>步骤。设found为其返回结果。
 
  <li>
-  <p>If <var>found</var> is false and <var>event</var>'s {{Event/isTrusted}} attribute is true,
-  then:
+  <p>如果<var>found</var>为false且<var>event</var>的{{Event/isTrusted}}属性值为true，则：
 
   <ol>
-   <li><p>Let <var>originalEventType</var> be <var>event</var>'s {{Event/type}} attribute value.
+   <li><p>设<var>originalEventType</var>为<var>event</var>的{{Event/type}}属性值。
 
    <li>
-    <p>If <var>event</var>'s {{Event/type}} attribute value is a match for any of the strings in the
-    first column in the following table, set <var>event</var>'s {{Event/type}} attribute value to
-    the string in the second column on the same row as the matching string, and return otherwise.
+    <p>如果<var>event</var>的{{Event/type}}属性值与下表中第一列中的任何字符串匹配，则将<var>event</var>的{{Event/type}}
+    属性值设置为与匹配字符串在同一行的第二列中的字符串，否则return。
 
     <table>
      <thead>
-      <tr><th>Event type<th>Legacy event type
+      <tr><th>事件类型<th>遗留事件类型
      <tbody>
       <tr><td>"<code>animationend</code>"<td>"<code>webkitAnimationEnd</code>"
       <tr><td>"<code>animationiteration</code>"<td>"<code>webkitAnimationIteration</code>"
@@ -1379,150 +1372,138 @@ run these steps:
       <tr><td>"<code>transitionend</code>"<td>"<code>webkitTransitionEnd</code>"
     </table>
 
-   <li><p><a>Inner invoke</a> with <var>event</var>, <var>listeners</var>, <var>phase</var>,
-   <var>invocationTargetInShadowTree</var>, and <var>legacyOutputDidListenersThrowFlag</var>
-   if given.
+   <li><p>给定<var>event</var>、<var>listeners</var>、<var>phase</var>、<var>invocationTargetInShadowTree</var>
+   以及可选的<var>legacyOutputDidListenersThrowFlag</var>参数运行<a lt="inner invoke">内部调用事件监听器</a>步骤。
 
-   <li><p>Set <var>event</var>'s {{Event/type}} attribute value to <var>originalEventType</var>.
+   <li><p>设<var>event</var>的{{Event/type}}属性为<var>originalEventType</var>。
   </ol>
 </ol>
 
-<p>To <dfn noexport id=concept-event-listener-inner-invoke>inner invoke</dfn>, given an
-<var>event</var>, <var>listeners</var>, <var>phase</var>, <var>invocationTargetInShadowTree</var>,
-and an optional <var>legacyOutputDidListenersThrowFlag</var>, run these steps:
+<p>给定<var>event</var>、<var>listeners</var>、 <var>phase</var>、<var>invocationTargetInShadowTree</var>
+以及可选的<var>legacyOutputDidListenersThrowFlag</var>参数，
+<dfn noexport id=concept-event-listener-inner-invoke lt="inner invoke">内部调用事件监听器</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>found</var> be false.
+ <li><p>设<var>found</var>为false。
 
  <li>
-  <p><a for=list>For each</a> <var>listener</var> in <var>listeners</var>, whose
-  <a for="event listener">removed</a> is false:
+  <p><a for=list lt="For each">遍历</a><var>listeners</var>中的<a for="event listener">removed</a>属性为false的
+  <var>listener</var>：
 
   <ol>
-   <li><p>If <var>event</var>'s {{Event/type}} attribute value is not <var>listener</var>'s
-   <a for="event listener">type</a>, then <a for=iteration>continue</a>.
+   <li><p>如果<var>event</var>的{{Event/type}}属性值不等于<var>listener</var>的<a for="event listener">type</a>属性值，
+   则<a for=iteration>continue</a>。
 
-   <li><p>Set <var>found</var> to true.
+   <li><p>设<var>found</var>为true。
 
-   <li><p>If <var>phase</var> is "<code>capturing</code>" and <var>listener</var>'s
-   <a for="event listener">capture</a> is false, then <a for=iteration>continue</a>.
+   <li><p>如<var>phase</var>属性为"<code>capturing</code>"且<var>listener</var>stener的<a for="event listener">capture</a>
+   为false，则<a for=iteration>continue</a>。
 
-   <li><p>If <var>phase</var> is "<code>bubbling</code>" and <var>listener</var>'s
-   <a for="event listener">capture</a> is true, then <a for=iteration>continue</a>.
+   <li><p>如<var>phase</var>属性为"<code>bubbling</code>"且<var>listener</var>的<a for="event listener">capture</a>为true
+   ，则<a for=iteration>continue</a>。
 
-   <li><p>If <var>listener</var>'s <a for="event listener">once</a> is true, then
-   <a for=list>remove</a> <var>listener</var> from <var>event</var>'s {{Event/currentTarget}}
-   attribute value's <a for=EventTarget>event listener list</a>.
+   <li><p>如果<var>listener</var>的<a for="event listener">once</a>为true，则在<var>event</var>的{{Event/currentTarget}}
+   属性值中的<a for=EventTarget>event listener list</a>，<a for=list lt="remove">删除</a>该<var>listener</var>。
    <!-- Do this before invocation to avoid reentrancy issues. No need to set removed to true since
         each listener in listeners is run once anyway. -->
 
-   <li><p>Let <var>global</var> be <var>listener</var> <a for="event listener">callback</a>'s
-   <a>associated realm</a>'s <a for=realm>global object</a>.
+   <li><p>设<var>global</var>为<var>listener</var>中的<a for="event listener">callback</a>的<a>associated realm</a>
+   中的<a for=realm lt="global object">global对象</a>。
 
-   <li><p>Let <var>currentEvent</var> be undefined.
+   <li><p>设<var>currentEvent</var>为undefined。
 
    <li>
-    <p>If <var>global</var> is a {{Window}} object, then:
+    <p>如果<var>global</var>为{{Window}}对象，则：
 
     <ol>
-     <li><p>Set <var>currentEvent</var> to <var>global</var>'s <a for=Window>current event</a>.
+     <li><p>设<var>currentEvent</var>为<var>global</var>的<a for=Window>current event</a>。
 
-     <li><p>If <var>invocationTargetInShadowTree</var> is false, then set <var>global</var>'s
-     <a for=Window>current event</a> to <var>event</var>.
+     <li><p>如果<var>invocationTargetInShadowTree</var>为false，则设<var>global</var>的
+     <a for=Window>current event</a>为<var>event</var>。
     </ol>
 
-   <li><p>If <var>listener</var>'s <a for="event listener">passive</a> is true, then set
-   <var>event</var>'s <a>in passive listener flag</a>.
+   <li><p>如果<var>listener</var>的<a for="event listener">passive</a>为true，则设置
+   <var>event</var>的<a>in passive listener flag</a>。
 
    <li>
-    <p><a>Call a user object's operation</a> with <var>listener</var>'s
-    <a for="event listener">callback</a>, "<code>handleEvent</code>", « <var>event</var> », and
-    <var>event</var>'s {{Event/currentTarget}} attribute value. If this throws an exception, then:
+    <p>给定参数<var>listener</var>的<a for="event listener">callback</a>、"<code>handleEvent</code>"、« <var>event</var> »
+    以及<var>event</var>的{{Event/currentTarget}}属性值，<a lt="Call a user object's operation">调用用户对象的操作</a>。
+    如果抛出异常，则：
 
     <ol>
-     <li><p><a>Report the exception</a>.
+     <li><p><a lt="Report the exception">报告异常</a>。
 
      <li>
-      <p>Set <var>legacyOutputDidListenersThrowFlag</var> if given.
+      <p>如果给定，则设置<var>legacyOutputDidListenersThrowFlag</var>。
 
-      <p class=note>The <var>legacyOutputDidListenersThrowFlag</var> is only used by Indexed
-      Database API. [[INDEXEDDB]]
+      <p class=note><var>legacyOutputDidListenersThrowFlag</var>仅由Database API使用。 [[INDEXEDDB]]
     </ol>
 
-   <li><p>Unset <var>event</var>'s <a>in passive listener flag</a>.
+   <li><p>取消设置<var>event</var>的<a>in passive listener flag</a>。
 
-   <li><p>If <var>global</var> is a {{Window}} object, then set <var>global</var>'s
-   <a for=Window>current event</a> to <var>currentEvent</var>.
+   <li><p>如果<var>global</var>是{{Window}}对象，则设<var>global</var>的<a for=Window>current event</a>为
+   <var>currentEvent</var>。
 
-   <li><p>If <var>event</var>'s <a>stop immediate propagation flag</a> is set, then return
-   <var>found</var>.
+   <li><p>如果<var>event</var>的<a>stop immediate propagation flag</a>被设置，则return
+   <var>found</var>。
   </ol>
 
- <li><p>Return <var>found</var>.
+ <li><p>return <var>found</var>。
 </ol>
 
 
-<h3 id=firing-events>Firing events</h3>
+<h3 id=firing-events>触发事件</h3>
 
-<p>To <dfn export id=concept-event-fire>fire an event</dfn> named <var>e</var> at <var>target</var>,
-optionally using an <var>eventConstructor</var>, with a description of how IDL attributes are to be
-initialized, and a <var>legacy target override flag</var>, run these steps:
+<p><dfn export id=concept-event-fire lt="fire an event">触发</dfn><var>target</var>中名为<var>e</var>的事件，
+可以选择使用<var>eventConstructor</var>，并说明如何初始化IDL属性，以及<var>legacy target override flag</var>，
+请运行以下步骤：
 
 <ol>
- <li><p>If <var>eventConstructor</var> is not given, then let <var>eventConstructor</var> be
- {{Event}}.
+ <li><p>如果<var>eventConstructor</var>没有给出，则设<var>eventConstructor</var>为
+ {{Event}}。
 
- <li><p>Let <var>event</var> be the result of <a>creating an event</a> given
- <var>eventConstructor</var>, in the <a>relevant realm</a> of <var>target</var>.
+ <li><p>使用<var>eventConstructor</var>在<var>target</var>的<a>relevant realm</a>中
+ <a lt="creating an event">创建一个事件</a>，设<var>event</var>为其返回结果。
 
- <li><p>Initialize <var>event</var>'s {{Event/type}} attribute to <var>e</var>.
+ <li><p>初始化<var>event</var>的{{Event/type}}属性值为<var>e</var>。
 
  <li>
-  <p>Initialize any other IDL attributes of <var>event</var> as described in the invocation of this
-  algorithm.
+  <p>初始化<var>event</var>的其他IDL属性，作为调用该算法的说明。
 
-  <p class=note>This also allows for the {{Event/isTrusted}} attribute to be set to false.
+  <p class=note>这还允许将{{Event/isTrusted}}属性设置为false。
 
- <li><p>Return the result of <a>dispatching</a> <var>event</var> at <var>target</var>, with
- <var>legacy target override flag</var> set if set.
+ <li><p>如果设置了<var>legacy target override flag</var>，则return<a lt="dispatching">分派</a><var>event</var>
+ 到<var>target</var>的结果。
 </ol>
 
-<p class=note>Fire in the context of DOM is short for
-<a lt="create an event">creating</a>, initializing, and <a>dispatching</a> an <a>event</a>.
-<a>Fire an event</a> makes that process easier to write down.
+<p class=note>在DOM上下文中，Fire是<a lt="create an event" lt="creating">创建</a>、初始化和<a lt="dispatching">分派</a>
+事件的缩写。<a>Fire an event</a>意思是创建、初始化和调度事件的过程，这个短语使得这个过程更容易编写，可以使我们在编写代码时
+不必手动执行这些步骤。
 
 <div class=example id=firing-events-example>
- <p>If the <a>event</a> needs its {{Event/bubbles}} or {{Event/cancelable}} attribute initialized,
- one could write "<a>fire an event</a> named <code>submit</code> at <var>target</var> with its
- {{Event/cancelable}} attribute initialized to true".
+ <p>如果<a>event</a>需要初始化{{Event/bubbles}}或{{Event/cancelable}}这些属性，一种方法是写成"在<var>target</var>
+ <a lt="fire an event">触发</a>一个名为<code>submit</code>的事件，其{{Event/cancelable}}属性初始化为true"。
 
- <p>Or, when a custom constructor is needed, "<a>fire an event</a> named <code>click</code> at
- <var>target</var> using {{MouseEvent}} with its {{UIEvent/detail}} attribute initialized to 1".
+ <p>或者，当需要自定义构造函数时，"使用{{MouseEvent}}将其{{UIEvent/detail}}属性初始化为1，在var>target</var>
+ <a lt="fire an event">触发</a>一个名为<code>click</code>的事件"。
 
- <p>Occasionally the return value is important:
+ <p>有时候返回值也是非常重要的：
 
  <ol>
-  <li><p>Let <var>doAction</var> be the result of <a lt="fire an event">firing an event</a> named
-  <code>like</code> at <var>target</var>.
+  <li><p>设<var>doAction</var>为<a lt="fire an event">触发</a> <var>target</var>的<code>like</code>事件的返回结果。
 
-  <li><p>If <var>doAction</var> is true, then &hellip;
+  <li><p>如果<var>doAction</var>为true，则&hellip;
  </ol>
 </div>
 
 
-<h3 id="action-versus-occurrence" oldids="action-versus-occurance">Action versus occurrence</h3>
+<h3 id="action-versus-occurrence" oldids="action-versus-occurance">行为与发生</h3>
 
-<p>An <a>event</a> signifies an occurrence, not an action. Phrased differently, it
-represents a notification from an algorithm and can be used to influence the future course
-of that algorithm (e.g., through invoking {{Event/preventDefault()}}). <a>Events</a> must not be
-used as actions or initiators that cause some algorithm to start running. That is not what
-they are for.
+<p><a>event</a>表示发生，而不是动作。换句话说，它表示来自算法的通知，可用于影响该算法的未来进程(例如，
+通过调用{{Event/preventDefault()}})。<a>Events</a>不得用作导致某些算法开始运行的动作或发起者。这不是他们的目的。
 
-<p class=note>This is called out here specifically because previous
-iterations of the DOM had a concept of "default actions" associated with <a>events</a>
-that gave folks all the wrong ideas. <a>Events</a> do not represent or cause actions, they
-can only be used to influence an ongoing one.
-
+<p class=note>之所以在这里特别提到这一点，是因为DOM的先前迭代有一个与事件相关的"默认操作"概念，
+这些<a>events</a>给人们带来了所有错误的想法。<a>Events</a>不代表导致行动，它们只能用来影响正在进行的行动。
 
 
 <h2 id=aborting-ongoing-activities>Aborting ongoing activities</h3>
