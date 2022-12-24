@@ -27,7 +27,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-23">2022-12-23</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2022-12-24">2022-12-24</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -81,7 +81,7 @@ a[href].issue-return {
       <li><a href="#action-versus-occurrence"><span class="secno">2.11</span> <span class="content">行为与发生</span></a>
      </ol>
     <li>
-     <a href="#aborting-ongoing-activities"><span class="secno">3</span> <span class="content">Aborting ongoing activities</span></a>
+     <a href="#aborting-ongoing-activities"><span class="secno">3</span> <span class="content">中止正在进行的活动</span></a>
      <ol class="toc">
       <li><a href="#interface-abortcontroller"><span class="secno">3.1</span> <span class="content">Interface <code class="idl"><span>AbortController</span></code></span></a>
       <li><a href="#interface-AbortSignal"><span class="secno">3.2</span> <span class="content">Interface <code class="idl"><span>AbortSignal</span></code></span></a>
@@ -1662,16 +1662,15 @@ test2的调用处于冒泡阶段，因此顺序span—>body—><a data-link-type
 通过调用<code class="idl"><a data-link-type="idl" href="#dom-event-preventdefault" id="ref-for-dom-event-preventdefault①②">preventDefault()</a></code>)。<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑦">Events</a>不得用作导致某些算法开始运行的动作或发起者。这不是他们的目的。 </p>
    <p class="note" role="note">之所以在这里特别提到这一点，是因为DOM的先前迭代有一个与事件相关的"默认操作"概念，
 这些<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑧">events</a>给人们带来了所有错误的想法。<a data-link-type="dfn" href="#concept-event" id="ref-for-concept-event④⑨">Events</a>不代表导致行动，它们只能用来影响正在进行的行动。 </p>
-   <h2 class="heading settled" data-level="3" id="aborting-ongoing-activities"><span class="secno">3. </span><span class="content">Aborting ongoing activities</span><a class="self-link" href="#aborting-ongoing-activities"></a></h2>
-   <p>Though promises do not have a built-in aborting mechanism, many APIs using them require abort
-semantics. <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller">AbortController</a></code> is meant to support these requirements by providing an <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort②">abort()</a></code> method that toggles the state of a corresponding <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal④">AbortSignal</a></code> object.
-The API which wishes to support aborting can accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑤">AbortSignal</a></code> object, and use its state to
-determine how to proceed. </p>
-   <p>APIs that rely upon <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller①">AbortController</a></code> are encouraged to respond to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort③">abort()</a></code> by rejecting any unsettled promise with the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑥">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason">abort reason</a>. </p>
+   <h2 class="heading settled" data-level="3" id="aborting-ongoing-activities"><span class="secno">3. </span><span class="content">中止正在进行的活动</span><a class="self-link" href="#aborting-ongoing-activities"></a></h2>
+   <p>虽然promises没有内置的中止机制，但许多使用它们的APIs都需要中止的机制。 <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller">AbortController</a></code>提供了支持这些需求的<code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort②">abort()</a></code>方法，
+该方法通过切换相应的<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal④">AbortSignal</a></code>对象的状态，来中止正在进行的活动。这些期望中止机制的API需要传入一个<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑤">AbortSignal</a></code>对象，
+并且根据它的状态来决定程序的进程。 </p>
+   <p>当<code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort③">abort()</a></code>方法被执行 ，鼓励依赖于<code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller①">AbortController</a></code>的API以<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑥">AbortSignal</a></code>的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason">abort reason</a>(中止原因)
+rejecting未完成的promise。 </p>
    <div class="example" id="aborting-ongoing-activities-example">
     <a class="self-link" href="#aborting-ongoing-activities-example"></a> 
-    <p>A hypothetical <code>doAmazingness({ ... })</code> method could accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑦">AbortSignal</a></code> object
- to support aborting as follows: </p>
+    <p>一个假设的<code>doAmazingness({ ... })</code>方法，它接受一个AbortSignal对象以此来支持中止正进行的活动，例子如下： </p>
 <pre><code class="lang-javascript highlight"><c- a>const</c-> controller <c- o>=</c-> <c- ow>new</c-> AbortController<c- p>();</c->
 <c- a>const</c-> signal <c- o>=</c-> controller<c- p>.</c->signal<c- p>;</c->
 
@@ -1688,25 +1687,26 @@ doAmazingness<c- p>({</c-> <c- p>...,</c-> signal <c- p>})</c->
 <c- c1>// …</c->
 
 controller<c- p>.</c->abort<c- p>();</c-></code></pre>
-    <p><code>doAmazingness</code> could be implemented as follows: </p>
+    <p><code>doAmazingness</code>方法实现如下： </p>
 <pre><code class="lang-javascript highlight"><c- a>function</c-> doAmazingness<c- p>({</c->signal<c- p>})</c-> <c- p>{</c->
   <c- k>return</c-> <c- ow>new</c-> Promise<c- p>((</c->resolve<c- p>,</c-> reject<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+    <c- c1>// 如果signal已经被中止，则直接抛出中止的reason。</c->
     signal<c- p>.</c->throwIfAborted<c- p>();</c->
 
-    <c- c1>// Begin doing amazingness, and call resolve(result) when done.</c->
-    <c- c1>// But also, watch for signals:</c->
+    <c- c1>// 开始做一些事情，完成后调用 resolve(result)</c->
+    <c- c1>// 而且，注意监听中止信号：</c->
     signal<c- p>.</c->addEventListener<c- p>(</c-><c- t>'abort'</c-><c- p>,</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
-      <c- c1>// Stop doing amazingness, and:</c->
+      <c- c1>// 停止正在做的事件，并且：</c->
       reject<c- p>(</c->signal<c- p>.</c->reason<c- p>);</c->
     <c- p>});</c->
   <c- p>});</c->
 <c- p>}</c->
 </code></pre>
    </div>
-   <p>APIs that do not return promises can either react in an equivalent manner or opt to not surface
-the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑧">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①">abort reason</a> at all. <code class="idl"><a data-link-type="idl" href="#dom-eventtarget-addeventlistener" id="ref-for-dom-eventtarget-addeventlistener④">addEventListener()</a></code> is an
-example of an API where the latter made sense. </p>
-   <p>APIs that require more granular control could extend both <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller②">AbortController</a></code> and <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑨">AbortSignal</a></code> objects according to their needs. </p>
+   <p>没有返回值的API可以以上述例子的方式做出相同反应，或者你可以选择不显示<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑦">AbortSignal</a></code>的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①">abort reason</a>(中止原因)。
+上述例子最后的<code class="idl"><a data-link-type="idl" href="#dom-eventtarget-addeventlistener" id="ref-for-dom-eventtarget-addeventlistener④">addEventListener()</a></code>方法是有意义的，一旦<code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort④">abort()</a></code>方法触发，则会中止正在进行的活动，
+抛出<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason②">abort reason</a>。 </p>
+   <p>需要更精细控制的API可以根据它们的需求扩展<code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller②">AbortController</a></code>和<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal⑧">AbortSignal</a></code>对象。 </p>
    <h3 class="heading settled" data-level="3.1" id="interface-abortcontroller"><span class="secno">3.1. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller③">AbortController</a></code></span><a class="self-link" href="#interface-abortcontroller"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1730,9 +1730,9 @@ example of an API where the latter made sense. </p>
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="abortcontroller"><code><c- g>AbortController</c-></code></dfn> {
   <a class="idl-code" data-link-type="constructor" href="#dom-abortcontroller-abortcontroller" id="ref-for-dom-abortcontroller-abortcontroller"><c- g>constructor</c-></a>();
 
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⓪"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="AbortSignal" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal"><c- g>signal</c-></a>;
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal⑨"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="AbortSignal" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal"><c- g>signal</c-></a>;
 
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑨"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort④"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any③"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortController/abort(reason), AbortController/abort()" data-dfn-type="argument" data-export id="dom-abortcontroller-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortcontroller-abort-reason-reason"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑨"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑤"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any③"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortController/abort(reason), AbortController/abort()" data-dfn-type="argument" data-export id="dom-abortcontroller-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortcontroller-abort-reason-reason"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
@@ -1772,7 +1772,7 @@ example of an API where the latter made sense. </p>
      </div>
      <code><var>controller</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-abortcontroller-abortcontroller" id="ref-for-dom-abortcontroller-abortcontroller①">AbortController</a>()</code> 
     <dd>Returns a new <var>controller</var> whose <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal①">signal</a></code> is set to a newly
- created <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①①">AbortSignal</a></code> object. 
+ created <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⓪">AbortSignal</a></code> object. 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1793,23 +1793,23 @@ example of an API where the latter made sense. </p>
       </div>
      </div>
      <code><var>controller</var> . <a class="idl-code" data-link-type="attribute" href="#dom-abortcontroller-signal" id="ref-for-dom-abortcontroller-signal②">signal</a></code> 
-    <dd>Returns the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①②">AbortSignal</a></code> object associated with this object. 
-    <dt><code><var>controller</var> . <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑤">abort</a>(<var>reason</var>)</code> 
-    <dd>Invoking this method will store <var>reason</var> in this object’s <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①③">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason②">abort reason</a>, and signal to any observers that the associated activity is to be
+    <dd>Returns the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①①">AbortSignal</a></code> object associated with this object. 
+    <dt><code><var>controller</var> . <a class="idl-code" data-link-type="method" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑥">abort</a>(<var>reason</var>)</code> 
+    <dd>Invoking this method will store <var>reason</var> in this object’s <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①②">AbortSignal</a></code>'s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason③">abort reason</a>, and signal to any observers that the associated activity is to be
  aborted. If <var>reason</var> is undefined, then an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑦">DOMException</a></code> will be stored. 
    </dl>
-   <p>An <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller④">AbortController</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="AbortController" data-dfn-type="dfn" data-noexport id="abortcontroller-signal">signal</dfn> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①④">AbortSignal</a></code> object). </p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller④">AbortController</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="AbortController" data-dfn-type="dfn" data-noexport id="abortcontroller-signal">signal</dfn> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①③">AbortSignal</a></code> object). </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortController" data-dfn-type="constructor" data-export data-lt="AbortController()|constructor()" id="dom-abortcontroller-abortcontroller"><code>new AbortController()</code></dfn> constructor steps are: </p>
    <ol>
     <li>
-     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑤">AbortSignal</a></code> object. </p>
+     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①④">AbortSignal</a></code> object. </p>
     <li>
      <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②④">this</a>’s <a data-link-type="dfn" href="#abortcontroller-signal" id="ref-for-abortcontroller-signal">signal</a> to <var>signal</var>. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortController" data-dfn-type="attribute" data-export id="dom-abortcontroller-signal"><code>signal</code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑤">this</a>’s <a data-link-type="dfn" href="#abortcontroller-signal" id="ref-for-abortcontroller-signal①">signal</a>. </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortController" data-dfn-type="method" data-export data-lt="abort(reason)|abort()" id="dom-abortcontroller-abort"><code>abort(<var>reason</var>)</code></dfn> method steps are
 to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort">signal abort</a> on <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑥">this</a>’s <a data-link-type="dfn" href="#abortcontroller-signal" id="ref-for-abortcontroller-signal②">signal</a> with <var>reason</var> if it is given. </p>
-   <h3 class="heading settled" data-level="3.2" id="interface-AbortSignal"><span class="secno">3.2. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑥">AbortSignal</a></code></span><a class="self-link" href="#interface-AbortSignal"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="interface-AbortSignal"><span class="secno">3.2. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑤">AbortSignal</a></code></span><a class="self-link" href="#interface-AbortSignal"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -1830,8 +1830,8 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
    </div>
 <pre class="idl highlight def">[Exposed=*]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="abortsignal"><code><c- g>AbortSignal</c-></code></dfn> : <a data-link-type="idl-name" href="#eventtarget" id="ref-for-eventtarget②⑧"><c- n>EventTarget</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑦"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-abort" id="ref-for-dom-abortsignal-abort"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any④"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/abort(reason), AbortSignal/abort()" data-dfn-type="argument" data-export id="dom-abortsignal-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortsignal-abort-reason-reason"></a></dfn>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑧"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-timeout" id="ref-for-dom-abortsignal-timeout"><c- g>timeout</c-></a>([<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/timeout(milliseconds)" data-dfn-type="argument" data-export id="dom-abortsignal-timeout-milliseconds-milliseconds"><code><c- g>milliseconds</c-></code><a class="self-link" href="#dom-abortsignal-timeout-milliseconds-milliseconds"></a></dfn>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑥"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-abort" id="ref-for-dom-abortsignal-abort"><c- g>abort</c-></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any④"><c- b>any</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/abort(reason), AbortSignal/abort()" data-dfn-type="argument" data-export id="dom-abortsignal-abort-reason-reason"><code><c- g>reason</c-></code><a class="self-link" href="#dom-abortsignal-abort-reason-reason"></a></dfn>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <c- b>static</c-> <a data-link-type="idl-name" href="#abortsignal" id="ref-for-abortsignal①⑦"><c- n>AbortSignal</c-></a> <a class="idl-code" data-link-type="method" href="#dom-abortsignal-timeout" id="ref-for-dom-abortsignal-timeout"><c- g>timeout</c-></a>([<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <dfn class="idl-code" data-dfn-for="AbortSignal/timeout(milliseconds)" data-dfn-type="argument" data-export id="dom-abortsignal-timeout-milliseconds-milliseconds"><code><c- g>milliseconds</c-></code><a class="self-link" href="#dom-abortsignal-timeout-milliseconds-milliseconds"></a></dfn>);
 
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean②⓪"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-abortsignal-aborted" id="ref-for-dom-abortsignal-aborted"><c- g>aborted</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any⑤"><c- b>any</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="any" href="#dom-abortsignal-reason" id="ref-for-dom-abortsignal-reason"><c- g>reason</c-></a>;
@@ -1860,7 +1860,7 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
       </div>
      </div>
      <code>AbortSignal . <a class="idl-code" data-link-type="method" href="#dom-abortsignal-abort" id="ref-for-dom-abortsignal-abort①">abort</a>(<var>reason</var>)</code> 
-    <dd>Returns an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑨">AbortSignal</a></code> instance whose <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason③">abort reason</a> is set to <var>reason</var> if not undefined; otherwise to an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror①">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑧">DOMException</a></code>. 
+    <dd>Returns an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑧">AbortSignal</a></code> instance whose <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason④">abort reason</a> is set to <var>reason</var> if not undefined; otherwise to an "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror①">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑧">DOMException</a></code>. 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1881,7 +1881,7 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
       </div>
      </div>
      <code>AbortSignal . <a class="idl-code" data-link-type="method" href="#dom-abortsignal-timeout" id="ref-for-dom-abortsignal-timeout①">timeout</a>(<var>milliseconds</var>)</code> 
-    <dd>Returns an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⓪">AbortSignal</a></code> instance which will be aborted in <var>milliseconds</var> milliseconds. Its <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason④">abort reason</a> will be set to a
+    <dd>Returns an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal①⑨">AbortSignal</a></code> instance which will be aborted in <var>milliseconds</var> milliseconds. Its <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑤">abort reason</a> will be set to a
  "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#timeouterror" id="ref-for-timeouterror">TimeoutError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException⑨">DOMException</a></code>. 
     <dt>
      <div class="mdn-anno wrapped">
@@ -1924,7 +1924,7 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
       </div>
      </div>
      <code><var>signal</var> . <a class="idl-code" data-link-type="attribute" href="#dom-abortsignal-reason" id="ref-for-dom-abortsignal-reason①">reason</a></code> 
-    <dd>Returns <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑤">abort reason</a>. 
+    <dd>Returns <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑥">abort reason</a>. 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -1945,31 +1945,31 @@ to <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsig
       </div>
      </div>
      <code><var>signal</var> . <a class="idl-code" data-link-type="method" href="#dom-abortsignal-throwifaborted" id="ref-for-dom-abortsignal-throwifaborted①">throwIfAborted</a>()</code> 
-    <dd>Throws <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑥">abort reason</a>, if <var>signal</var>’s <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑥">AbortController</a></code> has signaled to abort; otherwise, does nothing. 
+    <dd>Throws <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑦">abort reason</a>, if <var>signal</var>’s <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑥">AbortController</a></code> has signaled to abort; otherwise, does nothing. 
    </dl>
-   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②①">AbortSignal</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-abort-reason">abort reason</dfn>, which is a
+   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⓪">AbortSignal</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-abort-reason">abort reason</dfn>, which is a
 JavaScript value. It is undefined unless specified otherwise. </p>
-   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②②">AbortSignal</a></code> object is <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-aborted">aborted</dfn> when its <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑦">abort reason</a> is not undefined. </p>
-   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②③">AbortSignal</a></code> object has associated <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-noexport id="abortsignal-abort-algorithms">abort algorithms</dfn>, which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of algorithms which are to be executed when it is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted①">aborted</a>. Unless
+   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②①">AbortSignal</a></code> object is <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-aborted">aborted</dfn> when its <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑧">abort reason</a> is not undefined. </p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②②">AbortSignal</a></code> object has associated <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-noexport id="abortsignal-abort-algorithms">abort algorithms</dfn>, which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of algorithms which are to be executed when it is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted①">aborted</a>. Unless
 specified otherwise, its value is the empty set. </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-add">add</dfn> an algorithm <var>algorithm</var> to an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②④">AbortSignal</a></code> object <var>signal</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-add">add</dfn> an algorithm <var>algorithm</var> to an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②③">AbortSignal</a></code> object <var>signal</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted②">aborted</a>, then return. </p>
     <li>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append">Append</a> <var>algorithm</var> to <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms">abort algorithms</a>. </p>
    </ol>
-   <p>To <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-remove">remove<a class="self-link" href="#abortsignal-remove"></a></dfn> an algorithm <var>algorithm</var> from an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑤">AbortSignal</a></code> <var>signal</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove②">remove</a> <var>algorithm</var> from <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms①">abort algorithms</a>. </p>
+   <p>To <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-remove">remove<a class="self-link" href="#abortsignal-remove"></a></dfn> an algorithm <var>algorithm</var> from an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②④">AbortSignal</a></code> <var>signal</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove②">remove</a> <var>algorithm</var> from <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms①">abort algorithms</a>. </p>
    <p class="note" role="note">The <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms②">abort algorithms</a> enable APIs with complex
-requirements to react in a reasonable way to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑥">abort()</a></code>. For example, a given API’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑧">abort reason</a> might need to be propagated to a cross-thread environment, such as a
+requirements to react in a reasonable way to <code class="idl"><a data-link-type="idl" href="#dom-abortcontroller-abort" id="ref-for-dom-abortcontroller-abort⑦">abort()</a></code>. For example, a given API’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑨">abort reason</a> might need to be propagated to a cross-thread environment, such as a
 service worker. </p>
    <p>The static <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="method" data-export data-lt="abort(reason)|abort()" id="dom-abortsignal-abort"><code>abort(<var>reason</var>)</code></dfn> method steps
 are: </p>
    <ol>
     <li>
-     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑥">AbortSignal</a></code> object. </p>
+     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑤">AbortSignal</a></code> object. </p>
     <li>
-     <p>Set <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason⑨">abort reason</a> to <var>reason</var> if it is given;
+     <p>Set <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⓪">abort reason</a> to <var>reason</var> if it is given;
  otherwise to a new "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror②">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪">DOMException</a></code>. </p>
     <li>Return <var>signal</var>. 
    </ol>
@@ -1977,7 +1977,7 @@ are: </p>
 steps are: </p>
    <ol>
     <li>
-     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑦">AbortSignal</a></code> object. </p>
+     <p>Let <var>signal</var> be a new <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑥">AbortSignal</a></code> object. </p>
     <li>
      <p>Let <var>global</var> be <var>signal</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a>. </p>
     <li>
@@ -1993,15 +1993,15 @@ steps are: </p>
      <p>Return <var>signal</var>. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="attribute" data-export id="dom-abortsignal-aborted"><code>aborted</code></dfn> getter steps are to return true if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑦">this</a> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted③">aborted</a>; otherwise false. </p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="attribute" data-export id="dom-abortsignal-reason"><code>reason</code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑧">this</a>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⓪">abort reason</a>. </p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="method" data-export id="dom-abortsignal-throwifaborted"><code>throwIfAborted()</code></dfn> method steps are to throw <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑨">this</a>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①①">abort reason</a>, if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⓪">this</a> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted④">aborted</a>. </p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="attribute" data-export id="dom-abortsignal-reason"><code>reason</code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑧">this</a>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①①">abort reason</a>. </p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="method" data-export id="dom-abortsignal-throwifaborted"><code>throwIfAborted()</code></dfn> method steps are to throw <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑨">this</a>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①②">abort reason</a>, if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⓪">this</a> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted④">aborted</a>. </p>
    <div class="example" id="example-throwifaborted">
     <a class="self-link" href="#example-throwifaborted"></a> 
-    <p>This method is primarily useful for when functions accepting <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑧">AbortSignal</a></code>s want to throw (or
- return a rejected promise) at specific checkpoints, instead of passing along the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑨">AbortSignal</a></code> to other methods. For example, the following function allows aborting in between each attempt to
+    <p>This method is primarily useful for when functions accepting <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑦">AbortSignal</a></code>s want to throw (or
+ return a rejected promise) at specific checkpoints, instead of passing along the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑧">AbortSignal</a></code> to other methods. For example, the following function allows aborting in between each attempt to
  poll for a condition. This gives opportunities to abort the polling process, even though the
  actual asynchronous operation (i.e., <code class="lang-javascript highlight"><c- k>await</c-> func<c- p>()</c-></code>) does not
- accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⓪">AbortSignal</a></code>. </p>
+ accept an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal②⑨">AbortSignal</a></code>. </p>
 <pre class="lang-javascript highlight"><c- k>async</c-> <c- a>function</c-> waitForCondition<c- p>(</c->func<c- p>,</c-> targetValue<c- p>,</c-> <c- p>{</c-> signal <c- p>}</c-> <c- o>=</c-> <c- p>{})</c-> <c- p>{</c->
   <c- k>while</c-> <c- p>(</c-><c- kc>true</c-><c- p>)</c-> <c- p>{</c->
     signal<c- o>?</c-><c- p>.</c->throwIfAborted<c- p>();</c->
@@ -2048,14 +2048,14 @@ steps are: </p>
     </div>
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="attribute" data-export id="dom-abortsignal-onabort"><code>onabort</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">event handler IDL attribute</a> for the <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-onabort"><code>onabort</code><a class="self-link" href="#abortsignal-onabort"></a></dfn> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers①">event handler</a>, whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event type</a> is <dfn class="dfn-paneled idl-code" data-dfn-for="AbortSignal" data-dfn-type="event" data-export id="eventdef-abortsignal-abort"><code>abort</code></dfn>. </p>
-   <p class="note" role="note">Changes to an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③①">AbortSignal</a></code> object represent the wishes of the corresponding <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑦">AbortController</a></code> object, but an API observing the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③②">AbortSignal</a></code> object can chose to ignore
+   <p class="note" role="note">Changes to an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⓪">AbortSignal</a></code> object represent the wishes of the corresponding <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑦">AbortController</a></code> object, but an API observing the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③①">AbortSignal</a></code> object can chose to ignore
 them. For instance, if the operation has already completed. </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-signal-abort">signal abort</dfn>, given an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③③">AbortSignal</a></code> object <var>signal</var> and an optional <var>reason</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-signal-abort">signal abort</dfn>, given an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③②">AbortSignal</a></code> object <var>signal</var> and an optional <var>reason</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑤">aborted</a>, then return. </p>
     <li>
-     <p>Set <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①②">abort reason</a> to <var>reason</var> if it is given;
+     <p>Set <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①③">abort reason</a> to <var>reason</var> if it is given;
  otherwise to a new "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#aborterror" id="ref-for-aborterror③">AbortError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①②">DOMException</a></code>. </p>
     <li>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑦">For each</a> <var>algorithm</var> in <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms③">abort algorithms</a>: run <var>algorithm</var>. </p>
@@ -2064,29 +2064,29 @@ them. For instance, if the operation has already completed. </p>
     <li>
      <p><a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire⑤">Fire an event</a> named <code class="idl"><a data-link-type="idl" href="#eventdef-abortsignal-abort" id="ref-for-eventdef-abortsignal-abort①">abort</a></code> at <var>signal</var>. </p>
    </ol>
-   <p>A <var>followingSignal</var> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③④">AbortSignal</a></code>) is made to <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-follow">follow<a class="self-link" href="#abortsignal-follow"></a></dfn> a <var>parentSignal</var> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑤">AbortSignal</a></code>) by running
+   <p>A <var>followingSignal</var> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③③">AbortSignal</a></code>) is made to <dfn data-dfn-for="AbortSignal" data-dfn-type="dfn" data-export id="abortsignal-follow">follow<a class="self-link" href="#abortsignal-follow"></a></dfn> a <var>parentSignal</var> (an <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③④">AbortSignal</a></code>) by running
 these steps: </p>
    <ol>
     <li>
      <p>If <var>followingSignal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑥">aborted</a>, then return. </p>
     <li>
-     <p>If <var>parentSignal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑦">aborted</a>, then <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort②">signal abort</a> on <var>followingSignal</var> with <var>parentSignal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①③">abort reason</a>. </p>
+     <p>If <var>parentSignal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑦">aborted</a>, then <a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort②">signal abort</a> on <var>followingSignal</var> with <var>parentSignal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①④">abort reason</a>. </p>
     <li>
      <p>Otherwise, <a data-link-type="dfn" href="#abortsignal-add" id="ref-for-abortsignal-add①">add the following abort steps</a> to <var>parentSignal</var>: </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort③">Signal abort</a> on <var>followingSignal</var> with <var>parentSignal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①④">abort reason</a>. </p>
+       <p><a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort③">Signal abort</a> on <var>followingSignal</var> with <var>parentSignal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑤">abort reason</a>. </p>
      </ol>
    </ol>
-   <h3 class="heading settled" data-level="3.3" id="abortcontroller-api-integration"><span class="secno">3.3. </span><span class="content">Using <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑧">AbortController</a></code> and <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑥">AbortSignal</a></code> objects in
+   <h3 class="heading settled" data-level="3.3" id="abortcontroller-api-integration"><span class="secno">3.3. </span><span class="content">Using <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑧">AbortController</a></code> and <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑤">AbortSignal</a></code> objects in
 APIs</span><a class="self-link" href="#abortcontroller-api-integration"></a></h3>
    <p>Any web platform API using promises to represent operations that can be aborted must adhere to
 the following: </p>
    <ul class="brief">
-    <li>Accept <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑦">AbortSignal</a></code> objects through a <code>signal</code> dictionary member. 
-    <li>Convey that the operation got aborted by rejecting the promise with <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑧">AbortSignal</a></code> object’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑤">abort reason</a>. 
-    <li>Reject immediately if the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑨">AbortSignal</a></code> is already <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑧">aborted</a>, otherwise: 
-    <li>Use the <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms⑤">abort algorithms</a> mechanism to observe changes to the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal④⓪">AbortSignal</a></code> object and do so in a manner that does not lead to clashes with other observers. 
+    <li>Accept <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑥">AbortSignal</a></code> objects through a <code>signal</code> dictionary member. 
+    <li>Convey that the operation got aborted by rejecting the promise with <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑦">AbortSignal</a></code> object’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑥">abort reason</a>. 
+    <li>Reject immediately if the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑧">AbortSignal</a></code> is already <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑧">aborted</a>, otherwise: 
+    <li>Use the <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms⑤">abort algorithms</a> mechanism to observe changes to the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑨">AbortSignal</a></code> object and do so in a manner that does not lead to clashes with other observers. 
    </ul>
    <div class="example" id="aborting-ongoing-activities-spec-example">
     <a class="self-link" href="#aborting-ongoing-activities-spec-example"></a> 
@@ -2100,14 +2100,14 @@ the following: </p>
        <li>
         <p>Let <var>signal</var> be <var>options</var>["<code>signal</code>"]. </p>
        <li>
-        <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑨">aborted</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑥">abort reason</a> and return <var>p</var>. </p>
+        <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted⑨">aborted</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑦">abort reason</a> and return <var>p</var>. </p>
        <li>
         <p><a data-link-type="dfn" href="#abortsignal-add" id="ref-for-abortsignal-add②">Add the following abort steps</a> to <var>signal</var>: </p>
         <ol>
          <li>
           <p>Stop doing amazing things. </p>
          <li>
-          <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject①">Reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑦">abort reason</a>. </p>
+          <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject①">Reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑧">abort reason</a>. </p>
         </ol>
       </ol>
      <li>
@@ -16251,7 +16251,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-eventtarget-addeventlistener">2.1. DOM事件简介</a> <a href="#ref-for-dom-eventtarget-addeventlistener①">(2)</a>
     <li><a href="#ref-for-dom-eventtarget-addeventlistener②">2.7. EventTarget接口</a> <a href="#ref-for-dom-eventtarget-addeventlistener③">(2)</a>
-    <li><a href="#ref-for-dom-eventtarget-addeventlistener④">3. Aborting ongoing activities</a>
+    <li><a href="#ref-for-dom-eventtarget-addeventlistener④">3. 中止正在进行的活动</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="remove-an-event-listener">
@@ -16316,7 +16316,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="abortcontroller">
    <b><a href="#abortcontroller">#abortcontroller</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abortcontroller">3. Aborting ongoing activities</a> <a href="#ref-for-abortcontroller①">(2)</a> <a href="#ref-for-abortcontroller②">(3)</a>
+    <li><a href="#ref-for-abortcontroller">3. 中止正在进行的活动</a> <a href="#ref-for-abortcontroller①">(2)</a> <a href="#ref-for-abortcontroller②">(3)</a>
     <li><a href="#ref-for-abortcontroller③">3.1. Interface AbortController</a> <a href="#ref-for-abortcontroller④">(2)</a>
     <li><a href="#ref-for-abortcontroller⑤">3.2. Interface AbortSignal</a> <a href="#ref-for-abortcontroller⑥">(2)</a> <a href="#ref-for-abortcontroller⑦">(3)</a>
     <li><a href="#ref-for-abortcontroller⑧">3.3. Using AbortController and AbortSignal objects in
@@ -16346,9 +16346,9 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-dom-abortcontroller-abort">2.1. DOM事件简介</a>
     <li><a href="#ref-for-dom-abortcontroller-abort①">2.7. EventTarget接口</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort②">3. Aborting ongoing activities</a> <a href="#ref-for-dom-abortcontroller-abort③">(2)</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort④">3.1. Interface AbortController</a> <a href="#ref-for-dom-abortcontroller-abort⑤">(2)</a>
-    <li><a href="#ref-for-dom-abortcontroller-abort⑥">3.2. Interface AbortSignal</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort②">3. 中止正在进行的活动</a> <a href="#ref-for-dom-abortcontroller-abort③">(2)</a> <a href="#ref-for-dom-abortcontroller-abort④">(3)</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort⑤">3.1. Interface AbortController</a> <a href="#ref-for-dom-abortcontroller-abort⑥">(2)</a>
+    <li><a href="#ref-for-dom-abortcontroller-abort⑦">3.2. Interface AbortSignal</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal">
@@ -16356,21 +16356,21 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-abortsignal">2.1. DOM事件简介</a>
     <li><a href="#ref-for-abortsignal①">2.7. EventTarget接口</a> <a href="#ref-for-abortsignal②">(2)</a> <a href="#ref-for-abortsignal③">(3)</a>
-    <li><a href="#ref-for-abortsignal④">3. Aborting ongoing activities</a> <a href="#ref-for-abortsignal⑤">(2)</a> <a href="#ref-for-abortsignal⑥">(3)</a> <a href="#ref-for-abortsignal⑦">(4)</a> <a href="#ref-for-abortsignal⑧">(5)</a> <a href="#ref-for-abortsignal⑨">(6)</a>
-    <li><a href="#ref-for-abortsignal①⓪">3.1. Interface AbortController</a> <a href="#ref-for-abortsignal①①">(2)</a> <a href="#ref-for-abortsignal①②">(3)</a> <a href="#ref-for-abortsignal①③">(4)</a> <a href="#ref-for-abortsignal①④">(5)</a> <a href="#ref-for-abortsignal①⑤">(6)</a>
-    <li><a href="#ref-for-abortsignal①⑥">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal①⑦">(2)</a> <a href="#ref-for-abortsignal①⑧">(3)</a> <a href="#ref-for-abortsignal①⑨">(4)</a> <a href="#ref-for-abortsignal②⓪">(5)</a> <a href="#ref-for-abortsignal②①">(6)</a> <a href="#ref-for-abortsignal②②">(7)</a> <a href="#ref-for-abortsignal②③">(8)</a> <a href="#ref-for-abortsignal②④">(9)</a> <a href="#ref-for-abortsignal②⑤">(10)</a> <a href="#ref-for-abortsignal②⑥">(11)</a> <a href="#ref-for-abortsignal②⑦">(12)</a> <a href="#ref-for-abortsignal②⑧">(13)</a> <a href="#ref-for-abortsignal②⑨">(14)</a> <a href="#ref-for-abortsignal③⓪">(15)</a> <a href="#ref-for-abortsignal③①">(16)</a> <a href="#ref-for-abortsignal③②">(17)</a> <a href="#ref-for-abortsignal③③">(18)</a> <a href="#ref-for-abortsignal③④">(19)</a> <a href="#ref-for-abortsignal③⑤">(20)</a>
-    <li><a href="#ref-for-abortsignal③⑥">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-abortsignal③⑦">(2)</a> <a href="#ref-for-abortsignal③⑧">(3)</a> <a href="#ref-for-abortsignal③⑨">(4)</a> <a href="#ref-for-abortsignal④⓪">(5)</a>
+    <li><a href="#ref-for-abortsignal④">3. 中止正在进行的活动</a> <a href="#ref-for-abortsignal⑤">(2)</a> <a href="#ref-for-abortsignal⑥">(3)</a> <a href="#ref-for-abortsignal⑦">(4)</a> <a href="#ref-for-abortsignal⑧">(5)</a>
+    <li><a href="#ref-for-abortsignal⑨">3.1. Interface AbortController</a> <a href="#ref-for-abortsignal①⓪">(2)</a> <a href="#ref-for-abortsignal①①">(3)</a> <a href="#ref-for-abortsignal①②">(4)</a> <a href="#ref-for-abortsignal①③">(5)</a> <a href="#ref-for-abortsignal①④">(6)</a>
+    <li><a href="#ref-for-abortsignal①⑤">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal①⑥">(2)</a> <a href="#ref-for-abortsignal①⑦">(3)</a> <a href="#ref-for-abortsignal①⑧">(4)</a> <a href="#ref-for-abortsignal①⑨">(5)</a> <a href="#ref-for-abortsignal②⓪">(6)</a> <a href="#ref-for-abortsignal②①">(7)</a> <a href="#ref-for-abortsignal②②">(8)</a> <a href="#ref-for-abortsignal②③">(9)</a> <a href="#ref-for-abortsignal②④">(10)</a> <a href="#ref-for-abortsignal②⑤">(11)</a> <a href="#ref-for-abortsignal②⑥">(12)</a> <a href="#ref-for-abortsignal②⑦">(13)</a> <a href="#ref-for-abortsignal②⑧">(14)</a> <a href="#ref-for-abortsignal②⑨">(15)</a> <a href="#ref-for-abortsignal③⓪">(16)</a> <a href="#ref-for-abortsignal③①">(17)</a> <a href="#ref-for-abortsignal③②">(18)</a> <a href="#ref-for-abortsignal③③">(19)</a> <a href="#ref-for-abortsignal③④">(20)</a>
+    <li><a href="#ref-for-abortsignal③⑤">3.3. Using AbortController and AbortSignal objects in
+APIs</a> <a href="#ref-for-abortsignal③⑥">(2)</a> <a href="#ref-for-abortsignal③⑦">(3)</a> <a href="#ref-for-abortsignal③⑧">(4)</a> <a href="#ref-for-abortsignal③⑨">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-abort-reason">
    <b><a href="#abortsignal-abort-reason">#abortsignal-abort-reason</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abortsignal-abort-reason">3. Aborting ongoing activities</a> <a href="#ref-for-abortsignal-abort-reason①">(2)</a>
-    <li><a href="#ref-for-abortsignal-abort-reason②">3.1. Interface AbortController</a>
-    <li><a href="#ref-for-abortsignal-abort-reason③">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal-abort-reason④">(2)</a> <a href="#ref-for-abortsignal-abort-reason⑤">(3)</a> <a href="#ref-for-abortsignal-abort-reason⑥">(4)</a> <a href="#ref-for-abortsignal-abort-reason⑦">(5)</a> <a href="#ref-for-abortsignal-abort-reason⑧">(6)</a> <a href="#ref-for-abortsignal-abort-reason⑨">(7)</a> <a href="#ref-for-abortsignal-abort-reason①⓪">(8)</a> <a href="#ref-for-abortsignal-abort-reason①①">(9)</a> <a href="#ref-for-abortsignal-abort-reason①②">(10)</a> <a href="#ref-for-abortsignal-abort-reason①③">(11)</a> <a href="#ref-for-abortsignal-abort-reason①④">(12)</a>
-    <li><a href="#ref-for-abortsignal-abort-reason①⑤">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-abortsignal-abort-reason①⑥">(2)</a> <a href="#ref-for-abortsignal-abort-reason①⑦">(3)</a>
+    <li><a href="#ref-for-abortsignal-abort-reason">3. 中止正在进行的活动</a> <a href="#ref-for-abortsignal-abort-reason①">(2)</a> <a href="#ref-for-abortsignal-abort-reason②">(3)</a>
+    <li><a href="#ref-for-abortsignal-abort-reason③">3.1. Interface AbortController</a>
+    <li><a href="#ref-for-abortsignal-abort-reason④">3.2. Interface AbortSignal</a> <a href="#ref-for-abortsignal-abort-reason⑤">(2)</a> <a href="#ref-for-abortsignal-abort-reason⑥">(3)</a> <a href="#ref-for-abortsignal-abort-reason⑦">(4)</a> <a href="#ref-for-abortsignal-abort-reason⑧">(5)</a> <a href="#ref-for-abortsignal-abort-reason⑨">(6)</a> <a href="#ref-for-abortsignal-abort-reason①⓪">(7)</a> <a href="#ref-for-abortsignal-abort-reason①①">(8)</a> <a href="#ref-for-abortsignal-abort-reason①②">(9)</a> <a href="#ref-for-abortsignal-abort-reason①③">(10)</a> <a href="#ref-for-abortsignal-abort-reason①④">(11)</a> <a href="#ref-for-abortsignal-abort-reason①⑤">(12)</a>
+    <li><a href="#ref-for-abortsignal-abort-reason①⑥">3.3. Using AbortController and AbortSignal objects in
+APIs</a> <a href="#ref-for-abortsignal-abort-reason①⑦">(2)</a> <a href="#ref-for-abortsignal-abort-reason①⑧">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-aborted">
