@@ -1506,20 +1506,17 @@ dictionary AddEventListenerOptions : EventListenerOptions {
 这些<a>events</a>给人们带来了所有错误的想法。<a>Events</a>不代表导致行动，它们只能用来影响正在进行的行动。
 
 
-<h2 id=aborting-ongoing-activities>Aborting ongoing activities</h3>
+<h2 id=aborting-ongoing-activities>中止正在进行的活动</h3>
 
-<p>Though promises do not have a built-in aborting mechanism, many APIs using them require abort
-semantics. {{AbortController}} is meant to support these requirements by providing an
-{{AbortController/abort()}} method that toggles the state of a corresponding {{AbortSignal}} object.
-The API which wishes to support aborting can accept an {{AbortSignal}} object, and use its state to
-determine how to proceed.
+<p>虽然promises没有内置的中止机制，但许多使用它们的APIs都需要中止的机制。 {{AbortController}}提供了支持这些需求的{{AbortController/abort()}}方法，
+该方法通过切换相应的{{AbortSignal}}对象的状态，来中止正在进行的活动。这些期望中止机制的API需要传入一个{{AbortSignal}}对象，
+并且根据它的状态来决定程序的进程。
 
-<p>APIs that rely upon {{AbortController}} are encouraged to respond to {{AbortController/abort()}}
-by rejecting any unsettled promise with the {{AbortSignal}}'s [=AbortSignal/abort reason=].
+<p>当{{AbortController/abort()}}方法被执行 ，鼓励依赖于{{AbortController}}的API以{{AbortSignal}}的[=AbortSignal/abort reason=](中止原因)
+rejecting未完成的promise。
 
 <div class=example id=aborting-ongoing-activities-example>
- <p>A hypothetical <code>doAmazingness({ ... })</code> method could accept an {{AbortSignal}} object
- to support aborting as follows:
+ <p>一个假设的<code>doAmazingness({ ... })</code>方法，它接受一个AbortSignal对象以此来支持中止正进行的活动，例子如下：
 
  <pre><code class=lang-javascript>
 const controller = new AbortController();
@@ -1539,17 +1536,18 @@ doAmazingness({ ..., signal })
 
 controller.abort();</code></pre>
 
- <p><code>doAmazingness</code> could be implemented as follows:
+ <p><code>doAmazingness</code>方法实现如下：
 
  <pre><code class=lang-javascript>
 function doAmazingness({signal}) {
   return new Promise((resolve, reject) => {
+    // 如果signal已经被中止，则直接抛出中止的reason。
     signal.throwIfAborted();
 
-    // Begin doing amazingness, and call resolve(result) when done.
-    // But also, watch for signals:
+    // 开始做一些事情，完成后调用 resolve(result)
+    // 而且，注意监听中止信号：
     signal.addEventListener('abort', () => {
-      // Stop doing amazingness, and:
+      // 停止正在做的事件，并且：
       reject(signal.reason);
     });
   });
@@ -1557,12 +1555,11 @@ function doAmazingness({signal}) {
 </code></pre>
 </div>
 
-<p>APIs that do not return promises can either react in an equivalent manner or opt to not surface
-the {{AbortSignal}}'s [=AbortSignal/abort reason=] at all. {{EventTarget/addEventListener()}} is an
-example of an API where the latter made sense.
+<p>没有返回值的API可以以上述例子的方式做出相同反应，或者你可以选择不显示{{AbortSignal}}的[=AbortSignal/abort reason=](中止原因)。
+上述例子最后的{{EventTarget/addEventListener()}}方法是有意义的，一旦{{AbortController/abort()}}方法触发，则会中止正在进行的活动，
+抛出[=AbortSignal/abort reason=]。
 
-<p>APIs that require more granular control could extend both {{AbortController}} and
-{{AbortSignal}} objects according to their needs.
+<p>需要更精细控制的API可以根据它们的需求扩展{{AbortController}}和{{AbortSignal}}对象。
 
 
 <h3 id=interface-abortcontroller>Interface {{AbortController}}</h3>
