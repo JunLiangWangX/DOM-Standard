@@ -1562,7 +1562,7 @@ function doAmazingness({signal}) {
 <p>需要更精细控制的API可以根据它们的需求扩展{{AbortController}}和{{AbortSignal}}对象。
 
 
-<h3 id=interface-abortcontroller>Interface {{AbortController}}</h3>
+<h3 id=interface-abortcontroller>{{AbortController}}接口</h3>
 
 <pre class=idl>
 [Exposed=*]
@@ -1577,38 +1577,31 @@ interface AbortController {
 
 <dl class=domintro>
  <dt><code><var>controller</var> = new <a constructor lt=AbortController()>AbortController</a>()</code>
- <dd>Returns a new <var>controller</var> whose {{AbortController/signal}} is set to a newly
- created {{AbortSignal}} object.
+ <dd>返回一个新的控制器，其{{AbortController/signal}}属性被设置为新创建的{{AbortSignal}}对象。
 
  <dt><code><var>controller</var> . <a attribute for=AbortController>signal</a></code>
- <dd>Returns the {{AbortSignal}} object associated with this object.
+ <dd>返回与此对象关联的{{AbortSignal}}对象。
 
  <dt><code><var>controller</var> . <a method for=AbortController lt=abort()>abort</a>(<var>reason</var>)</code>
- <dd>Invoking this method will store <var>reason</var> in this object's {{AbortSignal}}'s
- [=AbortSignal/abort reason=], and signal to any observers that the associated activity is to be
- aborted. If <var>reason</var> is undefined, then an "{{AbortError!!exception}}" {{DOMException}}
- will be stored.
+ <dd>调用该方法将会保存其原因到该对象的{{AbortController/signal}}属性的[=AbortSignal/abort reason=]中，
+ 并向观察者发出信号，表明相关的活动将被中止。如果<var>reason</var>值为undefined，则抛出"{{AbortError!!exception}}(中止错误)"的{{DOMException}}(DOM异常)。
 </dl>
 
-<p>An {{AbortController}} object has an associated <dfn for=AbortController>signal</dfn> (an
-{{AbortSignal}} object).
+<p>{{AbortController}}对象有一个相关的<dfn for=AbortController>signal</dfn>(一个{{AbortSignal}}对象)属性。
 
-<p>The
-<dfn constructor for=AbortController lt="AbortController()"><code>new AbortController()</code></dfn>
-constructor steps are:
+<p><dfn constructor for=AbortController lt="AbortController()"><code>new AbortController()</code></dfn>
+构造函数将运行以下步骤：
 
 <ol>
- <li><p>Let <var>signal</var> be a new {{AbortSignal}} object.
+ <li><p>设<var>signal</var>为一个新的{{AbortSignal}}对象。
 
- <li><p>Set <a>this</a>'s <a for=AbortController>signal</a> to <var>signal</var>.
+ <li><p>设<a>this</a>的<a for=AbortController>signal</a>属性值为<var>signal</var>。
 </ol>
 
-<p>The <dfn attribute for=AbortController><code>signal</code></dfn> getter steps are to return
-<a>this</a>'s <a for=AbortController>signal</a>.
+<p><dfn attribute for=AbortController><code>signal</code></dfn>的getter方法将返回this的<a for=AbortController>signal</a>属性值。
 
-<p>The <dfn method for=AbortController><code>abort(<var>reason</var>)</code></dfn> method steps are
-to <a for=AbortSignal>signal abort</a> on <a>this</a>'s <a for=AbortController>signal</a> with
-<var>reason</var> if it is given.
+<p><dfn method for=AbortController><code>abort(<var>reason</var>)</code></dfn>方法将在其<a>this</a>的
+<a for=AbortController>signal</a>上(如果给出reason则携带)<a for=AbortSignal lt="signal abort">发送中止信号</a>。
 
 <h3 id=interface-AbortSignal>Interface {{AbortSignal}}</h3>
 
