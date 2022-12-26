@@ -1557,7 +1557,7 @@ function doAmazingness({signal}) {
 
 <p>没有返回值的API可以以上述例子的方式做出相同反应，或者你可以选择不显示{{AbortSignal}}的[=AbortSignal/abort reason=](中止原因)。
 上述例子最后的{{EventTarget/addEventListener()}}方法是有意义的，一旦{{AbortController/abort()}}方法触发，则会中止正在进行的活动，
-抛出[=AbortSignal/abort reason=]。
+抛出[=AbortSignal/abort reason=](中止原因)。
 
 <p>需要更精细控制的API可以根据它们的需求扩展{{AbortController}}和{{AbortSignal}}对象。
 
@@ -1583,7 +1583,7 @@ interface AbortController {
  <dd>返回与此对象关联的{{AbortSignal}}对象。
 
  <dt><code><var>controller</var> . <a method for=AbortController lt=abort()>abort</a>(<var>reason</var>)</code>
- <dd>调用该方法将会保存其原因到该对象的{{AbortController/signal}}属性的[=AbortSignal/abort reason=]中，
+ <dd>调用该方法将会保存其中止原因到该对象的{{AbortController/signal}}属性的[=AbortSignal/abort reason=](中止原因)中，
  并向观察者发出信号，表明相关的活动将被中止。如果<var>reason</var>值为undefined，则抛出"{{AbortError!!exception}}(中止错误)"的{{DOMException}}(DOM异常)。
 </dl>
 
@@ -1603,7 +1603,7 @@ interface AbortController {
 <p><dfn method for=AbortController><code>abort(<var>reason</var>)</code></dfn>方法将在其<a>this</a>的
 <a for=AbortController>signal</a>上(如果给出reason则携带)<a for=AbortSignal lt="signal abort">发送中止信号</a>。
 
-<h3 id=interface-AbortSignal>Interface {{AbortSignal}}</h3>
+<h3 id=interface-AbortSignal>{{AbortSignal}}接口</h3>
 
 <pre class=idl>
 [Exposed=*]
@@ -1620,107 +1620,89 @@ interface AbortSignal : EventTarget {
 
 <dl class=domintro>
  <dt><code>AbortSignal . <a method for=AbortSignal>abort</a>(<var>reason</var>)</code>
- <dd>Returns an {{AbortSignal}} instance whose <a for=AbortSignal>abort reason</a> is set to
- <var>reason</var> if not undefined; otherwise to an "{{AbortError!!exception}}" {{DOMException}}.
+ <dd>如果<var>reason</var>不为undefined则返回一个{{AbortSignal}}实例，且设其
+ <a for=AbortSignal lt="abort reason">abort reason(中止原因)</a>为<var>reason</var>；
+ 如果<var>reason</var>为undefined则抛出一个"{{AbortError!!exception}}(中止错误)"的{{DOMException}}(DOM异常)。
 
  <dt><code>AbortSignal . <a method for=AbortSignal lt=timeout(milliseconds)>timeout</a>(<var>milliseconds</var>)</code>
- <dd>Returns an {{AbortSignal}} instance which will be aborted in <var>milliseconds</var>
- milliseconds. Its <a for=AbortSignal>abort reason</a> will be set to a
- "{{TimeoutError!!exception}}" {{DOMException}}.
+ <dd>返回一个将在milliseconds毫秒后被中止{{AbortSignal}}实例。其<a for=AbortSignal lt="abort reason">abort reason(中止原因)</a>将被设置为
+ "{{TimeoutError!!exception}}(超时错误)"的{{DOMException}}(DOM异常)。
 
  <dt><code><var>signal</var> . <a attribute for=AbortSignal>aborted</a></code>
- <dd>Returns true if <var>signal</var>'s {{AbortController}} has signaled to abort; otherwise false.
+ <dd>如果<var>signal</var>的{{AbortController}}已经发出中止信号则返回true；否则返回false。
 
  <dt><code><var>signal</var> . <a attribute for=AbortSignal>reason</a></code>
- <dd>Returns <var>signal</var>'s <a for=AbortSignal>abort reason</a>.
+ <dd>返回<var>signal</var>的<a for=AbortSignal lt="abort reason">abort reason(中止原因)</a>。
 
  <dt><code><var>signal</var> . <a method for=AbortSignal lt=throwIfAborted()>throwIfAborted</a>()</code>
- <dd>Throws <var>signal</var>'s <a for=AbortSignal>abort reason</a>, if <var>signal</var>'s
- {{AbortController}} has signaled to abort; otherwise, does nothing.
+ <dd>如果<var>signal</var>的{{AbortController}}已经发出中止信号则抛出<var>signal</var>的<a for=AbortSignal lt="abort reason">abort reason(中止原因)</a>;
+  否则，则什么都不做。
 </dl>
 
-<p>An {{AbortSignal}} object has an associated <dfn export for=AbortSignal>abort reason</dfn>, which is a
-JavaScript value. It is undefined unless specified otherwise.
+<p>{{AbortSignal}}对象有一个{{AbortSignal/reason}}属性，它存放着关联的<dfn export for=AbortSignal lt="abort reason">abort reason(中止原因)</dfn>，
+它是一个JavaScript值，除非另有说明，否则其值为undefined。
 
-<p>An {{AbortSignal}} object is <dfn export for="AbortSignal">aborted</dfn> when its
-[=AbortSignal/abort reason=] is not undefined.
+<p>当{{AbortSignal}}的[=AbortSignal/abort reason=]不为undefined，则证明它<dfn export for="AbortSignal" lt="aborted">已被中止</dfn>。
 
-<p>An {{AbortSignal}} object has associated <dfn for=AbortSignal>abort algorithms</dfn>, which is a
-<a for=/>set</a> of algorithms which are to be executed when it is [=AbortSignal/aborted=]. Unless
-specified otherwise, its value is the empty set.
+<p>{{AbortSignal}}对象具有一些相关的<dfn for=AbortSignal lt="abort algorithms">中止算法</dfn>，这是一<a for=/ lt="set">组</a>在中止时要执行的算法。
+除非另有说明，否则其值为空集。
 
-<p>To <dfn export for=AbortSignal>add</dfn> an algorithm <var>algorithm</var> to an {{AbortSignal}}
-object <var>signal</var>, run these steps:
+<p><dfn export for=AbortSignal lt="add">添加</dfn>一个算法(<var>algorithm</var>)到{{AbortSignal}}对象的<var>signal</var>，将要运行以下步骤：
 
 <ol>
- <li><p>If <var>signal</var> is [=AbortSignal/aborted=], then return.
+ <li><p>如果<var>signal</var>已被中止，则直接return。
 
- <li><p><a for=set>Append</a> <var>algorithm</var> to <var>signal</var>'s
- <a for=AbortSignal>abort algorithms</a>.
+ <li><p><a for=set lt="Append">添加</a><var>algorithm</var>到<var>signal</var>的
+ <a for=AbortSignal>abort algorithms</a>中。
 </ol>
 
-<p>To <dfn export for=AbortSignal>remove</dfn> an algorithm <var>algorithm</var> from an
-{{AbortSignal}} <var>signal</var>, <a for=set>remove</a> <var>algorithm</var> from
-<var>signal</var>'s <a for=AbortSignal>abort algorithms</a>.
+<p><dfn export for=AbortSignal lt="remove">删除</dfn>{{AbortSignal}}对象中<var>signal</var>的一个算法(<var>algorithm</var>)，
+则从<var>signal</var>的<a for=AbortSignal>abort algorithms</a>中<a for=set lt="remove">删除</a>该<var>algorithm</var>。
 
-<p class=note>The [=AbortSignal/abort algorithms=] enable APIs with complex
-requirements to react in a reasonable way to {{AbortController/abort()}}. For example, a given API's
-[=AbortSignal/abort reason=] might need to be propagated to a cross-thread environment, such as a
-service worker.
+<p class=note>中止算法使具有复杂要求的API能够以合理的方式对{{AbortController/abort()}}做出反应。例如，给定API的[=AbortSignal/abort reason=](中止原因)
+可能需要传播到跨线程环境，例如 service worker。
 
-<p>The static <dfn method for=AbortSignal><code>abort(<var>reason</var>)</code></dfn> method steps
-are:
+<p>静态方法<dfn method for=AbortSignal><code>abort(<var>reason</var>)</code></dfn>运行步骤：
 
 <ol>
- <li><p>Let <var>signal</var> be a new {{AbortSignal}} object.
+ <li><p>设<var>signal</var>为新的{{AbortSignal}}对象。
 
- <li><p>Set <var>signal</var>'s [=AbortSignal/abort reason=] to <var>reason</var> if it is given;
- otherwise to a new "{{AbortError!!exception}}" {{DOMException}}.
+ <li><p>如果给出参数<var>reason</var>，则设<var>signal</var>的[=AbortSignal/abort reason=]为<var>reason</var>;
+ 否则抛出 "{{AbortError!!exception}}(中止错误)"的{{DOMException}}(DOM异常)。
 
- <li>Return <var>signal</var>.
+ <li>返回<var>signal</var>。
 </ol>
 
-<p>The static <dfn method for=AbortSignal><code>timeout(<var>milliseconds</var>)</code></dfn> method
-steps are:
+<p>静态方法<dfn method for=AbortSignal><code>timeout(<var>milliseconds</var>)</code></dfn>运行步骤：
 
 <ol>
- <li><p>Let <var>signal</var> be a new {{AbortSignal}} object.
+ <li><p>设<var>signal</var>为新的{{AbortSignal}}对象。
 
- <li><p>Let <var>global</var> be <var>signal</var>'s <a>relevant global object</a>.
+ <li><p>设<var>global</var>为<var>signal</var>的<a lt="relevant global object">相关的全局对象</a>。
 
  <li>
-  <p><a>Run steps after a timeout</a> given <var>global</var>, "<code>AbortSignal-timeout</code>",
-  <var>milliseconds</var>, and the following step:</p>
+  <p>给定参数<var>global</var>、"<code>AbortSignal-timeout</code>"、
+  <var>milliseconds</var><a lt="Run steps after a timeout">超时后将运行以下步骤</a>：</p>
 
   <ol>
-   <li><p><a>Queue a global task</a> on the <a>timer task source</a> given <var>global</var> to
-   <a for=AbortSignal>signal abort</a> given <var>signal</var> and a new
-   "{{TimeoutError!!exception}}" {{DOMException}}.
+   <li><p>给定参数<var>global</var>，在<a lt="timer task source">计时器任务源</a>上<a lt="Queue a global task">排队一个全局任务</a>
+   以终止给定的参数<var>signal</var>的信号，并产生一个新的"{{TimeoutError!!exception}}(超时错误)"的{{DOMException}}(DOM异常)。
   </ol>
 
-  <p>For the duration of this timeout, if <var>signal</var> has any event listeners registered for
-  its {{AbortSignal/abort}} event, there must be a strong reference from <var>global</var> to
-  <var>signal</var>.
+  <p>在此超时期间，如果<var>signal</var>有任何为其{{AbortSignal/abort}}事件注册的事件侦听器，则必须存在从<var>global</var>到<var>signal</var>的强引用。
 
- <li><p>Return <var>signal</var>.
+ <li><p>Return <var>signal</var>。
 </ol>
 
-<p>The <dfn attribute for=AbortSignal>aborted</dfn> getter steps are to return true if <a>this</a>
-is [=AbortSignal/aborted=]; otherwise false.
+<p>如果<a>this</a>已被中止<dfn attribute for=AbortSignal>aborted</dfn>的getter方法返回true；否则返回false。
 
-<p>The <dfn attribute for=AbortSignal>reason</dfn> getter steps are to return <a>this</a>'s
-<a for=AbortSignal>abort reason</a>.
+<p><dfn attribute for=AbortSignal>reason</dfn>的getter方法返回<a>this</a>的<a for=AbortSignal lt="abort reason">中止原因</a>。
 
-<p>The <dfn method for=AbortSignal>throwIfAborted()</dfn> method steps are to throw <a>this</a>'s
-<a for=AbortSignal>abort reason</a>, if <a>this</a> is [=AbortSignal/aborted=].
+<p>如果<a>this</a>被中止，<dfn method for=AbortSignal>throwIfAborted()</dfn>方法将抛出<a>this</a>的<a for=AbortSignal lt="abort reason">中止原因</a>。
 
 <div class=example id=example-throwifaborted>
- <p>This method is primarily useful for when functions accepting {{AbortSignal}}s want to throw (or
- return a rejected promise) at specific checkpoints, instead of passing along the {{AbortSignal}}
- to other methods. For example, the following function allows aborting in between each attempt to
- poll for a condition. This gives opportunities to abort the polling process, even though the
- actual asynchronous operation (i.e., <code class=lang-javascript>await func()</code>) does not
- accept an {{AbortSignal}}.
+ <p>当接受{{AbortSignal}}的函数想要在特定检查点抛出(或返回被拒绝的承诺)而不是将{{AbortSignal}}传递给其他方法时，此方法尤其有用。
+ 例如，下列函数允许在每次尝试轮询条件之间中止。这提供了中止轮询过程的机会，即使实际的异步操作(即 await func())不接受{{AbortSignal}}。
 
  <pre class=lang-javascript>
  async function waitForCondition(func, targetValue, { signal } = {}) {
@@ -1736,50 +1718,45 @@ is [=AbortSignal/aborted=]; otherwise false.
  </pre>
 </div>
 
-<p>The <dfn attribute for=AbortSignal><code>onabort</code></dfn> attribute is an
-<a>event handler IDL attribute</a> for the <dfn export for=AbortSignal><code>onabort</code></dfn>
-<a>event handler</a>, whose <a>event handler event type</a> is
-<dfn event for=AbortSignal><code>abort</code></dfn>.
+<p><dfn attribute for=AbortSignal><code>onabort</code></dfn>属性是一个<a lt="event handler">事件处理程序</a>的
+<a lt="event handler IDL attribute">event handler IDL属性</a>， <a lt="event handler event type">事件处理程序事件类型</a>
+为<dfn event for=AbortSignal><code>abort</code></dfn>。
 
-<p class=note>Changes to an {{AbortSignal}} object represent the wishes of the corresponding
-{{AbortController}} object, but an API observing the {{AbortSignal}} object can chose to ignore
-them. For instance, if the operation has already completed.
+<p class=note>对{{AbortSignal}}对象的更改代表相应{{AbortController}}对象的意愿，但观察{{AbortSignal}}对象的API可以选择忽略它们。
+例如，如果操作已经完成。
 
-<p>To <dfn export for=AbortSignal>signal abort</dfn>, given an {{AbortSignal}} object
-<var>signal</var> and an optional <var>reason</var>, run these steps:
+
+<p>要<dfn export for=AbortSignal lt="signal abort">发出中止信号</dfn>，给定{{AbortSignal}}类型的<var>signal</var>参数以及可选的<var>reason</var>参数
+，请运行以下步骤：
 
 <ol>
- <li><p>If <var>signal</var> is [=AbortSignal/aborted=], then return.
+ <li><p>如果<var>signal</var>以及被中止，则直接return。
 
- <li><p>Set <var>signal</var>'s [=AbortSignal/abort reason=] to <var>reason</var> if it is given;
- otherwise to a new "{{AbortError!!exception}}" {{DOMException}}.
+ <li>如果给出了<var>reason</var>参数，则<p>设<var>signal</var>的[=AbortSignal/abort reason=]为<var>reason</var>；
+ 否则抛出 "{{AbortError!!exception}}(中止错误)"的{{DOMException}}(DOM异常)。
 
- <li><p><a for=set>For each</a> <var>algorithm</var> in <var>signal</var>'s
- [=AbortSignal/abort algorithms=]: run <var>algorithm</var>.
+ <li><p><a for=set lt="For each">遍历</a><var>signal</var>的[=AbortSignal/abort algorithms=]中的算法，并运行这些算法。
 
- <li><p><a for=set>Empty</a> <var>signal</var>'s <a for=AbortSignal>abort algorithms</a>.
+ <li><p><a for=set lt="Empty">清空</a> <var>signal</var>的<a for=AbortSignal>abort algorithms</a>。
 
- <li><p>[=Fire an event=] named {{AbortSignal/abort}} at <var>signal</var>.
+ <li><p><a lt="Fire an event">触发</a><var>signal</var>中名为{{AbortSignal/abort}}的事件。
 </ol>
 
-<p>A <var>followingSignal</var> (an {{AbortSignal}}) is made to
-<dfn export for=AbortSignal>follow</dfn> a <var>parentSignal</var> (an {{AbortSignal}}) by running
-these steps:
+<p>通过运行以下步骤，可以使<var>followingSignal</var>(一个{{AbortSignal}}对象)<dfn export for=AbortSignal lt="follow">跟随</dfn>
+一个<var>parentSignal</var>(一个{{AbortSignal}}对象)：
 
 <ol>
- <li><p>If <var>followingSignal</var> is [=AbortSignal/aborted=], then return.
+ <li><p>如果<var>followingSignal</var>已经被中止，则直接return。
 
- <li><p>If <var>parentSignal</var> is [=AbortSignal/aborted=], then
- <a for=AbortSignal>signal abort</a> on <var>followingSignal</var> with <var>parentSignal</var>'s
- [=AbortSignal/abort reason=].
+ <li><p>如果<var>parentSignal</var>已经被中止，则使用<var>parentSignal</var>的[=AbortSignal/abort reason=]
+ 给<var>followingSignal</var><a for=AbortSignal lt="signal abort">发送中止信号</a>。
 
  <li>
-  <p>Otherwise, <a for=AbortSignal lt=add>add the following abort steps</a> to
-  <var>parentSignal</var>:
+  <p>否则，向<var>parentSignal</var><a for=AbortSignal lt=add>添加以下中止步骤</a>：
 
   <ol>
-   <li><p><a for=AbortSignal>Signal abort</a> on <var>followingSignal</var> with
-   <var>parentSignal</var>'s [=AbortSignal/abort reason=].
+   <li><p>使用<var>parentSignal</var>的[=AbortSignal/abort reason=]给
+   <var>followingSignal</var><a for=AbortSignal lt="signal abort">发出中止信号</a>。
   </ol>
 </ol>
 
