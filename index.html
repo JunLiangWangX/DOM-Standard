@@ -85,8 +85,7 @@ a[href].issue-return {
      <ol class="toc">
       <li><a href="#interface-abortcontroller"><span class="secno">3.1</span> <span class="content"><code class="idl"><span>AbortController</span></code>接口</span></a>
       <li><a href="#interface-AbortSignal"><span class="secno">3.2</span> <span class="content"><code class="idl"><span>AbortSignal</span></code>接口</span></a>
-      <li><a href="#abortcontroller-api-integration"><span class="secno">3.3</span> <span class="content">Using <code class="idl"><span>AbortController</span></code> and <code class="idl"><span>AbortSignal</span></code> objects in
-APIs</span></a>
+      <li><a href="#abortcontroller-api-integration"><span class="secno">3.3</span> <span class="content">在API中使用<code class="idl"><span>AbortController</span></code>和<code class="idl"><span>AbortSignal</span></code>对象</span></a>
      </ol>
     <li>
      <a href="#nodes"><span class="secno">4</span> <span class="content">Nodes</span></a>
@@ -2057,51 +2056,49 @@ controller<c- p>.</c->abort<c- p>();</c-></code></pre>
        <p>使用<var>parentSignal</var>的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑤">abort reason</a>给 <var>followingSignal</var><a data-link-type="dfn" href="#abortsignal-signal-abort" id="ref-for-abortsignal-signal-abort②">发出中止信号</a>。 </p>
      </ol>
    </ol>
-   <h3 class="heading settled" data-level="3.3" id="abortcontroller-api-integration"><span class="secno">3.3. </span><span class="content">Using <code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑧">AbortController</a></code> and <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③④">AbortSignal</a></code> objects in
-APIs</span><a class="self-link" href="#abortcontroller-api-integration"></a></h3>
-   <p>Any web platform API using promises to represent operations that can be aborted must adhere to
-the following: </p>
+   <h3 class="heading settled" data-level="3.3" id="abortcontroller-api-integration"><span class="secno">3.3. </span><span class="content">在API中使用<code class="idl"><a data-link-type="idl" href="#abortcontroller" id="ref-for-abortcontroller⑧">AbortController</a></code>和<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③④">AbortSignal</a></code>对象</span><a class="self-link" href="#abortcontroller-api-integration"></a></h3>
+   <p>任何使用promise代表能够被中止的操作的Web平台API，都必须遵守以下规定： </p>
    <ul class="brief">
-    <li>Accept <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑤">AbortSignal</a></code> objects through a <code>signal</code> dictionary member. 
-    <li>Convey that the operation got aborted by rejecting the promise with <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑥">AbortSignal</a></code> object’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑥">abort reason</a>. 
-    <li>Reject immediately if the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑦">AbortSignal</a></code> is already <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted①">aborted</a>, otherwise: 
-    <li>Use the <a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms④">abort algorithms</a> mechanism to observe changes to the <code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑧">AbortSignal</a></code> object and do so in a manner that does not lead to clashes with other observers. 
+    <li>通过<code>signal</code>字典成员接受<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑤">AbortSignal</a></code>对象。 
+    <li>携带<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑥">AbortSignal</a></code>对象的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑥">中止原因</a>，通过promise的rejeting传达该操作已被中止。 
+    <li>如果<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑦">AbortSignal</a></code>已经被<a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted①">中止</a>则立即reject，否则： 
+    <li>使用<a data-link-type="dfn" href="#abortsignal-abort-algorithms" id="ref-for-abortsignal-abort-algorithms④">中止算法</a>机制来观察对<code class="idl"><a data-link-type="idl" href="#abortsignal" id="ref-for-abortsignal③⑧">AbortSignal</a></code>对象的更改，并以不会导致与其他观察者发生冲突的方式进行。 
    </ul>
    <div class="example" id="aborting-ongoing-activities-spec-example">
     <a class="self-link" href="#aborting-ongoing-activities-spec-example"></a> 
-    <p>The method steps for a promise-returning method <code>doAmazingness(<var>options</var>)</code> could be as follows: </p>
+    <p>promise-returning方法<code>doAmazingness(<var>options</var>)</code>的方法步骤如下： </p>
     <ol>
      <li>
-      <p>Let <var>p</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>. </p>
+      <p>设<var>p</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise">一个新的promise</a>。 </p>
      <li>
-      <p>If <var>options</var>["<code>signal</code>"] member is present, then: </p>
+      <p>如果<var>options</var>的"<code>signal</code>"成员存在，则： </p>
       <ol>
        <li>
-        <p>Let <var>signal</var> be <var>options</var>["<code>signal</code>"]. </p>
+        <p>设<var>signal</var>为<var>options</var>的"<code>signal</code>"。 </p>
        <li>
-        <p>If <var>signal</var> is <a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted②">aborted</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑦">abort reason</a> and return <var>p</var>. </p>
+        <p>如果<var>signal</var><a data-link-type="dfn" href="#abortsignal-aborted" id="ref-for-abortsignal-aborted②">已经被中止</a>，则使用<var>signal</var>的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑦">abort reason</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>p</var>并且return <var>p</var>。 </p>
        <li>
-        <p><a data-link-type="dfn" href="#abortsignal-add" id="ref-for-abortsignal-add②">Add the following abort steps</a> to <var>signal</var>: </p>
+        <p>向<var>signal</var><a data-link-type="dfn" href="#abortsignal-add" id="ref-for-abortsignal-add②">添加以下中止步骤</a>： </p>
         <ol>
          <li>
-          <p>Stop doing amazing things. </p>
+          <p>停止正在做的事情 </p>
          <li>
-          <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject①">Reject</a> <var>p</var> with <var>signal</var>’s <a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑧">abort reason</a>. </p>
+          <p>使用<var>signal</var>的<a data-link-type="dfn" href="#abortsignal-abort-reason" id="ref-for-abortsignal-abort-reason①⑧">abort reason</a>(中止原因)<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject①">Reject</a> <var>p</var>。 </p>
         </ol>
       </ol>
      <li>
-      <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: </p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">并行</a>运行这些步骤： </p>
       <ol>
        <li>
-        <p>Let <var>amazingResult</var> be the result of doing some amazing things. </p>
+        <p>设<var>amazingResult</var>为做一些惊奇的事的返回结果。 </p>
        <li>
-        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve">Resolve</a> <var>p</var> with <var>amazingResult</var>. </p>
+        <p>用<var>amazingResult</var>解析<var>p</var>。 </p>
       </ol>
      <li>
-      <p>Return <var>p</var>. </p>
+      <p>返回 <var>p</var>。 </p>
     </ol>
    </div>
-   <p>APIs not using promises should still adhere to the above as much as possible. </p>
+   <p>不使用promises的API仍应尽可能遵守上述规定。 </p>
    <h2 class="heading settled" data-level="4" id="nodes"><span class="secno">4. </span><span class="content">Nodes</span><a class="self-link" href="#nodes"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="introduction-to-the-dom"><span class="secno">4.1. </span><span class="content">Introduction to "The DOM"</span><a class="self-link" href="#introduction-to-the-dom"></a></h3>
    <p>In its original sense, "The DOM" is an API for
@@ -13244,8 +13241,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-in-parallel">
    <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-in-parallel">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-in-parallel">3.3. 在API中使用AbortController和AbortSignal对象</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-the-input-element">
@@ -14152,8 +14148,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-a-new-promise">
    <a href="https://webidl.spec.whatwg.org/#a-new-promise">https://webidl.spec.whatwg.org/#a-new-promise</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-new-promise">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-a-new-promise">3.3. 在API中使用AbortController和AbortSignal对象</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-any">
@@ -14241,15 +14236,7 @@ APIs</a>
   <aside class="dfn-panel" data-for="term-for-reject">
    <a href="https://webidl.spec.whatwg.org/#reject">https://webidl.spec.whatwg.org/#reject</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reject">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-reject①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-resolve">
-   <a href="https://webidl.spec.whatwg.org/#resolve">https://webidl.spec.whatwg.org/#resolve</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-resolve">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-reject">3.3. 在API中使用AbortController和AbortSignal对象</a> <a href="#ref-for-reject①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-sequence">
@@ -14640,7 +14627,6 @@ APIs</a>
      <li><span class="dfn-paneled" id="term-for-implements">implements</span>
      <li><span class="dfn-paneled" id="term-for-invoke-a-callback-function">invoke</span>
      <li><span class="dfn-paneled" id="term-for-reject">reject</span>
-     <li><span class="dfn-paneled" id="term-for-resolve">resolve</span>
      <li><span class="dfn-paneled" id="term-for-idl-sequence">sequence</span>
      <li><span class="dfn-paneled" id="term-for-idl-short">short</span>
      <li><span class="dfn-paneled" id="term-for-dfn-supported-property-indices">supported property indices</span>
@@ -16293,8 +16279,7 @@ APIs</a>
     <li><a href="#ref-for-abortcontroller">3. 中止正在进行的活动</a> <a href="#ref-for-abortcontroller①">(2)</a> <a href="#ref-for-abortcontroller②">(3)</a>
     <li><a href="#ref-for-abortcontroller③">3.1. AbortController接口</a> <a href="#ref-for-abortcontroller④">(2)</a>
     <li><a href="#ref-for-abortcontroller⑤">3.2. AbortSignal接口</a> <a href="#ref-for-abortcontroller⑥">(2)</a> <a href="#ref-for-abortcontroller⑦">(3)</a>
-    <li><a href="#ref-for-abortcontroller⑧">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-abortcontroller⑧">3.3. 在API中使用AbortController和AbortSignal对象</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortcontroller-signal">
@@ -16333,8 +16318,7 @@ APIs</a>
     <li><a href="#ref-for-abortsignal④">3. 中止正在进行的活动</a> <a href="#ref-for-abortsignal⑤">(2)</a> <a href="#ref-for-abortsignal⑥">(3)</a> <a href="#ref-for-abortsignal⑦">(4)</a> <a href="#ref-for-abortsignal⑧">(5)</a>
     <li><a href="#ref-for-abortsignal⑨">3.1. AbortController接口</a> <a href="#ref-for-abortsignal①⓪">(2)</a> <a href="#ref-for-abortsignal①①">(3)</a> <a href="#ref-for-abortsignal①②">(4)</a> <a href="#ref-for-abortsignal①③">(5)</a>
     <li><a href="#ref-for-abortsignal①④">3.2. AbortSignal接口</a> <a href="#ref-for-abortsignal①⑤">(2)</a> <a href="#ref-for-abortsignal①⑥">(3)</a> <a href="#ref-for-abortsignal①⑦">(4)</a> <a href="#ref-for-abortsignal①⑧">(5)</a> <a href="#ref-for-abortsignal①⑨">(6)</a> <a href="#ref-for-abortsignal②⓪">(7)</a> <a href="#ref-for-abortsignal②①">(8)</a> <a href="#ref-for-abortsignal②②">(9)</a> <a href="#ref-for-abortsignal②③">(10)</a> <a href="#ref-for-abortsignal②④">(11)</a> <a href="#ref-for-abortsignal②⑤">(12)</a> <a href="#ref-for-abortsignal②⑥">(13)</a> <a href="#ref-for-abortsignal②⑦">(14)</a> <a href="#ref-for-abortsignal②⑧">(15)</a> <a href="#ref-for-abortsignal②⑨">(16)</a> <a href="#ref-for-abortsignal③⓪">(17)</a> <a href="#ref-for-abortsignal③①">(18)</a> <a href="#ref-for-abortsignal③②">(19)</a> <a href="#ref-for-abortsignal③③">(20)</a>
-    <li><a href="#ref-for-abortsignal③④">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-abortsignal③⑤">(2)</a> <a href="#ref-for-abortsignal③⑥">(3)</a> <a href="#ref-for-abortsignal③⑦">(4)</a> <a href="#ref-for-abortsignal③⑧">(5)</a>
+    <li><a href="#ref-for-abortsignal③④">3.3. 在API中使用AbortController和AbortSignal对象</a> <a href="#ref-for-abortsignal③⑤">(2)</a> <a href="#ref-for-abortsignal③⑥">(3)</a> <a href="#ref-for-abortsignal③⑦">(4)</a> <a href="#ref-for-abortsignal③⑧">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-abort-reason">
@@ -16343,24 +16327,21 @@ APIs</a> <a href="#ref-for-abortsignal③⑤">(2)</a> <a href="#ref-for-abortsig
     <li><a href="#ref-for-abortsignal-abort-reason">3. 中止正在进行的活动</a> <a href="#ref-for-abortsignal-abort-reason①">(2)</a> <a href="#ref-for-abortsignal-abort-reason②">(3)</a>
     <li><a href="#ref-for-abortsignal-abort-reason③">3.1. AbortController接口</a>
     <li><a href="#ref-for-abortsignal-abort-reason④">3.2. AbortSignal接口</a> <a href="#ref-for-abortsignal-abort-reason⑤">(2)</a> <a href="#ref-for-abortsignal-abort-reason⑥">(3)</a> <a href="#ref-for-abortsignal-abort-reason⑦">(4)</a> <a href="#ref-for-abortsignal-abort-reason⑧">(5)</a> <a href="#ref-for-abortsignal-abort-reason⑨">(6)</a> <a href="#ref-for-abortsignal-abort-reason①⓪">(7)</a> <a href="#ref-for-abortsignal-abort-reason①①">(8)</a> <a href="#ref-for-abortsignal-abort-reason①②">(9)</a> <a href="#ref-for-abortsignal-abort-reason①③">(10)</a> <a href="#ref-for-abortsignal-abort-reason①④">(11)</a> <a href="#ref-for-abortsignal-abort-reason①⑤">(12)</a>
-    <li><a href="#ref-for-abortsignal-abort-reason①⑥">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-abortsignal-abort-reason①⑦">(2)</a> <a href="#ref-for-abortsignal-abort-reason①⑧">(3)</a>
+    <li><a href="#ref-for-abortsignal-abort-reason①⑥">3.3. 在API中使用AbortController和AbortSignal对象</a> <a href="#ref-for-abortsignal-abort-reason①⑦">(2)</a> <a href="#ref-for-abortsignal-abort-reason①⑧">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-aborted">
    <b><a href="#abortsignal-aborted">#abortsignal-aborted</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abortsignal-aborted">2.7. EventTarget接口</a>
-    <li><a href="#ref-for-abortsignal-aborted①">3.3. Using AbortController and AbortSignal objects in
-APIs</a> <a href="#ref-for-abortsignal-aborted②">(2)</a>
+    <li><a href="#ref-for-abortsignal-aborted①">3.3. 在API中使用AbortController和AbortSignal对象</a> <a href="#ref-for-abortsignal-aborted②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-abort-algorithms">
    <b><a href="#abortsignal-abort-algorithms">#abortsignal-abort-algorithms</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abortsignal-abort-algorithms">3.2. AbortSignal接口</a> <a href="#ref-for-abortsignal-abort-algorithms①">(2)</a> <a href="#ref-for-abortsignal-abort-algorithms②">(3)</a> <a href="#ref-for-abortsignal-abort-algorithms③">(4)</a>
-    <li><a href="#ref-for-abortsignal-abort-algorithms④">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-abortsignal-abort-algorithms④">3.3. 在API中使用AbortController和AbortSignal对象</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abortsignal-add">
@@ -16368,8 +16349,7 @@ APIs</a>
    <ul>
     <li><a href="#ref-for-abortsignal-add">2.7. EventTarget接口</a>
     <li><a href="#ref-for-abortsignal-add①">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-abortsignal-add②">3.3. Using AbortController and AbortSignal objects in
-APIs</a>
+    <li><a href="#ref-for-abortsignal-add②">3.3. 在API中使用AbortController和AbortSignal对象</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-abortsignal-abort">
