@@ -1761,61 +1761,55 @@ interface AbortSignal : EventTarget {
 </ol>
 
 
-<h3 id=abortcontroller-api-integration>Using {{AbortController}} and {{AbortSignal}} objects in
-APIs</h3>
+<h3 id=abortcontroller-api-integration>在API中使用{{AbortController}}和{{AbortSignal}}对象</h3>
 
-<p>Any web platform API using promises to represent operations that can be aborted must adhere to
-the following:
+<p>任何使用promise代表能够被中止的操作的Web平台API，都必须遵守以下规定：
 
 <ul class=brief>
- <li>Accept {{AbortSignal}} objects through a <code>signal</code> dictionary member.
- <li>Convey that the operation got aborted by rejecting the promise with {{AbortSignal}} object's
- [=AbortSignal/abort reason=].
- <li>Reject immediately if the {{AbortSignal}} is already [=AbortSignal/aborted=], otherwise:
- <li>Use the [=AbortSignal/abort algorithms=] mechanism to observe changes to the {{AbortSignal}}
- object and do so in a manner that does not lead to clashes with other observers.
+ <li>通过<code>signal</code>字典成员接受{{AbortSignal}}对象。
+ <li>携带{{AbortSignal}}对象的<a lt="abort reason">中止原因</a>，通过promise的rejeting传达该操作已被中止。
+ <li>如果{{AbortSignal}}已经被<a lt="aborted">中止</a>则立即reject，否则：
+ <li>使用<a lt="abort algorithms">中止算法</a>机制来观察对{{AbortSignal}}对象的更改，并以不会导致与其他观察者发生冲突的方式进行。
 </ul>
 
 <div class=example id=aborting-ongoing-activities-spec-example>
- <p>The method steps for a promise-returning method <code>doAmazingness(<var>options</var>)</code>
- could be as follows:
+ <p>promise-returning方法<code>doAmazingness(<var>options</var>)</code>的方法步骤如下：
 
  <ol>
-  <li><p>Let |p| be [=a new promise=].
+  <li><p>设|p|为<a lt="a new promise">一个新的promise</a>。
 
   <li>
-   <p>If |options|["<code>signal</code>"] member is present, then:
+   <p>如果|options|的"<code>signal</code>"成员存在，则：
 
    <ol>
-    <li><p>Let |signal| be |options|["<code>signal</code>"].
+    <li><p>设|signal|为|options|的"<code>signal</code>"。
 
-    <li><p>If |signal| is [=AbortSignal/aborted=], then [=reject=] |p| with |signal|'s
-    [=AbortSignal/abort reason=] and return |p|.
+    <li><p>如果|signal|<a for="AbortSignal" lt="aborted">已经被中止</a>，则使用|signal|的[=AbortSignal/abort reason=][=reject=] |p|并且return |p|。
 
     <li>
-     <p>[=AbortSignal/Add|Add the following abort steps=] to |signal|:
+     <p>向|signal|<a for=AbortSignal lt=add>添加以下中止步骤</a>：
 
      <ol>
-      <li><p>Stop doing amazing things.
+      <li><p>停止正在做的事情
 
-      <li><p>[=Reject=] |p| with |signal|'s [=AbortSignal/abort reason=].
+      <li><p>使用|signal|的[=AbortSignal/abort reason=](中止原因)[=Reject=] |p|。
      </ol>
    </ol>
 
   <li>
-   <p>Run these steps [=in parallel=]:
+   <p><a lt="in parallel">并行</a>运行这些步骤：
 
    <ol>
-    <li><p>Let |amazingResult| be the result of doing some amazing things.
+    <li><p>设|amazingResult|为做一些惊奇的事的返回结果。
 
-    <li><p>[=/Resolve=] |p| with |amazingResult|.
+    <li><p>用|amazingResult|解析|p|。
    </ol>
 
-  <li><p>Return |p|.
+  <li><p>返回 |p|。
  </ol>
 </div>
 
-<p>APIs not using promises should still adhere to the above as much as possible.
+<p>不使用promises的API仍应尽可能遵守上述规定。
 
 
 
