@@ -1813,21 +1813,17 @@ interface AbortSignal : EventTarget {
 
 
 
-<h2 id=nodes>Nodes</h2>
+<h2 id=nodes>Nodes：节点</h2>
 
-<h3 id=introduction-to-the-dom>Introduction to "The DOM"</h3>
+<h3 id=introduction-to-the-dom>DOM简介</h3>
 
-In its original sense, "The DOM" is an API for
-accessing and manipulating documents (in particular, HTML and XML
-documents). In this specification, the term "document" is used for any
-markup-based resource, ranging from short static documents to long essays or
-reports with rich multimedia, as well as to fully-fledged interactive
-applications.
+在最初的意义中，"DOM"是一种用于访问和操作文档(特别是HTML和XML文档)的API。在本规范中，术语"文档"用于任何基于标记的资源，
+范围从简短的静态文档到长篇文章或具有丰富多媒体的报告，以及成熟的交互式应用程序。
 
-<p>Each such document is represented as a <a>node tree</a>. Some of the <a for=/>nodes</a> in a
-<a>tree</a> can have <a for=tree>children</a>, while others are always leaves.
+<p>每个这样的文档都表示为一个<a lt="node tree">node tree</a>(节点树)。<a lt="tree">树</a>中的某些节点可以有<a for=tree lt="children">子节点</a>，
+除此之外的其他节点始终是叶子节点。
 
-To illustrate, consider this HTML document:
+为了说明这一点，请考虑以下 HTML 文档：
 
 <pre class=lang-markup>
 &lt;!DOCTYPE html>
@@ -1837,7 +1833,7 @@ To illustrate, consider this HTML document:
 &lt;/html>
 </pre>
 
-It is represented as follows:
+DOM表示如下：
 
 <ul class=domTree>
  <li>
@@ -1874,14 +1870,11 @@ It is represented as follows:
 https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0D%0A%3Chtml%20class%3De%3E%0D%0A%20%3Chead%3E%3Ctitle%3EAliens%3F%3C%2Ftitle%3E%3C%2Fhead%3E%0D%0A%20%3Cbody%3EWhy%20yes.%3C%2Fbody%3E%0D%0A%3C%2Fhtml%3E
 -->
 
-<p>Note that, due to the magic that is <a lt="html parser">HTML parsing</a>, not all
-<a>ASCII whitespace</a> were turned into {{Text}} <a for=/>nodes</a>, but the general concept is
-clear. Markup goes in, a <a>tree</a> of <a for=/>nodes</a> comes out.
+<p>请注意，由于<a lt="html parser">HTML解析</a>的魔力，并非所有<a lt="ASCII whitespace">ASCII空格</a>都变成{{Text}}<a for=/ lt="nodes">节点</a>，
+但一般概念很清楚。标记进去，<a lt="node tree">节点树</a>出来。
 <!-- You /can/ explain that! harharhar -->
 
-<p class=note>The most excellent
-<a href="https://software.hixie.ch/utilities/js/live-dom-viewer/">Live DOM Viewer</a>
-can be used to explore this matter in more detail.
+<p class=note><a href="https://software.hixie.ch/utilities/js/live-dom-viewer/">Live DOM Viewer</a>可以更详细地探讨这个问题。
 
 
 <h3 id=node-trees>Node tree</h3>
