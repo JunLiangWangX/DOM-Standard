@@ -1877,95 +1877,86 @@ https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0D
 <p class=note><a href="https://software.hixie.ch/utilities/js/live-dom-viewer/">Live DOM Viewer</a>可以更详细地探讨这个问题。
 
 
-<h3 id=node-trees>Node tree</h3>
+<h3 id=node-trees>Node tree：节点树</h3>
 
-<p><dfn export id=concept-node>Nodes</dfn> are objects that <a>implement</a> {{Node}}.
-<a for=/>Nodes</a> <a>participate</a> in a <a>tree</a>, which is known as the
-<dfn export id=concept-node-tree>node tree</dfn>.
+<p><dfn export id=concept-node>Nodes</dfn>是<a lt="implement">实现</a>{{Node}}接口的对象。
+<a for=/>Nodes</a><a lt="participate">参与</a><a>tree</a>，被称为<dfn export id=concept-node-tree>node tree</dfn>。
 
 <div class=note>
- <p>In practice you deal with more specific objects.
+ <p>实际上，您处理的是更具体的对象。
 
- <p>Objects that <a>implement</a> {{Node}} also implement an inherited interface: {{Document}},
- {{DocumentType}}, {{DocumentFragment}}, {{Element}}, {{CharacterData}}, or {{Attr}}.
+ <p><a lt="implement">实现</a>{{Node}}的对象，也实现了其继承的接口：{{Document}}、{{DocumentType}}、{{DocumentFragment}}、
+ {{Element}}、{{CharacterData}}或{{Attr}}。
 
- <p>Objects that implement {{DocumentFragment}} sometimes implement {{ShadowRoot}}.
+ <p>实现{{DocumentFragment}}接口的对象，有时也会实现{{ShadowRoot}}接口。
 
- <p>Objects that implement {{Element}} also typically implement an inherited interface, such as
- {{HTMLAnchorElement}}.
+ <p>实现{{Element}}接口的对象，通常也会实现继承的接口，例如{{HTMLAnchorElement}}。
 
- <p>Objects that implement {{CharacterData}} also implement an inherited interface: {{Text}},
- {{ProcessingInstruction}}, or {{Comment}}.
+ <p>实现{{CharacterData}}接口的对象，也会实现继承的接口，例如{{Text}}、{{ProcessingInstruction}}或{{Comment}}。
 
- <p>Objects that implement {{Text}} sometimes implement {{CDATASection}}.
+ <p>实现{{Text}}接口的对象，有时也会实现{{CDATASection}}接口。
 </div>
 
-<p>For brevity, this specification refers to an object that <a>implements</a> {{Node}} and an
-inherited interface <code><var>NodeInterface</var></code>, as a
-<code><var>NodeInterface</var></code> <a for=/>node</a>.
+<p>为简洁起见，本规范将<a lt="implements">实现</a>{{Node}}和继承接口<code><var>NodeInterface</var></code>
+的对象称为<code><var>NodeInterface</var></code><a for=/ lt="node">节点</a>。
 
-<p>A <a>node tree</a> is constrained as follows, expressed as a relationship between a
-<a for=/>node</a> and its potential <a for=tree>children</a>:
+<p><a>node tree</a>(节点树)的<a for=/ lt="node">节点</a>与<a for=tree lt="children">子节点</a>将受到如下限制：
 
 <dl>
  <dt>{{Document}}
  <dd>
-  <p>In <a>tree order</a>:
+  <p>按<a lt="tree order">树的顺序</a>:
   <ol>
-   <li><p>Zero or more {{ProcessingInstruction}} or {{Comment}} <a for=/>nodes</a>.
-   <li><p>Optionally one {{DocumentType}} <a for=/>node</a>.
-   <li><p>Zero or more {{ProcessingInstruction}} or {{Comment}} <a for=/>nodes</a>.
-   <li><p>Optionally one {{Element}} <a for=/>node</a>.
-   <li><p>Zero or more {{ProcessingInstruction}} or {{Comment}} <a for=/>nodes</a>.
+   <li><p>0或多个{{ProcessingInstruction}}或{{Comment}}<a for=/ lt="nodes">节点</a>。
+   <li><p>0个或1个{{DocumentType}}<a for=/ lt="nodes">节点</a>。
+   <li><p>0或多个{{ProcessingInstruction}}或{{Comment}}<a for=/ lt="nodes">节点</a>。
+   <li><p>0个或1个{{Element}}<a for=/ lt="nodes">节点</a>。
+   <li><p>0或多个{{ProcessingInstruction}}或{{Comment}}<a for=/ lt="nodes">节点</a>。
   </ol>
 
  <dt>{{DocumentFragment}}
  <dt>{{Element}}
- <dd><p>Zero or more {{Element}} or {{CharacterData}} <a for=/>nodes</a>.
+ <dd><p>0个或多个{{Element}}或{{CharacterData}}<a for=/ lt="nodes">节点</a>。
 
  <dt>{{DocumentType}}
  <dt>{{CharacterData}}
  <dt>{{Attr}}
- <dd><p>No <a for=tree>children</a>.
+ <dd><p>没有<a for=tree lt="children">子节点</a>。
 </dl>
 
-<p class=note>{{Attr}} <a for=/>nodes</a> <a>participate</a> in a <a>tree</a> for historical
-reasons; they never have a (non-null) <a for=tree>parent</a> or any <a for=tree>children</a> and are
-therefore alone in a <a>tree</a>.
+<p class=note>由于历史原因，{{Attr}} <a for=/ lt="nodes">节点</a> <a lt="participate">参与</a>到<a>tree</a>中；
+它们从来没有(非空的)<a for=tree lt="parent">父节点</a>或任何<a for=tree lt="children">子节点</a>。
 
-<p>To determine the <dfn export id=concept-node-length for=Node>length</dfn> of a <a for=/>node</a>
-<var>node</var>, run these steps:
+<p>要确定<a for=/>node</a>的<dfn export id=concept-node-length for=Node lt="length">长度</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>If <var>node</var> is a {{DocumentType}} or {{Attr}} <a for=/>node</a>, then return 0.
+ <li><p>如果<var>node</var>是{{DocumentType}}或者{{Attr}} <a for=/ lt="node">节点</a>，则直接返回0。
 
- <li><p>If <var>node</var> is a {{CharacterData}} <a for=/>node</a>, then return <var>node</var>'s
- <a for=CharacterData>data</a>'s <a for=string>length</a>.
+ <li><p>如果<var>node</var>是{{CharacterData}} <a for=/ lt="node">节点</a>，则返回<var>node</var>的
+ <a for=CharacterData>data</a>的<a for=string>length</a>属性。
 
- <li><p>Return the number of <var>node</var>'s <a for=tree>children</a>.
+ <li><p>返回<var>node</var>的<a for=tree lt="children">子节点</a>的数量。
 </ol>
 
-<p>A <a for=/>node</a> is considered <dfn export id=concept-node-empty for=Node>empty</dfn> if its
-<a>length</a> is 0.
+<p>如果<a for=/ lt="node">节点</a>的<a lt="length">长度</a>为0，则该<a for=/ lt="node">节点</a>被认为是
+<dfn export id=concept-node-empty for=Node lt="empty">空</dfn>的。
 
 
-<h4 id=document-trees>Document tree</h4>
+<h4 id=document-trees>Document tree：文档树</h4>
 
-<p>A <dfn export id=concept-document-tree>document tree</dfn> is a <a>node tree</a> whose
-<a for=tree>root</a> is a <a>document</a>.
+<p><dfn export id=concept-document-tree lt="document tree">文档树</dfn>为其<a for=tree lt="root">根节点</a>是<a>document</a>
+的<a lt="node tree">节点树</a>。
 
-<p>The <dfn export>document element</dfn> of a <a>document</a> is the <a for=/>element</a> whose
-<a for=tree>parent</a> is that <a>document</a>, if it exists; otherwise null.
+<p><a>document</a>的<dfn export lt="document element">文档元素</dfn>是其<a for=tree lt="parent">父元素</a>是该<a>document</a>(如果存在)的元素；
+否则为空。
 
-<p class=note>Per the <a>node tree</a> constraints, there can be only one such
-<a for=/>element</a>.
+<p class=note>根据<a lt="node tree">节点树</a>约束，只能有一个这样的<a for=/>element</a>。
 
-<p>An <a for=/>element</a> is <dfn export>in a document tree</dfn> if its <a for=tree>root</a> is a
-<a>document</a>.
+<p>如果<a for=/>element</a>的<a for=tree lt="root">根节点</a>是<a>document</a>，则该元素<dfn export lt="in a document tree">位于文档树</dfn>中。
 
-<p>An <a for=/>element</a> is <dfn export>in a document</dfn> if it is <a>in a document tree</a>.
-<span class=note>The term <a>in a document</a> is no longer supposed to be used. It indicates that
-the standard using it has not been updated to account for <a>shadow trees</a>.</span>
+<p>如果<a for=/>element</a><a lt="in a document tree">在文档树中</a> ，则该元素<dfn export lt="in a document">在document中</dfn>。
+
+<p class=note>不应再使用术语"<a lt="in a document">在document中</a>"。它表明使用它的标准尚未更新以说明<a>shadow trees</a>。</p>
 
 
 <h4 id=shadow-trees>Shadow tree</h4>
