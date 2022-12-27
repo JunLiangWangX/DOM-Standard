@@ -1959,107 +1959,96 @@ https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0D
 <p class=note>不应再使用术语"<a lt="in a document">在document中</a>"。它表明使用它的标准尚未更新以说明<a>shadow trees</a>。</p>
 
 
-<h4 id=shadow-trees>Shadow tree</h4>
+<h4 id=shadow-trees>Shadow tree：影子树</h4>
 
-<p>A <dfn export id=concept-shadow-tree>shadow tree</dfn> is a <a>node tree</a> whose
-<a for=tree>root</a> is a <a for=/>shadow root</a>.
+<p><dfn export id=concept-shadow-tree lt="shadow tree">影子树</dfn>为其<a for=tree lt="root">根节点</a>是<a for=/>shadow root</a>
+的<a lt="node tree">节点树</a>。
 
-<p>A <a for=/>shadow root</a> is always attached to another <a>node tree</a> through its
-<a for=DocumentFragment>host</a>. A <a>shadow tree</a> is therefore never alone. The
-<a>node tree</a> of a <a for=/>shadow root</a>'s <a for=DocumentFragment>host</a> is sometimes
-referred to as the <dfn export id=concept-light-tree>light tree</dfn>.</p>
+<p><a for=/>shadow root</a>始终通过其<a for=DocumentFragment>host</a>附加到另一个<a lt="node tree">节点树</a>。
+因此，<a>shadow tree</a>永远不会孤单。<a for=/>shadow root</a>宿主的<a>node tree</a>有时也被称为
+<dfn export id=concept-light-tree>light tree</dfn>。</p>
 
-<p class=note>A <a>shadow tree</a>'s corresponding <a>light tree</a> can be a <a>shadow tree</a>
-itself.</p>
+<p class=note><a>shadow tree</a>相应的<a>light tree</a>可以是<a>shadow tree</a>本身。</p>
 
-<p id=in-a-shadow-including-document>An <a for=/>element</a> is <dfn export>connected</dfn> if its
-<a>shadow-including root</a> is a <a>document</a>.
+<p id=in-a-shadow-including-document>当一个元素不在ShadowDOM中时，它的<a>shadow-including root</a>则是<a>document</a>本身，这意味着这个元素是连接的；
+当一个元素在ShadowDOM中时，它的<a>shadow-including root</a>则是ShadowDOM的<a for=/>shadow root</a>，这意味着这个元素是未连接的。
 
-<h5 id=shadow-tree-slots>Slots</h5>
 
-<p>A <a>shadow tree</a> contains zero or more <a for=/>elements</a> that are
-<dfn export id=concept-slot lt=slot>slots</dfn>.</p>
+<h5 id=shadow-tree-slots>Slots：插槽</h5>
 
-<p class=note>A <a>slot</a> can only be created through HTML's <{slot}> element.</p>
+<p><a>shadow tree</a>包含了0个或多个<dfn export id=concept-slot lt=slot>插槽</dfn><a for=/ lt="elements">元素</a>。</p>
 
-<p>A <a>slot</a> has an associated <dfn export for=slot>name</dfn> (a string). Unless stated
-otherwise it is the empty string.</p>
+<p class=note><a lt="slot">插槽</a>仅可通过HTML的<{slot}>元素创建。</p>
 
-<p>Use these <a>attribute change steps</a> to update a <a>slot</a>'s <a for=slot>name</a>:
+<p><a lt="slot">插槽</a>具有关联的<dfn export for=slot lt="name">名称</dfn>(string)。除非另有说明，否则它是空字符串。
+
+<p>使用这些<a lt="attribute change steps">属性更改步骤</a>来更新<a lt="slot">插槽</a>的<a for=slot>name</a>属性：
 
 <ol>
  <li>
-  <p>If <var>element</var> is a <a>slot</a>, <var>localName</var> is <code>name</code>, and
-  <var>namespace</var> is null, then:
+  <p>如果<var>element</var>是一个<a lt="slot">插槽</a>，<var>localName</var>是<code>name</code>，且
+  <var>namespace</var>为null，则：
 
   <ol>
-   <li><p>If <var>value</var> is <var>oldValue</var>, then return.
+   <li><p>如果<var>value</var>为<var>oldValue</var>，则直接return。
 
-   <li><p>If <var>value</var> is null and <var>oldValue</var> is the empty string, then return.
+   <li><p>如果<var>value</var>为null且<var>oldValue</var>为空字符串，则直接return。
 
-   <li><p>If <var>value</var> is the empty string and <var>oldValue</var> is null, then return.
+   <li><p>如果<var>value</var>为空字符串且<var>oldValue</var>为null，则直接return。
 
-   <li><p>If <var>value</var> is null or the empty string, then set <var>element</var>'s
-   <a for=slot>name</a> to the empty string.
+   <li><p>如果<var>value</var>为null或空字符串，则设<var>element</var>的<a for=slot>name</a>为空字符串。 
 
-   <li><p>Otherwise, set <var>element</var>'s <a for=slot>name</a> to <var>value</var>.
+   <li><p>否则，设<var>element</var>的<a for=slot>name</a>为<var>value</var>。
 
-   <li><p>Run <a>assign slottables for a tree</a> with <var>element</var>'s <a for=tree>root</a>.
+   <li><p>使用<var>element</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
   </ol>
 </ol>
 
-<p class=note>The first <a>slot</a> in a <a>shadow tree</a>, in <a>tree order</a>, whose
-<a for=slot>name</a> is the empty string, is sometimes known as the "default slot".</p>
+<p class=note><a>shadow tree</a>中的第一个<a for=slot>name</a>为空字符串的<a lt="slot">插槽</a>，有时被称为"默认插槽"。</p>
 
-<p>A <a>slot</a> has an associated <dfn export for=slot>assigned nodes</dfn> (a list of
-<a>slottables</a>). Unless stated otherwise it is empty.</p>
+<p><a lt="slot">插槽</a>具有关联的<dfn export for=slot>assigned nodes</dfn>(分配节点，一个<a>slottables</a>列表)。除非另有说明，否则它是空的。
 
-<h5 id=light-tree-slotables>Slottables</h5>
+<h5 id=light-tree-slotables>Slottables：可插槽元素</h5>
 
-<p>{{Element}} and {{Text}} <a for=/>nodes</a> are
-<dfn export id=concept-slotable lt=slottable>slottables</dfn>.</p>
+<p>{{Element}}以及{{Text}}<a for=/ lt="nodes">节点</a>都是<dfn export id=concept-slotable lt=slottable>可插槽元素</dfn>。</p>
 
-<p class=note>A <a>slot</a> can be a <a>slottable</a>.
+<p class=note><a>slot</a>也是<a lt="slottable">可插槽元素</a>。
 
-<p>A <a>slottable</a> has an associated <dfn export for=slottable id=slotable-name>name</dfn> (a
-string). Unless stated otherwise it is the empty string.</p>
+<p><a lt="slottable">可插槽元素</a>具有相关的<dfn export for=slottable id=slotable-name lt="name">名称</dfn>(string)。
+除非另有说明，否则它是空字符串。</p>
 
-<p>Use these <a>attribute change steps</a> to update a <a>slottable</a>'s <a for=slottable>name</a>:
+<p>使用这些<a lt="attribute change steps">属性更改步骤</a>来更新<a lt="slottable">可插槽元素</a>的<a for=slottable>name</a>属性：
 
 <ol>
  <li>
-  <p>If <var>localName</var> is <code>slot</code> and <var>namespace</var> is null, then:
+  <p>如果<var>localName</var>为<code>slot</code>且<var>namespace</var>为null，则：
 
   <ol>
-   <li><p>If <var>value</var> is <var>oldValue</var>, then return.
+   <li><p>如果<var>value</var>为<var>oldValue</var>，则直接return。
 
-   <li><p>If <var>value</var> is null and <var>oldValue</var> is the empty string, then return.
+   <li><p>如果<var>value</var>为null且<var>oldValue</var>为空字符串，则直接return。
 
-   <li><p>If <var>value</var> is the empty string and <var>oldValue</var> is null, then return.
+   <li><p>如果<var>value</var>为空字符串且<var>oldValue</var>为null，则直接return。
 
-   <li><p>If <var>value</var> is null or the empty string, then set <var>element</var>'s
-   <a for=slottable>name</a> to the empty string.
+   <li><p>如果<var>value</var>为null或空字符串，则设<var>element</var>的<a for=slottable>name</a>为空字符串。
 
-   <li><p>Otherwise, set <var>element</var>'s <a for=slottable>name</a> to <var>value</var>.
+   <li><p>否则，设<var>element</var>的<a for=slottable>name</a>为<var>value</var>。
 
-   <li><p>If <var>element</var> is <a for=slottable>assigned</a>, then run <a>assign slottables</a>
-   for <var>element</var>'s <a for=slottable>assigned slot</a>.
+   <li><p>如果<var>element</var><a for=slottable lt="assigned">已被分配</a>，则给定<var>element</var>的<a for=slottable>assigned slot</a>
+   运行<a lt="assign slottables">分配可插槽元素</a>。
 
-   <li><p>Run <a>assign a slot</a> for <var>element</var>.
+   <li><p>给定<var>element</var>运行<a lt="assign a slot">分配插槽</a>。
   </ol>
 </ol>
 
-<p>A <a>slottable</a> has an associated
-<dfn export for=slottable id=slotable-assigned-slot>assigned slot</dfn> (null or a <a>slot</a>).
-Unless stated otherwise it is null. A <a>slottable</a> is
-<dfn export for=slottable id=slotable-assigned>assigned</dfn> if its <a>assigned slot</a> is
-non-null.</p>
+<p><a lt="slottable">可插槽元素</a>具有关联的<dfn export for=slottable id=slotable-assigned-slot>assigned slot</dfn>(已分配插槽，null或<a>slot</a>)。
+除非另有说明，否则为空。如果<a>assigned slot</a>不为null，则证明该元素<dfn export for=slottable id=slotable-assigned lt="assigned">已被分配</dfn>。</p>
 
-<p>A <a>slottable</a> has an associated <dfn export for=slottable>manual slot assignment</dfn> (null
-or a <a>slot</a>). Unless stated otherwise, it is null.
+<p><a lt="slottable">可插槽元素</a>具有关联的<dfn export for=slottable>manual slot assignment</dfn>(手动分配插槽，null或<a>slot</a>)。
+U除非另有说明，否则为空。
 
-<p class=note>A <a>slottable</a>'s <a>manual slot assignment</a> can be implemented using a weak
-reference to the <a>slot</a>, because this variable is not directly accessible from script.
+<p class=note>可以使用对<a lt="slot">插槽</a>的弱引用来实现<a lt="slottable">可插槽元素</a>的<a lt="manual slot assignment">手动插槽分配</a>，
+因为这个变量不能直接从脚本访问。
 
 <h5 id=finding-slots-and-slotables>Finding slots and slottables</h5>
 
