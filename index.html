@@ -102,7 +102,7 @@ a[href].issue-return {
           <li><a href="#light-tree-slotables"><span class="secno">4.2.2.2</span> <span class="content">Slottables：可插槽元素</span></a>
           <li><a href="#finding-slots-and-slotables"><span class="secno">4.2.2.3</span> <span class="content">查找插槽以及可插槽元素</span></a>
           <li><a href="#assigning-slotables-and-slots"><span class="secno">4.2.2.4</span> <span class="content">分配可插槽元素和插槽</span></a>
-          <li><a href="#signaling-slot-change"><span class="secno">4.2.2.5</span> <span class="content">Signaling slot change</span></a>
+          <li><a href="#signaling-slot-change"><span class="secno">4.2.2.5</span> <span class="content">发出插槽改变信号</span></a>
          </ol>
         <li><a href="#mutation-algorithms"><span class="secno">4.2.3</span> <span class="content">Mutation algorithms</span></a>
         <li><a href="#interface-nonelementparentnode"><span class="secno">4.2.4</span> <span class="content">Mixin <code class="idl"><span>NonElementParentNode</span></code></span></a>
@@ -2375,14 +2375,14 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p>如果<var>slot</var>不为null，则为<var>slot</var>运行<a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables②">分配可插槽元素</a>。 </p>
    </ol>
-   <h5 class="heading settled" data-level="4.2.2.5" id="signaling-slot-change"><span class="secno">4.2.2.5. </span><span class="content">Signaling slot change</span><a class="self-link" href="#signaling-slot-change"></a></h5>
-   <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent">similar-origin window agent</a> has <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-slot-list">signal slots</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑧">slots</a>), which is initially empty. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-a-slot-change">signal a slot change</dfn>, for a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slot</a> <var>slot</var>, run these steps: </p>
+   <h5 class="heading settled" data-level="4.2.2.5" id="signaling-slot-change"><span class="secno">4.2.2.5. </span><span class="content">发出插槽改变信号</span><a class="self-link" href="#signaling-slot-change"></a></h5>
+   <p>每个<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent">同源的浏览器窗口对象</a>都有一组<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="signal slots" data-noexport id="signal-slot-list">信号槽(signal slots)</dfn> ，初始为空。 <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
+   <p>给定参数<a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑧">slot</a>，<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="signal a slot change" data-noexport id="signal-a-slot-change">发出插槽改变信号</dfn>，将运行以下步骤： </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append①">Append</a> <var>slot</var> to <var>slot</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent">relevant agent</a>’s <a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list">signal slots</a>. </p>
+     <p>将<var>slot</var><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append①">添加</a>到该<var>slot</var>所在的<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent">浏览器窗口对象</a> 的<a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list">信号槽</a>集合中。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask">Queue a mutation observer microtask</a>. </p>
+     <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask">将一个变异观察者微任务加入队列</a>。 </p>
    </ol>
    <h4 class="heading settled" data-level="4.2.3" id="mutation-algorithms"><span class="secno">4.2.3. </span><span class="content">Mutation algorithms</span><a class="self-link" href="#mutation-algorithms"></a></h4>
    <p>To <dfn class="dfn-paneled" data-dfn-for="Node" data-dfn-type="dfn" data-export id="concept-node-ensure-pre-insertion-validity">ensure pre-insertion validity</dfn> of a <var>node</var> into a <var>parent</var> before a <var>child</var>, run these steps: </p>
@@ -2477,7 +2477,7 @@ algorithm is passed <var>insertedNode</var>, as indicated in the <a data-link-ty
       <li>
        <p>If <var>parent</var> is a <a data-link-type="dfn" href="#element-shadow-host" id="ref-for-element-shadow-host">shadow host</a> whose <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①③">shadow root</a>’s <a data-link-type="dfn" href="#shadowroot-slot-assignment" id="ref-for-shadowroot-slot-assignment②">slot assignment</a> is "<code>named</code>" and <var>node</var> is a <a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①⑤">slottable</a>, then <a data-link-type="dfn" href="#assign-a-slot" id="ref-for-assign-a-slot①">assign a slot</a> for <var>node</var>. </p>
       <li>
-       <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②⓪">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">assigned nodes</a> is the empty list,
+       <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">assigned nodes</a> is the empty list,
    then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change①">signal a slot change</a> for <var>parent</var>. </p>
       <li>
        <p>Run <a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree①">assign slottables for a tree</a> with <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①④">root</a>. </p>
@@ -2623,10 +2623,10 @@ indicated in the <a data-link-type="dfn" href="#concept-node-remove" id="ref-for
     <li>
      <p>If <var>node</var> is <a data-link-type="dfn" href="#slotable-assigned" id="ref-for-slotable-assigned③">assigned</a>, then run <a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables③">assign slottables</a> for <var>node</var>’s <a data-link-type="dfn" href="#slotable-assigned-slot" id="ref-for-slotable-assigned-slot③">assigned slot</a>. </p>
     <li>
-     <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑤">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑤">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②①">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes③">assigned nodes</a> is the empty list,
+     <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑤">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑤">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②⓪">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes③">assigned nodes</a> is the empty list,
  then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change②">signal a slot change</a> for <var>parent</var>. </p>
     <li>
-     <p>If <var>node</var> has an <a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant③">inclusive descendant</a> that is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②②">slot</a>, then: </p>
+     <p>If <var>node</var> has an <a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant③">inclusive descendant</a> that is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②①">slot</a>, then: </p>
      <ol>
       <li>
        <p>Run <a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree②">assign slottables for a tree</a> with <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑥">root</a>. </p>
@@ -3770,7 +3770,7 @@ must return null. </p>
    </ol>
    <h3 class="heading settled" data-level="4.3" id="mutation-observers"><span class="secno">4.3. </span><span class="content">Mutation observers</span><a class="self-link" href="#mutation-observers"></a></h3>
    <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent①">similar-origin window agent</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mutation-observer-compound-microtask-queued-flag">mutation observer microtask queued</dfn> (a boolean), which is initially false. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
-   <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent②">similar-origin window agent</a> also has <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mutation-observer-list">mutation observers</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set④">set</a> of zero or more <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver">MutationObserver</a></code> objects), which is initially empty. </p>
+   <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent②">similar-origin window agent</a> also has <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="mutation-observer-list">mutation observers</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of zero or more <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver">MutationObserver</a></code> objects), which is initially empty. </p>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-mutation-observer-compound-microtask">queue a mutation observer microtask</dfn>,
 run these steps: </p>
    <ol>
@@ -10766,7 +10766,7 @@ JavaScript function. </p>
   <c- b>iterable</c->&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①③⓪"><c- b>DOMString</c-></a>>;
 };
 </pre>
-   <p>A <code class="idl"><a data-link-type="idl" href="#domtokenlist" id="ref-for-domtokenlist⑥">DOMTokenList</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="DOMTokenList" data-dfn-type="dfn" data-export id="concept-dtl-tokens">token set</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set⑤">set</a>), which is
+   <p>A <code class="idl"><a data-link-type="idl" href="#domtokenlist" id="ref-for-domtokenlist⑥">DOMTokenList</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="DOMTokenList" data-dfn-type="dfn" data-export id="concept-dtl-tokens">token set</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set④">set</a>), which is
 initially empty. </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#domtokenlist" id="ref-for-domtokenlist⑦">DOMTokenList</a></code> object also has an associated <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⓪⑦">element</a> and an <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute⑥⑦">attribute</a>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name②⑧">local name</a>. </p>
    <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications⑧">Specifications</a> may define <dfn class="dfn-paneled" data-dfn-for="Node" data-dfn-type="dfn" data-export id="concept-supported-tokens">supported tokens</dfn> for a <code class="idl"><a data-link-type="idl" href="#domtokenlist" id="ref-for-domtokenlist⑧">DOMTokenList</a></code>'s
@@ -13305,7 +13305,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-relevant-agent">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-relevant-agent">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-relevant-agent">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-relevant-agent①">4.3.1. Interface MutationObserver</a>
    </ul>
   </aside>
@@ -13346,7 +13346,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-similar-origin-window-agent">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent">https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-similar-origin-window-agent">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-similar-origin-window-agent">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-similar-origin-window-agent①">4.3. Mutation observers</a> <a href="#ref-for-similar-origin-window-agent②">(2)</a>
    </ul>
   </aside>
@@ -13416,7 +13416,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#append">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-set-append">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-set-append①">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-set-append①">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-set-append②">4.2.3. Mutation algorithms</a>
     <li><a href="#ref-for-set-append③">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-set-append④">7.1. Interface DOMTokenList</a> <a href="#ref-for-set-append⑤">(2)</a>
@@ -13642,9 +13642,8 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-ordered-set">1.1. Trees：树</a>
     <li><a href="#ref-for-ordered-set①">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-ordered-set②">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-ordered-set③">4.2.2.5. Signaling slot change</a>
-    <li><a href="#ref-for-ordered-set④">4.3. Mutation observers</a>
-    <li><a href="#ref-for-ordered-set⑤">7.1. Interface DOMTokenList</a>
+    <li><a href="#ref-for-ordered-set③">4.3. Mutation observers</a>
+    <li><a href="#ref-for-ordered-set④">7.1. Interface DOMTokenList</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-queue">
@@ -13684,9 +13683,8 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-ordered-set">1.1. Trees：树</a>
     <li><a href="#ref-for-ordered-set①">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-ordered-set②">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-ordered-set③">4.2.2.5. Signaling slot change</a>
-    <li><a href="#ref-for-ordered-set④">4.3. Mutation observers</a>
-    <li><a href="#ref-for-ordered-set⑤">7.1. Interface DOMTokenList</a>
+    <li><a href="#ref-for-ordered-set③">4.3. Mutation observers</a>
+    <li><a href="#ref-for-ordered-set④">7.1. Interface DOMTokenList</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-map-set">
@@ -16514,8 +16512,8 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-slot⑦">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-concept-slot⑧">(2)</a> <a href="#ref-for-concept-slot⑨">(3)</a> <a href="#ref-for-concept-slot①⓪">(4)</a>
     <li><a href="#ref-for-concept-slot①①">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-slot①②">(2)</a> <a href="#ref-for-concept-slot①③">(3)</a> <a href="#ref-for-concept-slot①④">(4)</a> <a href="#ref-for-concept-slot①⑤">(5)</a> <a href="#ref-for-concept-slot①⑥">(6)</a>
     <li><a href="#ref-for-concept-slot①⑦">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-concept-slot①⑧">4.2.2.5. Signaling slot change</a> <a href="#ref-for-concept-slot①⑨">(2)</a>
-    <li><a href="#ref-for-concept-slot②⓪">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-slot②①">(2)</a> <a href="#ref-for-concept-slot②②">(3)</a>
+    <li><a href="#ref-for-concept-slot①⑧">4.2.2.5. 发出插槽改变信号</a>
+    <li><a href="#ref-for-concept-slot①⑨">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-slot②⓪">(2)</a> <a href="#ref-for-concept-slot②①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="slot-name">
@@ -16620,7 +16618,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="signal-slot-list">
    <b><a href="#signal-slot-list">#signal-slot-list</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-signal-slot-list">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-signal-slot-list">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-signal-slot-list①">4.3. Mutation observers</a> <a href="#ref-for-signal-slot-list②">(2)</a>
    </ul>
   </aside>
@@ -16964,7 +16962,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="queue-a-mutation-observer-compound-microtask">
    <b><a href="#queue-a-mutation-observer-compound-microtask">#queue-a-mutation-observer-compound-microtask</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask">4.2.2.5. Signaling slot change</a>
+    <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask①">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
