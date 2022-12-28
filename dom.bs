@@ -2050,109 +2050,95 @@ U除非另有说明，否则为空。
 <p class=note>可以使用对<a lt="slot">插槽</a>的弱引用来实现<a lt="slottable">可插槽元素</a>的<a lt="manual slot assignment">手动插槽分配</a>，
 因为这个变量不能直接从脚本访问。
 
-<h5 id=finding-slots-and-slotables>Finding slots and slottables</h5>
+<h5 id=finding-slots-and-slotables>查找插槽以及可插槽元素</h5>
 
-<p>To <dfn export lt="find a slot|finding a slot">find a slot</dfn> for a given <a>slottable</a>
-<var>slottable</var> and an optional <i>open flag</i> (unset unless stated otherwise), run these
-steps:</p>
+<p>给定的参数<a>slottable</a>和可选的参数<i>open flag</i>(除非另有说明，否则未设置)，<dfn export lt="find a slot|finding a slot">查找插槽</dfn>，
+请运行以下步骤：</p>
 
 <ol>
- <li><p>If <var>slottable</var>'s <a for=tree>parent</a> is null, then return null.</p></li>
+ <li><p>如果<var>slottable</var>的<a for=tree>parent</a>为null，则直接返回null</p></li>
 
- <li><p>Let <var>shadow</var> be <var>slottable</var>'s <a for=tree>parent</a>'s
- <a for=Element>shadow root</a>.</p></li>
+ <li><p>设<var>shadow</var>为<var>slottable</var>的<a for=tree>parent</a>的
+ <a for=Element>shadow root</a>。</p></li>
 
- <li><p>If <var>shadow</var> is null, then return null.</p></li>
+ <li><p>如果<var>shadow</var>为null，则直接返回null。</p></li>
 
- <li><p>If the <i>open flag</i> is set and <var>shadow</var>'s <a for=ShadowRoot>mode</a> is
- <em>not</em> "<code>open</code>", then return null.</p></li>
+ <li><p>如果<i>open flag</i>被设置且<var>shadow</var>的<a for=ShadowRoot>mode</a>不为"<code>open</code>"，则直接返回null。</p></li>
 
- <li><p>If <var>shadow</var>'s <a for=ShadowRoot>slot assignment</a> is "<code>manual</code>", then
- return the <a>slot</a> in <var>shadow</var>'s <a for=tree>descendants</a> whose
- <a>manually assigned nodes</a> <a for=set>contains</a> <var>slottable</var>, if any; otherwise
- null.
+ <li><p>如果<var>shadow</var>的<a for=ShadowRoot>slot assignment</a>是"<code>manual</code>"，则返回<var>shadow</var>的<a for=tree lt="descendants">后代</a>
+ 中<a lt="manually assigned nodes">手动分配的节点</a><a for=set lt="contains">包含</a><var>slottable</var>的<a>slot</a>；如果没有则返回空。
 
- <li><p>Return the first <a>slot</a> in <a>tree order</a> in <var>shadow</var>'s
- <a for=tree>descendants</a> whose <a for=slot>name</a> is <var>slottable</var>'s
- <a for=slottable>name</a>, if any; otherwise null.
+ <li><p>返回<var>shadow</var>的<a for=tree lt="descendants">后代</a>中第一个<a>slot</a> ，其<a for=slot>name</a>为<var>slottable</var>
+ 的<a for=slottable>name</a>；如果没有则返回空。
 </ol>
 
-<p>To <dfn export lt="find slottables|finding slottables" id=find-slotables>find slottables</dfn>
-for a given <a>slot</a> <var>slot</var>, run these steps:</p>
+<p>给定参数<a>slot</a>，<dfn export lt="find slottables|finding slottables" id=find-slotables>查找可插槽元素</dfn>，请运行以下步骤：</p>
 
 <ol>
- <li><p>Let <var>result</var> be an empty list.</p></li>
+ <li><p>设<var>result</var>为空list。</p></li>
 
- <li><p>Let <var>root</var> be <var>slot</var>'s <a for=tree>root</a>.
+ <li><p>设<var>root</var>为<var>slot</var>的<a for=tree>root</a>。
 
- <li><p>If <var>root</var> is not a <a for=/>shadow root</a>, then return <var>result</var>.
+ <li><p>如果<var>root</var>不是<a for=/>shadow root</a>，则直接返回<var>result</var>。
 
- <li><p>Let <var>host</var> be <var>root</var>'s <a for=DocumentFragment>host</a>.
+ <li><p>设<var>host</var>为<var>root</var>的<a for=DocumentFragment>host</a>。
 
  <li>
-  <p>If <var>root</var>'s <a for=ShadowRoot>slot assignment</a> is "<code>manual</code>", then:
+  <p>如果<var>root</var>的<a for=ShadowRoot>slot assignment</a>为"<code>manual</code>"，则：
 
   <ol>
-   <li><p>Let <var>result</var> be « ».
+   <li><p>设<var>result</var>为« »。
 
-   <li><p><a for=set>For each</a> <a>slottable</a> <var>slottable</var> of <var>slot</var>'s
-   <a>manually assigned nodes</a>, if <var>slottable</var>'s <a for=tree>parent</a> is
-   <var>host</var>, <a for=list>append</a> <var>slottable</var> to <var>result</var>.
+   <li><p><a for=set lt="For each">遍历</a><var>slot</var>的<a lt="manually assigned nodes">手动分配的节点</a>中的
+   <a>slottable</a>，如果<var>slottable</var>的<a for=tree>parent</a>为<var>host</var>，则向<var>result</var>
+   <a for=list lt="append">添加</a>该<var>slottable</var>。
   </ol>
 
  <li>
-  <p>Otherwise, for each <a>slottable</a> <a for=tree>child</a> <var>slottable</var> of
-  <var>host</var>, in <a>tree order</a>:
+  <p>否则，<a for=set lt="For each">遍历</a><var>host</var>的<a>slottable</a> <a for=tree>child</a>：
 
   <ol>
-   <li><p>Let <var>foundSlot</var> be the result of <a>finding a slot</a> given
-   <var>slottable</var>.
+   <li><p>给定参数<var>slottable</var>运行<a lt="finding a slot">查找插槽</a>步骤，且设<var>foundSlot</var>为其结果。
 
-   <li><p>If <var>foundSlot</var> is <var>slot</var>, then <a for=list>append</a>
-   <var>slottable</var> to <var>result</var>.
+   <li><p>如果<var>foundSlot</var>为<var>slot</var>，则<a for=list "append">添加</a><var>slottable</var>到<var>result</var>。
   </ol>
  </li>
 
- <li><p>Return <var>result</var>.</p></li>
+ <li><p>返回<var>result</var>。</p></li>
 </ol>
 
-<p>To
-<dfn export lt="find flattened slottables|finding flattened slottables" id=find-flattened-slotables>find flattened slottables</dfn>
-for a given <a>slot</a> <var>slot</var>, run these steps:</p>
+<p>给定参数<a>slot</a>元素，<dfn export lt="find flattened slottables|finding flattened slottables" id=find-flattened-slotables>找到所有slottables</dfn>
+(包括其子孙<a>slot</a>元素的slottables)，将运行以下步骤：</p>
 
 <ol>
- <li><p>Let <var>result</var> be an empty list.</p></li>
+ <li><p>设<var>result</var>为空list。</p></li>
 
- <li><p>If <var>slot</var>'s <a for=tree>root</a> is not a <a for=/>shadow root</a>, then return
- <var>result</var>.</p></li>
+ <li><p>如果<var>slot</var>的<a for=tree>root</a>不是<a for=/>shadow root</a>，则直接返回<var>result</var>。</p></li>
 
- <li><p>Let <var>slottables</var> be the result of <a>finding slottables</a> given
- <var>slot</var>.</p></li>
+ <li><p>给定参数<var>slot</var>运行<a lt="finding slottables">查找可插槽元素</a>步骤，并设<var>slottables</var>为其结果。</p></li>
 
- <li><p>If <var>slottables</var> is the empty list, then append each <a>slottable</a>
- <a for=tree>child</a> of <var>slot</var>, in <a>tree order</a>, to <var>slottables</var>.</p></li>
+ <li><p>如果<var>slottables</var>为空list，则将<var>slot</var>的每个<a>slottable</a> <a for=tree>child</a>，按树的顺序添加到
+ <var>slottables</var>。</p></li>
 
  <li>
-  <p>For each <var>node</var> in <var>slottables</var>:
+  <p>遍历<var>slottables</var>中的<var>node</var>：
 
   <ol>
    <li>
-    <p>If <var>node</var> is a <a>slot</a> whose <a for=tree>root</a> is a <a for=/>shadow root</a>,
-    then:
+    <p>如果<var>node</var>是<a for=tree>root</a>为<a for=/>shadow root</a>的<a>slot</a>，则：
 
     <ol>
-     <li><p>Let <var>temporaryResult</var> be the result of <a>finding flattened slottables</a> given
-     <var>node</var>.</p></li>
+     <li><p>给定参数<var>node</var>运行<a lt="finding flattened slottables">找到所有slottables</a>步骤，
+     并设<var>temporaryResult</var>为其结果。</p></li>
 
-     <li><p>Append each <a>slottable</a> in <var>temporaryResult</var>, in order, to
-     <var>result</var>.</p></li>
+     <li><p>按照树的顺序，添加每个<var>temporaryResult</var>中的<a>slottable</a>到<var>result</var>。</p></li>
     </ol>
 
-   <li><p>Otherwise, append <var>node</var> to <var>result</var>.</p></li>
+   <li><p>否则，添加<var>node</var>到<var>result</var>。</p></li>
   </ol>
  </li>
 
- <li><p>Return <var>result</var>.</p></li>
+ <li><p>返回<var>result</var>。</p></li>
 </ol>
 
 <h5 id=assigning-slotables-and-slots>Assigning slottables and slots</h5>
