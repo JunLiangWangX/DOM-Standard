@@ -2169,18 +2169,18 @@ U除非另有说明，否则为空。
  <li><p>如果<var>slot</var>不为null，则为<var>slot</var>运行<a lt="assign slottables">分配可插槽元素</a>。
 </ol>
 
-<h5 id=signaling-slot-change>Signaling slot change</h5>
+<h5 id=signaling-slot-change>发出插槽改变信号</h5>
 
-<p>Each <a>similar-origin window agent</a> has <dfn noexport id=signal-slot-list>signal slots</dfn>
-(a <a for=/>set</a> of <a>slots</a>), which is initially empty. [[!HTML]]
+<p>每个<a lt="similar-origin window agent">同源的浏览器窗口对象</a>都有一组<dfn noexport id=signal-slot-list lt="signal slots">信号槽(signal slots)</dfn>
+，初始为空。 [[!HTML]]
 
-<p>To <dfn noexport>signal a slot change</dfn>, for a <a>slot</a> <var>slot</var>, run these steps:
+<p>给定参数<a>slot</a>，<dfn noexport lt="signal a slot change">发出插槽改变信号</dfn>，将运行以下步骤：
 
 <ol>
- <li><p><a for=set>Append</a> <var>slot</var> to <var>slot</var>'s <a>relevant agent</a>'s
- <a>signal slots</a>.
+ <li><p>将<var>slot</var><a for=set lt="Append">添加</a>到该<var>slot</var>所在的<a lt="relevant agent">浏览器窗口对象</a>
+ 的<a lt="signal slots">信号槽</a>集合中。
 
- <li><p><a>Queue a mutation observer microtask</a>.
+ <li><p><a lt="Queue a mutation observer microtask">将一个变异观察者微任务加入队列</a>。
 </ol>
 
 
