@@ -2184,25 +2184,23 @@ U除非另有说明，否则为空。
 </ol>
 
 
-<h4 id=mutation-algorithms>Mutation algorithms</h4>
+<h4 id=mutation-algorithms>修改节点的算法</h4>
 
-<p>To
-<dfn export for=Node id=concept-node-ensure-pre-insertion-validity>ensure pre-insertion validity</dfn>
-of a <var>node</var> into a <var>parent</var> before a <var>child</var>, run these steps:
+<p>要确保节点在子节点之前插入父节点的<dfn export for=Node id=concept-node-ensure-pre-insertion-validity lt="ensure pre-insertion validity">预插入有效性</dfn>
+，请运行以下步骤：
 
 <ol>
- <li><p>If <var>parent</var> is not a {{Document}}, {{DocumentFragment}}, or {{Element}}
- <a for=/>node</a>, then <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>parent</var>不是{{Document}}、{{DocumentFragment}}或{{Element}} <a for=/ lt="node">节点</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>node</var> is a <a>host-including inclusive ancestor</a> of <var>parent</var>, then
- <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>是<var>parent</var>的<a>host-including inclusive ancestor</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>child</var> is non-null and its <a for=tree>parent</a> is not <var>parent</var>,
- then <a>throw</a> a "{{NotFoundError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>child</var>不为null并且它的<a for=tree>parent</a>不等于<var>parent</var>参数，
+ 则<a lt="throw">抛出</a>一个"{{NotFoundError!!exception}}(未找到错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>node</var> is not a {{DocumentFragment}}, {{DocumentType}}, {{Element}}, or
- {{CharacterData}} <a for=/>node</a>, then <a>throw</a> a
- "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>不是{{DocumentFragment}}、{{DocumentType}}、{{Element}}或{{CharacterData}} <a for=/ lt="node">节点</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
  <li><p>If either <var>node</var> is a {{Text}} <a for=/>node</a> and <var>parent</var> is a
  <a>document</a>, or <var>node</var> is a <a>doctype</a> and <var>parent</var> is not a
