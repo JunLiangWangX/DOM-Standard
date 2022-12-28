@@ -2100,7 +2100,7 @@ U除非另有说明，否则为空。
   <ol>
    <li><p>给定参数<var>slottable</var>运行<a lt="finding a slot">查找插槽</a>步骤，且设<var>foundSlot</var>为其结果。
 
-   <li><p>如果<var>foundSlot</var>为<var>slot</var>，则<a for=list "append">添加</a><var>slottable</var>到<var>result</var>。
+   <li><p>如果<var>foundSlot</var>为<var>slot</var>，则<a for=list lt="append">添加</a><var>slottable</var>到<var>result</var>。
   </ol>
  </li>
 
@@ -2141,34 +2141,32 @@ U除非另有说明，否则为空。
  <li><p>返回<var>result</var>。</p></li>
 </ol>
 
-<h5 id=assigning-slotables-and-slots>Assigning slottables and slots</h5>
+<h5 id=assigning-slotables-and-slots>分配可插槽元素和插槽</h5>
 
-<p>To <dfn noexport id=assign-slotables>assign slottables</dfn> for a <a>slot</a> <var>slot</var>,
-run these steps:
+<p>给定参数<a>slot</a>，<dfn noexport id=assign-slotables lt="assign slottables">分配可插槽元素</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>slottables</var> be the result of <a>finding slottables</a> for <var>slot</var>.
+ <li><p>给定参数<var>slot</var>运行<a lt="finding slottables">查找可插槽元素</a>步骤，并设<var>slottables</var>为其结果。
 
- <li><p>If <var>slottables</var> and <var>slot</var>'s <a for=slot>assigned nodes</a> are not
- identical, then run <a>signal a slot change</a> for <var>slot</var>.
+ <li><p>如果<var>slottables</var>与<var>slot</var>的<a for=slot>assigned nodes</a>不同，则给定参数<var>slot</var>运行
+ <a lt="signal a slot change">发出插槽更改信号</a>。
 
- <li><p>Set <var>slot</var>'s <a for=slot>assigned nodes</a> to <var>slottables</var>.
+ <li><p>设<var>slot</var>的<a for=slot>assigned nodes</a>为<var>slottables</var>。
 
- <li><p>For each <var>slottable</var> in <var>slottables</var>, set <var>slottable</var>'s
- <a>assigned slot</a> to <var>slot</var>.
+ <li><p>遍历<var>slottables</var>中的<var>slottable</var>，设<var>slottable</var>的
+ <a>assigned slot</a>为<var>slot</var>。
 </ol>
 
-<p>To <dfn noexport id=assign-slotables-for-a-tree>assign slottables for a tree</dfn>, given a
-<a for=/>node</a> <var>root</var>, run <a>assign slottables</a> for each <a>slot</a> <var>slot</var>
-in <var>root</var>'s <a for=tree>inclusive descendants</a>, in <a>tree order</a>.
+<p>要<dfn noexport id=assign-slotables-for-a-tree lt="assign slottables for a tree">为树分配可插槽元素</dfn>，
+给定参数<var>root</var>(<a for=/>node</a>类型)，按照<a lt="tree order">树的顺序</a>为每个<var>root</var>
+的<a for=tree lt="inclusive descendants">包容性后代</a>的<var>slot</var>运行<a lt="assign slottables">分配可插槽元素</a>。
 
-<p>To <dfn noexport>assign a slot</dfn>, given a <a>slottable</a> <var>slottable</var>, run these
-steps:
+<p>给定参数<a>slottable</a>，<dfn noexport lt="assign a slot">分配插槽</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>slot</var> be the result of <a>finding a slot</a> with <var>slottable</var>.
+ <li><p>给定参数<var>slottable</var>运行<a lt="finding a slot">查找插槽</a>步骤，设<var>slot</var>为其结果。
 
- <li><p>If <var>slot</var> is non-null, then run <a>assign slottables</a> for <var>slot</var>.
+ <li><p>如果<var>slot</var>不为null，则为<var>slot</var>运行<a lt="assign slottables">分配可插槽元素</a>。
 </ol>
 
 <h5 id=signaling-slot-change>Signaling slot change</h5>
