@@ -101,7 +101,7 @@ a[href].issue-return {
           <li><a href="#shadow-tree-slots"><span class="secno">4.2.2.1</span> <span class="content">Slots：插槽</span></a>
           <li><a href="#light-tree-slotables"><span class="secno">4.2.2.2</span> <span class="content">Slottables：可插槽元素</span></a>
           <li><a href="#finding-slots-and-slotables"><span class="secno">4.2.2.3</span> <span class="content">查找插槽以及可插槽元素</span></a>
-          <li><a href="#assigning-slotables-and-slots"><span class="secno">4.2.2.4</span> <span class="content">Assigning slottables and slots</span></a>
+          <li><a href="#assigning-slotables-and-slots"><span class="secno">4.2.2.4</span> <span class="content">分配可插槽元素和插槽</span></a>
           <li><a href="#signaling-slot-change"><span class="secno">4.2.2.5</span> <span class="content">Signaling slot change</span></a>
          </ol>
         <li><a href="#mutation-algorithms"><span class="secno">4.2.3</span> <span class="content">Mutation algorithms</span></a>
@@ -2321,7 +2321,7 @@ U除非另有说明，否则为空。 </p>
       <li>
        <p>给定参数<var>slottable</var>运行<a data-link-type="dfn" href="#find-a-slot" id="ref-for-find-a-slot">查找插槽</a>步骤，且设<var>foundSlot</var>为其结果。 </p>
       <li>
-       <p>如果<var>foundSlot</var>为<var>slot</var>，则<a U00022appendU00022 data-link-type="dfn">添加</a><var>slottable</var>到<var>result</var>。 </p>
+       <p>如果<var>foundSlot</var>为<var>slot</var>，则<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑥">添加</a><var>slottable</var>到<var>result</var>。 </p>
      </ol>
     <li>
      <p>返回<var>result</var>。</p>
@@ -2354,32 +2354,30 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p>返回<var>result</var>。</p>
    </ol>
-   <h5 class="heading settled" data-level="4.2.2.4" id="assigning-slotables-and-slots"><span class="secno">4.2.2.4. </span><span class="content">Assigning slottables and slots</span><a class="self-link" href="#assigning-slotables-and-slots"></a></h5>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="assign-slotables">assign slottables</dfn> for a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑦">slot</a> <var>slot</var>,
-run these steps: </p>
+   <h5 class="heading settled" data-level="4.2.2.4" id="assigning-slotables-and-slots"><span class="secno">4.2.2.4. </span><span class="content">分配可插槽元素和插槽</span><a class="self-link" href="#assigning-slotables-and-slots"></a></h5>
+   <p>给定参数<a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑦">slot</a>，<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="assign slottables" data-noexport id="assign-slotables">分配可插槽元素</dfn>，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>slottables</var> be the result of <a data-link-type="dfn" href="#find-slotables" id="ref-for-find-slotables①">finding slottables</a> for <var>slot</var>. </p>
+     <p>给定参数<var>slot</var>运行<a data-link-type="dfn" href="#find-slotables" id="ref-for-find-slotables①">查找可插槽元素</a>步骤，并设<var>slottables</var>为其结果。 </p>
     <li>
-     <p>If <var>slottables</var> and <var>slot</var>’s <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes">assigned nodes</a> are not
- identical, then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change">signal a slot change</a> for <var>slot</var>. </p>
+     <p>如果<var>slottables</var>与<var>slot</var>的<a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes">assigned nodes</a>不同，则给定参数<var>slot</var>运行 <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change">发出插槽更改信号</a>。 </p>
     <li>
-     <p>Set <var>slot</var>’s <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes①">assigned nodes</a> to <var>slottables</var>. </p>
+     <p>设<var>slot</var>的<a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes①">assigned nodes</a>为<var>slottables</var>。 </p>
     <li>
-     <p>For each <var>slottable</var> in <var>slottables</var>, set <var>slottable</var>’s <a data-link-type="dfn" href="#slotable-assigned-slot" id="ref-for-slotable-assigned-slot②">assigned slot</a> to <var>slot</var>. </p>
+     <p>遍历<var>slottables</var>中的<var>slottable</var>，设<var>slottable</var>的 <a data-link-type="dfn" href="#slotable-assigned-slot" id="ref-for-slotable-assigned-slot②">assigned slot</a>为<var>slot</var>。 </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="assign-slotables-for-a-tree">assign slottables for a tree</dfn>, given a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②①">node</a> <var>root</var>, run <a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables①">assign slottables</a> for each <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑧">slot</a> <var>slot</var> in <var>root</var>’s <a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant">inclusive descendants</a>, in <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order④">tree order</a>. </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="assign-a-slot">assign a slot</dfn>, given a <a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①④">slottable</a> <var>slottable</var>, run these
-steps: </p>
+   <p>要<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="assign slottables for a tree" data-noexport id="assign-slotables-for-a-tree">为树分配可插槽元素</dfn>，
+给定参数<var>root</var>(<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②①">node</a>类型)，按照<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order④">树的顺序</a>为每个<var>root</var> 的<a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant">包容性后代</a>的<var>slot</var>运行<a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables①">分配可插槽元素</a>。 </p>
+   <p>给定参数<a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①④">slottable</a>，<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="assign a slot" data-noexport id="assign-a-slot">分配插槽</dfn>，将运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>slot</var> be the result of <a data-link-type="dfn" href="#find-a-slot" id="ref-for-find-a-slot①">finding a slot</a> with <var>slottable</var>. </p>
+     <p>给定参数<var>slottable</var>运行<a data-link-type="dfn" href="#find-a-slot" id="ref-for-find-a-slot①">查找插槽</a>步骤，设<var>slot</var>为其结果。 </p>
     <li>
-     <p>If <var>slot</var> is non-null, then run <a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables②">assign slottables</a> for <var>slot</var>. </p>
+     <p>如果<var>slot</var>不为null，则为<var>slot</var>运行<a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables②">分配可插槽元素</a>。 </p>
    </ol>
    <h5 class="heading settled" data-level="4.2.2.5" id="signaling-slot-change"><span class="secno">4.2.2.5. </span><span class="content">Signaling slot change</span><a class="self-link" href="#signaling-slot-change"></a></h5>
-   <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent">similar-origin window agent</a> has <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-slot-list">signal slots</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slots</a>), which is initially empty. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-a-slot-change">signal a slot change</dfn>, for a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②⓪">slot</a> <var>slot</var>, run these steps: </p>
+   <p>Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#similar-origin-window-agent" id="ref-for-similar-origin-window-agent">similar-origin window agent</a> has <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-slot-list">signal slots</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set③">set</a> of <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑧">slots</a>), which is initially empty. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="signal-a-slot-change">signal a slot change</dfn>, for a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slot</a> <var>slot</var>, run these steps: </p>
    <ol>
     <li>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append①">Append</a> <var>slot</var> to <var>slot</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent">relevant agent</a>’s <a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list">signal slots</a>. </p>
@@ -2479,7 +2477,7 @@ algorithm is passed <var>insertedNode</var>, as indicated in the <a data-link-ty
       <li>
        <p>If <var>parent</var> is a <a data-link-type="dfn" href="#element-shadow-host" id="ref-for-element-shadow-host">shadow host</a> whose <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①③">shadow root</a>’s <a data-link-type="dfn" href="#shadowroot-slot-assignment" id="ref-for-shadowroot-slot-assignment②">slot assignment</a> is "<code>named</code>" and <var>node</var> is a <a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①⑤">slottable</a>, then <a data-link-type="dfn" href="#assign-a-slot" id="ref-for-assign-a-slot①">assign a slot</a> for <var>node</var>. </p>
       <li>
-       <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②①">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">assigned nodes</a> is the empty list,
+       <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②⓪">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">assigned nodes</a> is the empty list,
    then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change①">signal a slot change</a> for <var>parent</var>. </p>
       <li>
        <p>Run <a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree①">assign slottables for a tree</a> with <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①④">root</a>. </p>
@@ -2625,10 +2623,10 @@ indicated in the <a data-link-type="dfn" href="#concept-node-remove" id="ref-for
     <li>
      <p>If <var>node</var> is <a data-link-type="dfn" href="#slotable-assigned" id="ref-for-slotable-assigned③">assigned</a>, then run <a data-link-type="dfn" href="#assign-slotables" id="ref-for-assign-slotables③">assign slottables</a> for <var>node</var>’s <a data-link-type="dfn" href="#slotable-assigned-slot" id="ref-for-slotable-assigned-slot③">assigned slot</a>. </p>
     <li>
-     <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑤">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑤">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②②">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes③">assigned nodes</a> is the empty list,
+     <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑤">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑤">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②①">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes③">assigned nodes</a> is the empty list,
  then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change②">signal a slot change</a> for <var>parent</var>. </p>
     <li>
-     <p>If <var>node</var> has an <a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant③">inclusive descendant</a> that is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②③">slot</a>, then: </p>
+     <p>If <var>node</var> has an <a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant③">inclusive descendant</a> that is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②②">slot</a>, then: </p>
      <ol>
       <li>
        <p>Run <a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree②">assign slottables for a tree</a> with <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑥">root</a>. </p>
@@ -2654,7 +2652,7 @@ indicated in the <a data-link-type="dfn" href="#concept-node-remove" id="ref-for
    callback name "<code>disconnectedCallback</code>", and an empty argument list. </p>
      </ol>
     <li>
-     <p>For each <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor②">inclusive ancestor</a> <var>inclusiveAncestor</var> of <var>parent</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⓪">for each</a> <var>registered</var> of <var>inclusiveAncestor</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options">options</a>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree">subtree</a></code>"] is true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑥">append</a> a new <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer">transient registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer">observer</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer①">observer</a>, <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options①">options</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options②">options</a>, and <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source">source</a> is <var>registered</var> to <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list①">registered observer list</a>. </p>
+     <p>For each <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor②">inclusive ancestor</a> <var>inclusiveAncestor</var> of <var>parent</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⓪">for each</a> <var>registered</var> of <var>inclusiveAncestor</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options">options</a>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree">subtree</a></code>"] is true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">append</a> a new <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer">transient registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer">observer</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer①">observer</a>, <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options①">options</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options②">options</a>, and <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source">source</a> is <var>registered</var> to <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list①">registered observer list</a>. </p>
     <li>
      <p>If <i>suppress observers flag</i> is unset, then <a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record④">queue a tree mutation record</a> for <var>parent</var> with « », « <var>node</var> », <var>oldPreviousSibling</var>, and <var>oldNextSibling</var>. </p>
     <li>
@@ -4026,9 +4024,9 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
      <p>Otherwise: </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">Append</a> a new <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer③">registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer④">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥③">this</a> and <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options④">options</a> is <var>options</var> to <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑤">registered observer list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">Append</a> a new <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer③">registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer④">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥③">this</a> and <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options④">options</a> is <var>options</var> to <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑤">registered observer list</a>. </p>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">Append</a> <var>target</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥④">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list②">node list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> <var>target</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥④">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list②">node list</a>. </p>
      </ol>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-disconnect"><code>disconnect()</code></dfn> method steps are: </p>
@@ -6933,7 +6931,7 @@ steps: </p>
     <li>
      <p><a data-link-type="dfn" href="#handle-attribute-changes" id="ref-for-handle-attribute-changes①">Handle attribute changes</a> for <var>attribute</var> with <var>element</var>, null, and <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-value" id="ref-for-concept-attribute-value①③">value</a>. </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> <var>attribute</var> to <var>element</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑨">attribute list</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> <var>attribute</var> to <var>element</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑨">attribute list</a>. </p>
     <li>
      <p>Set <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-element" id="ref-for-concept-attribute-element⑦">element</a> to <var>element</var>. </p>
    </ol>
@@ -13407,10 +13405,10 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-append">2.2. Event接口</a> <a href="#ref-for-list-append①">(2)</a>
     <li><a href="#ref-for-list-append②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-append③">2.9. 分派事件</a> <a href="#ref-for-list-append④">(2)</a>
-    <li><a href="#ref-for-list-append⑤">4.2.2.3. 查找插槽以及可插槽元素</a>
-    <li><a href="#ref-for-list-append⑥">4.2.3. Mutation algorithms</a>
-    <li><a href="#ref-for-list-append⑦">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-append⑧">(2)</a>
-    <li><a href="#ref-for-list-append⑨">4.9. Interface Element</a>
+    <li><a href="#ref-for-list-append⑤">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-append⑥">(2)</a>
+    <li><a href="#ref-for-list-append⑦">4.2.3. Mutation algorithms</a>
+    <li><a href="#ref-for-list-append⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-append⑨">(2)</a>
+    <li><a href="#ref-for-list-append①⓪">4.9. Interface Element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-set-append">
@@ -15369,7 +15367,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-order">1.1. Trees：树</a> <a href="#ref-for-concept-tree-order①">(2)</a>
     <li><a href="#ref-for-concept-tree-order②">2.1. DOM事件简介</a>
     <li><a href="#ref-for-concept-tree-order③">4.2. Node tree：节点树</a>
-    <li><a href="#ref-for-concept-tree-order④">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-concept-tree-order④">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-tree-order⑤">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-tree-order⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-order⑦">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-concept-tree-order⑧">4.2.10. Old-style collections: NodeList and HTMLCollection</a>
@@ -15471,7 +15469,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-inclusive-descendant">
    <b><a href="#concept-tree-inclusive-descendant">#concept-tree-inclusive-descendant</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-inclusive-descendant">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-concept-tree-inclusive-descendant">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-tree-inclusive-descendant①">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-tree-inclusive-descendant②">(2)</a> <a href="#ref-for-concept-tree-inclusive-descendant③">(3)</a>
     <li><a href="#ref-for-concept-tree-inclusive-descendant④">4.4. Interface Node</a> <a href="#ref-for-concept-tree-inclusive-descendant⑤">(2)</a>
     <li><a href="#ref-for-concept-tree-inclusive-descendant⑥">6.1. Interface NodeIterator</a> <a href="#ref-for-concept-tree-inclusive-descendant⑦">(2)</a> <a href="#ref-for-concept-tree-inclusive-descendant⑧">(3)</a>
@@ -16407,7 +16405,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node④">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-node⑤">4.2. Node tree：节点树</a> <a href="#ref-for-concept-node⑥">(2)</a> <a href="#ref-for-concept-node⑦">(3)</a> <a href="#ref-for-concept-node⑧">(4)</a> <a href="#ref-for-concept-node⑨">(5)</a> <a href="#ref-for-concept-node①⓪">(6)</a> <a href="#ref-for-concept-node①①">(7)</a> <a href="#ref-for-concept-node①②">(8)</a> <a href="#ref-for-concept-node①③">(9)</a> <a href="#ref-for-concept-node①④">(10)</a> <a href="#ref-for-concept-node①⑤">(11)</a> <a href="#ref-for-concept-node①⑥">(12)</a> <a href="#ref-for-concept-node①⑦">(13)</a> <a href="#ref-for-concept-node①⑧">(14)</a> <a href="#ref-for-concept-node①⑨">(15)</a>
     <li><a href="#ref-for-concept-node②⓪">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-concept-node②①">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-concept-node②①">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-node②②">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-node②③">(2)</a> <a href="#ref-for-concept-node②④">(3)</a> <a href="#ref-for-concept-node②⑤">(4)</a> <a href="#ref-for-concept-node②⑥">(5)</a> <a href="#ref-for-concept-node②⑦">(6)</a> <a href="#ref-for-concept-node②⑧">(7)</a> <a href="#ref-for-concept-node②⑨">(8)</a> <a href="#ref-for-concept-node③⓪">(9)</a> <a href="#ref-for-concept-node③①">(10)</a> <a href="#ref-for-concept-node③②">(11)</a> <a href="#ref-for-concept-node③③">(12)</a> <a href="#ref-for-concept-node③④">(13)</a> <a href="#ref-for-concept-node③⑤">(14)</a> <a href="#ref-for-concept-node③⑥">(15)</a>
     <li><a href="#ref-for-concept-node③⑦">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-node③⑧">(2)</a> <a href="#ref-for-concept-node③⑨">(3)</a> <a href="#ref-for-concept-node④⓪">(4)</a> <a href="#ref-for-concept-node④①">(5)</a> <a href="#ref-for-concept-node④②">(6)</a> <a href="#ref-for-concept-node④③">(7)</a>
     <li><a href="#ref-for-concept-node④④">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node④⑤">(2)</a> <a href="#ref-for-concept-node④⑥">(3)</a>
@@ -16515,9 +16513,9 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-slot①">4.2.2.1. Slots：插槽</a> <a href="#ref-for-concept-slot②">(2)</a> <a href="#ref-for-concept-slot③">(3)</a> <a href="#ref-for-concept-slot④">(4)</a> <a href="#ref-for-concept-slot⑤">(5)</a> <a href="#ref-for-concept-slot⑥">(6)</a>
     <li><a href="#ref-for-concept-slot⑦">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-concept-slot⑧">(2)</a> <a href="#ref-for-concept-slot⑨">(3)</a> <a href="#ref-for-concept-slot①⓪">(4)</a>
     <li><a href="#ref-for-concept-slot①①">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-slot①②">(2)</a> <a href="#ref-for-concept-slot①③">(3)</a> <a href="#ref-for-concept-slot①④">(4)</a> <a href="#ref-for-concept-slot①⑤">(5)</a> <a href="#ref-for-concept-slot①⑥">(6)</a>
-    <li><a href="#ref-for-concept-slot①⑦">4.2.2.4. Assigning slottables and slots</a> <a href="#ref-for-concept-slot①⑧">(2)</a>
-    <li><a href="#ref-for-concept-slot①⑨">4.2.2.5. Signaling slot change</a> <a href="#ref-for-concept-slot②⓪">(2)</a>
-    <li><a href="#ref-for-concept-slot②①">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-slot②②">(2)</a> <a href="#ref-for-concept-slot②③">(3)</a>
+    <li><a href="#ref-for-concept-slot①⑦">4.2.2.4. 分配可插槽元素和插槽</a>
+    <li><a href="#ref-for-concept-slot①⑧">4.2.2.5. Signaling slot change</a> <a href="#ref-for-concept-slot①⑨">(2)</a>
+    <li><a href="#ref-for-concept-slot②⓪">4.2.3. Mutation algorithms</a> <a href="#ref-for-concept-slot②①">(2)</a> <a href="#ref-for-concept-slot②②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="slot-name">
@@ -16530,7 +16528,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="slot-assigned-nodes">
    <b><a href="#slot-assigned-nodes">#slot-assigned-nodes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-slot-assigned-nodes">4.2.2.4. Assigning slottables and slots</a> <a href="#ref-for-slot-assigned-nodes①">(2)</a>
+    <li><a href="#ref-for-slot-assigned-nodes">4.2.2.4. 分配可插槽元素和插槽</a> <a href="#ref-for-slot-assigned-nodes①">(2)</a>
     <li><a href="#ref-for-slot-assigned-nodes②">4.2.3. Mutation algorithms</a> <a href="#ref-for-slot-assigned-nodes③">(2)</a>
    </ul>
   </aside>
@@ -16541,7 +16539,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-slotable②">4.2.2.1. Slots：插槽</a>
     <li><a href="#ref-for-concept-slotable③">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-concept-slotable④">(2)</a> <a href="#ref-for-concept-slotable⑤">(3)</a> <a href="#ref-for-concept-slotable⑥">(4)</a> <a href="#ref-for-concept-slotable⑦">(5)</a> <a href="#ref-for-concept-slotable⑧">(6)</a>
     <li><a href="#ref-for-concept-slotable⑨">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-slotable①⓪">(2)</a> <a href="#ref-for-concept-slotable①①">(3)</a> <a href="#ref-for-concept-slotable①②">(4)</a> <a href="#ref-for-concept-slotable①③">(5)</a>
-    <li><a href="#ref-for-concept-slotable①④">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-concept-slotable①④">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-slotable①⑤">4.2.3. Mutation algorithms</a>
    </ul>
   </aside>
@@ -16556,7 +16554,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#slotable-assigned-slot">#slotable-assigned-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-slotable-assigned-slot">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-slotable-assigned-slot①">(2)</a>
-    <li><a href="#ref-for-slotable-assigned-slot②">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-slotable-assigned-slot②">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-slotable-assigned-slot③">4.2.3. Mutation algorithms</a>
     <li><a href="#ref-for-slotable-assigned-slot④">4.4. Interface Node</a>
    </ul>
@@ -16580,7 +16578,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#find-a-slot">#find-a-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-find-a-slot">4.2.2.3. 查找插槽以及可插槽元素</a>
-    <li><a href="#ref-for-find-a-slot①">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-find-a-slot①">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-find-a-slot②">4.2.9. Mixin Slottable</a>
    </ul>
   </aside>
@@ -16588,7 +16586,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#find-slotables">#find-slotables</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-find-slotables">4.2.2.3. 查找插槽以及可插槽元素</a>
-    <li><a href="#ref-for-find-slotables①">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-find-slotables①">4.2.2.4. 分配可插槽元素和插槽</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="find-flattened-slotables">
@@ -16601,7 +16599,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#assign-slotables">#assign-slotables</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-assign-slotables">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-assign-slotables①">4.2.2.4. Assigning slottables and slots</a> <a href="#ref-for-assign-slotables②">(2)</a>
+    <li><a href="#ref-for-assign-slotables①">4.2.2.4. 分配可插槽元素和插槽</a> <a href="#ref-for-assign-slotables②">(2)</a>
     <li><a href="#ref-for-assign-slotables③">4.2.3. Mutation algorithms</a>
    </ul>
   </aside>
@@ -16629,7 +16627,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="signal-a-slot-change">
    <b><a href="#signal-a-slot-change">#signal-a-slot-change</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-signal-a-slot-change">4.2.2.4. Assigning slottables and slots</a>
+    <li><a href="#ref-for-signal-a-slot-change">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-signal-a-slot-change①">4.2.3. Mutation algorithms</a> <a href="#ref-for-signal-a-slot-change②">(2)</a>
    </ul>
   </aside>
