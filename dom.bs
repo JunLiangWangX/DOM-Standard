@@ -2202,99 +2202,88 @@ U除非另有说明，否则为空。
  <li><p>如果<var>node</var>不是{{DocumentFragment}}、{{DocumentType}}、{{Element}}或{{CharacterData}} <a for=/ lt="node">节点</a>，
  则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If either <var>node</var> is a {{Text}} <a for=/>node</a> and <var>parent</var> is a
- <a>document</a>, or <var>node</var> is a <a>doctype</a> and <var>parent</var> is not a
- <a>document</a>, then <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>是{{Text}}<a for=/ lt="node">节点</a>且<var>parent</var><a>document</a>，
+ 或<var>node</var>是<a>doctype</a>且<var>parent</var>不是<a>document</a>，则<a lt="throw">抛出</a>一个
+ "{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
  <li>
-  <p>If <var>parent</var> is a <a>document</a>, and any of the statements below, switched on the
-  interface <var>node</var> <a>implements</a>, are true, then <a>throw</a> a
-  "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+  <p>如果<var>parent</var>为<a>document</a>，且任何下列条件之一被<a lt="implements">实现</a>在接口<var>node</var>上，
+  则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
   <dl class=switch>
    <dt>{{DocumentFragment}}
    <dd>
-    <p>If <var>node</var> has more than one <a for=/>element</a> <a for=tree>child</a> or has a
-    {{Text}} <a for=/>node</a> <a for=tree>child</a>.
+    <p>如果<var>node</var>有多个<a for=/>element</a> <a for=tree lt="child">子节点</a>或有一个{{Text}} <a for=tree lt="child">子节点</a>。
 
-    <p>Otherwise, if <var>node</var> has one <a for=/>element</a> <a for=tree>child</a> and either
-    <var>parent</var> has an <a for=/>element</a> <a for=tree>child</a>, <var>child</var> is a
-    <a>doctype</a>, or <var>child</var> is non-null and a <a>doctype</a> is <a>following</a>
-    <var>child</var>.
+    <p>否则，如果<var>node</var>有一个<a for=/>element</a> <a for=tree lt="child">子节点</a>且<var>parent</var>有一个
+    <a for=/>element</a> <a for=tree lt="child">子节点</a>， <var>child</var>为<a>doctype</a>，或<var>child</var>不为
+    null且<a>doctype</a>在其<a lt="following">之后</a>。
     <!--"inclusively following"-->
 
    <dt>{{Element}}
-   <dd><p><var>parent</var> has an <a for=/>element</a> <a for=tree>child</a>, <var>child</var> is
-   a <a>doctype</a>, or <var>child</var> is non-null and a <a>doctype</a> is <a>following</a>
-   <var>child</var>.
+   <dd><p><var>parent</var>有一个<a for=/>element</a> <a for=tree lt="child">子节点</a>，<var>子节点</var>为<a>doctype</a>，
+   或<var>子节点</var>不为null且<a>doctype</a>在其<a lt="following">之后</a>。
    <!--"inclusively following"-->
 
    <dt>{{DocumentType}}
-   <dd><p><var>parent</var> has a <a>doctype</a> <a for=tree>child</a>, <var>child</var> is non-null
-   and an <a for=/>element</a> is <a>preceding</a> <var>child</var>, or <var>child</var> is null
-   and <var>parent</var> has an <a for=/>element</a> <a for=tree>child</a>.
+   <dd><p>如果父节点有一个<a>doctype</a> <a for=tree lt="child">子节点</a>，<var>子节点</var>不为null，
+   并且在子节点<a lt="preceding">之前</a>有一个<a for=/>element</a>，或者子节点为null，并且父节点有一个
+   <a for=/>element</a>子节点。
   </dl>
 </ol>
 
-<p>To <dfn export id=concept-node-pre-insert>pre-insert</dfn> a <var>node</var> into a
-<var>parent</var> before a <var>child</var>, run these steps:
+<p>在子节点之前将节点<dfn export id=concept-node-pre-insert lt="pre-insert">预插入</dfn>到父节点中，请运行以下步骤：
 
 <ol>
- <li><p><a>Ensure pre-insertion validity</a> of <var>node</var> into <var>parent</var> before
- <var>child</var>.
+ <li><p>确保节点在子节点之前插入父节点的<a lt="Ensure pre-insertion validity">预插入有效性</a>。
 
- <li><p>Let <var>referenceChild</var> be <var>child</var>.
+ <li><p>设<var>referenceChild</var>为<var>child</var>。
 
- <li><p>If <var>referenceChild</var> is <var>node</var>, then set <var>referenceChild</var> to
- <var>node</var>'s <a for=tree>next sibling</a>.
+ <li><p>如果<var>referenceChild</var>为<var>node</var>，则设<var>referenceChild</var>为
+ <var>node</var>的<a for=tree>next sibling</a>。
 
- <li><p><a for=/>Insert</a> <var>node</var> into <var>parent</var> before <var>referenceChild</var>.
+ <li><p>在<var>referenceChild</var>之前将节点<a for=/ lt="Insert">插入</a>父节点。
 
- <li><p>Return <var>node</var>.
+ <li><p>返回<var>node</var>。
  <!-- Technically this is post-insert. -->
 </ol>
 
-<p><a lt="Other applicable specifications">Specifications</a> may define
-<dfn export id=concept-node-insert-ext>insertion steps</dfn> for all or some <a for=/>nodes</a>. The
-algorithm is passed <var ignore>insertedNode</var>, as indicated in the <a for=/>insert</a>
-algorithm below.
+<p><a lt="Other applicable specifications">规范</a>定义了所有或部分<a for=/ lt="nodes">节点</a>的
+<dfn export id=concept-node-insert-ext lt="insertion steps">插入步骤</dfn>。该算法需要传递一个
+<var ignore>insertedNode</var>参数，如下面的<a for=/>insert</a>算法所示。
 <!-- See https://github.com/whatwg/dom/issues/34#issuecomment-125571750 for why we might need to
      adjust this further based on the requirements of the script element. There might be other ways
      to define that though as Olli suggests, so leaving that out for now. -->
 
-<p><a lt="other applicable specifications">Specifications</a> may define
-<dfn export id=concept-node-children-changed-ext>children changed steps</dfn> for all or some
-<a for=/>nodes</a>. The algorithm is passed no argument and is called from <a for=/>insert</a>,
-<a for=/>remove</a>, and <a for=/>replace data</a>.
+<p><a lt="Other applicable specifications">规范</a>定义了所有或部分<a for=/ lt="nodes">节点</a>的
+<dfn export id=concept-node-children-changed-ext lt="children changed steps">子节点更改步骤</dfn>。
+该算法不传递任何参数，并从a for=/>insert</a>、<a for=/>remove</a>和<a for=/>replace data</a>中调用。
 
-<p>To <dfn export id=concept-node-insert>insert</dfn> a <var>node</var> into a <var>parent</var>
-before a <var>child</var>, with an optional <i>suppress observers flag</i>, run these steps:
+<p>给定可选参数<i>suppress observers flag</i>，在子节点之前<dfn export id=concept-node-insert lt="insert">插入</dfn>
+一个节点到父节点，将运行以下步骤：
 
 <ol>
- <li><p>Let <var>nodes</var> be <var>node</var>'s <a for=tree>children</a>, if <var>node</var> is a
- {{DocumentFragment}} <a for=/>node</a>; otherwise « <var>node</var> ».
+ <li><p>如果<var>node</var>为{{DocumentFragment}} <a for=/ lt="node">节点</a>，则设<var>nodes</var>为<var>node</var>的
+ <a for=tree>children</a>属性；否则« <var>node</var> »。
 
- <li><p>Let <var>count</var> be <var>nodes</var>'s <a for=set>size</a>.
+ <li><p>设<var>count</var>为<var>nodes</var>的<a for=set>size</a>。
 
- <li><p>If <var>count</var> is 0, then return.
+ <li><p>如果<var>count</var>为0，则直接return。
 
  <li>
-  <p>If <var>node</var> is a {{DocumentFragment}} <a for=/>node</a>, then:
+  <p>如果<var>node</var>为{{DocumentFragment}} <a for=/ lt="node">节点</a>，则：
 
   <ol>
-   <li><p><a for=/>Remove</a> its <a for=tree>children</a> with the <i>suppress observers flag</i>
-   set.
+   <li><p><a for=/ lt="Remove">删除</a>设置了<i>suppress observers flag</i>的<a for=tree lt="children">子节点</a>。
 
    <li>
-    <p><a>Queue a tree mutation record</a> for <var>node</var> with « », <var>nodes</var>, null, and
-    null.
+    <p>给定参数« »、<var>nodes</var>、null与null，<a lt="Queue a tree mutation record">加入到树的修改队列中</a>。
 
-    <p class=note>This step intentionally does not pay attention to the
-    <i>suppress observers flag</i>.
+    <p class=note>这一步故意不注意<i>suppress observers flag</i>。
   </ol>
 
  <li>
-  <p>If <var>child</var> is non-null, then:
+  <p>如果<var>child</var>不为null，则：
 
   <ol>
    <li><p>For each <a>live range</a> whose <a for=range>start node</a> is <var>parent</var> and
