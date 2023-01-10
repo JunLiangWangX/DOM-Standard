@@ -193,22 +193,20 @@ spec:html; type:element
  
  <li><p><a lt="Validate">验证</a>qualifiedName。
 
- <li><p>让<var>prefix</var>为空。
+ <li><p>让<var>prefix</var>为null。
+
+ <li><p>让localName成为qualifiedName。
 
  <li>
-  <p>If <var>qualifiedName</var> contains a U+003A (:), then:
+  <p>如果<var>qualifiedName</var>包含符号":"(Unicode码：U+003A)，则：
 
   <ol>
-   <li><p>Let <var>splitResult</var> be the result of running <a>strictly split</a> given
-   <var>qualifiedName</var> and U+003A (:).
+   <li><p>给定符号":"(Unicode码：U+003A)<a lt="strictly split">严格拆分</a><var>qualifiedName</var>，设<var>splitResult</var>为其返回结果。
 
-   <li><p>Set <var>prefix</var> to <var>splitResult</var>[0].
+   <li><p>设<var>prefix</var>为<var>splitResult</var>[0]。
 
-   <li><p>Set <var>localName</var> to <var>splitResult</var>[1].
+   <li><p>设<var>localName</var>为<var>splitResult</var>[1]。
   </ol>
-
- <li><p>如果<var>qualifiedName</var>中包含符号":"(Unicode码：U+003A)，则以符号":"<a lt="strictly split">严格拆分</a>字符串，字符串前一部分赋值给<var>prefix</var>，
- 后一部分赋值给<var>localName</var>。
 
  <li><p>如果<var>prefix</var>不为null但<var>namespace</var>为null，则<a lt="throw">抛出</a>一个"{{NamespaceError!!exception}}(命名空间错误)"的
  {{DOMException}}(DOM异常)。
