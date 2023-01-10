@@ -14,7 +14,8 @@
   "!测试": "<a href=https://github.com/web-platform-tests/wpt/tree/master/[SHORTNAME]>web-platform-tests [SHORTNAME]/</a> (<a href=https://github.com/web-platform-tests/wpt/labels/[SHORTNAME]>ongoing work</a>)",
   "!翻译(非规范)":[
     "<a href=https://triple-underscore.github.io/DOM4-ja.html>日本語</a>",
-    "<a href=https://junliangwangx.github.io/DOM-Standard/index.html>简体中文</a>"
+    "<a href=https://junliangwangx.github.io/DOM-Standard/index.html>简体中文</a>",
+    "<a href=https://dom.spec.whatwg.org/>英文</a>"
   ],
   "Text Macro": "H1 [SPECTITLE]"
 }
