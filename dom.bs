@@ -2265,7 +2265,7 @@ U除非另有说明，否则为空。
 
 <p><a lt="Other applicable specifications">规范</a>定义了所有或部分<a for=/ lt="nodes">节点</a>的
 <dfn export id=concept-node-children-changed-ext lt="children changed steps">子节点更改步骤</dfn>。
-该算法不传递任何参数，并从a for=/>insert</a>、<a for=/>remove</a>和<a for=/>replace data</a>中调用。
+该算法不传递任何参数，并从<a for=/>insert</a>、<a for=/>remove</a>和<a for=/>replace data</a>中调用。
 
 <p>给定可选参数<i>suppress observers flag</i>，在子节点之前<dfn export id=concept-node-insert lt="insert">插入</dfn>
 一个节点到父节点，将运行以下步骤：
@@ -2294,72 +2294,68 @@ U除非另有说明，否则为空。
   <p>如果<var>child</var>不为null，则：
 
   <ol>
-   <li><p>For each <a>live range</a> whose <a for=range>start node</a> is <var>parent</var> and
-   <a for=range>start offset</a> is greater than <var>child</var>'s <a for=tree>index</a>, increase
-   its <a for=range>start offset</a> by <var>count</var>.
+   <li><p>遍历<a for=range lt="start node">起始节点</a>为<var>parent</var>并且<a for=range lt="start offset">起始偏移量</a>
+   是大于<var>child</var>的<a for=tree>index</a>的<a>live range</a>，将<a for=range lt="start offset">起始偏移量</a>增加<var>count</var>。
 
-   <li><p>For each <a>live range</a> whose <a for=range>end node</a> is <var>parent</var> and
-   <a for=range>end offset</a> is greater than <var>child</var>'s <a for=tree>index</a>, increase
-   its <a for=range>end offset</a> by <var>count</var>.
+   <li><p>遍历<a for=range lt="end node">结束节点</a>为<var>parent</var>并且<a for=range lt="end offset">结束偏移量</a>
+   是大于<var>child</var>的<a for=tree>index</a>的<a>live range</a>，将<a for=range lt="end offset">结束偏移量</a>增加<var>count</var>。
   </ol>
 
- <li><p>Let <var>previousSibling</var> be <var>child</var>'s <a>previous sibling</a> or
- <var>parent</var>'s <a>last child</a> if <var>child</var> is null.
+ <li><p>如果<var>child</var>为null，则设<var>previousSibling</var>为<var>child</var>的<a lt="previous sibling">上一个兄弟节点</a>
+ 或<var>parent</var>的<a lt="last child">最后一个子节点</a>。
 
  <li>
-  <p>For each <var>node</var> in <var>nodes</var>, in <a>tree order</a>:
+  <p>根据<a lt="tree order">树的顺序</a>，遍历<var>nodes</var>中的每个节点：
 
   <ol>
-   <li><p><a>Adopt</a> <var>node</var> into <var>parent</var>'s <a for=Node>node document</a>.
+   <li><p><a lt="Adopt">接受</a><var>node</var>插入到<var>parent</var>的<a for=Node lt="node document">节点文档</a>中。
 
-   <li><p>If <var>child</var> is null, then <a for=set>append</a> <var>node</var> to
-   <var>parent</var>'s <a for=tree>children</a>.
+   <li><p>如果<var>child</var>为null，则<a for=set lt="append">添加</a><var>node</var>到<var>parent</var>的<a for=tree>children</a>中。
 
-   <li><p>Otherwise, <a for=set>insert</a> <var>node</var> into <var>parent</var>'s
-   <a for=tree>children</a> before <var>child</var>'s <a for=tree>index</a>.
+   <li><p>否则，在<var>child</var>的<a for=tree>index</a>之前<a for=set lt="insert">插入</a><var>node</var>到<var>parent</var>的
+   <a for=tree>children</a>。
 
-   <li><p>If <var>parent</var> is a <a for=Element>shadow host</a> whose <a for=/>shadow root</a>'s
-   <a for=ShadowRoot>slot assignment</a> is "<code>named</code>" and <var>node</var> is a
-   <a>slottable</a>, then <a>assign a slot</a> for <var>node</var>.
+   <li><p>如果<var>parent</var>为其<a for=/>shadow root</a>的<a for=ShadowRoot>slot assignment</a>为"<code>named</code>"的
+   <a for=Element>shadow host</a>，并且<var>node</var>是一个<a lt="slottable">可插槽元素</a>，则为<var>node</var>
+   <a lt="assign a slot">分配一个插槽</a>。
 
-   <li><p>If <var>parent</var>'s <a for=tree>root</a> is a <a for=/>shadow root</a>, and
-   <var>parent</var> is a <a>slot</a> whose <a for=slot>assigned nodes</a> is the empty list,
-   then run <a>signal a slot change</a> for <var>parent</var>.
+   <li><p>如果<var>parent</var>的<a for=tree>root</a>为<a for=/>shadow root</a>，并且<var>parent</var>是一个
+   <a for=slot lt="assigned nodes">分配的节点</a>为空列表的<a lt="slot">插槽</a>，则为<var>parent</var>运行
+   <a lt="signal a slot change">发出插槽改变信号</a>。
 
-   <li><p>Run <a>assign slottables for a tree</a> with <var>node</var>'s <a for=tree>root</a>.
+   <li><p>使用<var>node</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配可插槽元素</a>。
 
    <li>
-    <p>For each <a>shadow-including inclusive descendant</a> <var>inclusiveDescendant</var> of
-    <var>node</var>, in <a>shadow-including tree order</a>:
+    <p>遍历node的所有后代节点(包括shadow tree中的节点，<a lt="shadow-including tree order">访问元素的所有后代节点时，
+    优先访问该元素的shadow tree中的节点，而不是先遍历该元素在常规的DOM树中的子节点。</a>(这种遍历顺序确保了在shadow DOM
+    和light DOM中的元素都能够在正确的顺序中被遍历)。
 
     <ol>
-     <li><p>Run the <a>insertion steps</a> with <var>inclusiveDescendant</var>.
+     <li><p>使用<var>inclusiveDescendant</var>运行<a lt="insertion steps">插入步骤</a>。
 
      <li>
-      <p>If <var>inclusiveDescendant</var> is <a>connected</a>, then:
+      <p>如果<var>inclusiveDescendant</var>是<a lt="connected">已连接的</a>，则：
 
       <ol>
-       <li><p>If <var>inclusiveDescendant</var> is <a for=Element>custom</a>, then
-       <a>enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>,
-       callback name "<code>connectedCallback</code>", and an empty argument list.
+       <li><p>如果<var>inclusiveDescendant</var>是一个<a for=Element lt="custom">自定义元素</a>，
+       则将名为"<code>connectedCallback</code>"的回调函数添加到队列中，等待执行(当元素被添加到DOM上
+       的时候触发)，该回调函数不接受任何参数。
 
        <li>
-        <p>Otherwise, <a lt="try to upgrade an element">try to upgrade</a>
-        <var>inclusiveDescendant</var>.
+        <p>否则，则尝试将<var>inclusiveDescendant</var><a lt="try to upgrade an element" lt="try to upgrade">升级为自定义元素</a>。
 
-        <p class=note>If this successfully upgrades <var>inclusiveDescendant</var>, its
-        <code>connectedCallback</code> will be enqueued automatically during the
-        <a>upgrade an element</a> algorithm.
+        <p class=note>如果<var>inclusiveDescendant</var>成功升级，则其<code>connectedCallback</code>回调函数将在
+        <a lt="upgrade an element">升级元素</a>算法期间自动排到队列中。
       </ol>
      </li>
     </ol>
    </li>
   </ol>
 
- <li><p>If <i>suppress observers flag</i> is unset, then <a>queue a tree mutation record</a> for
- <var>parent</var> with <var>nodes</var>, « », <var>previousSibling</var>, and <var>child</var>.
+ <li><p>如果<i>suppress observers flag</i>没被设置，则给定参数<var>nodes</var>、« »、<var>previousSibling</var>以及<var>child</var>
+ 为<var>parent</var><a lt="queue a tree mutation record">将树结构变更的记录添加到队列中</a>。
 
- <li><p>Run the <a>children changed steps</a> for <var>parent</var>.
+ <li><p>为<var>parent</var>运行<a lt="children changed steps">子节点更改步骤</a>。
 </ol>
 
 
@@ -5566,7 +5562,7 @@ object's <a for=tree>root</a> is a <a for=/>shadow root</a>; otherwise its <a fo
 <a for=DocumentFragment>host</a> is a <a>shadow-including inclusive descendant</a> of <var>B</var>.
 
 <p>A
-<dfn export id=concept-shadow-including-inclusive-descendant>shadow-including inclusive descendant</dfn>
+<dfn export id=concept-shadow-including-inclusive-descendant lt="shadow including inclusive descendant">所有后代节点(包括shadow tree中的节点)</dfn>
 is an object or one of its <a>shadow-including descendants</a>.
 
 <p>An object <var>A</var> is a
