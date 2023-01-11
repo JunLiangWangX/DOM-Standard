@@ -38,7 +38,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-10">2023-01-10</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-11">2023-01-11</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -2456,7 +2456,7 @@ U除非另有说明，否则为空。 </p>
    </ol>
    <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications①">规范</a>定义了所有或部分<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②⑤">节点</a>的 <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="insertion steps" id="concept-node-insert-ext">插入步骤</dfn>。该算法需要传递一个 <var>insertedNode</var>参数，如下面的<a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert①">insert</a>算法所示。 </p>
    <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications②">规范</a>定义了所有或部分<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node②⑥">节点</a>的 <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="children changed steps" id="concept-node-children-changed-ext">子节点更改步骤</dfn>。
-该算法不传递任何参数，并从a for=/>insert、<a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove">remove</a>和<a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace">replace data</a>中调用。 </p>
+该算法不传递任何参数，并从<a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert②">insert</a>、<a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove">remove</a>和<a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace">replace data</a>中调用。 </p>
    <p>给定可选参数<i>suppress observers flag</i>，在子节点之前<dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="insert" id="concept-node-insert">插入</dfn> 一个节点到父节点，将运行以下步骤： </p>
    <ol>
     <li>
@@ -2478,51 +2478,51 @@ U除非另有说明，否则为空。 </p>
      <p>如果<var>child</var>不为null，则： </p>
      <ol>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range">live range</a> whose <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node">start node</a> is <var>parent</var> and <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset">start offset</a> is greater than <var>child</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index">index</a>, increase
-   its <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset①">start offset</a> by <var>count</var>. </p>
+       <p>遍历<a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node">起始节点</a>为<var>parent</var>并且<a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset">起始偏移量</a> 是大于<var>child</var>的<a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index">index</a>的<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range">live range</a>，将<a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset①">起始偏移量</a>增加<var>count</var>。 </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①">live range</a> whose <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node">end node</a> is <var>parent</var> and <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset">end offset</a> is greater than <var>child</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index①">index</a>, increase
-   its <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset①">end offset</a> by <var>count</var>. </p>
+       <p>遍历<a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node">结束节点</a>为<var>parent</var>并且<a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset">结束偏移量</a> 是大于<var>child</var>的<a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index①">index</a>的<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①">live range</a>，将<a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset①">结束偏移量</a>增加<var>count</var>。 </p>
      </ol>
     <li>
-     <p>Let <var>previousSibling</var> be <var>child</var>’s <a data-link-type="dfn" href="#concept-tree-previous-sibling" id="ref-for-concept-tree-previous-sibling">previous sibling</a> or <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-last-child" id="ref-for-concept-tree-last-child">last child</a> if <var>child</var> is null. </p>
+     <p>如果<var>child</var>为null，则设<var>previousSibling</var>为<var>child</var>的<a data-link-type="dfn" href="#concept-tree-previous-sibling" id="ref-for-concept-tree-previous-sibling">上一个兄弟节点</a> 或<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-last-child" id="ref-for-concept-tree-last-child">最后一个子节点</a>。 </p>
     <li>
-     <p>For each <var>node</var> in <var>nodes</var>, in <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order⑤">tree order</a>: </p>
+     <p>根据<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order⑤">树的顺序</a>，遍历<var>nodes</var>中的每个节点： </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="#concept-node-adopt" id="ref-for-concept-node-adopt">Adopt</a> <var>node</var> into <var>parent</var>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document">node document</a>. </p>
+       <p><a data-link-type="dfn" href="#concept-node-adopt" id="ref-for-concept-node-adopt">接受</a><var>node</var>插入到<var>parent</var>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document">节点文档</a>中。 </p>
       <li>
-       <p>If <var>child</var> is null, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append②">append</a> <var>node</var> to <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②⓪">children</a>. </p>
+       <p>如果<var>child</var>为null，则<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append②">添加</a><var>node</var>到<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②⓪">children</a>中。 </p>
       <li>
-       <p>Otherwise, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-insert" id="ref-for-list-insert">insert</a> <var>node</var> into <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②①">children</a> before <var>child</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index②">index</a>. </p>
+       <p>否则，在<var>child</var>的<a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index②">index</a>之前<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-insert" id="ref-for-list-insert">插入</a><var>node</var>到<var>parent</var>的 <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②①">children</a>。 </p>
       <li>
-       <p>If <var>parent</var> is a <a data-link-type="dfn" href="#element-shadow-host" id="ref-for-element-shadow-host">shadow host</a> whose <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①③">shadow root</a>’s <a data-link-type="dfn" href="#shadowroot-slot-assignment" id="ref-for-shadowroot-slot-assignment②">slot assignment</a> is "<code>named</code>" and <var>node</var> is a <a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①⑤">slottable</a>, then <a data-link-type="dfn" href="#assign-a-slot" id="ref-for-assign-a-slot①">assign a slot</a> for <var>node</var>. </p>
+       <p>如果<var>parent</var>为其<a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①③">shadow root</a>的<a data-link-type="dfn" href="#shadowroot-slot-assignment" id="ref-for-shadowroot-slot-assignment②">slot assignment</a>为"<code>named</code>"的 <a data-link-type="dfn" href="#element-shadow-host" id="ref-for-element-shadow-host">shadow host</a>，并且<var>node</var>是一个<a data-link-type="dfn" href="#concept-slotable" id="ref-for-concept-slotable①⑤">可插槽元素</a>，则为<var>node</var> <a data-link-type="dfn" href="#assign-a-slot" id="ref-for-assign-a-slot①">分配一个插槽</a>。 </p>
       <li>
-       <p>If <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>, and <var>parent</var> is a <a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">slot</a> whose <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">assigned nodes</a> is the empty list,
-   then run <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change①">signal a slot change</a> for <var>parent</var>. </p>
+       <p>如果<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①③">root</a>为<a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①④">shadow root</a>，并且<var>parent</var>是一个 <a data-link-type="dfn" href="#slot-assigned-nodes" id="ref-for-slot-assigned-nodes②">分配的节点</a>为空列表的<a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot①⑨">插槽</a>，则为<var>parent</var>运行 <a data-link-type="dfn" href="#signal-a-slot-change" id="ref-for-signal-a-slot-change①">发出插槽改变信号</a>。 </p>
       <li>
-       <p>Run <a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree①">assign slottables for a tree</a> with <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①④">root</a>. </p>
+       <p>使用<var>node</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①④">root</a>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree①">为树分配可插槽元素</a>。 </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant">shadow-including inclusive descendant</a> <var>inclusiveDescendant</var> of <var>node</var>, in <a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order">shadow-including tree order</a>: </p>
+       <p>遍历node的所有后代节点(包括shadow tree中的节点，<a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order">访问元素的所有后代节点时，
+    优先访问该元素的shadow tree中的节点，而不是先遍历该元素在常规的DOM树中的子节点。</a>(这种遍历顺序确保了在shadow DOM
+    和light DOM中的元素都能够在正确的顺序中被遍历)。 </p>
        <ol>
         <li>
-         <p>Run the <a data-link-type="dfn" href="#concept-node-insert-ext" id="ref-for-concept-node-insert-ext">insertion steps</a> with <var>inclusiveDescendant</var>. </p>
+         <p>使用<var>inclusiveDescendant</var>运行<a data-link-type="dfn" href="#concept-node-insert-ext" id="ref-for-concept-node-insert-ext">插入步骤</a>。 </p>
         <li>
-         <p>If <var>inclusiveDescendant</var> is <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#connected" id="ref-for-connected">connected</a>, then: </p>
+         <p>如果<var>inclusiveDescendant</var>是<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#connected" id="ref-for-connected">已连接的</a>，则： </p>
          <ol>
           <li>
-           <p>If <var>inclusiveDescendant</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom">custom</a>, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction">enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>,
-       callback name "<code>connectedCallback</code>", and an empty argument list. </p>
+           <p>如果<var>inclusiveDescendant</var>是一个<a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom">自定义元素</a>，
+       则将名为"<code>connectedCallback</code>"的回调函数添加到队列中，等待执行(当元素被添加到DOM上
+       的时候触发)，该回调函数不接受任何参数。 </p>
           <li>
-           <p>Otherwise, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-try-upgrade" id="ref-for-concept-try-upgrade">try to upgrade</a> <var>inclusiveDescendant</var>. </p>
-           <p class="note" role="note">If this successfully upgrades <var>inclusiveDescendant</var>, its <code>connectedCallback</code> will be enqueued automatically during the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-upgrade-an-element" id="ref-for-concept-upgrade-an-element">upgrade an element</a> algorithm. </p>
+           <p>否则，则尝试将<var>inclusiveDescendant</var><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-try-upgrade" id="ref-for-concept-try-upgrade">升级为自定义元素</a>。 </p>
+           <p class="note" role="note">如果<var>inclusiveDescendant</var>成功升级，则其<code>connectedCallback</code>回调函数将在 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-upgrade-an-element" id="ref-for-concept-upgrade-an-element">升级元素</a>算法期间自动排到队列中。 </p>
          </ol>
        </ol>
      </ol>
     <li>
-     <p>If <i>suppress observers flag</i> is unset, then <a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record①">queue a tree mutation record</a> for <var>parent</var> with <var>nodes</var>, « », <var>previousSibling</var>, and <var>child</var>. </p>
+     <p>如果<i>suppress observers flag</i>没被设置，则给定参数<var>nodes</var>、« »、<var>previousSibling</var>以及<var>child</var> 为<var>parent</var><a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record①">将树结构变更的记录添加到队列中</a>。 </p>
     <li>
-     <p>Run the <a data-link-type="dfn" href="#concept-node-children-changed-ext" id="ref-for-concept-node-children-changed-ext">children changed steps</a> for <var>parent</var>. </p>
+     <p>为<var>parent</var>运行<a data-link-type="dfn" href="#concept-node-children-changed-ext" id="ref-for-concept-node-children-changed-ext">子节点更改步骤</a>。 </p>
    </ol>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-node-append">append</dfn> a <var>node</var> to a <var>parent</var>, <a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert">pre-insert</a> <var>node</var> into <var>parent</var> before null. </p>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-node-replace">replace</dfn> a <var>child</var> with <var>node</var> within a <var>parent</var>, run these steps: </p>
@@ -2577,7 +2577,7 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p>Let <var>nodes</var> be <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child②⑧">children</a> if <var>node</var> is a <code class="idl"><a data-link-type="idl" href="#documentfragment" id="ref-for-documentfragment①①">DocumentFragment</a></code> <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node③③">node</a>; otherwise « <var>node</var> ». </p>
     <li>
-     <p><a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert②">Insert</a> <var>node</var> into <var>parent</var> before <var>referenceChild</var> with the <i>suppress observers flag</i> set. </p>
+     <p><a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert③">Insert</a> <var>node</var> into <var>parent</var> before <var>referenceChild</var> with the <i>suppress observers flag</i> set. </p>
     <li>
      <p><a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record②">Queue a tree mutation record</a> for <var>parent</var> with <var>nodes</var>, <var>removedNodes</var>, <var>previousSibling</var>, and <var>referenceChild</var>. </p>
     <li>
@@ -2597,7 +2597,7 @@ U除非另有说明，否则为空。 </p>
      <p><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove③">Remove</a> all <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child③①">children</a>, in <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order⑥">tree order</a>,
  with the <i>suppress observers flag</i> set. </p>
     <li>
-     <p>If <var>node</var> is non-null, then <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert③">insert</a> <var>node</var> into <var>parent</var> before null with the <i>suppress observers flag</i> set. </p>
+     <p>If <var>node</var> is non-null, then <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert④">insert</a> <var>node</var> into <var>parent</var> before null with the <i>suppress observers flag</i> set. </p>
     <li>
      <p>If either <var>addedNodes</var> or <var>removedNodes</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty①">is not empty</a>,
  then <a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record③">queue a tree mutation record</a> for <var>parent</var> with <var>addedNodes</var>, <var>removedNodes</var>, null, and null. </p>
@@ -2659,7 +2659,7 @@ indicated in the <a data-link-type="dfn" href="#concept-node-remove" id="ref-for
     <li>
      <p>Let <var>isParentConnected</var> be <var>parent</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#connected" id="ref-for-connected①">connected</a>. </p>
     <li>
-     <p>If <var>node</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom①">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction①">enqueue a custom element callback reaction</a> with <var>node</var>, callback name
+     <p>If <var>node</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom①">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction">enqueue a custom element callback reaction</a> with <var>node</var>, callback name
   "<code>disconnectedCallback</code>", and an empty argument list. </p>
      <p class="note" role="note">It is intentional for now that <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom②">custom</a> <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⑥">elements</a> do
   not get <var>parent</var> passed. This might change in the future if there is a need. </p>
@@ -2669,7 +2669,7 @@ indicated in the <a data-link-type="dfn" href="#concept-node-remove" id="ref-for
       <li>
        <p>Run the <a data-link-type="dfn" href="#concept-node-remove-ext" id="ref-for-concept-node-remove-ext①">removing steps</a> with <var>descendant</var>. </p>
       <li>
-       <p>If <var>descendant</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom③">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction②">enqueue a custom element callback reaction</a> with <var>descendant</var>,
+       <p>If <var>descendant</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom③">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction①">enqueue a custom element callback reaction</a> with <var>descendant</var>,
    callback name "<code>disconnectedCallback</code>", and an empty argument list. </p>
      </ol>
     <li>
@@ -6026,7 +6026,7 @@ these steps: </p>
      <p>If <var>document</var> is not <var>oldDocument</var>, then: </p>
      <ol>
       <li>
-       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant①">shadow-including inclusive descendants</a>: </p>
+       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant">shadow-including inclusive descendants</a>: </p>
        <ol>
         <li>
          <p>Set <var>inclusiveDescendant</var>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document③②">node document</a> to <var>document</var>. </p>
@@ -6034,10 +6034,10 @@ these steps: </p>
          <p>If <var>inclusiveDescendant</var> is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑥⑦">element</a>, then set the <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document③③">node document</a> of each <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②①">attribute</a> in <var>inclusiveDescendant</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑤">attribute list</a> to <var>document</var>. </p>
        </ol>
       <li>
-       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant②">shadow-including inclusive descendants</a> that is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom④">custom</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction③">enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>, callback
+       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant①">shadow-including inclusive descendants</a> that is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom④">custom</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction②">enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>, callback
    name "<code>adoptedCallback</code>", and an argument list containing <var>oldDocument</var> and <var>document</var>. </p>
       <li>
-       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant③">shadow-including inclusive descendants</a>, in <a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order②">shadow-including tree order</a>, run the <a data-link-type="dfn" href="#concept-node-adopt-ext" id="ref-for-concept-node-adopt-ext">adopting steps</a> with <var>inclusiveDescendant</var> and <var>oldDocument</var>. </p>
+       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant②">shadow-including inclusive descendants</a>, in <a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order②">shadow-including tree order</a>, run the <a data-link-type="dfn" href="#concept-node-adopt-ext" id="ref-for-concept-node-adopt-ext">adopting steps</a> with <var>inclusiveDescendant</var> and <var>oldDocument</var>. </p>
      </ol>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Document" data-dfn-type="method" data-export id="dom-document-adoptnode"><code>adoptNode(<var>node</var>)</code></dfn> method steps are: </p>
@@ -6666,8 +6666,8 @@ null if <var>event</var>’s <a data-link-type="dfn" href="#composed-flag" id="r
    <p>In <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-tree-order">shadow-including tree order</dfn> is <a data-link-type="dfn" href="#shadow-including-preorder-depth-first-traversal" id="ref-for-shadow-including-preorder-depth-first-traversal">shadow-including preorder, depth-first traversal</a> of a <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①⑥">node tree</a>. <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shadow-including-preorder-depth-first-traversal">Shadow-including preorder, depth-first traversal</dfn> of a <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①⑦">node tree</a> <var>tree</var> is preorder, depth-first traversal of <var>tree</var>, with for each <a data-link-type="dfn" href="#element-shadow-host" id="ref-for-element-shadow-host①">shadow host</a> encountered in <var>tree</var>, <a data-link-type="dfn" href="#shadow-including-preorder-depth-first-traversal" id="ref-for-shadow-including-preorder-depth-first-traversal①">shadow-including preorder, depth-first traversal</a> of that <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑥⑨">element</a>’s <a data-link-type="dfn" href="#concept-element-shadow-root" id="ref-for-concept-element-shadow-root①">shadow root</a>’s <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①⑧">node tree</a> just after it is encountered. </p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-root">shadow-including root</dfn> of an object is its <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②④">root</a>’s <a data-link-type="dfn" href="#concept-documentfragment-host" id="ref-for-concept-documentfragment-host⑨">host</a>’s <a data-link-type="dfn" href="#concept-shadow-including-root" id="ref-for-concept-shadow-including-root④">shadow-including root</a>, if the
 object’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑤">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root③①">shadow root</a>; otherwise its <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑥">root</a>. </p>
-   <p>An object <var>A</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-descendant">shadow-including descendant</dfn> of an object <var>B</var>, if <var>A</var> is a <a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant③⓪">descendant</a> of <var>B</var>, or <var>A</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑦">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root③②">shadow root</a> and <var>A</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑧">root</a>’s <a data-link-type="dfn" href="#concept-documentfragment-host" id="ref-for-concept-documentfragment-host①⓪">host</a> is a <a data-link-type="dfn" href="#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant④">shadow-including inclusive descendant</a> of <var>B</var>. </p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-inclusive-descendant">shadow-including inclusive descendant</dfn> is an object or one of its <a data-link-type="dfn" href="#concept-shadow-including-descendant" id="ref-for-concept-shadow-including-descendant①">shadow-including descendants</a>. </p>
+   <p>An object <var>A</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-descendant">shadow-including descendant</dfn> of an object <var>B</var>, if <var>A</var> is a <a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant③⓪">descendant</a> of <var>B</var>, or <var>A</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑦">root</a> is a <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root③②">shadow root</a> and <var>A</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root②⑧">root</a>’s <a data-link-type="dfn" href="#concept-documentfragment-host" id="ref-for-concept-documentfragment-host①⓪">host</a> is a <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant③">shadow-including inclusive descendant</a> of <var>B</var>. </p>
+   <p>A <dfn data-dfn-type="dfn" data-export data-lt="shadow including inclusive descendant" id="concept-shadow-including-inclusive-descendant">所有后代节点(包括shadow tree中的节点)<a class="self-link" href="#concept-shadow-including-inclusive-descendant"></a></dfn> is an object or one of its <a data-link-type="dfn" href="#concept-shadow-including-descendant" id="ref-for-concept-shadow-including-descendant①">shadow-including descendants</a>. </p>
    <p>An object <var>A</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-ancestor">shadow-including ancestor</dfn> of an object <var>B</var>, if and only if <var>B</var> is a <a data-link-type="dfn" href="#concept-shadow-including-descendant" id="ref-for-concept-shadow-including-descendant②">shadow-including descendant</a> of <var>A</var>. </p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-shadow-including-inclusive-ancestor">shadow-including inclusive ancestor</dfn> is an object or one of its <a data-link-type="dfn" href="#concept-shadow-including-ancestor" id="ref-for-concept-shadow-including-ancestor">shadow-including ancestors</a>. </p>
    <p>A <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①①②">node</a> <var>A</var> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-closed-shadow-hidden">closed-shadow-hidden</dfn> from a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①①③">node</a> <var>B</var> if all of the following conditions are true: </p>
@@ -6934,7 +6934,7 @@ given a <var>document</var>, <var>localName</var>, <var>namespace</var>, and opt
     <li>
      <p><a data-link-type="dfn" href="#queue-a-mutation-record" id="ref-for-queue-a-mutation-record①">Queue a mutation record</a> of "<code>attributes</code>" for <var>element</var> with <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name⑨">local name</a>, <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑦">namespace</a>, <var>oldValue</var>, « », « », null, and null. </p>
     <li>
-     <p>If <var>element</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom⑥">custom</a>, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction④">enqueue a custom element callback reaction</a> with <var>element</var>, callback name
+     <p>If <var>element</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom⑥">custom</a>, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction③">enqueue a custom element callback reaction</a> with <var>element</var>, callback name
  "<code>attributeChangedCallback</code>", and an argument list containing <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name①⓪">local name</a>, <var>oldValue</var>, <var>newValue</var>, and <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑧">namespace</a>. </p>
     <li>
      <p>Run the <a data-link-type="dfn" href="#concept-element-attributes-change-ext" id="ref-for-concept-element-attributes-change-ext②">attribute change steps</a> with <var>element</var>, <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name①①">local name</a>, <var>oldValue</var>, <var>newValue</var>, and <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑨">namespace</a>. </p>
@@ -8636,7 +8636,7 @@ the <code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text③�
      <p>If <var>parent</var> is not null, then: </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert④">Insert</a> <var>new node</var> into <var>parent</var> before <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling①③">next sibling</a>. </p>
+       <p><a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert⑤">Insert</a> <var>new node</var> into <var>parent</var> before <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling①③">next sibling</a>. </p>
       <li>
        <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①⑤">live range</a> whose <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node⑨">start node</a> is <var>node</var> and <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset①①">start offset</a> is greater than <var>offset</var>, set its <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node①⓪">start node</a> to <var>new node</var> and decrease its <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset①②">start offset</a> by <var>offset</var>. </p>
       <li>
@@ -8788,7 +8788,7 @@ range<c- p><c- p>.</c-></c->setEnd<c- p><c- p>(</c-></c->secondText<c- p><c- p>,
    <p><code class="idl"><a data-link-type="idl" href="#range" id="ref-for-range②">Range</a></code> objects, unlike <code class="idl"><a data-link-type="idl" href="#staticrange" id="ref-for-staticrange①">StaticRange</a></code> objects, are affected by mutations to the <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree②③">node tree</a>. Therefore they are also known as <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①⑨">live ranges</a>. Such mutations will not
 invalidate them and will try to ensure that it still represents the same piece of content.
 Necessarily, a <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②⓪">live range</a> might itself be modified as part of the mutation to the <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree②④">node tree</a> when, e.g., part of the content it represents is mutated. </p>
-   <p class="note" role="note">See the <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert⑤">insert</a> and <a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove①⓪">remove</a> algorithms, the <code class="idl"><a data-link-type="idl" href="#dom-node-normalize" id="ref-for-dom-node-normalize②">normalize()</a></code> method, and the <a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace①⓪">replace data</a> and <a data-link-type="dfn" href="#concept-text-split" id="ref-for-concept-text-split①">split</a> algorithms for details. </p>
+   <p class="note" role="note">See the <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert⑥">insert</a> and <a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove①⓪">remove</a> algorithms, the <code class="idl"><a data-link-type="idl" href="#dom-node-normalize" id="ref-for-dom-node-normalize②">normalize()</a></code> method, and the <a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace①⓪">replace data</a> and <a data-link-type="dfn" href="#concept-text-split" id="ref-for-concept-text-split①">split</a> algorithms for details. </p>
    <p>Updating <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②①">live ranges</a> in response to <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree②⑤">node tree</a> mutations can be expensive. For every <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree②⑥">node tree</a> change, all affected <code class="idl"><a data-link-type="idl" href="#range" id="ref-for-range③">Range</a></code> objects need to be updated. Even if the application
 is uninterested in some <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②②">live ranges</a>, it still has to pay the cost of keeping them up-to-date
 when a mutation occurs. </p>
@@ -9209,7 +9209,7 @@ be between 0 and the <a data-link-type="dfn" href="#concept-range-bp" id="ref-fo
 };
 </pre>
    <p>Objects implementing the <code class="idl"><a data-link-type="idl" href="#range" id="ref-for-range⑦">Range</a></code> interface are known as <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-live-range">live ranges</dfn>. </p>
-   <p class="note" role="note">Algorithms that modify a <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①⑧">tree</a> (in particular the <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert⑥">insert</a>, <a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove①①">remove</a>, <a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace①①">replace data</a>, and <a data-link-type="dfn" href="#concept-text-split" id="ref-for-concept-text-split②">split</a> algorithms) modify <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②④">live ranges</a> associated with that <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①⑨">tree</a>. </p>
+   <p class="note" role="note">Algorithms that modify a <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①⑧">tree</a> (in particular the <a data-link-type="dfn" href="#concept-node-insert" id="ref-for-concept-node-insert⑦">insert</a>, <a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove①①">remove</a>, <a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace①①">replace data</a>, and <a data-link-type="dfn" href="#concept-text-split" id="ref-for-concept-text-split②">split</a> algorithms) modify <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②④">live ranges</a> associated with that <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①⑨">tree</a>. </p>
    <p>The <dfn class="dfn-paneled" data-dfn-for="live range" data-dfn-type="dfn" data-export id="concept-range-root">root</dfn> of a <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②⑤">live range</a> is the <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root③⑧">root</a> of its <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node①⑥">start node</a>. </p>
    <p>A <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node①④④">node</a> <var>node</var> is <dfn class="dfn-paneled" data-dfn-for="live range" data-dfn-type="dfn" data-export id="contained">contained</dfn> in a <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range②⑥">live range</a> <var>range</var> if <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root③⑨">root</a> is <var>range</var>’s <a data-link-type="dfn" href="#concept-range-root" id="ref-for-concept-range-root">root</a>, and (<var>node</var>, 0) is <a data-link-type="dfn" href="#concept-range-bp-after" id="ref-for-concept-range-bp-after④">after</a> <var>range</var>’s <a data-link-type="dfn" href="#concept-range-start" id="ref-for-concept-range-start⑧">start</a>, and
 (<var>node</var>, <var>node</var>’s <a data-link-type="dfn" href="#concept-node-length" id="ref-for-concept-node-length①④">length</a>) is <a data-link-type="dfn" href="#concept-range-bp-before" id="ref-for-concept-range-bp-before⑤">before</a> <var>range</var>’s <a data-link-type="dfn" href="#concept-range-end" id="ref-for-concept-range-end⑧">end</a>. </p>
@@ -12703,7 +12703,7 @@ if ("serviceWorker" in navigator) {
    <li><a href="#concept-shadow-including-ancestor">shadow-including ancestor</a><span>, in § 4.8</span>
    <li><a href="#concept-shadow-including-descendant">shadow-including descendant</a><span>, in § 4.8</span>
    <li><a href="#concept-shadow-including-inclusive-ancestor">shadow-including inclusive ancestor</a><span>, in § 4.8</span>
-   <li><a href="#concept-shadow-including-inclusive-descendant">shadow-including inclusive descendant</a><span>, in § 4.8</span>
+   <li><a href="#concept-shadow-including-inclusive-descendant">shadow including inclusive descendant</a><span>, in § 4.8</span>
    <li><a href="#shadow-including-preorder-depth-first-traversal">Shadow-including preorder, depth-first traversal</a><span>, in § 4.8</span>
    <li><a href="#concept-shadow-including-root">shadow-including root</a><span>, in § 4.8</span>
    <li><a href="#concept-shadow-including-tree-order">shadow-including tree order</a><span>, in § 4.8</span>
@@ -12981,6 +12981,13 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-event-constructor-ext">2.5. 事件构造过程</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-shadow-including-inclusive-descendant">
+   <a href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant">https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-shadow-including-inclusive-descendant">4.5. Interface Document</a> <a href="#ref-for-concept-shadow-including-inclusive-descendant①">(2)</a> <a href="#ref-for-concept-shadow-including-inclusive-descendant②">(3)</a>
+    <li><a href="#ref-for-concept-shadow-including-inclusive-descendant③">4.8. Interface ShadowRoot</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-event-touch-target-list">
    <a href="https://dom.spec.whatwg.org/#event-touch-target-list">https://dom.spec.whatwg.org/#event-touch-target-list</a><b>Referenced in:</b>
    <ul>
@@ -13210,9 +13217,9 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-enqueue-a-custom-element-callback-reaction">
    <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction">https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction">4.2.3. 修改节点的算法</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction①">(2)</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction②">(3)</a>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction③">4.5. Interface Document</a>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction④">4.9. Interface Element</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction">4.2.3. 修改节点的算法</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction①">(2)</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction②">4.5. Interface Document</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction③">4.9. Interface Element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-enqueue-a-custom-element-upgrade-reaction">
@@ -14448,6 +14455,7 @@ if ("serviceWorker" in navigator) {
     <ul>
      <li><span class="dfn-paneled" id="term-for-connected">connected</span>
      <li><span class="dfn-paneled" id="term-for-concept-event-constructor-ext">event constructing steps</span>
+     <li><span class="dfn-paneled" id="term-for-concept-shadow-including-inclusive-descendant">shadow-including inclusive descendant</span>
      <li><span class="dfn-paneled" id="term-for-event-touch-target-list">touch target list</span>
     </ul>
    <li>
@@ -16698,10 +16706,10 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-insert">
    <b><a href="#concept-node-insert">#concept-node-insert</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-insert">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-insert①">(2)</a> <a href="#ref-for-concept-node-insert②">(3)</a> <a href="#ref-for-concept-node-insert③">(4)</a>
-    <li><a href="#ref-for-concept-node-insert④">4.11. Interface Text</a>
-    <li><a href="#ref-for-concept-node-insert⑤">5.1. Introduction to "DOM Ranges"</a>
-    <li><a href="#ref-for-concept-node-insert⑥">5.5. Interface Range</a>
+    <li><a href="#ref-for-concept-node-insert">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-insert①">(2)</a> <a href="#ref-for-concept-node-insert②">(3)</a> <a href="#ref-for-concept-node-insert③">(4)</a> <a href="#ref-for-concept-node-insert④">(5)</a>
+    <li><a href="#ref-for-concept-node-insert⑤">4.11. Interface Text</a>
+    <li><a href="#ref-for-concept-node-insert⑥">5.1. Introduction to "DOM Ranges"</a>
+    <li><a href="#ref-for-concept-node-insert⑦">5.5. Interface Range</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-node-append">
@@ -18249,14 +18257,6 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-shadow-including-descendant">4.2.3. 修改节点的算法</a>
     <li><a href="#ref-for-concept-shadow-including-descendant①">4.8. Interface ShadowRoot</a> <a href="#ref-for-concept-shadow-including-descendant②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="concept-shadow-including-inclusive-descendant">
-   <b><a href="#concept-shadow-including-inclusive-descendant">#concept-shadow-including-inclusive-descendant</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-shadow-including-inclusive-descendant">4.2.3. 修改节点的算法</a>
-    <li><a href="#ref-for-concept-shadow-including-inclusive-descendant①">4.5. Interface Document</a> <a href="#ref-for-concept-shadow-including-inclusive-descendant②">(2)</a> <a href="#ref-for-concept-shadow-including-inclusive-descendant③">(3)</a>
-    <li><a href="#ref-for-concept-shadow-including-inclusive-descendant④">4.8. Interface ShadowRoot</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-shadow-including-ancestor">
