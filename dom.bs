@@ -2282,7 +2282,7 @@ U除非另有说明，否则为空。
   <p>如果<var>node</var>为{{DocumentFragment}} <a for=/ lt="node">节点</a>，则：
 
   <ol>
-   <li><p><a for=/ lt="Remove">删除</a>设置了<i>suppress observers flag</i>的<a for=tree lt="children">子节点</a>。
+   <li><p><a for=/ lt="Remove">删除</a><a for=tree lt="children">子节点</a>，并设置<i>suppress observers flag</i>标志。
 
    <li>
     <p>给定参数« »、<var>nodes</var>、null与null，<a lt="Queue a tree mutation record">加入到树的修改队列中</a>。
@@ -2359,193 +2359,188 @@ U除非另有说明，否则为空。
 </ol>
 
 
-<p>To <dfn export id=concept-node-append>append</dfn> a <var>node</var> to a <var>parent</var>,
-<a>pre-insert</a> <var>node</var> into <var>parent</var> before null.
+<p>要将节点<dfn export id=concept-node-append lt="append">添加</dfn>到父节点，请在null之前将节点<a lt="pre-insert">预插入</a>父节点。
 
 
-<p>To <dfn export id=concept-node-replace>replace</dfn> a <var>child</var> with <var>node</var>
-within a <var>parent</var>, run these steps:
+<p>要用父节点中的节点<dfn export id=concept-node-replace lt="replace">替换</dfn>子节点，请运行以下步骤：
 
 <!-- Step 1-5 could be shared with concept-node-pre-insert, although step 3
      in pre-insert is a superset (which is fine). Step 6.1.1 could also be
      shared. -->
 
 <ol>
- <li><p>If <var>parent</var> is not a {{Document}}, {{DocumentFragment}}, or {{Element}}
- <a for=/>node</a>, then <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>parent</var>不为{{Document}}、{{DocumentFragment}}或者{{Element}}<a for=/ lt="node">节点</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>node</var> is a <a>host-including inclusive ancestor</a> of <var>parent</var>, then
- <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>为<var>parent</var>的<a lt="host-including inclusive ancestor">包含shadow host的祖先元素</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>child</var>'s <a for=tree>parent</a> is not <var>parent</var>, then <a>throw</a> a
- "{{NotFoundError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>child</var>的<a for=tree lt="parent">父节点</a>不为<var>parent</var>，则
+ <a lt="throw">抛出</a>一个"{{NotFoundError!!exception}}(未发现错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If <var>node</var> is not a {{DocumentFragment}}, {{DocumentType}}, {{Element}}, or
- {{CharacterData}} <a for=/>node</a>, then <a>throw</a> a
- "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>不为{{DocumentFragment}}、{{DocumentType}}、{{Element}}或者{{CharacterData}}<a for=/ lt="node">节点</a>，
+ 则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
- <li><p>If either <var>node</var> is a {{Text}} <a for=/>node</a> and <var>parent</var> is a
- <a>document</a>, or <var>node</var> is a <a>doctype</a> and <var>parent</var> is not a
- <a>document</a>, then <a>throw</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>node</var>为{{Text}}<a for=/ lt="node">节点</a>并且<var>parent</var>为<a>document</a>，
+ 或者<var>node</var>为<a>doctype</a>且 <var>parent</var>不为<a>document</a>， 则<a lt="throw">抛出</a>
+ 一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
  <li>
-  <p>If <var>parent</var> is a <a>document</a>, and any of the statements below, switched on the
-  interface <var>node</var> <a>implements</a>, are true, then <a>throw</a> a
-  "{{HierarchyRequestError!!exception}}" {{DOMException}}.
+  <p>如果<var>parent</var>为<a>document</a>，且任何下列条件之一被<a lt="implements">实现</a>在接口<var>node</var>上，
+  则<a lt="throw">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"的{{DOMException}}(DOM异常)。
 
   <dl class=switch>
    <dt>{{DocumentFragment}}
    <dd>
-    <p>If <var>node</var> has more than one <a for=/>element</a> <a for=tree>child</a> or has a
-    {{Text}} <a for=/>node</a> <a for=tree>child</a>.
+    <p>如果<var>node</var>有多个<a for=/>element</a><a for=tree lt="child">子节点</a>或有一个{{Text}}
+    <a for=tree lt="child">子节点</a>。
 
-    <p>Otherwise, if <var>node</var> has one <a for=/>element</a> <a for=tree>child</a> and either
-    <var>parent</var> has an <a for=/>element</a> <a for=tree>child</a> that is not
-    <var>child</var> or a <a>doctype</a> is <a>following</a> <var>child</var>.
+    <p>否则，如果<var>node</var>有一个<a for=/>element</a><a for=tree lt="child">子节点</a>，并且
+    <var>parent</var>中有一个不为<var>child</var>或<a>doctype</a>在<var>child</var>之后的<a for=/>element</a>
+    <a for=tree lt="child">子节点</a>。
 
    <dt>{{Element}}
-   <dd><p><var>parent</var> has an <a for=/>element</a> <a for=tree>child</a> that is not
-   <var>child</var> or a <a>doctype</a> is <a>following</a> <var>child</var>.
+   <dd><p><var>parent</var>有一个不为<var>child</var>或<a>doctype</a>在<var>child</var>之后的<a for=/>element</a>
+   <a for=tree lt="child">子节点</a>。
 
    <dt>{{DocumentType}}
-   <dd><p><var>parent</var> has a <a>doctype</a> <a for=tree>child</a> that is not <var>child</var>,
-   or an <a for=/>element</a> is <a>preceding</a> <var>child</var>.
+   <dd><p><var>parent</var>有一个不为<var>child</var>的<a>doctype</a><a for=tree lt="child">子节点</a>，
+   或者一个在<var>child</var><a lt="preceding">之前</a>的<a for=/>element</a>。
   </dl>
 
-  <p class=note>The above statements differ from the <a>pre-insert</a> algorithm.
+  <p class=note>上述语句与<a lt="pre-insert">预插入</a>算法不同。
 
- <li><p>Let <var>referenceChild</var> be <var>child</var>'s <a for=tree>next sibling</a>.
+ <li><p>设<var>referenceChild</var>为<var>child</var>的<a for=tree>next sibling</a>(下一个兄弟节点)。
 
- <li><p>If <var>referenceChild</var> is <var>node</var>, then set <var>referenceChild</var> to
- <var>node</var>'s <a for=tree>next sibling</a>.
+ <li><p>如果<var>referenceChild</var>为<var>node</var>，则设<var>referenceChild</var>为<var>node</var>
+ 的<a for=tree>next sibling</a>(下一个兄弟节点)。
 
- <li><p>Let <var>previousSibling</var> be <var>child</var>'s <a>previous sibling</a>.
+ <li><p>设<var>previousSibling</var>为<var>child</var>的<a>previous sibling</a>(上一个兄弟节点)。
 
- <li><p>Let <var>removedNodes</var> be the empty set.
+ <li><p>设<var>removedNodes</var>为空集合。
 
  <li>
-  <p>If <var>child</var>'s <a for=tree>parent</a> is non-null, then:
+  <p>如果<var>child</var>的<a for=tree lt="parent">父节点</a>不为null，则：
 
   <ol>
-   <li><p>Set <var>removedNodes</var> to « <var>child</var> ».
+   <li><p>设<var>removedNodes</var>为« <var>child</var> »。
 
-   <li><p><a for=/>Remove</a> <var>child</var> with the <i>suppress observers flag</i> set.
+   <li><p><a for=/ lt="Remove">删除</a><var>child</var>，并设置其<i>suppress observers flag</i>标志。
   </ol>
 
-  <p class=note>The above can only be false if <var>child</var> is <var>node</var>.
+  <p class=note>如果<var>child</var>是<var>node</var>，则以上只能false。
 
- <li><p>Let <var>nodes</var> be <var>node</var>'s <a for=tree>children</a> if <var>node</var> is a
- {{DocumentFragment}} <a for=/>node</a>; otherwise « <var>node</var> ».
+ <li><p>如果<var>node</var>为{{DocumentFragment}}<a for=/ lt="node">节点</a>，则设<var>nodes</var>为<var>node</var>的<a for=tree lt="children">子节点</a>;
+ 否则« <var>node</var> »。
  <!-- This needs to come before insert as that removes the children of a
       DocumentFragment node. -->
 
- <li><p><a for=/>Insert</a> <var>node</var> into <var>parent</var> before <var>referenceChild</var>
- with the <i>suppress observers flag</i> set.
+ <li><p><a for=/ lt="Insert">插入</a> <var>node</var>到<var>parent</var>，在设置了<i>suppress observers flag</i>的<var>referenceChild</var>之前。
 
- <li><p><a>Queue a tree mutation record</a> for <var>parent</var> with <var>nodes</var>,
- <var>removedNodes</var>, <var>previousSibling</var>, and <var>referenceChild</var>.
+ <li><p>给定参数<var>nodes</var>、<var>removedNodes</var>、<var>previousSibling</var>以及<var>referenceChild</var>，
+ 为<var>parent</var><a lt="queue a tree mutation record">将树结构变更的记录添加到队列中</a>。
 
- <li><p>Return <var>child</var>.
+ <li><p>返回<var>child</var>。
 </ol>
 
 
-<p>To <dfn export for=Node id=concept-node-replace-all>replace all</dfn> with a <var>node</var>
-within a <var>parent</var>, run these steps:
+<p>要<dfn export for=Node id=concept-node-replace-all lt="replace all">替换所有</dfn><var>parent</var>中的<var>node</var>
+，请运行一下步骤：
 
 <ol>
- <li><p>Let <var>removedNodes</var> be <var>parent</var>'s <a for=tree>children</a>.
+ <li><p>设<var>removedNodes</var>为<var>parent</var>的<a for=tree lt="children">子节点</a>。
 
- <li><p>Let <var>addedNodes</var> be the empty set.
+ <li><p>设<var>addedNodes</var>为空集合。
 
- <li><p>If <var>node</var> is a {{DocumentFragment}} <a for=/>node</a>, then set
- <var>addedNodes</var> to <var>node</var>'s <a for=tree>children</a>.
+ <li><p>如果<var>node</var>为{{DocumentFragment}}<a for=/ lt="node">节点</a>，则设
+ <var>addedNodes</var>为<var>node</var>的<a for=tree lt="children">子节点</a>。
 
- <li><p>Otherwise, if <var>node</var> is non-null, set <var>addedNodes</var> to « <var>node</var> ».
+ <li><p>否则，如果<var>node</var>不为null，则设<var>addedNodes</var>为« <var>node</var> »。
 
- <li><p><a for=/>Remove</a> all <var>parent</var>'s <a for=tree>children</a>, in <a>tree order</a>,
- with the <i>suppress observers flag</i> set.
+ <li><p>根据<a lt="tree order">树的顺序</a><a for=/ lt="Remove">删除</a>所有<var>parent</var>的
+ <a for=tree lt="children">子节点</a>，且在删除时设置<i>suppress observers flag</i>标志。
 
- <li><p>If <var>node</var> is non-null, then <a for=/>insert</a> <var>node</var> into
- <var>parent</var> before null with the <i>suppress observers flag</i> set.
+ <li><p>如果<var>node</var>不为null，则<a for=/ lt="insert">插入</a><var>node</var>到null之前的
+ <var>parent</var>，且在插入时设置<i>suppress observers flag</i>标志。
 
- <li><p>If either <var>addedNodes</var> or <var>removedNodes</var> <a for=set>is not empty</a>,
- then <a>queue a tree mutation record</a> for <var>parent</var> with <var>addedNodes</var>,
- <var>removedNodes</var>, null, and null.
+ <li><p>如果<var>addedNodes</var>或<var>removedNodes</var><a for=set lt="is not empty">不为空</a>，则
+ 给定参数<var>addedNodes</var>、<var>removedNodes</var>、 null以及null，为<var>parent</var>
+ <a lt="queue a tree mutation record">将树结构变更的记录添加到队列中</a>。
 </ol>
 
-<p class=note>This algorithm does not make any checks with regards to the
-<a>node tree</a> constraints. Specification authors need to use it wisely.
+<p class=note>该算法不对<a lt="node tree">节点树</a>约束进行任何检查。规范作者需要明智地使用它。
 
 
-<p>To <dfn export id=concept-node-pre-remove>pre-remove</dfn> a <var>child</var> from a
-<var>parent</var>, run these steps:
+<p><dfn export id=concept-node-pre-remove lt="pre-remove">预删除</dfn><var>parent</var>的<var>child</var>，
+请运行以下步骤：
 
 <ol>
- <li><p>If <var>child</var>'s <a for=tree>parent</a> is not <var>parent</var>, then <a>throw</a> a
- "{{NotFoundError!!exception}}" {{DOMException}}.
+ <li><p>如果<var>child</var>的<a for=tree lt="parent">父节点</a>不为<var>parent</var>，则<a lt="throw">抛出</a>一个
+ "{{NotFoundError!!exception}}(未找到错误)"的{{DOMException}}(DOM异常)。
 
- <li><p><a for=/>Remove</a> <var>child</var>.
+ <li><p><a for=/ lt="Remove">删除</a><var>child</var>。
 
- <li><p>Return <var>child</var>.
+ <li><p>返回<var>child</var>。
  <!-- Technically this is post-remove. -->
 </ol>
 
 
-<p><a lt="Other applicable specifications">Specifications</a> may define
-<dfn export id=concept-node-remove-ext>removing steps</dfn> for all or some <a for=/>nodes</a>. The
-algorithm is passed <var ignore>removedNode</var>, and optionally <var ignore>oldParent</var>, as
-indicated in the <a for=/>remove</a> algorithm below.
+<p><a lt="Other applicable specifications">规范</a>可以定义所有或部分<a for=/ lt="nodes">节点</a>
+的<dfn export id=concept-node-remove-ext lt="removing steps">删除步骤</dfn>。该算法需要传入
+<var ignore>removedNode</var>以及可选的<var ignore>oldParent</var>参数，如下面的<a for=/ lt="remove">删除</a>算法所示。
 
-<p>To <dfn export id=concept-node-remove>remove</dfn> a <var>node</var>, with an optional
-<i>suppress observers flag</i>, run these steps:
+<p>给定可选的参数<i>suppress observers flag</i>， <dfn export id=concept-node-remove lt="remove">删除</dfn>一个
+<var>node</var>，请运行以下步骤：
 
 <ol>
- <li><p>Let <var>parent</var> be <var>node</var>'s <a for=tree>parent</a>.
+ <li><p>设<var>parent</var>为<var>node</var>的<a for=tree lt="parent">父节点</a>。
 
- <li><p>Assert: <var>parent</var> is non-null.
+ <li><p>确定: <var>parent</var>不为null。
 
- <li><p>Let <var>index</var> be <var>node</var>'s <a for=tree>index</a>.
+ <li><p>设<var>index</var>为<var>node</var>的<a for=tree>index</a>。
 
- <li><p>For each <a>live range</a> whose <a for=range>start node</a> is an
- <a>inclusive descendant</a> of <var>node</var>, set its <a for=range>start</a> to
- (<var>parent</var>, <var>index</var>).
+ <li><p>对于每一个<a>live range</a>，如果它的<a for=range lt="start node">开始节点</a>是<var>node</var>
+ 的<a lt="inclusive descendant">包容性后代</a>，则将其<a for=range>start</a>设置为(<var>parent</var>，
+ <var>index</var>)。这个(parent，index)指的是父节点的位置，也就是在父节点的第几位，意味着更新了对应的
+ <a>live range</a>的开始节点。
 
- <li><p>For each <a>live range</a> whose <a for=range>end node</a> is an <a>inclusive descendant</a>
- of <var>node</var>, set its <a for=range>end</a> to (<var>parent</var>, <var>index</var>).
+ <li><p>对于每一个<a>live range</a>，如果它的<a for=range lt="end node">结束节点</a>是<var>node</var>
+ 的<a lt="inclusive descendant">包容性后代</a>，则将其<a for=range>end</a>设置为(<var>parent</var>，
+ <var>index</var>)。这个(parent，index)指的是父节点的位置，也就是在父节点的第几位，意味着更新了对应的
+ <a>live range</a>的结束节点。
 
- <li><p>For each <a>live range</a> whose <a for=range>start node</a> is <var>parent</var> and
- <a for=range>start offset</a> is greater than <var>index</var>, decrease its
- <a for=range>start offset</a> by 1.
+ <li><p>对于每一个<a>live range</a>，如果它的<a for=range lt="start node">开始节点</a>为<var>parent</var>
+ 并且<a for=range lt="start offset">开始偏移量</a>大于<var>index</var>，则使它的<a for=range lt="start offset">
+ 开始偏移量</a>减一。
 
- <li><p>For each <a>live range</a> whose <a for=range>end node</a> is <var>parent</var> and
- <a for=range>end offset</a> is greater than <var>index</var>, decrease its
- <a for=range>end offset</a> by 1.
+ <li><p>对于每一个<a>live range</a>，如果它的<a for=range lt="end node">结束节点</a>为<var>parent</var>
+ 并且<a for=range lt="end offset">结束偏移量</a>大于<var>index</var>，则使它的<a for=range lt="end offset">
+ 结束偏移量</a>减一。
 
- <li><p>For each {{NodeIterator}} object <var>iterator</var> whose
- <a for=traversal>root</a>'s <a for=Node>node document</a> is <var>node</var>'s
- <a for=Node>node document</a>, run the <a><code>NodeIterator</code> pre-removing steps</a> given
- <var>node</var> and <var>iterator</var>.
+ <li><p>对于<a for=traversal>root</a>的<a for=Node lt="node document">节点文档</a>是<var>node</var>的
+ <a for=Node lt="node document">节点文档</a>的每个{{NodeIterator}}对象(称为iterator)，给定参数<var>node</var>
+ 以及<var>iterator</var>运行<a lt="NodeIterator pre-removing steps"><code>NodeIterator</code>预删除步骤</a>。
 
- <li><p>Let <var>oldPreviousSibling</var> be <var>node</var>'s <a>previous sibling</a>.
+ <li><p>设<var>oldPreviousSibling</var>为<var>node</var>的<a>previous sibling</a>(上一个兄弟节点)。
 
- <li><p>Let <var>oldNextSibling</var> be <var>node</var>'s <a for=tree>next sibling</a>.
+ <li><p>设<var>oldNextSibling</var>为<var>node</var>的<a for=tree>next sibling</a>(下一个兄弟节点)。
 
- <li><p><a for=set>Remove</a> <var>node</var> from its <var>parent</var>'s <a for=tree>children</a>.
+ <li><p>从它的<var>parent</var>的<a for=tree lt="children">子节点</a>中<a for=set lt="Remove">删除</a><var>node</var>。
 
- <li><p>If <var>node</var> is <a for=slottable>assigned</a>, then run <a>assign slottables</a> for
- <var>node</var>'s <a>assigned slot</a>.
+ <li><p>如果<var>node</var><a for=slottable lt="assigned">已被分配</a>，则为<var>node</var>的<a>assigned slot</a>
+ 运行<a lt="assign slottables">分配可插槽元素</a>。
 
- <li><p>If <var>parent</var>'s <a for=tree>root</a> is a <a for=/>shadow root</a>, and
- <var>parent</var> is a <a>slot</a> whose <a for=slot>assigned nodes</a> is the empty list,
- then run <a>signal a slot change</a> for <var>parent</var>.
+ <li><p>如果<var>parent</var>的<a for=tree>root</a>为<a for=/>shadow root</a>，且<var>parent</var>
+ 为一个<a for=slot>assigned nodes</a>为空列表的<a lt="slot">插槽元素</a>，则为<var>parent</var>运行
+ <a lt="signal a slot change">发出插槽改变信号步骤</a>。
 
  <li>
-  <p>If <var>node</var> has an <a>inclusive descendant</a> that is a <a>slot</a>, then:
+  <p>如果<var>node</var>有一个<a lt="inclusive descendant">包容性后代</a>为<a lt="slot">插槽</a>，则：
 
   <ol>
-   <li><p>Run <a>assign slottables for a tree</a> with <var>parent</var>'s <a for=tree>root</a>.
+   <li><p>使用<var>parent</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
 
-   <li><p>Run <a>assign slottables for a tree</a> with <var>node</var>.
+   <li><p>使用<var>node</var>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
   </ol>
 
  <li><p>Run the <a>removing steps</a> with <var>node</var> and <var>parent</var>.
