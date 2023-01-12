@@ -38,7 +38,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-11">2023-01-11</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-12">2023-01-12</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -116,7 +116,7 @@ a[href].issue-return {
           <li><a href="#assigning-slotables-and-slots"><span class="secno">4.2.2.4</span> <span class="content">分配可插槽元素和插槽</span></a>
           <li><a href="#signaling-slot-change"><span class="secno">4.2.2.5</span> <span class="content">发出插槽改变信号</span></a>
          </ol>
-        <li><a href="#mutation-algorithms"><span class="secno">4.2.3</span> <span class="content">修改节点的算法</span></a>
+        <li><a href="#mutation-algorithms"><span class="secno">4.2.3</span> <span class="content">修改DOM结构的算法</span></a>
         <li><a href="#interface-nonelementparentnode"><span class="secno">4.2.4</span> <span class="content">Mixin <code class="idl"><span>NonElementParentNode</span></code></span></a>
         <li><a href="#mixin-documentorshadowroot"><span class="secno">4.2.5</span> <span class="content">Mixin <code class="idl"><span>DocumentOrShadowRoot</span></code></span></a>
         <li><a href="#interface-parentnode"><span class="secno">4.2.6</span> <span class="content">Mixin <code class="idl"><span>ParentNode</span></code></span></a>
@@ -2262,7 +2262,7 @@ controller<c- p>.</c->abort<c- p>();</c-></code></pre>
       <li>
        <p>否则，设<var>element</var>的<a data-link-type="dfn" href="#slot-name" id="ref-for-slot-name②">name</a>为<var>value</var>。 </p>
       <li>
-       <p>使用<var>element</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root⑨">root</a>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree">为树分配槽表</a>。 </p>
+       <p>使用<var>element</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root⑨">root</a>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree">为树分配可插槽元素</a>。 </p>
      </ol>
    </ol>
    <p class="note" role="note"><a data-link-type="dfn" href="#concept-shadow-tree" id="ref-for-concept-shadow-tree⑥">shadow tree</a>中的第一个<a data-link-type="dfn" href="#slot-name" id="ref-for-slot-name③">name</a>为空字符串的<a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot⑤">插槽</a>，有时被称为"默认插槽"。</p>
@@ -2403,7 +2403,7 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask">将一个变异观察者微任务加入队列</a>。 </p>
    </ol>
-   <h4 class="heading settled" data-level="4.2.3" id="mutation-algorithms"><span class="secno">4.2.3. </span><span class="content">修改节点的算法</span><a class="self-link" href="#mutation-algorithms"></a></h4>
+   <h4 class="heading settled" data-level="4.2.3" id="mutation-algorithms"><span class="secno">4.2.3. </span><span class="content">修改DOM结构的算法</span><a class="self-link" href="#mutation-algorithms"></a></h4>
    <p>要确保节点在子节点之前插入父节点的<dfn class="dfn-paneled" data-dfn-for="Node" data-dfn-type="dfn" data-export data-lt="ensure pre-insertion validity" id="concept-node-ensure-pre-insertion-validity">预插入有效性</dfn> ，请运行以下步骤： </p>
    <ol>
     <li>
@@ -2511,7 +2511,7 @@ U除非另有说明，否则为空。 </p>
          <ol>
           <li>
            <p>如果<var>inclusiveDescendant</var>是一个<a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom">自定义元素</a>，
-       则将名为"<code>connectedCallback</code>"的回调函数添加到队列中，等待执行(当元素被添加到DOM上
+       则将名为"<code>connectedCallback</code>"的回调函数<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction">添加到队列</a>中，等待执行(当元素被添加到DOM上
        的时候触发)，该回调函数不接受任何参数。 </p>
           <li>
            <p>否则，则尝试将<var>inclusiveDescendant</var><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-try-upgrade" id="ref-for-concept-try-upgrade">升级为自定义元素</a>。 </p>
@@ -2649,34 +2649,39 @@ U除非另有说明，否则为空。 </p>
      <p>如果<var>node</var>有一个<a data-link-type="dfn" href="#concept-tree-inclusive-descendant" id="ref-for-concept-tree-inclusive-descendant③">包容性后代</a>为<a data-link-type="dfn" href="#concept-slot" id="ref-for-concept-slot②①">插槽</a>，则： </p>
      <ol>
       <li>
-       <p>使用<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑥">root</a>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree②">为树分配槽表</a>。 </p>
+       <p>使用<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-root" id="ref-for-concept-tree-root①⑥">root</a>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree②">为树分配可插槽元素</a>。 </p>
       <li>
-       <p>使用<var>node</var>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree③">为树分配槽表</a>。 </p>
+       <p>使用<var>node</var>运行<a data-link-type="dfn" href="#assign-slotables-for-a-tree" id="ref-for-assign-slotables-for-a-tree③">为树分配可插槽元素</a>。 </p>
      </ol>
     <li>
-     <p>Run the <a data-link-type="dfn" href="#concept-node-remove-ext" id="ref-for-concept-node-remove-ext">removing steps</a> with <var>node</var> and <var>parent</var>. </p>
+     <p>使用<var>node</var>以及<var>parent</var>运行<a data-link-type="dfn" href="#concept-node-remove-ext" id="ref-for-concept-node-remove-ext">删除步骤</a>。 </p>
     <li>
-     <p>Let <var>isParentConnected</var> be <var>parent</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#connected" id="ref-for-connected①">connected</a>. </p>
+     <p>设<var>isParentConnected</var>为<var>parent</var>的<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#connected" id="ref-for-connected①">connected</a>。 </p>
     <li>
-     <p>If <var>node</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom①">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction">enqueue a custom element callback reaction</a> with <var>node</var>, callback name
-  "<code>disconnectedCallback</code>", and an empty argument list. </p>
-     <p class="note" role="note">It is intentional for now that <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom②">custom</a> <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⑥">elements</a> do
-  not get <var>parent</var> passed. This might change in the future if there is a need. </p>
+     <p>如果<var>node</var>为<a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom①">自定义元素</a>并且<var>isParentConnected</var>为true，则
+  将名为"<code>disconnectedCallback</code>"的回调函数<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction①">添加到队列</a>中，
+  等待执行(当元素在DOM上被移除的时候触发)，该回调函数不接受任何参数。 </p>
+     <p class="note" role="note">当前<a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom②">自定义</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⑥">元素</a>不会传递父元素这是有意为之的。
+  但是在未来，如果有需要的话，可能会改变这个行为。 </p>
     <li>
-     <p>For each <a data-link-type="dfn" href="#concept-shadow-including-descendant" id="ref-for-concept-shadow-including-descendant">shadow-including descendant</a> <var>descendant</var> of <var>node</var>, in <a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order①">shadow-including tree order</a>, then: </p>
+     <p>使用<a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order①">已连接的shadow tree的顺序</a>，遍历<var>node</var> 中<a data-link-type="dfn" href="#concept-shadow-including-descendant" id="ref-for-concept-shadow-including-descendant">已连接的Shadow DOM的后代元素</a>，则： </p>
      <ol>
       <li>
-       <p>Run the <a data-link-type="dfn" href="#concept-node-remove-ext" id="ref-for-concept-node-remove-ext①">removing steps</a> with <var>descendant</var>. </p>
+       <p>使用<var>descendant</var>运行<a data-link-type="dfn" href="#concept-node-remove-ext" id="ref-for-concept-node-remove-ext①">删除步骤</a>。 </p>
       <li>
-       <p>If <var>descendant</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom③">custom</a> and <var>isParentConnected</var> is true, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction①">enqueue a custom element callback reaction</a> with <var>descendant</var>,
-   callback name "<code>disconnectedCallback</code>", and an empty argument list. </p>
+       <p>如果<var>descendant</var>为<a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom③">自定义元素</a>并且<var>isParentConnected</var>为true，
+   则将名为"<code>disconnectedCallback</code>"的回调函数<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction②">添加到队列</a>中，
+   等待执行(当元素在DOM上被移除的时候触发)，该回调函数不接受任何参数。 </p>
      </ol>
     <li>
-     <p>For each <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor②">inclusive ancestor</a> <var>inclusiveAncestor</var> of <var>parent</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⓪">for each</a> <var>registered</var> of <var>inclusiveAncestor</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options">options</a>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree">subtree</a></code>"] is true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">append</a> a new <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer">transient registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer">observer</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer①">observer</a>, <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options①">options</a> is <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options②">options</a>, and <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source">source</a> is <var>registered</var> to <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list①">registered observer list</a>. </p>
+     <p>对于<var>parent</var>的每一个<a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor②">包含它的祖先</a>(inclusiveAncestor)，以及
+ 对于<var>inclusiveAncestor</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list">已注册观察者列表</a>中每一个已注册的观察者(registered)，
+ 如果<var>registered</var>的<a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options">options</a>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree">subtree</a></code>"]为true，则
+ 在<var>node</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list①">已注册观察者列表</a>中<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">添加</a>一个新的 <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer">临时观察者</a>，该观察者的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer">observer</a>是<var>registered</var> 的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer①">observer</a>，<a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options①">options</a>是<var>registered</var>的 <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options②">options</a>，<a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source">source</a>是<var>registered</var>。 </p>
     <li>
-     <p>If <i>suppress observers flag</i> is unset, then <a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record④">queue a tree mutation record</a> for <var>parent</var> with « », « <var>node</var> », <var>oldPreviousSibling</var>, and <var>oldNextSibling</var>. </p>
+     <p>如果<i>suppress observers flag</i>没被设置，则给定参数« »、« <var>node</var> »、 <var>oldPreviousSibling</var> 以及<var>oldNextSibling</var>，为<var>parent</var><a data-link-type="dfn" href="#queue-a-tree-mutation-record" id="ref-for-queue-a-tree-mutation-record④">将树结构变更的记录添加到队列中</a>。 </p>
     <li>
-     <p>Run the <a data-link-type="dfn" href="#concept-node-children-changed-ext" id="ref-for-concept-node-children-changed-ext①">children changed steps</a> for <var>parent</var>. </p>
+     <p>为<var>parent</var>运行<a data-link-type="dfn" href="#concept-node-children-changed-ext" id="ref-for-concept-node-children-changed-ext①">子节点更改步骤</a>。 </p>
    </ol>
    <h4 class="heading settled" data-level="4.2.4" id="interface-nonelementparentnode"><span class="secno">4.2.4. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#nonelementparentnode" id="ref-for-nonelementparentnode">NonElementParentNode</a></code></span><a class="self-link" href="#interface-nonelementparentnode"></a></h4>
    <p class="note" role="note">Web compatibility prevents the <code class="idl"><a data-link-type="idl" href="#dom-nonelementparentnode-getelementbyid" id="ref-for-dom-nonelementparentnode-getelementbyid">getElementById()</a></code> method from being exposed on <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⑦">elements</a> (and therefore on <code class="idl"><a data-link-type="idl" href="#parentnode" id="ref-for-parentnode">ParentNode</a></code>). </p>
@@ -3813,14 +3818,14 @@ run these steps: </p>
     <li>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty①">Empty</a> the <a data-link-type="dfn" href="https://tc39.es/ecma262/#surrounding-agent" id="ref-for-surrounding-agent⑤">surrounding agent</a>’s <a data-link-type="dfn" href="#signal-slot-list" id="ref-for-signal-slot-list②">signal slots</a>. </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①①">For each</a> <var>mo</var> of <var>notifySet</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⓪">For each</a> <var>mo</var> of <var>notifySet</var>: </p>
      <ol>
       <li>
        <p>Let <var>records</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-clone" id="ref-for-list-clone③">clone</a> of <var>mo</var>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue">record queue</a>. </p>
       <li>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty②">Empty</a> <var>mo</var>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue①">record queue</a>. </p>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①②">For each</a> <var>node</var> of <var>mo</var>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove④">remove</a> all <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer①">transient registered observers</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer②">observer</a> is <var>mo</var> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list②">registered observer list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①①">For each</a> <var>node</var> of <var>mo</var>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove④">remove</a> all <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer①">transient registered observers</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer②">observer</a> is <var>mo</var> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list②">registered observer list</a>. </p>
       <li>
        <p>If <var>records</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty②">is not empty</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#invoke-a-callback-function" id="ref-for-invoke-a-callback-function">invoke</a> <var>mo</var>’s <a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback">callback</a> with « <var>records</var>, <var>mo</var> »,
    and <var>mo</var>. If this throws an exception, catch it, and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#report-the-exception" id="ref-for-report-the-exception①">report the exception</a>. </p>
@@ -3842,7 +3847,7 @@ run these steps: </p>
        </div>
       </div>
      </div>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①③">For each</a> <var>slot</var> of <var>signalSet</var>, <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire⑥">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="HTMLSlotElement" data-dfn-type="event" data-export id="eventdef-htmlslotelement-slotchange"><code>slotchange</code></dfn>, with its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑧">bubbles</a></code> attribute set to true,
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①②">For each</a> <var>slot</var> of <var>signalSet</var>, <a data-link-type="dfn" href="#concept-event-fire" id="ref-for-concept-event-fire⑥">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="HTMLSlotElement" data-dfn-type="event" data-export id="eventdef-htmlslotelement-slotchange"><code>slotchange</code></dfn>, with its <code class="idl"><a data-link-type="idl" href="#dom-event-bubbles" id="ref-for-dom-event-bubbles⑧">bubbles</a></code> attribute set to true,
  at <var>slot</var>. </p>
    </ol>
    <hr>
@@ -4033,10 +4038,10 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
     <li>
      <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue③">characterDataOldValue</a></code>"] is true and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑤">characterData</a></code>"] is false, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑨">throw</a> a <code>TypeError</code>. </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①④">For each</a> <var>registered</var> of <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list③">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer③">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①③">For each</a> <var>registered</var> of <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list③">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer③">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>: </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑤">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥②">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list①">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑤">remove</a> all <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer③">transient registered observers</a> whose <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source①">source</a> is <var>registered</var> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list④">registered observer list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①④">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥②">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list①">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑤">remove</a> all <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer③">transient registered observers</a> whose <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source①">source</a> is <var>registered</var> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list④">registered observer list</a>. </p>
       <li>
        <p>Set <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options③">options</a> to <var>options</var>. </p>
      </ol>
@@ -4052,7 +4057,7 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-disconnect"><code>disconnect()</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑥">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑤">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list③">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑥">remove</a> any <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer④">registered observer</a> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑥">registered observer list</a> for which <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑥">this</a> is the <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑤">observer</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑤">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑤">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list③">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑥">remove</a> any <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer④">registered observer</a> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑥">registered observer list</a> for which <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑥">this</a> is the <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑤">observer</a>. </p>
     <li>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty③">Empty</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑦">this</a>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue③">record queue</a>. </p>
    </ol>
@@ -4073,7 +4078,7 @@ they do not get lost when <code class="idl"><a data-link-type="idl" href="#dom-m
     <li>
      <p>Let <var>nodes</var> be the <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor③">inclusive ancestors</a> of <var>target</var>. </p>
     <li>
-     <p>For each <var>node</var> in <var>nodes</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑦">for each</a> <var>registered</var> of <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑦">registered observer list</a>: </p>
+     <p>For each <var>node</var> in <var>nodes</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑥">for each</a> <var>registered</var> of <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑦">registered observer list</a>: </p>
      <ol>
       <li>
        <p>Let <var>options</var> be <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options⑤">options</a>. </p>
@@ -4853,7 +4858,7 @@ steps: </p>
         <p>Let <var>copy</var> be the result of <a data-link-type="dfn" href="#concept-create-element" id="ref-for-concept-create-element">creating an element</a>, given <var>document</var>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-local-name" id="ref-for-concept-element-local-name">local name</a>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-namespace" id="ref-for-concept-element-namespace">namespace</a>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-namespace-prefix" id="ref-for-concept-element-namespace-prefix">namespace prefix</a>, and <var>node</var>’s <a data-link-type="dfn" href="#concept-element-is-value" id="ref-for-concept-element-is-value"><code>is</code> value</a>, with the <var>synchronous custom elements
    flag</var> unset. </p>
        <li>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑧">For each</a> <var>attribute</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute">attribute list</a>: </p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑦">For each</a> <var>attribute</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute">attribute list</a>: </p>
         <ol>
          <li>
           <p>Let <var>copyAttribute</var> be a <a data-link-type="dfn" href="#concept-node-clone" id="ref-for-concept-node-clone①">clone</a> of <var>attribute</var>. </p>
@@ -5034,7 +5039,7 @@ steps are: </p>
        <p>If <var>attr1</var> and <var>node1</var> are non-null, and <var>node2</var> is <var>node1</var>, then: </p>
        <ol>
         <li>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑨">For each</a> <var>attr</var> in <var>node2</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute④">attribute list</a>: </p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑧">For each</a> <var>attr</var> in <var>node2</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute④">attribute list</a>: </p>
          <ol>
           <li>
            <p>If <var>attr</var> <a data-link-type="dfn" href="#concept-node-equals" id="ref-for-concept-node-equals③">equals</a> <var>attr1</var>, then return the result of
@@ -6033,7 +6038,7 @@ these steps: </p>
          <p>If <var>inclusiveDescendant</var> is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element⑥⑦">element</a>, then set the <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document③③">node document</a> of each <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②①">attribute</a> in <var>inclusiveDescendant</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute⑤">attribute list</a> to <var>document</var>. </p>
        </ol>
       <li>
-       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant①">shadow-including inclusive descendants</a> that is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom④">custom</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction②">enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>, callback
+       <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant①">shadow-including inclusive descendants</a> that is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom④">custom</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction③">enqueue a custom element callback reaction</a> with <var>inclusiveDescendant</var>, callback
    name "<code>adoptedCallback</code>", and an argument list containing <var>oldDocument</var> and <var>document</var>. </p>
       <li>
        <p>For each <var>inclusiveDescendant</var> in <var>node</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant" id="ref-for-concept-shadow-including-inclusive-descendant②">shadow-including inclusive descendants</a>, in <a data-link-type="dfn" href="#concept-shadow-including-tree-order" id="ref-for-concept-shadow-including-tree-order②">shadow-including tree order</a>, run the <a data-link-type="dfn" href="#concept-node-adopt-ext" id="ref-for-concept-node-adopt-ext">adopting steps</a> with <var>inclusiveDescendant</var> and <var>oldDocument</var>. </p>
@@ -6933,7 +6938,7 @@ given a <var>document</var>, <var>localName</var>, <var>namespace</var>, and opt
     <li>
      <p><a data-link-type="dfn" href="#queue-a-mutation-record" id="ref-for-queue-a-mutation-record①">Queue a mutation record</a> of "<code>attributes</code>" for <var>element</var> with <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name⑨">local name</a>, <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑦">namespace</a>, <var>oldValue</var>, « », « », null, and null. </p>
     <li>
-     <p>If <var>element</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom⑥">custom</a>, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction③">enqueue a custom element callback reaction</a> with <var>element</var>, callback name
+     <p>If <var>element</var> is <a data-link-type="dfn" href="#concept-element-custom" id="ref-for-concept-element-custom⑥">custom</a>, then <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction" id="ref-for-enqueue-a-custom-element-callback-reaction④">enqueue a custom element callback reaction</a> with <var>element</var>, callback name
  "<code>attributeChangedCallback</code>", and an argument list containing <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name①⓪">local name</a>, <var>oldValue</var>, <var>newValue</var>, and <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑧">namespace</a>. </p>
     <li>
      <p>Run the <a data-link-type="dfn" href="#concept-element-attributes-change-ext" id="ref-for-concept-element-attributes-change-ext②">attribute change steps</a> with <var>element</var>, <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name①①">local name</a>, <var>oldValue</var>, <var>newValue</var>, and <var>attribute</var>’s <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace⑨">namespace</a>. </p>
@@ -8061,7 +8066,7 @@ steps: </p>
      <p>Let <var>names</var> be the <a data-link-type="dfn" href="#concept-attribute-qualified-name" id="ref-for-concept-attribute-qualified-name①②">qualified names</a> of the <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute⑥⓪">attributes</a> in this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑧">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-attribute" id="ref-for-concept-namednodemap-attribute⑤">attribute list</a>, with duplicates omitted, in
  order. </p>
     <li>
-     <p>If this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑨">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-element" id="ref-for-concept-namednodemap-element①">element</a> is in the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#html-namespace" id="ref-for-html-namespace②⑨">HTML namespace</a> and its <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑥①">node document</a> is an <a data-link-type="dfn" href="#html-document" id="ref-for-html-document①⑥">HTML document</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②⓪">for each</a> <var>name</var> in <var>names</var>: </p>
+     <p>If this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑨">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-element" id="ref-for-concept-namednodemap-element①">element</a> is in the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#html-namespace" id="ref-for-html-namespace②⑨">HTML namespace</a> and its <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑥①">node document</a> is an <a data-link-type="dfn" href="#html-document" id="ref-for-html-document①⑥">HTML document</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑨">for each</a> <var>name</var> in <var>names</var>: </p>
      <ol>
       <li>
        <p>Let <var>lowercaseName</var> be <var>name</var>, in <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ascii-lowercase" id="ref-for-ascii-lowercase⑦">ASCII lowercase</a>. </p>
@@ -11063,7 +11068,7 @@ false. </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DOMTokenList" data-dfn-type="method" data-export data-lt="add(...tokens)|add()|add(tokens)" id="dom-domtokenlist-add"><code>add(<var>tokens</var>…)</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②①">For each</a> <var>token</var> in <var>tokens</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②⓪">For each</a> <var>token</var> in <var>tokens</var>: </p>
      <ol>
       <li>
        <p>If <var>token</var> is the empty string, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧⑤">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror⑧">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑤">DOMException</a></code>. </p>
@@ -11072,14 +11077,14 @@ false. </p>
    "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror①⑦">InvalidCharacterError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑥">DOMException</a></code>. </p>
      </ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②②">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③①⑨">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②①">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③①⑨">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
     <li>
      <p>Run the <a data-link-type="dfn" href="#concept-dtl-update" id="ref-for-concept-dtl-update">update steps</a>. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DOMTokenList" data-dfn-type="method" data-export data-lt="remove(...tokens)|remove()|remove(tokens)" id="dom-domtokenlist-remove"><code>remove(<var>tokens</var>…)</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②③">For each</a> <var>token</var> in <var>tokens</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②②">For each</a> <var>token</var> in <var>tokens</var>: </p>
      <ol>
       <li>
        <p>If <var>token</var> is the empty string, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧⑦">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror⑨">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑦">DOMException</a></code>. </p>
@@ -12970,7 +12975,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-connected">
    <a href="https://dom.spec.whatwg.org/#connected">https://dom.spec.whatwg.org/#connected</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-connected">4.2.3. 修改节点的算法</a> <a href="#ref-for-connected①">(2)</a>
+    <li><a href="#ref-for-connected">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-connected①">(2)</a>
     <li><a href="#ref-for-connected②">4.4. Interface Node</a> <a href="#ref-for-connected③">(2)</a>
    </ul>
   </aside>
@@ -13216,9 +13221,9 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-enqueue-a-custom-element-callback-reaction">
    <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction">https://html.spec.whatwg.org/multipage/custom-elements.html#enqueue-a-custom-element-callback-reaction</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction">4.2.3. 修改节点的算法</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction①">(2)</a>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction②">4.5. Interface Document</a>
-    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction③">4.9. Interface Element</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction①">(2)</a> <a href="#ref-for-enqueue-a-custom-element-callback-reaction②">(3)</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction③">4.5. Interface Document</a>
+    <li><a href="#ref-for-enqueue-a-custom-element-callback-reaction④">4.9. Interface Element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-enqueue-a-custom-element-upgrade-reaction">
@@ -13422,13 +13427,13 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-concept-try-upgrade">
    <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-try-upgrade">https://html.spec.whatwg.org/multipage/custom-elements.html#concept-try-upgrade</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-try-upgrade">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-try-upgrade">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-upgrade-an-element">
    <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#concept-upgrade-an-element">https://html.spec.whatwg.org/multipage/custom-elements.html#concept-upgrade-an-element</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-upgrade-an-element">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-upgrade-an-element">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-upgrade-an-element①">4.9. Interface Element</a> <a href="#ref-for-concept-upgrade-an-element②">(2)</a>
    </ul>
   </aside>
@@ -13445,7 +13450,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-append②">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-append③">2.9. 分派事件</a> <a href="#ref-for-list-append④">(2)</a>
     <li><a href="#ref-for-list-append⑤">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-append⑥">(2)</a>
-    <li><a href="#ref-for-list-append⑦">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-append⑦">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-append⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-append⑨">(2)</a>
     <li><a href="#ref-for-list-append①⓪">4.9. Interface Element</a>
    </ul>
@@ -13456,7 +13461,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#append">1.2. Ordered sets：有序集</a>
     <li><a href="#ref-for-set-append">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-set-append①">4.2.2.5. 发出插槽改变信号</a>
-    <li><a href="#ref-for-set-append②">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-set-append②">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-set-append③">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-set-append④">7.1. Interface DOMTokenList</a> <a href="#ref-for-set-append⑤">(2)</a>
    </ul>
@@ -13589,13 +13594,12 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-iterate②">2.9. 分派事件</a> <a href="#ref-for-list-iterate③">(2)</a> <a href="#ref-for-list-iterate④">(3)</a> <a href="#ref-for-list-iterate⑤">(4)</a> <a href="#ref-for-list-iterate⑥">(5)</a>
     <li><a href="#ref-for-list-iterate⑦">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-list-iterate⑧">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-iterate⑨">(2)</a>
-    <li><a href="#ref-for-list-iterate①⓪">4.2.3. 修改节点的算法</a>
-    <li><a href="#ref-for-list-iterate①①">4.3. Mutation observers</a> <a href="#ref-for-list-iterate①②">(2)</a> <a href="#ref-for-list-iterate①③">(3)</a>
-    <li><a href="#ref-for-list-iterate①④">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-iterate①⑤">(2)</a> <a href="#ref-for-list-iterate①⑥">(3)</a>
-    <li><a href="#ref-for-list-iterate①⑦">4.3.2. Queuing a mutation record</a>
-    <li><a href="#ref-for-list-iterate①⑧">4.4. Interface Node</a> <a href="#ref-for-list-iterate①⑨">(2)</a>
-    <li><a href="#ref-for-list-iterate②⓪">4.9.1. Interface NamedNodeMap</a>
-    <li><a href="#ref-for-list-iterate②①">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-iterate②②">(2)</a> <a href="#ref-for-list-iterate②③">(3)</a>
+    <li><a href="#ref-for-list-iterate①⓪">4.3. Mutation observers</a> <a href="#ref-for-list-iterate①①">(2)</a> <a href="#ref-for-list-iterate①②">(3)</a>
+    <li><a href="#ref-for-list-iterate①③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-iterate①④">(2)</a> <a href="#ref-for-list-iterate①⑤">(3)</a>
+    <li><a href="#ref-for-list-iterate①⑥">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-list-iterate①⑦">4.4. Interface Node</a> <a href="#ref-for-list-iterate①⑧">(2)</a>
+    <li><a href="#ref-for-list-iterate①⑨">4.9.1. Interface NamedNodeMap</a>
+    <li><a href="#ref-for-list-iterate②⓪">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-iterate②①">(2)</a> <a href="#ref-for-list-iterate②②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-map-iterate">
@@ -13625,14 +13629,14 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-list-insert">
    <a href="https://infra.spec.whatwg.org/#list-insert">https://infra.spec.whatwg.org/#list-insert</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-insert">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-insert">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-is-empty">
    <a href="https://infra.spec.whatwg.org/#list-is-empty">https://infra.spec.whatwg.org/#list-is-empty</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-is-empty">2.2. Event接口</a>
-    <li><a href="#ref-for-list-is-empty①">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-is-empty①">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-is-empty②">4.3. Mutation observers</a>
     <li><a href="#ref-for-list-is-empty③">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-list-is-empty④">4.9. Interface Element</a> <a href="#ref-for-list-is-empty⑤">(2)</a> <a href="#ref-for-list-is-empty⑥">(3)</a>
@@ -13644,7 +13648,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://infra.spec.whatwg.org/#list-is-empty">https://infra.spec.whatwg.org/#list-is-empty</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-is-empty">2.2. Event接口</a>
-    <li><a href="#ref-for-list-is-empty①">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-is-empty①">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-is-empty②">4.3. Mutation observers</a>
     <li><a href="#ref-for-list-is-empty③">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-list-is-empty④">4.9. Interface Element</a> <a href="#ref-for-list-is-empty⑤">(2)</a> <a href="#ref-for-list-is-empty⑥">(3)</a>
@@ -13697,7 +13701,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-remove">2.7. EventTarget接口</a>
     <li><a href="#ref-for-list-remove①">2.9. 分派事件</a>
     <li><a href="#ref-for-list-remove②">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-list-remove③">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-remove③">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-remove④">4.3. Mutation observers</a>
     <li><a href="#ref-for-list-remove⑤">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-remove⑥">(2)</a>
     <li><a href="#ref-for-list-remove⑦">4.9. Interface Element</a>
@@ -13736,7 +13740,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://infra.spec.whatwg.org/#list-size">https://infra.spec.whatwg.org/#list-size</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-size">2.2. Event接口</a> <a href="#ref-for-list-size①">(2)</a>
-    <li><a href="#ref-for-list-size②">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-list-size②">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-size③">4.4. Interface Node</a>
     <li><a href="#ref-for-list-size④">4.9.1. Interface NamedNodeMap</a> <a href="#ref-for-list-size⑤">(2)</a> <a href="#ref-for-list-size⑥">(3)</a>
     <li><a href="#ref-for-list-size⑦">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-size⑧">(2)</a> <a href="#ref-for-list-size⑨">(3)</a>
@@ -13925,7 +13929,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-DOMException⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-idl-DOMException⑦">3.1. AbortController接口</a>
     <li><a href="#ref-for-idl-DOMException⑧">3.2. AbortSignal接口</a> <a href="#ref-for-idl-DOMException⑨">(2)</a> <a href="#ref-for-idl-DOMException①⓪">(3)</a> <a href="#ref-for-idl-DOMException①①">(4)</a> <a href="#ref-for-idl-DOMException①②">(5)</a>
-    <li><a href="#ref-for-idl-DOMException①③">4.2.3. 修改节点的算法</a> <a href="#ref-for-idl-DOMException①④">(2)</a> <a href="#ref-for-idl-DOMException①⑤">(3)</a> <a href="#ref-for-idl-DOMException①⑥">(4)</a> <a href="#ref-for-idl-DOMException①⑦">(5)</a> <a href="#ref-for-idl-DOMException①⑧">(6)</a> <a href="#ref-for-idl-DOMException①⑨">(7)</a> <a href="#ref-for-idl-DOMException②⓪">(8)</a> <a href="#ref-for-idl-DOMException②①">(9)</a> <a href="#ref-for-idl-DOMException②②">(10)</a> <a href="#ref-for-idl-DOMException②③">(11)</a> <a href="#ref-for-idl-DOMException②④">(12)</a> <a href="#ref-for-idl-DOMException②⑤">(13)</a>
+    <li><a href="#ref-for-idl-DOMException①③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-idl-DOMException①④">(2)</a> <a href="#ref-for-idl-DOMException①⑤">(3)</a> <a href="#ref-for-idl-DOMException①⑥">(4)</a> <a href="#ref-for-idl-DOMException①⑦">(5)</a> <a href="#ref-for-idl-DOMException①⑧">(6)</a> <a href="#ref-for-idl-DOMException①⑨">(7)</a> <a href="#ref-for-idl-DOMException②⓪">(8)</a> <a href="#ref-for-idl-DOMException②①">(9)</a> <a href="#ref-for-idl-DOMException②②">(10)</a> <a href="#ref-for-idl-DOMException②③">(11)</a> <a href="#ref-for-idl-DOMException②④">(12)</a> <a href="#ref-for-idl-DOMException②⑤">(13)</a>
     <li><a href="#ref-for-idl-DOMException②⑥">4.2.6. Mixin ParentNode</a> <a href="#ref-for-idl-DOMException②⑦">(2)</a> <a href="#ref-for-idl-DOMException②⑧">(3)</a>
     <li><a href="#ref-for-idl-DOMException②⑨">4.2.8. Mixin ChildNode</a> <a href="#ref-for-idl-DOMException③⓪">(2)</a> <a href="#ref-for-idl-DOMException③①">(3)</a>
     <li><a href="#ref-for-idl-DOMException③②">4.4. Interface Node</a>
@@ -14014,7 +14018,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-hierarchyrequesterror">
    <a href="https://webidl.spec.whatwg.org/#hierarchyrequesterror">https://webidl.spec.whatwg.org/#hierarchyrequesterror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-hierarchyrequesterror">4.2.3. 修改节点的算法</a> <a href="#ref-for-hierarchyrequesterror①">(2)</a> <a href="#ref-for-hierarchyrequesterror②">(3)</a> <a href="#ref-for-hierarchyrequesterror③">(4)</a> <a href="#ref-for-hierarchyrequesterror④">(5)</a> <a href="#ref-for-hierarchyrequesterror⑤">(6)</a> <a href="#ref-for-hierarchyrequesterror⑥">(7)</a> <a href="#ref-for-hierarchyrequesterror⑦">(8)</a> <a href="#ref-for-hierarchyrequesterror⑧">(9)</a> <a href="#ref-for-hierarchyrequesterror⑨">(10)</a>
+    <li><a href="#ref-for-hierarchyrequesterror">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-hierarchyrequesterror①">(2)</a> <a href="#ref-for-hierarchyrequesterror②">(3)</a> <a href="#ref-for-hierarchyrequesterror③">(4)</a> <a href="#ref-for-hierarchyrequesterror④">(5)</a> <a href="#ref-for-hierarchyrequesterror⑤">(6)</a> <a href="#ref-for-hierarchyrequesterror⑥">(7)</a> <a href="#ref-for-hierarchyrequesterror⑦">(8)</a> <a href="#ref-for-hierarchyrequesterror⑧">(9)</a> <a href="#ref-for-hierarchyrequesterror⑨">(10)</a>
     <li><a href="#ref-for-hierarchyrequesterror①⓪">4.2.6. Mixin ParentNode</a> <a href="#ref-for-hierarchyrequesterror①①">(2)</a> <a href="#ref-for-hierarchyrequesterror①②">(3)</a>
     <li><a href="#ref-for-hierarchyrequesterror①③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-hierarchyrequesterror①④">(2)</a> <a href="#ref-for-hierarchyrequesterror①⑤">(3)</a>
     <li><a href="#ref-for-hierarchyrequesterror①⑥">4.5. Interface Document</a> <a href="#ref-for-hierarchyrequesterror①⑦">(2)</a>
@@ -14105,7 +14109,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-notfounderror">
    <a href="https://webidl.spec.whatwg.org/#notfounderror">https://webidl.spec.whatwg.org/#notfounderror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notfounderror">4.2.3. 修改节点的算法</a> <a href="#ref-for-notfounderror①">(2)</a> <a href="#ref-for-notfounderror②">(3)</a>
+    <li><a href="#ref-for-notfounderror">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-notfounderror①">(2)</a> <a href="#ref-for-notfounderror②">(3)</a>
     <li><a href="#ref-for-notfounderror③">4.9. Interface Element</a>
     <li><a href="#ref-for-notfounderror④">4.9.1. Interface NamedNodeMap</a> <a href="#ref-for-notfounderror⑤">(2)</a>
    </ul>
@@ -14257,7 +14261,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://webidl.spec.whatwg.org/#implements">https://webidl.spec.whatwg.org/#implements</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-implements">4.2. Node tree：节点树</a> <a href="#ref-for-implements①">(2)</a> <a href="#ref-for-implements②">(3)</a>
-    <li><a href="#ref-for-implements③">4.2.3. 修改节点的算法</a> <a href="#ref-for-implements④">(2)</a>
+    <li><a href="#ref-for-implements③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-implements④">(2)</a>
     <li><a href="#ref-for-implements⑤">4.4. Interface Node</a> <a href="#ref-for-implements⑥">(2)</a> <a href="#ref-for-implements⑦">(3)</a> <a href="#ref-for-implements⑧">(4)</a> <a href="#ref-for-implements⑨">(5)</a> <a href="#ref-for-implements①⓪">(6)</a> <a href="#ref-for-implements①①">(7)</a> <a href="#ref-for-implements①②">(8)</a> <a href="#ref-for-implements①③">(9)</a> <a href="#ref-for-implements①④">(10)</a> <a href="#ref-for-implements①⑤">(11)</a> <a href="#ref-for-implements①⑥">(12)</a>
    </ul>
   </aside>
@@ -14344,7 +14348,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-dfn-throw">1.3. Selectors：选择器</a>
     <li><a href="#ref-for-dfn-throw①">1.4. Namespaces：命名空间</a> <a href="#ref-for-dfn-throw②">(2)</a> <a href="#ref-for-dfn-throw③">(3)</a> <a href="#ref-for-dfn-throw④">(4)</a> <a href="#ref-for-dfn-throw⑤">(5)</a>
     <li><a href="#ref-for-dfn-throw⑥">2.7. EventTarget接口</a>
-    <li><a href="#ref-for-dfn-throw⑦">4.2.3. 修改节点的算法</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
+    <li><a href="#ref-for-dfn-throw⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
     <li><a href="#ref-for-dfn-throw②⓪">4.2.6. Mixin ParentNode</a> <a href="#ref-for-dfn-throw②①">(2)</a> <a href="#ref-for-dfn-throw②②">(3)</a>
     <li><a href="#ref-for-dfn-throw②③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dfn-throw②④">(2)</a> <a href="#ref-for-dfn-throw②⑤">(3)</a>
     <li><a href="#ref-for-dfn-throw②⑥">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dfn-throw②⑦">(2)</a> <a href="#ref-for-dfn-throw②⑧">(3)</a> <a href="#ref-for-dfn-throw②⑨">(4)</a>
@@ -15376,7 +15380,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#other-applicable-specifications">#other-applicable-specifications</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-other-applicable-specifications">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-other-applicable-specifications①">4.2.3. 修改节点的算法</a> <a href="#ref-for-other-applicable-specifications②">(2)</a> <a href="#ref-for-other-applicable-specifications③">(3)</a>
+    <li><a href="#ref-for-other-applicable-specifications①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-other-applicable-specifications②">(2)</a> <a href="#ref-for-other-applicable-specifications③">(3)</a>
     <li><a href="#ref-for-other-applicable-specifications④">4.4. Interface Node</a> <a href="#ref-for-other-applicable-specifications⑤">(2)</a>
     <li><a href="#ref-for-other-applicable-specifications⑥">4.5. Interface Document</a>
     <li><a href="#ref-for-other-applicable-specifications⑦">4.9. Interface Element</a>
@@ -15406,7 +15410,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-order②">2.1. DOM事件简介</a>
     <li><a href="#ref-for-concept-tree-order③">4.2. Node tree：节点树</a>
     <li><a href="#ref-for-concept-tree-order④">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-concept-tree-order⑤">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-order⑥">(2)</a>
+    <li><a href="#ref-for-concept-tree-order⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-order⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-order⑦">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-concept-tree-order⑧">4.2.10. Old-style collections: NodeList and HTMLCollection</a>
     <li><a href="#ref-for-concept-tree-order⑨">4.2.10.1. Interface NodeList</a>
@@ -15435,7 +15439,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-parent④">4.2. Node tree：节点树</a>
     <li><a href="#ref-for-concept-tree-parent⑤">4.2.1. Document tree：文档树</a>
     <li><a href="#ref-for-concept-tree-parent⑥">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-tree-parent⑦">(2)</a> <a href="#ref-for-concept-tree-parent⑧">(3)</a>
-    <li><a href="#ref-for-concept-tree-parent⑨">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-parent①⓪">(2)</a> <a href="#ref-for-concept-tree-parent①①">(3)</a> <a href="#ref-for-concept-tree-parent①②">(4)</a> <a href="#ref-for-concept-tree-parent①③">(5)</a>
+    <li><a href="#ref-for-concept-tree-parent⑨">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-parent①⓪">(2)</a> <a href="#ref-for-concept-tree-parent①①">(3)</a> <a href="#ref-for-concept-tree-parent①②">(4)</a> <a href="#ref-for-concept-tree-parent①③">(5)</a>
     <li><a href="#ref-for-concept-tree-parent①④">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-parent①⑤">(2)</a> <a href="#ref-for-concept-tree-parent①⑥">(3)</a> <a href="#ref-for-concept-tree-parent①⑦">(4)</a> <a href="#ref-for-concept-tree-parent①⑧">(5)</a>
     <li><a href="#ref-for-concept-tree-parent①⑨">4.3. Mutation observers</a>
     <li><a href="#ref-for-concept-tree-parent②⓪">4.4. Interface Node</a> <a href="#ref-for-concept-tree-parent②①">(2)</a> <a href="#ref-for-concept-tree-parent②②">(3)</a> <a href="#ref-for-concept-tree-parent②③">(4)</a> <a href="#ref-for-concept-tree-parent②④">(5)</a>
@@ -15456,7 +15460,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-child⑤">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-tree-child⑥">4.2. Node tree：节点树</a> <a href="#ref-for-concept-tree-child⑦">(2)</a> <a href="#ref-for-concept-tree-child⑧">(3)</a> <a href="#ref-for-concept-tree-child⑨">(4)</a>
     <li><a href="#ref-for-concept-tree-child①⓪">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-tree-child①①">(2)</a>
-    <li><a href="#ref-for-concept-tree-child①②">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-child①③">(2)</a> <a href="#ref-for-concept-tree-child①④">(3)</a> <a href="#ref-for-concept-tree-child①⑤">(4)</a> <a href="#ref-for-concept-tree-child①⑥">(5)</a> <a href="#ref-for-concept-tree-child①⑦">(6)</a> <a href="#ref-for-concept-tree-child①⑧">(7)</a> <a href="#ref-for-concept-tree-child①⑨">(8)</a> <a href="#ref-for-concept-tree-child②⓪">(9)</a> <a href="#ref-for-concept-tree-child②①">(10)</a> <a href="#ref-for-concept-tree-child②②">(11)</a> <a href="#ref-for-concept-tree-child②③">(12)</a> <a href="#ref-for-concept-tree-child②④">(13)</a> <a href="#ref-for-concept-tree-child②⑤">(14)</a> <a href="#ref-for-concept-tree-child②⑥">(15)</a> <a href="#ref-for-concept-tree-child②⑦">(16)</a> <a href="#ref-for-concept-tree-child②⑧">(17)</a> <a href="#ref-for-concept-tree-child②⑨">(18)</a> <a href="#ref-for-concept-tree-child③⓪">(19)</a> <a href="#ref-for-concept-tree-child③①">(20)</a> <a href="#ref-for-concept-tree-child③②">(21)</a>
+    <li><a href="#ref-for-concept-tree-child①②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-child①③">(2)</a> <a href="#ref-for-concept-tree-child①④">(3)</a> <a href="#ref-for-concept-tree-child①⑤">(4)</a> <a href="#ref-for-concept-tree-child①⑥">(5)</a> <a href="#ref-for-concept-tree-child①⑦">(6)</a> <a href="#ref-for-concept-tree-child①⑧">(7)</a> <a href="#ref-for-concept-tree-child①⑨">(8)</a> <a href="#ref-for-concept-tree-child②⓪">(9)</a> <a href="#ref-for-concept-tree-child②①">(10)</a> <a href="#ref-for-concept-tree-child②②">(11)</a> <a href="#ref-for-concept-tree-child②③">(12)</a> <a href="#ref-for-concept-tree-child②④">(13)</a> <a href="#ref-for-concept-tree-child②⑤">(14)</a> <a href="#ref-for-concept-tree-child②⑥">(15)</a> <a href="#ref-for-concept-tree-child②⑦">(16)</a> <a href="#ref-for-concept-tree-child②⑧">(17)</a> <a href="#ref-for-concept-tree-child②⑨">(18)</a> <a href="#ref-for-concept-tree-child③⓪">(19)</a> <a href="#ref-for-concept-tree-child③①">(20)</a> <a href="#ref-for-concept-tree-child③②">(21)</a>
     <li><a href="#ref-for-concept-tree-child③③">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-tree-child③④">(2)</a> <a href="#ref-for-concept-tree-child③⑤">(3)</a> <a href="#ref-for-concept-tree-child③⑥">(4)</a> <a href="#ref-for-concept-tree-child③⑦">(5)</a> <a href="#ref-for-concept-tree-child③⑧">(6)</a> <a href="#ref-for-concept-tree-child③⑨">(7)</a> <a href="#ref-for-concept-tree-child④⓪">(8)</a>
     <li><a href="#ref-for-concept-tree-child④①">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-concept-tree-child④②">4.3.3. Interface MutationRecord</a>
@@ -15479,7 +15483,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-root⑧">4.2.2. Shadow tree：影子树</a>
     <li><a href="#ref-for-concept-tree-root⑨">4.2.2.1. Slots：插槽</a>
     <li><a href="#ref-for-concept-tree-root①⓪">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-tree-root①①">(2)</a> <a href="#ref-for-concept-tree-root①②">(3)</a>
-    <li><a href="#ref-for-concept-tree-root①③">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-root①④">(2)</a> <a href="#ref-for-concept-tree-root①⑤">(3)</a> <a href="#ref-for-concept-tree-root①⑥">(4)</a>
+    <li><a href="#ref-for-concept-tree-root①③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-root①④">(2)</a> <a href="#ref-for-concept-tree-root①⑤">(3)</a> <a href="#ref-for-concept-tree-root①⑥">(4)</a>
     <li><a href="#ref-for-concept-tree-root①⑦">4.4. Interface Node</a> <a href="#ref-for-concept-tree-root①⑧">(2)</a> <a href="#ref-for-concept-tree-root①⑨">(3)</a> <a href="#ref-for-concept-tree-root②⓪">(4)</a>
     <li><a href="#ref-for-concept-tree-root②①">4.7. Interface DocumentFragment</a> <a href="#ref-for-concept-tree-root②②">(2)</a>
     <li><a href="#ref-for-concept-tree-root②③">4.8. Interface ShadowRoot</a> <a href="#ref-for-concept-tree-root②④">(2)</a> <a href="#ref-for-concept-tree-root②⑤">(3)</a> <a href="#ref-for-concept-tree-root②⑥">(4)</a> <a href="#ref-for-concept-tree-root②⑦">(5)</a> <a href="#ref-for-concept-tree-root②⑧">(6)</a> <a href="#ref-for-concept-tree-root②⑨">(7)</a> <a href="#ref-for-concept-tree-root③⓪">(8)</a> <a href="#ref-for-concept-tree-root③①">(9)</a> <a href="#ref-for-concept-tree-root③②">(10)</a> <a href="#ref-for-concept-tree-root③③">(11)</a> <a href="#ref-for-concept-tree-root③④">(12)</a> <a href="#ref-for-concept-tree-root③⑤">(13)</a>
@@ -15508,7 +15512,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-inclusive-descendant">#concept-tree-inclusive-descendant</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-inclusive-descendant">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-concept-tree-inclusive-descendant①">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-inclusive-descendant②">(2)</a> <a href="#ref-for-concept-tree-inclusive-descendant③">(3)</a>
+    <li><a href="#ref-for-concept-tree-inclusive-descendant①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-inclusive-descendant②">(2)</a> <a href="#ref-for-concept-tree-inclusive-descendant③">(3)</a>
     <li><a href="#ref-for-concept-tree-inclusive-descendant④">4.4. Interface Node</a> <a href="#ref-for-concept-tree-inclusive-descendant⑤">(2)</a>
     <li><a href="#ref-for-concept-tree-inclusive-descendant⑥">6.1. Interface NodeIterator</a> <a href="#ref-for-concept-tree-inclusive-descendant⑦">(2)</a> <a href="#ref-for-concept-tree-inclusive-descendant⑧">(3)</a>
    </ul>
@@ -15527,7 +15531,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-inclusive-ancestor">#concept-tree-inclusive-ancestor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor">2.1. DOM事件简介</a> <a href="#ref-for-concept-tree-inclusive-ancestor①">(2)</a>
-    <li><a href="#ref-for-concept-tree-inclusive-ancestor②">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-tree-inclusive-ancestor②">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor③">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor④">4.7. Interface DocumentFragment</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor⑤">4.9. Interface Element</a> <a href="#ref-for-concept-tree-inclusive-ancestor⑥">(2)</a>
@@ -15549,7 +15553,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-preceding">#concept-tree-preceding</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-preceding">1.1. Trees：树</a> <a href="#ref-for-concept-tree-preceding①">(2)</a> <a href="#ref-for-concept-tree-preceding②">(3)</a>
-    <li><a href="#ref-for-concept-tree-preceding③">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-preceding④">(2)</a>
+    <li><a href="#ref-for-concept-tree-preceding③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-preceding④">(2)</a>
     <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-preceding⑦">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-concept-tree-preceding⑧">4.4. Interface Node</a> <a href="#ref-for-concept-tree-preceding⑨">(2)</a> <a href="#ref-for-concept-tree-preceding①⓪">(3)</a>
@@ -15561,7 +15565,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-following">#concept-tree-following</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-following">1.1. Trees：树</a> <a href="#ref-for-concept-tree-following①">(2)</a>
-    <li><a href="#ref-for-concept-tree-following②">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-following③">(2)</a>
+    <li><a href="#ref-for-concept-tree-following②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-following③">(2)</a>
     <li><a href="#ref-for-concept-tree-following④">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑤">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑥">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-following⑦">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑧">4.4. Interface Node</a>
@@ -15582,7 +15586,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-last-child">
    <b><a href="#concept-tree-last-child">#concept-tree-last-child</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-last-child">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-tree-last-child">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-tree-last-child①">4.2.6. Mixin ParentNode</a>
     <li><a href="#ref-for-concept-tree-last-child②">4.4. Interface Node</a> <a href="#ref-for-concept-tree-last-child③">(2)</a>
     <li><a href="#ref-for-concept-tree-last-child④">6.2. Interface TreeWalker</a> <a href="#ref-for-concept-tree-last-child⑤">(2)</a> <a href="#ref-for-concept-tree-last-child⑥">(3)</a> <a href="#ref-for-concept-tree-last-child⑦">(4)</a>
@@ -15591,7 +15595,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-previous-sibling">
    <b><a href="#concept-tree-previous-sibling">#concept-tree-previous-sibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-previous-sibling">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-previous-sibling①">(2)</a> <a href="#ref-for-concept-tree-previous-sibling②">(3)</a>
+    <li><a href="#ref-for-concept-tree-previous-sibling">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-previous-sibling①">(2)</a> <a href="#ref-for-concept-tree-previous-sibling②">(3)</a>
     <li><a href="#ref-for-concept-tree-previous-sibling③">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-tree-previous-sibling④">4.4. Interface Node</a> <a href="#ref-for-concept-tree-previous-sibling⑤">(2)</a>
     <li><a href="#ref-for-concept-tree-previous-sibling⑥">4.11. Interface Text</a> <a href="#ref-for-concept-tree-previous-sibling⑦">(2)</a>
@@ -15602,7 +15606,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-next-sibling">
    <b><a href="#concept-tree-next-sibling">#concept-tree-next-sibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-next-sibling">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-next-sibling①">(2)</a> <a href="#ref-for-concept-tree-next-sibling②">(3)</a> <a href="#ref-for-concept-tree-next-sibling③">(4)</a>
+    <li><a href="#ref-for-concept-tree-next-sibling">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-next-sibling①">(2)</a> <a href="#ref-for-concept-tree-next-sibling②">(3)</a> <a href="#ref-for-concept-tree-next-sibling③">(4)</a>
     <li><a href="#ref-for-concept-tree-next-sibling④">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-concept-tree-next-sibling⑤">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-tree-next-sibling⑥">4.4. Interface Node</a> <a href="#ref-for-concept-tree-next-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-next-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-next-sibling⑨">(4)</a>
@@ -15615,7 +15619,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-index">
    <b><a href="#concept-tree-index">#concept-tree-index</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-index">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-index①">(2)</a> <a href="#ref-for-concept-tree-index②">(3)</a> <a href="#ref-for-concept-tree-index③">(4)</a>
+    <li><a href="#ref-for-concept-tree-index">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-index①">(2)</a> <a href="#ref-for-concept-tree-index②">(3)</a> <a href="#ref-for-concept-tree-index③">(4)</a>
     <li><a href="#ref-for-concept-tree-index④">4.4. Interface Node</a> <a href="#ref-for-concept-tree-index⑤">(2)</a> <a href="#ref-for-concept-tree-index⑥">(3)</a>
     <li><a href="#ref-for-concept-tree-index⑦">4.11. Interface Text</a> <a href="#ref-for-concept-tree-index⑧">(2)</a>
     <li><a href="#ref-for-concept-tree-index⑨">5.2. Boundary points</a>
@@ -16444,7 +16448,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node⑤">4.2. Node tree：节点树</a> <a href="#ref-for-concept-node⑥">(2)</a> <a href="#ref-for-concept-node⑦">(3)</a> <a href="#ref-for-concept-node⑧">(4)</a> <a href="#ref-for-concept-node⑨">(5)</a> <a href="#ref-for-concept-node①⓪">(6)</a> <a href="#ref-for-concept-node①①">(7)</a> <a href="#ref-for-concept-node①②">(8)</a> <a href="#ref-for-concept-node①③">(9)</a> <a href="#ref-for-concept-node①④">(10)</a> <a href="#ref-for-concept-node①⑤">(11)</a> <a href="#ref-for-concept-node①⑥">(12)</a> <a href="#ref-for-concept-node①⑦">(13)</a> <a href="#ref-for-concept-node①⑧">(14)</a> <a href="#ref-for-concept-node①⑨">(15)</a>
     <li><a href="#ref-for-concept-node②⓪">4.2.2.2. Slottables：可插槽元素</a>
     <li><a href="#ref-for-concept-node②①">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-concept-node②②">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node②③">(2)</a> <a href="#ref-for-concept-node②④">(3)</a> <a href="#ref-for-concept-node②⑤">(4)</a> <a href="#ref-for-concept-node②⑥">(5)</a> <a href="#ref-for-concept-node②⑦">(6)</a> <a href="#ref-for-concept-node②⑧">(7)</a> <a href="#ref-for-concept-node②⑨">(8)</a> <a href="#ref-for-concept-node③⓪">(9)</a> <a href="#ref-for-concept-node③①">(10)</a> <a href="#ref-for-concept-node③②">(11)</a> <a href="#ref-for-concept-node③③">(12)</a> <a href="#ref-for-concept-node③④">(13)</a>
+    <li><a href="#ref-for-concept-node②②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node②③">(2)</a> <a href="#ref-for-concept-node②④">(3)</a> <a href="#ref-for-concept-node②⑤">(4)</a> <a href="#ref-for-concept-node②⑥">(5)</a> <a href="#ref-for-concept-node②⑦">(6)</a> <a href="#ref-for-concept-node②⑧">(7)</a> <a href="#ref-for-concept-node②⑨">(8)</a> <a href="#ref-for-concept-node③⓪">(9)</a> <a href="#ref-for-concept-node③①">(10)</a> <a href="#ref-for-concept-node③②">(11)</a> <a href="#ref-for-concept-node③③">(12)</a> <a href="#ref-for-concept-node③④">(13)</a>
     <li><a href="#ref-for-concept-node③⑤">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-node③⑥">(2)</a> <a href="#ref-for-concept-node③⑦">(3)</a> <a href="#ref-for-concept-node③⑧">(4)</a> <a href="#ref-for-concept-node③⑨">(5)</a> <a href="#ref-for-concept-node④⓪">(6)</a> <a href="#ref-for-concept-node④①">(7)</a>
     <li><a href="#ref-for-concept-node④②">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node④③">(2)</a> <a href="#ref-for-concept-node④④">(3)</a>
     <li><a href="#ref-for-concept-node④⑤">4.2.10. Old-style collections: NodeList and HTMLCollection</a>
@@ -16481,7 +16485,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node-tree②">4.2. Node tree：节点树</a>
     <li><a href="#ref-for-concept-node-tree③">4.2.1. Document tree：文档树</a> <a href="#ref-for-concept-node-tree④">(2)</a>
     <li><a href="#ref-for-concept-node-tree⑤">4.2.2. Shadow tree：影子树</a> <a href="#ref-for-concept-node-tree⑥">(2)</a> <a href="#ref-for-concept-node-tree⑦">(3)</a>
-    <li><a href="#ref-for-concept-node-tree⑧">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-node-tree⑧">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-node-tree⑨">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-node-tree①⓪">(2)</a> <a href="#ref-for-concept-node-tree①①">(3)</a>
     <li><a href="#ref-for-concept-node-tree①②">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-tree①③">(2)</a> <a href="#ref-for-concept-node-tree①④">(3)</a>
     <li><a href="#ref-for-concept-node-tree①⑤">4.7. Interface DocumentFragment</a>
@@ -16553,7 +16557,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-slot①①">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-slot①②">(2)</a> <a href="#ref-for-concept-slot①③">(3)</a> <a href="#ref-for-concept-slot①④">(4)</a> <a href="#ref-for-concept-slot①⑤">(5)</a> <a href="#ref-for-concept-slot①⑥">(6)</a>
     <li><a href="#ref-for-concept-slot①⑦">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-slot①⑧">4.2.2.5. 发出插槽改变信号</a>
-    <li><a href="#ref-for-concept-slot①⑨">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-slot②⓪">(2)</a> <a href="#ref-for-concept-slot②①">(3)</a>
+    <li><a href="#ref-for-concept-slot①⑨">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-slot②⓪">(2)</a> <a href="#ref-for-concept-slot②①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="slot-name">
@@ -16567,7 +16571,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#slot-assigned-nodes">#slot-assigned-nodes</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-slot-assigned-nodes">4.2.2.4. 分配可插槽元素和插槽</a> <a href="#ref-for-slot-assigned-nodes①">(2)</a>
-    <li><a href="#ref-for-slot-assigned-nodes②">4.2.3. 修改节点的算法</a> <a href="#ref-for-slot-assigned-nodes③">(2)</a>
+    <li><a href="#ref-for-slot-assigned-nodes②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-slot-assigned-nodes③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-slotable">
@@ -16578,7 +16582,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-slotable③">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-concept-slotable④">(2)</a> <a href="#ref-for-concept-slotable⑤">(3)</a> <a href="#ref-for-concept-slotable⑥">(4)</a> <a href="#ref-for-concept-slotable⑦">(5)</a> <a href="#ref-for-concept-slotable⑧">(6)</a>
     <li><a href="#ref-for-concept-slotable⑨">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-slotable①⓪">(2)</a> <a href="#ref-for-concept-slotable①①">(3)</a> <a href="#ref-for-concept-slotable①②">(4)</a> <a href="#ref-for-concept-slotable①③">(5)</a>
     <li><a href="#ref-for-concept-slotable①④">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-concept-slotable①⑤">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-slotable①⑤">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="slotable-name">
@@ -16593,7 +16597,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-slotable-assigned-slot">4.2.2.2. Slottables：可插槽元素</a> <a href="#ref-for-slotable-assigned-slot①">(2)</a>
     <li><a href="#ref-for-slotable-assigned-slot②">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-slotable-assigned-slot③">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-slotable-assigned-slot③">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-slotable-assigned-slot④">4.4. Interface Node</a>
    </ul>
   </aside>
@@ -16602,7 +16606,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-slotable-assigned">2.9. 分派事件</a> <a href="#ref-for-slotable-assigned①">(2)</a>
     <li><a href="#ref-for-slotable-assigned②">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-slotable-assigned③">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-slotable-assigned③">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-slotable-assigned④">4.4. Interface Node</a>
    </ul>
   </aside>
@@ -16638,21 +16642,21 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-assign-slotables">4.2.2.2. Slottables：可插槽元素</a>
     <li><a href="#ref-for-assign-slotables①">4.2.2.4. 分配可插槽元素和插槽</a> <a href="#ref-for-assign-slotables②">(2)</a>
-    <li><a href="#ref-for-assign-slotables③">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-assign-slotables③">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="assign-slotables-for-a-tree">
    <b><a href="#assign-slotables-for-a-tree">#assign-slotables-for-a-tree</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-assign-slotables-for-a-tree">4.2.2.1. Slots：插槽</a>
-    <li><a href="#ref-for-assign-slotables-for-a-tree①">4.2.3. 修改节点的算法</a> <a href="#ref-for-assign-slotables-for-a-tree②">(2)</a> <a href="#ref-for-assign-slotables-for-a-tree③">(3)</a>
+    <li><a href="#ref-for-assign-slotables-for-a-tree①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-assign-slotables-for-a-tree②">(2)</a> <a href="#ref-for-assign-slotables-for-a-tree③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="assign-a-slot">
    <b><a href="#assign-a-slot">#assign-a-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-assign-a-slot">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-assign-a-slot①">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-assign-a-slot①">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="signal-slot-list">
@@ -16666,13 +16670,13 @@ if ("serviceWorker" in navigator) {
    <b><a href="#signal-a-slot-change">#signal-a-slot-change</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-signal-a-slot-change">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-signal-a-slot-change①">4.2.3. 修改节点的算法</a> <a href="#ref-for-signal-a-slot-change②">(2)</a>
+    <li><a href="#ref-for-signal-a-slot-change①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-signal-a-slot-change②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-node-ensure-pre-insertion-validity">
    <b><a href="#concept-node-ensure-pre-insertion-validity">#concept-node-ensure-pre-insertion-validity</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-ensure-pre-insertion-validity">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-node-ensure-pre-insertion-validity">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-node-ensure-pre-insertion-validity①">4.2.6. Mixin ParentNode</a>
     <li><a href="#ref-for-concept-node-ensure-pre-insertion-validity②">5.5. Interface Range</a>
    </ul>
@@ -16680,7 +16684,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-pre-insert">
    <b><a href="#concept-node-pre-insert">#concept-node-pre-insert</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-pre-insert">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-pre-insert①">(2)</a>
+    <li><a href="#ref-for-concept-node-pre-insert">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-pre-insert①">(2)</a>
     <li><a href="#ref-for-concept-node-pre-insert②">4.2.6. Mixin ParentNode</a>
     <li><a href="#ref-for-concept-node-pre-insert③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-pre-insert④">(2)</a> <a href="#ref-for-concept-node-pre-insert⑤">(3)</a>
     <li><a href="#ref-for-concept-node-pre-insert⑥">4.4. Interface Node</a>
@@ -16692,20 +16696,20 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-insert-ext">
    <b><a href="#concept-node-insert-ext">#concept-node-insert-ext</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-insert-ext">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-node-insert-ext">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-node-children-changed-ext">
    <b><a href="#concept-node-children-changed-ext">#concept-node-children-changed-ext</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-children-changed-ext">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-children-changed-ext①">(2)</a>
+    <li><a href="#ref-for-concept-node-children-changed-ext">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-children-changed-ext①">(2)</a>
     <li><a href="#ref-for-concept-node-children-changed-ext②">4.10. Interface CharacterData</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-node-insert">
    <b><a href="#concept-node-insert">#concept-node-insert</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-insert">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-insert①">(2)</a> <a href="#ref-for-concept-node-insert②">(3)</a> <a href="#ref-for-concept-node-insert③">(4)</a> <a href="#ref-for-concept-node-insert④">(5)</a>
+    <li><a href="#ref-for-concept-node-insert">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-insert①">(2)</a> <a href="#ref-for-concept-node-insert②">(3)</a> <a href="#ref-for-concept-node-insert③">(4)</a> <a href="#ref-for-concept-node-insert④">(5)</a>
     <li><a href="#ref-for-concept-node-insert⑤">4.11. Interface Text</a>
     <li><a href="#ref-for-concept-node-insert⑥">5.1. Introduction to "DOM Ranges"</a>
     <li><a href="#ref-for-concept-node-insert⑦">5.5. Interface Range</a>
@@ -16745,13 +16749,13 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-remove-ext">
    <b><a href="#concept-node-remove-ext">#concept-node-remove-ext</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-remove-ext">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-remove-ext①">(2)</a>
+    <li><a href="#ref-for-concept-node-remove-ext">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-remove-ext①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-node-remove">
    <b><a href="#concept-node-remove">#concept-node-remove</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-remove">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-remove①">(2)</a> <a href="#ref-for-concept-node-remove②">(3)</a> <a href="#ref-for-concept-node-remove③">(4)</a> <a href="#ref-for-concept-node-remove④">(5)</a> <a href="#ref-for-concept-node-remove⑤">(6)</a>
+    <li><a href="#ref-for-concept-node-remove">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-remove①">(2)</a> <a href="#ref-for-concept-node-remove②">(3)</a> <a href="#ref-for-concept-node-remove③">(4)</a> <a href="#ref-for-concept-node-remove④">(5)</a> <a href="#ref-for-concept-node-remove⑤">(6)</a>
     <li><a href="#ref-for-concept-node-remove⑥">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-concept-node-remove⑦">4.4. Interface Node</a> <a href="#ref-for-concept-node-remove⑧">(2)</a>
     <li><a href="#ref-for-concept-node-remove⑨">4.5. Interface Document</a>
@@ -17021,7 +17025,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="registered-observer-list">
    <b><a href="#registered-observer-list">#registered-observer-list</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-registered-observer-list">4.2.3. 修改节点的算法</a> <a href="#ref-for-registered-observer-list①">(2)</a>
+    <li><a href="#ref-for-registered-observer-list">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-list①">(2)</a>
     <li><a href="#ref-for-registered-observer-list②">4.3. Mutation observers</a>
     <li><a href="#ref-for-registered-observer-list③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-list④">(2)</a> <a href="#ref-for-registered-observer-list⑤">(3)</a> <a href="#ref-for-registered-observer-list⑥">(4)</a>
     <li><a href="#ref-for-registered-observer-list⑦">4.3.2. Queuing a mutation record</a>
@@ -17040,7 +17044,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="registered-observer-observer">
    <b><a href="#registered-observer-observer">#registered-observer-observer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-registered-observer-observer">4.2.3. 修改节点的算法</a> <a href="#ref-for-registered-observer-observer①">(2)</a>
+    <li><a href="#ref-for-registered-observer-observer">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-observer①">(2)</a>
     <li><a href="#ref-for-registered-observer-observer②">4.3. Mutation observers</a>
     <li><a href="#ref-for-registered-observer-observer③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-observer④">(2)</a> <a href="#ref-for-registered-observer-observer⑤">(3)</a>
     <li><a href="#ref-for-registered-observer-observer⑥">4.3.2. Queuing a mutation record</a>
@@ -17049,7 +17053,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="registered-observer-options">
    <b><a href="#registered-observer-options">#registered-observer-options</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-registered-observer-options">4.2.3. 修改节点的算法</a> <a href="#ref-for-registered-observer-options①">(2)</a> <a href="#ref-for-registered-observer-options②">(3)</a>
+    <li><a href="#ref-for-registered-observer-options">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-options①">(2)</a> <a href="#ref-for-registered-observer-options②">(3)</a>
     <li><a href="#ref-for-registered-observer-options③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-options④">(2)</a>
     <li><a href="#ref-for-registered-observer-options⑤">4.3.2. Queuing a mutation record</a>
    </ul>
@@ -17057,7 +17061,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="transient-registered-observer">
    <b><a href="#transient-registered-observer">#transient-registered-observer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-transient-registered-observer">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-transient-registered-observer">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-transient-registered-observer①">4.3. Mutation observers</a> <a href="#ref-for-transient-registered-observer②">(2)</a>
     <li><a href="#ref-for-transient-registered-observer③">4.3.1. Interface MutationObserver</a>
    </ul>
@@ -17065,7 +17069,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="transient-registered-observer-source">
    <b><a href="#transient-registered-observer-source">#transient-registered-observer-source</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-transient-registered-observer-source">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-transient-registered-observer-source">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-transient-registered-observer-source①">4.3.1. Interface MutationObserver</a>
    </ul>
   </aside>
@@ -17113,7 +17117,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-subtree">
    <b><a href="#dom-mutationobserverinit-subtree">#dom-mutationobserverinit-subtree</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-subtree">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-subtree">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree①">4.3. Mutation observers</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree②">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree③">4.3.2. Queuing a mutation record</a>
@@ -17197,7 +17201,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="queue-a-tree-mutation-record">
    <b><a href="#queue-a-tree-mutation-record">#queue-a-tree-mutation-record</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-a-tree-mutation-record">4.2.3. 修改节点的算法</a> <a href="#ref-for-queue-a-tree-mutation-record①">(2)</a> <a href="#ref-for-queue-a-tree-mutation-record②">(3)</a> <a href="#ref-for-queue-a-tree-mutation-record③">(4)</a> <a href="#ref-for-queue-a-tree-mutation-record④">(5)</a>
+    <li><a href="#ref-for-queue-a-tree-mutation-record">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-queue-a-tree-mutation-record①">(2)</a> <a href="#ref-for-queue-a-tree-mutation-record②">(3)</a> <a href="#ref-for-queue-a-tree-mutation-record③">(4)</a> <a href="#ref-for-queue-a-tree-mutation-record④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mutationrecord">
@@ -17315,7 +17319,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-document">
    <b><a href="#concept-node-document">#concept-node-document</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-document">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-node-document①">(2)</a> <a href="#ref-for-concept-node-document②">(3)</a>
+    <li><a href="#ref-for-concept-node-document">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-document①">(2)</a> <a href="#ref-for-concept-node-document②">(3)</a>
     <li><a href="#ref-for-concept-node-document③">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-node-document④">(2)</a> <a href="#ref-for-concept-node-document⑤">(3)</a> <a href="#ref-for-concept-node-document⑥">(4)</a> <a href="#ref-for-concept-node-document⑦">(5)</a>
     <li><a href="#ref-for-concept-node-document⑧">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-document⑨">(2)</a> <a href="#ref-for-concept-node-document①⓪">(3)</a>
     <li><a href="#ref-for-concept-node-document①①">4.4. Interface Node</a> <a href="#ref-for-concept-node-document①②">(2)</a> <a href="#ref-for-concept-node-document①③">(3)</a> <a href="#ref-for-concept-node-document①④">(4)</a> <a href="#ref-for-concept-node-document①⑤">(5)</a> <a href="#ref-for-concept-node-document①⑥">(6)</a> <a href="#ref-for-concept-node-document①⑦">(7)</a> <a href="#ref-for-concept-node-document①⑧">(8)</a> <a href="#ref-for-concept-node-document①⑨">(9)</a> <a href="#ref-for-concept-node-document②⓪">(10)</a> <a href="#ref-for-concept-node-document②①">(11)</a> <a href="#ref-for-concept-node-document②②">(12)</a> <a href="#ref-for-concept-node-document②③">(13)</a> <a href="#ref-for-concept-node-document②④">(14)</a> <a href="#ref-for-concept-node-document②⑤">(15)</a>
@@ -17658,7 +17662,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#document">#document</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-document">4.2. Node tree：节点树</a> <a href="#ref-for-document①">(2)</a>
-    <li><a href="#ref-for-document②">4.2.3. 修改节点的算法</a> <a href="#ref-for-document③">(2)</a>
+    <li><a href="#ref-for-document②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-document③">(2)</a>
     <li><a href="#ref-for-document④">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-document⑤">4.2.5. Mixin DocumentOrShadowRoot</a>
     <li><a href="#ref-for-document⑥">4.2.6. Mixin ParentNode</a>
@@ -17701,7 +17705,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-document④">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-document⑤">4.2.1. Document tree：文档树</a> <a href="#ref-for-concept-document⑥">(2)</a> <a href="#ref-for-concept-document⑦">(3)</a> <a href="#ref-for-concept-document⑧">(4)</a>
     <li><a href="#ref-for-concept-document⑨">4.2.2. Shadow tree：影子树</a>
-    <li><a href="#ref-for-concept-document①⓪">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-document①①">(2)</a> <a href="#ref-for-concept-document①②">(3)</a> <a href="#ref-for-concept-document①③">(4)</a> <a href="#ref-for-concept-document①④">(5)</a> <a href="#ref-for-concept-document①⑤">(6)</a>
+    <li><a href="#ref-for-concept-document①⓪">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-document①①">(2)</a> <a href="#ref-for-concept-document①②">(3)</a> <a href="#ref-for-concept-document①③">(4)</a> <a href="#ref-for-concept-document①④">(5)</a> <a href="#ref-for-concept-document①⑤">(6)</a>
     <li><a href="#ref-for-concept-document①⑥">4.2.5. Mixin DocumentOrShadowRoot</a>
     <li><a href="#ref-for-concept-document①⑦">4.4. Interface Node</a> <a href="#ref-for-concept-document①⑧">(2)</a> <a href="#ref-for-concept-document①⑨">(3)</a> <a href="#ref-for-concept-document②⓪">(4)</a> <a href="#ref-for-concept-document②①">(5)</a> <a href="#ref-for-concept-document②②">(6)</a>
     <li><a href="#ref-for-concept-document②③">4.5. Interface Document</a> <a href="#ref-for-concept-document②④">(2)</a> <a href="#ref-for-concept-document②⑤">(3)</a> <a href="#ref-for-concept-document②⑥">(4)</a> <a href="#ref-for-concept-document②⑦">(5)</a> <a href="#ref-for-concept-document②⑧">(6)</a> <a href="#ref-for-concept-document②⑨">(7)</a> <a href="#ref-for-concept-document③⓪">(8)</a> <a href="#ref-for-concept-document③①">(9)</a> <a href="#ref-for-concept-document③②">(10)</a> <a href="#ref-for-concept-document③③">(11)</a> <a href="#ref-for-concept-document③④">(12)</a> <a href="#ref-for-concept-document③⑤">(13)</a> <a href="#ref-for-concept-document③⑥">(14)</a> <a href="#ref-for-concept-document③⑦">(15)</a> <a href="#ref-for-concept-document③⑧">(16)</a> <a href="#ref-for-concept-document③⑨">(17)</a>
@@ -17937,7 +17941,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-adopt">
    <b><a href="#concept-node-adopt">#concept-node-adopt</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-adopt">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-node-adopt">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-node-adopt①">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-node-adopt②">4.5. Interface Document</a> <a href="#ref-for-concept-node-adopt③">(2)</a>
    </ul>
@@ -18023,7 +18027,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#documenttype">#documenttype</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-documenttype">4.2. Node tree：节点树</a> <a href="#ref-for-documenttype①">(2)</a> <a href="#ref-for-documenttype②">(3)</a> <a href="#ref-for-documenttype③">(4)</a>
-    <li><a href="#ref-for-documenttype④">4.2.3. 修改节点的算法</a> <a href="#ref-for-documenttype⑤">(2)</a> <a href="#ref-for-documenttype⑥">(3)</a> <a href="#ref-for-documenttype⑦">(4)</a>
+    <li><a href="#ref-for-documenttype④">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-documenttype⑤">(2)</a> <a href="#ref-for-documenttype⑥">(3)</a> <a href="#ref-for-documenttype⑦">(4)</a>
     <li><a href="#ref-for-documenttype⑧">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-documenttype⑨">4.4. Interface Node</a> <a href="#ref-for-documenttype①⓪">(2)</a> <a href="#ref-for-documenttype①①">(3)</a> <a href="#ref-for-documenttype①②">(4)</a> <a href="#ref-for-documenttype①③">(5)</a> <a href="#ref-for-documenttype①④">(6)</a> <a href="#ref-for-documenttype①⑤">(7)</a> <a href="#ref-for-documenttype①⑥">(8)</a>
     <li><a href="#ref-for-documenttype①⑦">4.5. Interface Document</a>
@@ -18038,7 +18042,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-doctype">#concept-doctype</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-doctype">4.1. DOM简介</a>
-    <li><a href="#ref-for-concept-doctype①">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-doctype②">(2)</a> <a href="#ref-for-concept-doctype③">(3)</a> <a href="#ref-for-concept-doctype④">(4)</a> <a href="#ref-for-concept-doctype⑤">(5)</a> <a href="#ref-for-concept-doctype⑥">(6)</a> <a href="#ref-for-concept-doctype⑦">(7)</a> <a href="#ref-for-concept-doctype⑧">(8)</a> <a href="#ref-for-concept-doctype⑨">(9)</a> <a href="#ref-for-concept-doctype①⓪">(10)</a>
+    <li><a href="#ref-for-concept-doctype①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-doctype②">(2)</a> <a href="#ref-for-concept-doctype③">(3)</a> <a href="#ref-for-concept-doctype④">(4)</a> <a href="#ref-for-concept-doctype⑤">(5)</a> <a href="#ref-for-concept-doctype⑥">(6)</a> <a href="#ref-for-concept-doctype⑦">(7)</a> <a href="#ref-for-concept-doctype⑧">(8)</a> <a href="#ref-for-concept-doctype⑨">(9)</a> <a href="#ref-for-concept-doctype①⓪">(10)</a>
     <li><a href="#ref-for-concept-doctype①①">4.2.7. Mixin NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-concept-doctype①②">4.5. Interface Document</a> <a href="#ref-for-concept-doctype①③">(2)</a>
     <li><a href="#ref-for-concept-doctype①④">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-concept-doctype①⑤">(2)</a> <a href="#ref-for-concept-doctype①⑥">(3)</a> <a href="#ref-for-concept-doctype①⑦">(4)</a>
@@ -18092,7 +18096,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#documentfragment">#documentfragment</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-documentfragment">4.2. Node tree：节点树</a> <a href="#ref-for-documentfragment①">(2)</a> <a href="#ref-for-documentfragment②">(3)</a>
-    <li><a href="#ref-for-documentfragment③">4.2.3. 修改节点的算法</a> <a href="#ref-for-documentfragment④">(2)</a> <a href="#ref-for-documentfragment⑤">(3)</a> <a href="#ref-for-documentfragment⑥">(4)</a> <a href="#ref-for-documentfragment⑦">(5)</a> <a href="#ref-for-documentfragment⑧">(6)</a> <a href="#ref-for-documentfragment⑨">(7)</a> <a href="#ref-for-documentfragment①⓪">(8)</a> <a href="#ref-for-documentfragment①①">(9)</a> <a href="#ref-for-documentfragment①②">(10)</a>
+    <li><a href="#ref-for-documentfragment③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-documentfragment④">(2)</a> <a href="#ref-for-documentfragment⑤">(3)</a> <a href="#ref-for-documentfragment⑥">(4)</a> <a href="#ref-for-documentfragment⑦">(5)</a> <a href="#ref-for-documentfragment⑧">(6)</a> <a href="#ref-for-documentfragment⑨">(7)</a> <a href="#ref-for-documentfragment①⓪">(8)</a> <a href="#ref-for-documentfragment①①">(9)</a> <a href="#ref-for-documentfragment①②">(10)</a>
     <li><a href="#ref-for-documentfragment①③">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-documentfragment①④">4.2.6. Mixin ParentNode</a> <a href="#ref-for-documentfragment①⑤">(2)</a>
     <li><a href="#ref-for-documentfragment①⑥">4.4. Interface Node</a> <a href="#ref-for-documentfragment①⑦">(2)</a> <a href="#ref-for-documentfragment①⑧">(3)</a> <a href="#ref-for-documentfragment①⑨">(4)</a> <a href="#ref-for-documentfragment②⓪">(5)</a> <a href="#ref-for-documentfragment②①">(6)</a> <a href="#ref-for-documentfragment②②">(7)</a> <a href="#ref-for-documentfragment②③">(8)</a>
@@ -18117,7 +18121,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-tree-host-including-inclusive-ancestor">
    <b><a href="#concept-tree-host-including-inclusive-ancestor">#concept-tree-host-including-inclusive-ancestor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-tree-host-including-inclusive-ancestor">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-tree-host-including-inclusive-ancestor①">(2)</a>
+    <li><a href="#ref-for-concept-tree-host-including-inclusive-ancestor">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-host-including-inclusive-ancestor①">(2)</a>
     <li><a href="#ref-for-concept-tree-host-including-inclusive-ancestor②">4.7. Interface DocumentFragment</a>
    </ul>
   </aside>
@@ -18159,7 +18163,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-shadow-root②">2.9. 分派事件</a> <a href="#ref-for-concept-shadow-root③">(2)</a> <a href="#ref-for-concept-shadow-root④">(3)</a> <a href="#ref-for-concept-shadow-root⑤">(4)</a>
     <li><a href="#ref-for-concept-shadow-root⑥">4.2.2. Shadow tree：影子树</a> <a href="#ref-for-concept-shadow-root⑦">(2)</a> <a href="#ref-for-concept-shadow-root⑧">(3)</a> <a href="#ref-for-concept-shadow-root⑨">(4)</a>
     <li><a href="#ref-for-concept-shadow-root①⓪">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-shadow-root①①">(2)</a> <a href="#ref-for-concept-shadow-root①②">(3)</a>
-    <li><a href="#ref-for-concept-shadow-root①③">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-shadow-root①④">(2)</a> <a href="#ref-for-concept-shadow-root①⑤">(3)</a>
+    <li><a href="#ref-for-concept-shadow-root①③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-shadow-root①④">(2)</a> <a href="#ref-for-concept-shadow-root①⑤">(3)</a>
     <li><a href="#ref-for-concept-shadow-root①⑥">4.2.5. Mixin DocumentOrShadowRoot</a>
     <li><a href="#ref-for-concept-shadow-root①⑦">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-shadow-root①⑧">4.5. Interface Document</a> <a href="#ref-for-concept-shadow-root①⑨">(2)</a> <a href="#ref-for-concept-shadow-root②⓪">(3)</a> <a href="#ref-for-concept-shadow-root②①">(4)</a>
@@ -18195,7 +18199,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#shadowroot-slot-assignment">#shadowroot-slot-assignment</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-shadowroot-slot-assignment">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-shadowroot-slot-assignment①">(2)</a>
-    <li><a href="#ref-for-shadowroot-slot-assignment②">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-shadowroot-slot-assignment②">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-shadowroot-slot-assignment③">4.8. Interface ShadowRoot</a>
     <li><a href="#ref-for-shadowroot-slot-assignment④">4.9. Interface Element</a>
    </ul>
@@ -18233,7 +18237,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-shadow-including-tree-order">
    <b><a href="#concept-shadow-including-tree-order">#concept-shadow-including-tree-order</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-shadow-including-tree-order">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-shadow-including-tree-order①">(2)</a>
+    <li><a href="#ref-for-concept-shadow-including-tree-order">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-shadow-including-tree-order①">(2)</a>
     <li><a href="#ref-for-concept-shadow-including-tree-order②">4.5. Interface Document</a>
    </ul>
   </aside>
@@ -18254,7 +18258,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-shadow-including-descendant">
    <b><a href="#concept-shadow-including-descendant">#concept-shadow-including-descendant</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-shadow-including-descendant">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-shadow-including-descendant">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-shadow-including-descendant①">4.8. Interface ShadowRoot</a> <a href="#ref-for-concept-shadow-including-descendant②">(2)</a>
    </ul>
   </aside>
@@ -18290,7 +18294,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-element">4.1. DOM简介</a> <a href="#ref-for-element①">(2)</a> <a href="#ref-for-element②">(3)</a> <a href="#ref-for-element③">(4)</a>
     <li><a href="#ref-for-element④">4.2. Node tree：节点树</a> <a href="#ref-for-element⑤">(2)</a> <a href="#ref-for-element⑥">(3)</a> <a href="#ref-for-element⑦">(4)</a> <a href="#ref-for-element⑧">(5)</a>
     <li><a href="#ref-for-element⑨">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-element①⓪">4.2.3. 修改节点的算法</a> <a href="#ref-for-element①①">(2)</a> <a href="#ref-for-element①②">(3)</a> <a href="#ref-for-element①③">(4)</a> <a href="#ref-for-element①④">(5)</a> <a href="#ref-for-element①⑤">(6)</a>
+    <li><a href="#ref-for-element①⓪">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-element①①">(2)</a> <a href="#ref-for-element①②">(3)</a> <a href="#ref-for-element①③">(4)</a> <a href="#ref-for-element①④">(5)</a> <a href="#ref-for-element①⑤">(6)</a>
     <li><a href="#ref-for-element①⑥">4.2.4. Mixin NonElementParentNode</a>
     <li><a href="#ref-for-element①⑦">4.2.6. Mixin ParentNode</a> <a href="#ref-for-element①⑧">(2)</a> <a href="#ref-for-element①⑨">(3)</a> <a href="#ref-for-element②⓪">(4)</a>
     <li><a href="#ref-for-element②①">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
@@ -18336,7 +18340,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-element">2.1. DOM事件简介</a>
     <li><a href="#ref-for-concept-element①">4.2.1. Document tree：文档树</a> <a href="#ref-for-concept-element②">(2)</a> <a href="#ref-for-concept-element③">(3)</a>
     <li><a href="#ref-for-concept-element④">4.2.2.1. Slots：插槽</a>
-    <li><a href="#ref-for-concept-element⑤">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-element⑥">(2)</a> <a href="#ref-for-concept-element⑦">(3)</a> <a href="#ref-for-concept-element⑧">(4)</a> <a href="#ref-for-concept-element⑨">(5)</a> <a href="#ref-for-concept-element①⓪">(6)</a> <a href="#ref-for-concept-element①①">(7)</a> <a href="#ref-for-concept-element①②">(8)</a> <a href="#ref-for-concept-element①③">(9)</a> <a href="#ref-for-concept-element①④">(10)</a> <a href="#ref-for-concept-element①⑤">(11)</a> <a href="#ref-for-concept-element①⑥">(12)</a>
+    <li><a href="#ref-for-concept-element⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-element⑥">(2)</a> <a href="#ref-for-concept-element⑦">(3)</a> <a href="#ref-for-concept-element⑧">(4)</a> <a href="#ref-for-concept-element⑨">(5)</a> <a href="#ref-for-concept-element①⓪">(6)</a> <a href="#ref-for-concept-element①①">(7)</a> <a href="#ref-for-concept-element①②">(8)</a> <a href="#ref-for-concept-element①③">(9)</a> <a href="#ref-for-concept-element①④">(10)</a> <a href="#ref-for-concept-element①⑤">(11)</a> <a href="#ref-for-concept-element①⑥">(12)</a>
     <li><a href="#ref-for-concept-element①⑦">4.2.4. Mixin NonElementParentNode</a> <a href="#ref-for-concept-element①⑧">(2)</a> <a href="#ref-for-concept-element①⑨">(3)</a> <a href="#ref-for-concept-element②⓪">(4)</a>
     <li><a href="#ref-for-concept-element②①">4.2.6. Mixin ParentNode</a> <a href="#ref-for-concept-element②②">(2)</a> <a href="#ref-for-concept-element②③">(3)</a> <a href="#ref-for-concept-element②④">(4)</a> <a href="#ref-for-concept-element②⑤">(5)</a> <a href="#ref-for-concept-element②⑥">(6)</a> <a href="#ref-for-concept-element②⑦">(7)</a> <a href="#ref-for-concept-element②⑧">(8)</a> <a href="#ref-for-concept-element②⑨">(9)</a>
     <li><a href="#ref-for-concept-element③⓪">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-element③①">(2)</a> <a href="#ref-for-concept-element③②">(3)</a> <a href="#ref-for-concept-element③③">(4)</a>
@@ -18407,7 +18411,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-element-custom">
    <b><a href="#concept-element-custom">#concept-element-custom</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-element-custom">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-element-custom①">(2)</a> <a href="#ref-for-concept-element-custom②">(3)</a> <a href="#ref-for-concept-element-custom③">(4)</a>
+    <li><a href="#ref-for-concept-element-custom">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-element-custom①">(2)</a> <a href="#ref-for-concept-element-custom②">(3)</a> <a href="#ref-for-concept-element-custom③">(4)</a>
     <li><a href="#ref-for-concept-element-custom④">4.5. Interface Document</a>
     <li><a href="#ref-for-concept-element-custom⑤">4.9. Interface Element</a> <a href="#ref-for-concept-element-custom⑥">(2)</a>
     <li><a href="#ref-for-concept-element-custom⑦">Intellectual property rights</a>
@@ -18424,7 +18428,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="element-shadow-host">
    <b><a href="#element-shadow-host">#element-shadow-host</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-shadow-host">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-element-shadow-host">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-element-shadow-host①">4.8. Interface ShadowRoot</a>
     <li><a href="#ref-for-element-shadow-host②">4.9. Interface Element</a>
    </ul>
@@ -19018,7 +19022,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#characterdata">#characterdata</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-characterdata">4.2. Node tree：节点树</a> <a href="#ref-for-characterdata①">(2)</a> <a href="#ref-for-characterdata②">(3)</a> <a href="#ref-for-characterdata③">(4)</a> <a href="#ref-for-characterdata④">(5)</a>
-    <li><a href="#ref-for-characterdata⑤">4.2.3. 修改节点的算法</a> <a href="#ref-for-characterdata⑥">(2)</a>
+    <li><a href="#ref-for-characterdata⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-characterdata⑥">(2)</a>
     <li><a href="#ref-for-characterdata⑦">4.2.7. Mixin NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-characterdata⑧">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-characterdata⑨">4.3.3. Interface MutationRecord</a> <a href="#ref-for-characterdata①⓪">(2)</a>
@@ -19050,7 +19054,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-cd-replace">
    <b><a href="#concept-cd-replace">#concept-cd-replace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-cd-replace">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-cd-replace">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-cd-replace①">4.4. Interface Node</a> <a href="#ref-for-concept-cd-replace②">(2)</a> <a href="#ref-for-concept-cd-replace③">(3)</a>
     <li><a href="#ref-for-concept-cd-replace④">4.10. Interface CharacterData</a> <a href="#ref-for-concept-cd-replace⑤">(2)</a> <a href="#ref-for-concept-cd-replace⑥">(3)</a> <a href="#ref-for-concept-cd-replace⑦">(4)</a> <a href="#ref-for-concept-cd-replace⑧">(5)</a>
     <li><a href="#ref-for-concept-cd-replace⑨">4.11. Interface Text</a>
@@ -19114,7 +19118,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-text">4.1. DOM简介</a> <a href="#ref-for-text①">(2)</a> <a href="#ref-for-text②">(3)</a> <a href="#ref-for-text③">(4)</a>
     <li><a href="#ref-for-text④">4.2. Node tree：节点树</a> <a href="#ref-for-text⑤">(2)</a>
     <li><a href="#ref-for-text⑥">4.2.2.2. Slottables：可插槽元素</a>
-    <li><a href="#ref-for-text⑦">4.2.3. 修改节点的算法</a> <a href="#ref-for-text⑧">(2)</a> <a href="#ref-for-text⑨">(3)</a> <a href="#ref-for-text①⓪">(4)</a>
+    <li><a href="#ref-for-text⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-text⑧">(2)</a> <a href="#ref-for-text⑨">(3)</a> <a href="#ref-for-text①⓪">(4)</a>
     <li><a href="#ref-for-text①①">4.2.6. Mixin ParentNode</a> <a href="#ref-for-text①②">(2)</a> <a href="#ref-for-text①③">(3)</a> <a href="#ref-for-text①④">(4)</a>
     <li><a href="#ref-for-text①⑤">4.2.8. Mixin ChildNode</a> <a href="#ref-for-text①⑥">(2)</a> <a href="#ref-for-text①⑦">(3)</a>
     <li><a href="#ref-for-text①⑧">4.2.9. Mixin Slottable</a>
@@ -19309,7 +19313,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-start">
    <b><a href="#concept-range-start">#concept-range-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-start">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-range-start">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-range-start①">4.5. Interface Document</a>
     <li><a href="#ref-for-concept-range-start②">5.1. Introduction to "DOM Ranges"</a>
     <li><a href="#ref-for-concept-range-start③">5.3. Interface AbstractRange</a> <a href="#ref-for-concept-range-start④">(2)</a>
@@ -19320,7 +19324,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-end">
    <b><a href="#concept-range-end">#concept-range-end</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-end">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-range-end">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-range-end①">4.5. Interface Document</a>
     <li><a href="#ref-for-concept-range-end②">5.1. Introduction to "DOM Ranges"</a>
     <li><a href="#ref-for-concept-range-end③">5.3. Interface AbstractRange</a> <a href="#ref-for-concept-range-end④">(2)</a>
@@ -19331,7 +19335,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-start-node">
    <b><a href="#concept-range-start-node">#concept-range-start-node</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-start-node">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-range-start-node①">(2)</a> <a href="#ref-for-concept-range-start-node②">(3)</a>
+    <li><a href="#ref-for-concept-range-start-node">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-range-start-node①">(2)</a> <a href="#ref-for-concept-range-start-node②">(3)</a>
     <li><a href="#ref-for-concept-range-start-node③">4.4. Interface Node</a> <a href="#ref-for-concept-range-start-node④">(2)</a> <a href="#ref-for-concept-range-start-node⑤">(3)</a> <a href="#ref-for-concept-range-start-node⑥">(4)</a>
     <li><a href="#ref-for-concept-range-start-node⑦">4.10. Interface CharacterData</a> <a href="#ref-for-concept-range-start-node⑧">(2)</a>
     <li><a href="#ref-for-concept-range-start-node⑨">4.11. Interface Text</a> <a href="#ref-for-concept-range-start-node①⓪">(2)</a> <a href="#ref-for-concept-range-start-node①①">(3)</a>
@@ -19343,7 +19347,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-start-offset">
    <b><a href="#concept-range-start-offset">#concept-range-start-offset</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-start-offset">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-range-start-offset①">(2)</a> <a href="#ref-for-concept-range-start-offset②">(3)</a> <a href="#ref-for-concept-range-start-offset③">(4)</a>
+    <li><a href="#ref-for-concept-range-start-offset">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-range-start-offset①">(2)</a> <a href="#ref-for-concept-range-start-offset②">(3)</a> <a href="#ref-for-concept-range-start-offset③">(4)</a>
     <li><a href="#ref-for-concept-range-start-offset④">4.4. Interface Node</a> <a href="#ref-for-concept-range-start-offset⑤">(2)</a> <a href="#ref-for-concept-range-start-offset⑥">(3)</a>
     <li><a href="#ref-for-concept-range-start-offset⑦">4.10. Interface CharacterData</a> <a href="#ref-for-concept-range-start-offset⑧">(2)</a> <a href="#ref-for-concept-range-start-offset⑨">(3)</a> <a href="#ref-for-concept-range-start-offset①⓪">(4)</a>
     <li><a href="#ref-for-concept-range-start-offset①①">4.11. Interface Text</a> <a href="#ref-for-concept-range-start-offset①②">(2)</a> <a href="#ref-for-concept-range-start-offset①③">(3)</a> <a href="#ref-for-concept-range-start-offset①④">(4)</a>
@@ -19355,7 +19359,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-end-node">
    <b><a href="#concept-range-end-node">#concept-range-end-node</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-end-node">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-range-end-node①">(2)</a> <a href="#ref-for-concept-range-end-node②">(3)</a>
+    <li><a href="#ref-for-concept-range-end-node">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-range-end-node①">(2)</a> <a href="#ref-for-concept-range-end-node②">(3)</a>
     <li><a href="#ref-for-concept-range-end-node③">4.4. Interface Node</a> <a href="#ref-for-concept-range-end-node④">(2)</a> <a href="#ref-for-concept-range-end-node⑤">(3)</a> <a href="#ref-for-concept-range-end-node⑥">(4)</a>
     <li><a href="#ref-for-concept-range-end-node⑦">4.10. Interface CharacterData</a> <a href="#ref-for-concept-range-end-node⑧">(2)</a>
     <li><a href="#ref-for-concept-range-end-node⑨">4.11. Interface Text</a> <a href="#ref-for-concept-range-end-node①⓪">(2)</a> <a href="#ref-for-concept-range-end-node①①">(3)</a>
@@ -19367,7 +19371,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-range-end-offset">
    <b><a href="#concept-range-end-offset">#concept-range-end-offset</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-range-end-offset">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-range-end-offset①">(2)</a> <a href="#ref-for-concept-range-end-offset②">(3)</a> <a href="#ref-for-concept-range-end-offset③">(4)</a>
+    <li><a href="#ref-for-concept-range-end-offset">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-range-end-offset①">(2)</a> <a href="#ref-for-concept-range-end-offset②">(3)</a> <a href="#ref-for-concept-range-end-offset③">(4)</a>
     <li><a href="#ref-for-concept-range-end-offset④">4.4. Interface Node</a> <a href="#ref-for-concept-range-end-offset⑤">(2)</a> <a href="#ref-for-concept-range-end-offset⑥">(3)</a>
     <li><a href="#ref-for-concept-range-end-offset⑦">4.10. Interface CharacterData</a> <a href="#ref-for-concept-range-end-offset⑧">(2)</a> <a href="#ref-for-concept-range-end-offset⑨">(3)</a> <a href="#ref-for-concept-range-end-offset①⓪">(4)</a>
     <li><a href="#ref-for-concept-range-end-offset①①">4.11. Interface Text</a> <a href="#ref-for-concept-range-end-offset①②">(2)</a> <a href="#ref-for-concept-range-end-offset①③">(3)</a> <a href="#ref-for-concept-range-end-offset①④">(4)</a>
@@ -19491,7 +19495,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-live-range">
    <b><a href="#concept-live-range">#concept-live-range</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-live-range">4.2.3. 修改节点的算法</a> <a href="#ref-for-concept-live-range①">(2)</a> <a href="#ref-for-concept-live-range②">(3)</a> <a href="#ref-for-concept-live-range③">(4)</a> <a href="#ref-for-concept-live-range④">(5)</a> <a href="#ref-for-concept-live-range⑤">(6)</a> <a href="#ref-for-concept-live-range⑥">(7)</a> <a href="#ref-for-concept-live-range⑦">(8)</a>
+    <li><a href="#ref-for-concept-live-range">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-live-range①">(2)</a> <a href="#ref-for-concept-live-range②">(3)</a> <a href="#ref-for-concept-live-range③">(4)</a> <a href="#ref-for-concept-live-range④">(5)</a> <a href="#ref-for-concept-live-range⑤">(6)</a> <a href="#ref-for-concept-live-range⑥">(7)</a> <a href="#ref-for-concept-live-range⑦">(8)</a>
     <li><a href="#ref-for-concept-live-range⑧">4.4. Interface Node</a> <a href="#ref-for-concept-live-range⑨">(2)</a> <a href="#ref-for-concept-live-range①⓪">(3)</a> <a href="#ref-for-concept-live-range①①">(4)</a>
     <li><a href="#ref-for-concept-live-range①②">4.5. Interface Document</a>
     <li><a href="#ref-for-concept-live-range①③">4.10. Interface CharacterData</a> <a href="#ref-for-concept-live-range①④">(2)</a> <a href="#ref-for-concept-live-range①⑤">(3)</a> <a href="#ref-for-concept-live-range①⑥">(4)</a>
@@ -19697,7 +19701,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-traversal-root">
    <b><a href="#concept-traversal-root">#concept-traversal-root</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-traversal-root">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-concept-traversal-root">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-traversal-root①">4.5. Interface Document</a> <a href="#ref-for-concept-traversal-root②">(2)</a>
     <li><a href="#ref-for-concept-traversal-root③">6.1. Interface NodeIterator</a> <a href="#ref-for-concept-traversal-root④">(2)</a> <a href="#ref-for-concept-traversal-root⑤">(3)</a> <a href="#ref-for-concept-traversal-root⑥">(4)</a> <a href="#ref-for-concept-traversal-root⑦">(5)</a>
     <li><a href="#ref-for-concept-traversal-root⑧">6.2. Interface TreeWalker</a> <a href="#ref-for-concept-traversal-root⑨">(2)</a> <a href="#ref-for-concept-traversal-root①⓪">(3)</a> <a href="#ref-for-concept-traversal-root①①">(4)</a> <a href="#ref-for-concept-traversal-root①②">(5)</a> <a href="#ref-for-concept-traversal-root①③">(6)</a> <a href="#ref-for-concept-traversal-root①④">(7)</a> <a href="#ref-for-concept-traversal-root①⑤">(8)</a> <a href="#ref-for-concept-traversal-root①⑥">(9)</a>
@@ -19733,7 +19737,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="nodeiterator">
    <b><a href="#nodeiterator">#nodeiterator</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nodeiterator">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-nodeiterator">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-nodeiterator①">4.5. Interface Document</a> <a href="#ref-for-nodeiterator②">(2)</a>
     <li><a href="#ref-for-nodeiterator③">6. Traversal</a> <a href="#ref-for-nodeiterator④">(2)</a> <a href="#ref-for-nodeiterator⑤">(3)</a> <a href="#ref-for-nodeiterator⑥">(4)</a>
     <li><a href="#ref-for-nodeiterator⑦">6.1. Interface NodeIterator</a> <a href="#ref-for-nodeiterator⑧">(2)</a> <a href="#ref-for-nodeiterator⑨">(3)</a> <a href="#ref-for-nodeiterator①⓪">(4)</a> <a href="#ref-for-nodeiterator①①">(5)</a> <a href="#ref-for-nodeiterator①②">(6)</a> <a href="#ref-for-nodeiterator①③">(7)</a> <a href="#ref-for-nodeiterator①④">(8)</a>
@@ -19764,7 +19768,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="nodeiterator-pre-removing-steps">
    <b><a href="#nodeiterator-pre-removing-steps">#nodeiterator-pre-removing-steps</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nodeiterator-pre-removing-steps">4.2.3. 修改节点的算法</a>
+    <li><a href="#ref-for-nodeiterator-pre-removing-steps">4.2.3. 修改DOM结构的算法</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-nodeiterator-root">
