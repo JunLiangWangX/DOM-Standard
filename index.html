@@ -118,7 +118,7 @@ a[href].issue-return {
          </ol>
         <li><a href="#mutation-algorithms"><span class="secno">4.2.3</span> <span class="content">修改DOM结构的算法</span></a>
         <li><a href="#interface-nonelementparentnode"><span class="secno">4.2.4</span> <span class="content">混入(Mixin)：<code class="idl"><span>NonElementParentNode</span></code></span></a>
-        <li><a href="#mixin-documentorshadowroot"><span class="secno">4.2.5</span> <span class="content">Mixin <code class="idl"><span>DocumentOrShadowRoot</span></code></span></a>
+        <li><a href="#mixin-documentorshadowroot"><span class="secno">4.2.5</span> <span class="content">混入(Mixin)：<code class="idl"><span>DocumentOrShadowRoot</span></code></span></a>
         <li><a href="#interface-parentnode"><span class="secno">4.2.6</span> <span class="content">Mixin <code class="idl"><span>ParentNode</span></code></span></a>
         <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">Mixin <code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
         <li><a href="#interface-childnode"><span class="secno">4.2.8</span> <span class="content">Mixin <code class="idl"><span>ChildNode</span></code></span></a>
@@ -2715,14 +2715,13 @@ U除非另有说明，否则为空。 </p>
    </dl>
    <p><dfn class="dfn-paneled idl-code" data-dfn-for="NonElementParentNode" data-dfn-type="method" data-export id="dom-nonelementparentnode-getelementbyid"><code>getElementById(<var>elementId</var>)</code></dfn>方法
 返回<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⓪">this</a>的后代中第一个(按照<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order⑦">树的顺序</a>)<a data-link-type="dfn" href="#concept-id" id="ref-for-concept-id①">ID</a>为<var>elementId</var> 的<a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element①⑨">元素</a>;否则，如果没有匹配的<a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⓪">元素</a>，则返回null。 </p>
-   <h4 class="heading settled" data-level="4.2.5" id="mixin-documentorshadowroot"><span class="secno">4.2.5. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#documentorshadowroot" id="ref-for-documentorshadowroot">DocumentOrShadowRoot</a></code></span><a class="self-link" href="#mixin-documentorshadowroot"></a></h4>
+   <h4 class="heading settled" data-level="4.2.5" id="mixin-documentorshadowroot"><span class="secno">4.2.5. </span><span class="content">混入(Mixin)：<code class="idl"><a data-link-type="idl" href="#documentorshadowroot" id="ref-for-documentorshadowroot">DocumentOrShadowRoot</a></code></span><a class="self-link" href="#mixin-documentorshadowroot"></a></h4>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="documentorshadowroot"><code><c- g>DocumentOrShadowRoot</c-></code></dfn> {
 };
 <a data-link-type="idl-name" href="#document" id="ref-for-document⑤"><c- n>Document</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#documentorshadowroot" id="ref-for-documentorshadowroot①"><c- n>DocumentOrShadowRoot</c-></a>;
 <a data-link-type="idl-name" href="#shadowroot" id="ref-for-shadowroot②"><c- n>ShadowRoot</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#documentorshadowroot" id="ref-for-documentorshadowroot②"><c- n>DocumentOrShadowRoot</c-></a>;
 </pre>
-   <p class="note" role="note">The <code class="idl"><a data-link-type="idl" href="#documentorshadowroot" id="ref-for-documentorshadowroot③">DocumentOrShadowRoot</a></code> mixin is expected to be used by other
-standards that want to define APIs shared between <a data-link-type="dfn" href="#concept-document" id="ref-for-concept-document①⑥">documents</a> and <a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑥">shadow roots</a>. </p>
+   <p class="note" role="note"><code class="idl"><a data-link-type="idl" href="#documentorshadowroot" id="ref-for-documentorshadowroot③">DocumentOrShadowRoot</a></code>mixin预计会被其他想要定义<a data-link-type="dfn" href="#concept-document" id="ref-for-concept-document①⑥">documents</a>和<a data-link-type="dfn" href="#concept-shadow-root" id="ref-for-concept-shadow-root①⑥">shadow roots</a> 之间共享的API的标准使用。 </p>
    <h4 class="heading settled" data-level="4.2.6" id="interface-parentnode"><span class="secno">4.2.6. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#parentnode" id="ref-for-parentnode①">ParentNode</a></code></span><a class="self-link" href="#interface-parentnode"></a></h4>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="converting nodes into a node" id="converting-nodes-into-a-node">convert nodes into a node</dfn>, given <var>nodes</var> and <var>document</var>, run these steps: </p>
    <ol>
@@ -16778,7 +16777,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="documentorshadowroot">
    <b><a href="#documentorshadowroot">#documentorshadowroot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-documentorshadowroot">4.2.5. Mixin DocumentOrShadowRoot</a> <a href="#ref-for-documentorshadowroot①">(2)</a> <a href="#ref-for-documentorshadowroot②">(3)</a> <a href="#ref-for-documentorshadowroot③">(4)</a>
+    <li><a href="#ref-for-documentorshadowroot">4.2.5. 混入(Mixin)：DocumentOrShadowRoot</a> <a href="#ref-for-documentorshadowroot①">(2)</a> <a href="#ref-for-documentorshadowroot②">(3)</a> <a href="#ref-for-documentorshadowroot③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="converting-nodes-into-a-node">
@@ -17664,7 +17663,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-document">4.2. Node tree：节点树</a> <a href="#ref-for-document①">(2)</a>
     <li><a href="#ref-for-document②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-document③">(2)</a>
     <li><a href="#ref-for-document④">4.2.4. 混入(Mixin)：NonElementParentNode</a>
-    <li><a href="#ref-for-document⑤">4.2.5. Mixin DocumentOrShadowRoot</a>
+    <li><a href="#ref-for-document⑤">4.2.5. 混入(Mixin)：DocumentOrShadowRoot</a>
     <li><a href="#ref-for-document⑥">4.2.6. Mixin ParentNode</a>
     <li><a href="#ref-for-document⑦">4.4. Interface Node</a> <a href="#ref-for-document⑧">(2)</a> <a href="#ref-for-document⑨">(3)</a> <a href="#ref-for-document①⓪">(4)</a> <a href="#ref-for-document①①">(5)</a> <a href="#ref-for-document①②">(6)</a> <a href="#ref-for-document①③">(7)</a> <a href="#ref-for-document①④">(8)</a>
     <li><a href="#ref-for-document①⑤">4.5. Interface Document</a> <a href="#ref-for-document①⑥">(2)</a> <a href="#ref-for-document①⑦">(3)</a> <a href="#ref-for-document①⑧">(4)</a>
@@ -17706,7 +17705,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-document⑤">4.2.1. Document tree：文档树</a> <a href="#ref-for-concept-document⑥">(2)</a> <a href="#ref-for-concept-document⑦">(3)</a> <a href="#ref-for-concept-document⑧">(4)</a>
     <li><a href="#ref-for-concept-document⑨">4.2.2. Shadow tree：影子树</a>
     <li><a href="#ref-for-concept-document①⓪">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-document①①">(2)</a> <a href="#ref-for-concept-document①②">(3)</a> <a href="#ref-for-concept-document①③">(4)</a> <a href="#ref-for-concept-document①④">(5)</a> <a href="#ref-for-concept-document①⑤">(6)</a>
-    <li><a href="#ref-for-concept-document①⑥">4.2.5. Mixin DocumentOrShadowRoot</a>
+    <li><a href="#ref-for-concept-document①⑥">4.2.5. 混入(Mixin)：DocumentOrShadowRoot</a>
     <li><a href="#ref-for-concept-document①⑦">4.4. Interface Node</a> <a href="#ref-for-concept-document①⑧">(2)</a> <a href="#ref-for-concept-document①⑨">(3)</a> <a href="#ref-for-concept-document②⓪">(4)</a> <a href="#ref-for-concept-document②①">(5)</a> <a href="#ref-for-concept-document②②">(6)</a>
     <li><a href="#ref-for-concept-document②③">4.5. Interface Document</a> <a href="#ref-for-concept-document②④">(2)</a> <a href="#ref-for-concept-document②⑤">(3)</a> <a href="#ref-for-concept-document②⑥">(4)</a> <a href="#ref-for-concept-document②⑦">(5)</a> <a href="#ref-for-concept-document②⑧">(6)</a> <a href="#ref-for-concept-document②⑨">(7)</a> <a href="#ref-for-concept-document③⓪">(8)</a> <a href="#ref-for-concept-document③①">(9)</a> <a href="#ref-for-concept-document③②">(10)</a> <a href="#ref-for-concept-document③③">(11)</a> <a href="#ref-for-concept-document③④">(12)</a> <a href="#ref-for-concept-document③⑤">(13)</a> <a href="#ref-for-concept-document③⑥">(14)</a> <a href="#ref-for-concept-document③⑦">(15)</a> <a href="#ref-for-concept-document③⑧">(16)</a> <a href="#ref-for-concept-document③⑨">(17)</a>
     <li><a href="#ref-for-concept-document④⓪">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-concept-document④①">(2)</a> <a href="#ref-for-concept-document④②">(3)</a> <a href="#ref-for-concept-document④③">(4)</a> <a href="#ref-for-concept-document④④">(5)</a> <a href="#ref-for-concept-document④⑤">(6)</a> <a href="#ref-for-concept-document④⑥">(7)</a>
@@ -18136,7 +18135,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-shadowroot">2.2. Event接口</a>
     <li><a href="#ref-for-shadowroot①">4.2. Node tree：节点树</a>
-    <li><a href="#ref-for-shadowroot②">4.2.5. Mixin DocumentOrShadowRoot</a>
+    <li><a href="#ref-for-shadowroot②">4.2.5. 混入(Mixin)：DocumentOrShadowRoot</a>
     <li><a href="#ref-for-shadowroot③">4.8. Interface ShadowRoot</a> <a href="#ref-for-shadowroot④">(2)</a>
     <li><a href="#ref-for-shadowroot⑤">4.9. Interface Element</a> <a href="#ref-for-shadowroot⑥">(2)</a>
    </ul>
@@ -18164,7 +18163,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-shadow-root⑥">4.2.2. Shadow tree：影子树</a> <a href="#ref-for-concept-shadow-root⑦">(2)</a> <a href="#ref-for-concept-shadow-root⑧">(3)</a> <a href="#ref-for-concept-shadow-root⑨">(4)</a>
     <li><a href="#ref-for-concept-shadow-root①⓪">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-shadow-root①①">(2)</a> <a href="#ref-for-concept-shadow-root①②">(3)</a>
     <li><a href="#ref-for-concept-shadow-root①③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-shadow-root①④">(2)</a> <a href="#ref-for-concept-shadow-root①⑤">(3)</a>
-    <li><a href="#ref-for-concept-shadow-root①⑥">4.2.5. Mixin DocumentOrShadowRoot</a>
+    <li><a href="#ref-for-concept-shadow-root①⑥">4.2.5. 混入(Mixin)：DocumentOrShadowRoot</a>
     <li><a href="#ref-for-concept-shadow-root①⑦">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-shadow-root①⑧">4.5. Interface Document</a> <a href="#ref-for-concept-shadow-root①⑨">(2)</a> <a href="#ref-for-concept-shadow-root②⓪">(3)</a> <a href="#ref-for-concept-shadow-root②①">(4)</a>
     <li><a href="#ref-for-concept-shadow-root②②">4.7. Interface DocumentFragment</a>
