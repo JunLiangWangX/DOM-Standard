@@ -2568,7 +2568,7 @@ U除非另有说明，否则为空。
   </ol>
  </li>
 
- <li><p>对于<var>parent</var>的每一个<a for=tree lt="inclusive ancestor">包含它的祖先</a>(inclusiveAncestor)，以及
+ <li><p>对于<var>parent</var>的每一个<a for=tree lt="inclusive ancestor">包含它的祖先</a>(<var>inclusiveAncestor</var>)，以及
  对于<var>inclusiveAncestor</var>的<a lt="registered observer list">已注册观察者列表</a>中每一个已注册的观察者(registered)，
  如果<var>registered</var>的<a for="registered observer">options</a>["{{MutationObserverInit/subtree}}"]为true，则
  在<var>node</var>的<a lt="registered observer list">已注册观察者列表</a>中<a for=list lt="append">添加</a>一个新的
@@ -2583,10 +2583,10 @@ U除非另有说明，否则为空。
 </ol>
 
 
-<h4 id=interface-nonelementparentnode>Mixin {{NonElementParentNode}}</h4>
+<h4 id=interface-nonelementparentnode>混入(Mixin)：{{NonElementParentNode}}</h4>
 
-<p class=note>Web compatibility prevents the {{NonElementParentNode/getElementById()}}
-method from being exposed on <a for=/>elements</a> (and therefore on {{ParentNode}}).
+<p class=note>由于网页兼容性的原因，{{NonElementParentNode/getElementById()}}方法不能在DOM<a for=/ lt="elements">元素</a>上直接被调用。
+这也是为什么在{{ParentNode}}上没有暴露{{NonElementParentNode/getElementById()}}方法的原因。
 
 <pre class=idl>
 interface mixin NonElementParentNode {
@@ -2598,14 +2598,12 @@ DocumentFragment includes NonElementParentNode;
 
 <dl class=domintro>
  <dt><code><var>node</var> . <a method for=NonElementParentNode lt="getElementById()">getElementById</a>(<var>elementId</var>)</code>
- <dd><p>Returns the first <a for=/>element</a> within <var>node</var>'s <a>descendants</a> whose
- <a for=Element>ID</a> is <var>elementId</var>.
+ <dd><p>返回<var>node</var>的<a lt="descendants">后代</a>中第一个<a for=Element>ID</a>为<var>elementId</var>的<a for=/ lt="element">元素</a>。
 </dl>
 
-<p>The <dfn method for=NonElementParentNode><code>getElementById(<var>elementId</var>)</code></dfn>
-method steps are to return the first <a for=/>element</a>, in <a>tree order</a>, within
-<a>this</a>'s <a>descendants</a>, whose <a for=Element>ID</a> is <var>elementId</var>; otherwise, if
-there is no such <a for=/>element</a>, null.
+<p><dfn method for=NonElementParentNode><code>getElementById(<var>elementId</var>)</code></dfn>方法
+返回<a>this</a>的后代中第一个(按照<a lt="tree order">树的顺序</a>)<a for=Element>ID</a>为<var>elementId</var>
+的<a for=/ lt="element">元素</a>;否则，如果没有匹配的<a for=/ lt="element">元素</a>，则返回null。
 
 
 <h4 id=mixin-documentorshadowroot>Mixin {{DocumentOrShadowRoot}}</h4>
