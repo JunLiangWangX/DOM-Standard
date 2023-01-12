@@ -2606,7 +2606,7 @@ DocumentFragment includes NonElementParentNode;
 的<a for=/ lt="element">元素</a>;否则，如果没有匹配的<a for=/ lt="element">元素</a>，则返回null。
 
 
-<h4 id=mixin-documentorshadowroot>Mixin {{DocumentOrShadowRoot}}</h4>
+<h4 id=mixin-documentorshadowroot>混入(Mixin)：{{DocumentOrShadowRoot}}</h4>
 
 <pre class=idl>
 interface mixin DocumentOrShadowRoot {
@@ -2615,9 +2615,8 @@ Document includes DocumentOrShadowRoot;
 ShadowRoot includes DocumentOrShadowRoot;
 </pre>
 
-<p class=note>The {{DocumentOrShadowRoot}} mixin is expected to be used by other
-standards that want to define APIs shared between <a for=/>documents</a> and
-<a for=/>shadow roots</a>.
+<p class=note>{{DocumentOrShadowRoot}}mixin预计会被其他想要定义<a for=/>documents</a>和<a for=/>shadow roots</a>
+之间共享的API的标准使用。
 
 
 <h4 id=interface-parentnode>Mixin {{ParentNode}}</h4>
