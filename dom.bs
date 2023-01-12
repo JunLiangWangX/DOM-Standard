@@ -2619,13 +2619,13 @@ ShadowRoot includes DocumentOrShadowRoot;
 之间共享的API的标准使用。
 
 
-<h4 id=interface-parentnode>Mixin {{ParentNode}}</h4>
+<h4 id=interface-parentnode>混入(Mixin)：{{ParentNode}}</h4>
 
-<p>To <dfn export lt="converting nodes into a node">convert nodes into a node</dfn>, given
-<var>nodes</var> and <var>document</var>, run these steps:
+<p>给定参数<var>nodes</var>以及<var>document</var>，<dfn export lt="converting nodes into a node" lt="convert nodes into a node">转换nodes为node</dfn>，
+请运行以下步骤：
 
 <ol>
- <li><p>Let <var>node</var> be null.
+ <li><p>设<var>node</var>为null。
 
  <li><p>Replace each string in <var>nodes</var> with a new {{Text}} <a for=/>node</a> whose
  <a for=CharacterData>data</a> is the string and <a for=Node>node document</a> is
