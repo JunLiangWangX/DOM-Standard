@@ -2008,7 +2008,7 @@ https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0D
 
    <li><p>否则，设<var>element</var>的<a for=slot>name</a>为<var>value</var>。
 
-   <li><p>使用<var>element</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
+   <li><p>使用<var>element</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配可插槽元素</a>。
   </ol>
 </ol>
 
@@ -2192,7 +2192,7 @@ U除非另有说明，否则为空。
 </ol>
 
 
-<h4 id=mutation-algorithms>修改节点的算法</h4>
+<h4 id=mutation-algorithms>修改DOM结构的算法</h4>
 
 <p>要确保节点在子节点之前插入父节点的<dfn export for=Node id=concept-node-ensure-pre-insertion-validity lt="ensure pre-insertion validity">预插入有效性</dfn>
 ，请运行以下步骤：
@@ -2338,7 +2338,7 @@ U除非另有说明，否则为空。
 
       <ol>
        <li><p>如果<var>inclusiveDescendant</var>是一个<a for=Element lt="custom">自定义元素</a>，
-       则将名为"<code>connectedCallback</code>"的回调函数添加到队列中，等待执行(当元素被添加到DOM上
+       则将名为"<code>connectedCallback</code>"的回调函数<a lt="enqueue a custom element callback reaction">添加到队列</a>中，等待执行(当元素被添加到DOM上
        的时候触发)，该回调函数不接受任何参数。
 
        <li>
@@ -2538,52 +2538,48 @@ U除非另有说明，否则为空。
   <p>如果<var>node</var>有一个<a lt="inclusive descendant">包容性后代</a>为<a lt="slot">插槽</a>，则：
 
   <ol>
-   <li><p>使用<var>parent</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
+   <li><p>使用<var>parent</var>的<a for=tree>root</a>运行<a lt="assign slottables for a tree">为树分配可插槽元素</a>。
 
-   <li><p>使用<var>node</var>运行<a lt="assign slottables for a tree">为树分配槽表</a>。
+   <li><p>使用<var>node</var>运行<a lt="assign slottables for a tree">为树分配可插槽元素</a>。
   </ol>
 
- <li><p>Run the <a>removing steps</a> with <var>node</var> and <var>parent</var>.
+ <li><p>使用<var>node</var>以及<var>parent</var>运行<a lt="removing steps">删除步骤</a>。
 
- <li><p>Let <var>isParentConnected</var> be <var>parent</var>'s <a>connected</a>.
-
- <li>
-  <p>If <var>node</var> is <a for=Element>custom</a> and <var>isParentConnected</var> is true, then
-  <a>enqueue a custom element callback reaction</a> with <var>node</var>, callback name
-  "<code>disconnectedCallback</code>", and an empty argument list.
-
-  <p class=note>It is intentional for now that <a for=Element>custom</a> <a for=/>elements</a> do
-  not get <var>parent</var> passed. This might change in the future if there is a need.
+ <li><p>设<var>isParentConnected</var>为<var>parent</var>的<a>connected</a>。
 
  <li>
-  <p>For each <a>shadow-including descendant</a> <var>descendant</var> of <var>node</var>, in
-  <a>shadow-including tree order</a>, then:
+  <p>如果<var>node</var>为<a for=Element lt="custom">自定义元素</a>并且<var>isParentConnected</var>为true，则
+  将名为"<code>disconnectedCallback</code>"的回调函数<a lt="enqueue a custom element callback reaction">添加到队列</a>中，
+  等待执行(当元素在DOM上被移除的时候触发)，该回调函数不接受任何参数。
+
+  <p class=note>当前<a for=Element lt="custom">自定义</a><a for=/ lt="elements">元素</a>不会传递父元素这是有意为之的。
+  但是在未来，如果有需要的话，可能会改变这个行为。
+
+ <li>
+  <p>使用<a lt="shadow-including tree order">已连接的shadow tree的顺序</a>，遍历<var>node</var>
+  中<a lt="shadow-including descendant">已连接的Shadow DOM的后代元素</a>，则：
 
   <ol>
-   <li><p>Run the <a>removing steps</a> with <var>descendant</var>.
+   <li><p>使用<var>descendant</var>运行<a lt="removing steps">删除步骤</a>。
 
-   <li><p>If <var>descendant</var> is <a for=Element>custom</a> and <var>isParentConnected</var>
-   is true, then <a>enqueue a custom element callback reaction</a> with <var>descendant</var>,
-   callback name "<code>disconnectedCallback</code>", and an empty argument list.
+   <li><p>如果<var>descendant</var>为<a for=Element lt="custom">自定义元素</a>并且<var>isParentConnected</var>为true，
+   则将名为"<code>disconnectedCallback</code>"的回调函数<a lt="enqueue a custom element callback reaction">添加到队列</a>中，
+   等待执行(当元素在DOM上被移除的时候触发)，该回调函数不接受任何参数。
   </ol>
  </li>
 
- <li><p>For each <a for=tree>inclusive ancestor</a> <var>inclusiveAncestor</var> of
- <var>parent</var>, and then <a for=list>for each</a> <var>registered</var> of
- <var>inclusiveAncestor</var>'s <a>registered observer list</a>, if <var>registered</var>'s
- <a for="registered observer">options</a>["{{MutationObserverInit/subtree}}"] is true, then
- <a for=list>append</a> a new <a>transient registered observer</a> whose
- <a for="registered observer">observer</a> is <var>registered</var>'s
- <a for="registered observer">observer</a>, <a for="registered observer">options</a> is
- <var>registered</var>'s <a for="registered observer">options</a>, and
- <a for="transient registered observer">source</a> is <var>registered</var> to <var>node</var>'s
- <a>registered observer list</a>.
+ <li><p>对于<var>parent</var>的每一个<a for=tree lt="inclusive ancestor">包含它的祖先</a>(inclusiveAncestor)，以及
+ 对于<var>inclusiveAncestor</var>的<a lt="registered observer list">已注册观察者列表</a>中每一个已注册的观察者(registered)，
+ 如果<var>registered</var>的<a for="registered observer">options</a>["{{MutationObserverInit/subtree}}"]为true，则
+ 在<var>node</var>的<a lt="registered observer list">已注册观察者列表</a>中<a for=list lt="append">添加</a>一个新的
+ <a lt="transient registered observer">临时观察者</a>，该观察者的<a for="registered observer">observer</a>是<var>registered</var>
+ 的<a for="registered observer">observer</a>，<a for="registered observer">options</a>是<var>registered</var>的
+ <a for="registered observer">options</a>，<a for="transient registered observer">source</a>是<var>registered</var>。
 
- <li><p>If <i>suppress observers flag</i> is unset, then <a>queue a tree mutation record</a> for
- <var>parent</var> with « », « <var>node</var> », <var>oldPreviousSibling</var>, and
- <var>oldNextSibling</var>.
+ <li><p>如果<i>suppress observers flag</i>没被设置，则给定参数« »、« <var>node</var> »、 <var>oldPreviousSibling</var>
+ 以及<var>oldNextSibling</var>，为<var>parent</var><a lt="queue a tree mutation record">将树结构变更的记录添加到队列中</a>。
 
- <li><p>Run the <a>children changed steps</a> for <var>parent</var>.
+ <li><p>为<var>parent</var>运行<a lt="children changed steps">子节点更改步骤</a>。
 </ol>
 
 
