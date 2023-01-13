@@ -2627,18 +2627,16 @@ ShadowRoot includes DocumentOrShadowRoot;
 <ol>
  <li><p>设<var>node</var>为null。
 
- <li><p>Replace each string in <var>nodes</var> with a new {{Text}} <a for=/>node</a> whose
- <a for=CharacterData>data</a> is the string and <a for=Node>node document</a> is
- <var>document</var>.
+ <li><p>使用新的{{Text}}<a for=/ lt="node">节点</a>替换每个<a for=CharacterData>data</a>为字符串并且
+ <a for=Node lt="node document">节点文档</a>为<var>document</var>的<var>nodes</var>中的字符串。
 
- <li><p>If <var>nodes</var> contains one <a for=/>node</a>, then set <var>node</var> to
- <var>nodes</var>[0].
+ <li><p>如果<var>nodes</var>包含一个<a for=/ lt="node">节点</a>，则设<var>node</var>为<var>nodes</var>[0]。
 
- <li><p>Otherwise, set <var>node</var> to a new {{DocumentFragment}} <a for=/>node</a> whose
- <a for=Node>node document</a> is <var>document</var>, and then <a>append</a> each <a for=/>node</a>
- in <var>nodes</var>, if any, to it.
+ <li><p>否则，设<var>node</var>为新的<a for=Node lt="node document">节点文档</a>为<var>document</var>的
+ {{DocumentFragment}}<a for=/ lt="node">节点</a>，并且<a lt="append">添加</a>每个<a for=/ lt="node">节点</a>
+ (如果有)到<var>nodes</var>中。
 
- <li><p>Return <var>node</var>.
+ <li><p>返回<var>node</var>.
 </ol>
 
 <pre class=idl>
@@ -2662,54 +2660,47 @@ Element includes ParentNode;
 
 <dl class=domintro>
  <dt><code><var>collection</var> = <var>node</var> . {{ParentNode/children}}</code>
- <dd>Returns the <a for=tree>child</a> <a for=/>elements</a>.
+ <dd>返回<a for=tree lt="child">子</a> <a for=/ lt="elements">元素</a>。
 
  <dt><code><var>element</var> = <var>node</var> . {{ParentNode/firstElementChild}}</code>
- <dd>Returns the first <a for=tree>child</a> that is an <a for=/>element</a>; otherwise null.
+ <dd>返回第一个<a for=tree lt="child">子</a> <a for=/ lt="elements">元素</a>；如果没有则返回null。
 
  <dt><code><var>element</var> = <var>node</var> . {{ParentNode/lastElementChild}}</code>
- <dd>Returns the last <a for=tree>child</a> that is an <a for=/>element</a>; otherwise null.
+ <dd>返回最后一个<a for=tree lt="child">子</a> <a for=/ lt="elements">元素</a>；如果没有则返回null。
 
  <!-- childElementCount is redundant -->
 
  <dt><code><var>node</var> . <a method for=ParentNode lt="prepend()">prepend</a>(<var>nodes</var>)</code>
  <dd>
-  <p>Inserts <var>nodes</var> before the <a for=tree>first child</a> of <var>node</var>, while
-  replacing strings in <var>nodes</var> with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>在<a for=tree lt="first child">第一个子节点</a>之前插入节点，同时用等效的{{Text}}节点替换节点中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}
+  (层次结构请求错误)"的{{DOMException}}(DOM异常)。
   <!-- "NotFoundError" is impossible -->
 
  <dt><code><var>node</var> . <a method for=ParentNode lt="append()">append</a>(<var>nodes</var>)</code>
  <dd>
-  <p>Inserts <var>nodes</var> after the <a>last child</a> of <var>node</var>, while replacing
-  strings in <var>nodes</var> with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>在<a for=tree lt="last child">最后一个子节点</a>之后插入节点，同时用等效的{{Text}}节点替换节点中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}
+  (层次结构请求错误)"的{{DOMException}}(DOM异常)。
   <!-- "NotFoundError" is impossible -->
 
  <dt><code><var>node</var> . <a method for=ParentNode lt="replaceChildren()">replaceChildren</a>(<var>nodes</var>)</code>
  <dd>
-  <p>Replace all <a for=tree>children</a> of <var>node</var> with <var>nodes</var>,
-  while replacing strings in <var>nodes</var> with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>使用<var>nodes</var>替换所有的<a for=tree lt="children">子节点</a>，同时用等效的{{Text}}节点替换节点中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}
+  (层次结构请求错误)"的{{DOMException}}(DOM异常)。
   <!-- "NotFoundError" is impossible -->
 
  <dt><code><var>node</var> . <a method for=ParentNode lt="querySelector()">querySelector</a>(<var>selectors</var>)</code>
  <dd>
-  Returns the first <a for=/>element</a> that is a
-  <a>descendant</a> of <var>node</var> that
-  matches <var>selectors</var>.
+  返回节点<a lt="descendant">后代</a>中匹配<var>selectors</var>的第一个<a for=/ lt="element">元素</a>。
 
  <dt><code><var>node</var> . <a method for=ParentNode lt="querySelectorAll()">querySelectorAll</a>(<var>selectors</var>)</code>
  <dd>
-  Returns all <a for=/>element</a>
-  <a>descendants</a> of <var>node</var> that
-  match <var>selectors</var>.
+  返回节点<a lt="descendant">后代</a>中匹配<var>selectors</var>的所有<a for=/ lt="element">元素</a>。
 </dl>
 
 <p>The <dfn attribute for=ParentNode><code>children</code></dfn> getter steps are to return an
