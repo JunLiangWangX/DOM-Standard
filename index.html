@@ -120,7 +120,7 @@ a[href].issue-return {
         <li><a href="#interface-nonelementparentnode"><span class="secno">4.2.4</span> <span class="content">混入(Mixin)：<code class="idl"><span>NonElementParentNode</span></code></span></a>
         <li><a href="#mixin-documentorshadowroot"><span class="secno">4.2.5</span> <span class="content">混入(Mixin)：<code class="idl"><span>DocumentOrShadowRoot</span></code></span></a>
         <li><a href="#interface-parentnode"><span class="secno">4.2.6</span> <span class="content">混入(Mixin)：<code class="idl"><span>ParentNode</span></code></span></a>
-        <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">Mixin <code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
+        <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">混入(Mixin)： <code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
         <li><a href="#interface-childnode"><span class="secno">4.2.8</span> <span class="content">Mixin <code class="idl"><span>ChildNode</span></code></span></a>
         <li><a href="#mixin-slotable"><span class="secno">4.2.9</span> <span class="content">Mixin <code class="idl"><span>Slottable</span></code></span></a>
         <li>
@@ -3196,8 +3196,8 @@ U除非另有说明，否则为空。 </p>
 不为空列表则返回的第一个结果，否则则返回null。 </p>
    <p><dfn class="dfn-paneled idl-code" data-dfn-for="ParentNode" data-dfn-type="method" data-export id="dom-parentnode-queryselectorall"><code>querySelectorAll(<var>selectors</var>)</code></dfn>方法将返回
 针对<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④②">this</a><a data-link-type="dfn" href="#scope-match-a-selectors-string" id="ref-for-scope-match-a-selectors-string①">匹配给定的字符串选择器</a>的结果。 </p>
-   <h4 class="heading settled" data-level="4.2.7" id="interface-nondocumenttypechildnode"><span class="secno">4.2.7. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#nondocumenttypechildnode" id="ref-for-nondocumenttypechildnode">NonDocumentTypeChildNode</a></code></span><a class="self-link" href="#interface-nondocumenttypechildnode"></a></h4>
-   <p class="note" role="note">Web compatibility prevents the <code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling">previousElementSibling</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-nextelementsibling" id="ref-for-dom-nondocumenttypechildnode-nextelementsibling">nextElementSibling</a></code> attributes from being exposed on <a data-link-type="dfn" href="#concept-doctype" id="ref-for-concept-doctype①①">doctypes</a> (and therefore on <code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode">ChildNode</a></code>). </p>
+   <h4 class="heading settled" data-level="4.2.7" id="interface-nondocumenttypechildnode"><span class="secno">4.2.7. </span><span class="content">混入(Mixin)： <code class="idl"><a data-link-type="idl" href="#nondocumenttypechildnode" id="ref-for-nondocumenttypechildnode">NonDocumentTypeChildNode</a></code></span><a class="self-link" href="#interface-nondocumenttypechildnode"></a></h4>
+   <p class="note" role="note">由于考虑到Web兼容性问题，因此<code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling">previousElementSibling</a></code>和<code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-nextelementsibling" id="ref-for-dom-nondocumenttypechildnode-nextelementsibling">nextElementSibling</a></code>属性并没有暴露在 <a data-link-type="dfn" href="#concept-doctype" id="ref-for-concept-doctype①①">doctypes</a>上，而是暴露在<code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode">ChildNode</a></code>上。 </p>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="nondocumenttypechildnode"><code><c- g>NonDocumentTypeChildNode</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#element" id="ref-for-element②①"><c- n>Element</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Element?" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling①"><c- g>previousElementSibling</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#element" id="ref-for-element②②"><c- n>Element</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Element?" href="#dom-nondocumenttypechildnode-nextelementsibling" id="ref-for-dom-nondocumenttypechildnode-nextelementsibling①"><c- g>nextElementSibling</c-></a>;
@@ -3237,8 +3237,8 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>element</var> = <var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling②">previousElementSibling</a></code></code> 
-    <dd>Returns the first <a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑤">preceding</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑥">sibling</a> that is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑦">element</a>;
- otherwise null. 
+    <dd>返回<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑤">前一个</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑥">兄弟</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑦">元素</a>；
+ 没有则返回null。 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3270,13 +3270,15 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>element</var> = <var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-nextelementsibling" id="ref-for-dom-nondocumenttypechildnode-nextelementsibling②">nextElementSibling</a></code></code> 
-    <dd>Returns the first <a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following④">following</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑦">sibling</a> that is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑧">element</a>;
- otherwise null. 
+    <dd>返回<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following④">后一个</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑦">兄弟</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑧">元素</a>；
+ 没有则返回null。 
    </dl>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NonDocumentTypeChildNode" data-dfn-type="attribute" data-export id="dom-nondocumenttypechildnode-previouselementsibling"><code>previousElementSibling</code></dfn> getter
-steps are to return the first <a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑥">preceding</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑧">sibling</a> that is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑨">element</a>; otherwise null. </p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NonDocumentTypeChildNode" data-dfn-type="attribute" data-export id="dom-nondocumenttypechildnode-nextelementsibling"><code>nextElementSibling</code></dfn> getter
-steps are to return the first <a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑤">following</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑨">sibling</a> that is an <a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element③⓪">element</a>; otherwise null. </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="NonDocumentTypeChildNode" data-dfn-type="attribute" data-export id="dom-nondocumenttypechildnode-previouselementsibling"><code>previousElementSibling</code></dfn> getter方法将
+返回<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑥">前一个</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑧">兄弟</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element②⑨">元素</a>；
+没有则返回null。 </p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NonDocumentTypeChildNode" data-dfn-type="attribute" data-export id="dom-nondocumenttypechildnode-nextelementsibling"><code>nextElementSibling</code></dfn> getter方法将
+返回<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑤">后一个</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑨">兄弟</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element③⓪">元素</a>；
+没有则返回null。 </p>
    <h4 class="heading settled" data-level="4.2.8" id="interface-childnode"><span class="secno">4.2.8. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode①">ChildNode</a></code></span><a class="self-link" href="#interface-childnode"></a></h4>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="childnode"><code><c- g>ChildNode</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions" id="ref-for-cereactions③"><c- g>CEReactions</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Unscopable" id="ref-for-Unscopable③"><c- g>Unscopable</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①④"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-childnode-before" id="ref-for-dom-childnode-before"><c- g>before</c-></a>((<a data-link-type="idl-name" href="#node" id="ref-for-node⑥"><c- n>Node</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a>)... <dfn class="idl-code" data-dfn-for="ChildNode/before(...nodes), ChildNode/before()" data-dfn-type="argument" data-export id="dom-childnode-before-nodes-nodes"><code><c- g>nodes</c-></code><a class="self-link" href="#dom-childnode-before-nodes-nodes"></a></dfn>);
@@ -15531,7 +15533,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-sibling">#concept-tree-sibling</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-sibling">1.1. Trees：树</a> <a href="#ref-for-concept-tree-sibling①">(2)</a> <a href="#ref-for-concept-tree-sibling②">(3)</a> <a href="#ref-for-concept-tree-sibling③">(4)</a> <a href="#ref-for-concept-tree-sibling④">(5)</a> <a href="#ref-for-concept-tree-sibling⑤">(6)</a>
-    <li><a href="#ref-for-concept-tree-sibling⑥">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-sibling⑨">(4)</a>
+    <li><a href="#ref-for-concept-tree-sibling⑥">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-sibling⑨">(4)</a>
     <li><a href="#ref-for-concept-tree-sibling①⓪">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-sibling①①">(2)</a> <a href="#ref-for-concept-tree-sibling①②">(3)</a>
     <li><a href="#ref-for-concept-tree-sibling①③">4.11. Interface Text</a>
     <li><a href="#ref-for-concept-tree-sibling①④">5.5. Interface Range</a> <a href="#ref-for-concept-tree-sibling①⑤">(2)</a>
@@ -15542,7 +15544,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-tree-preceding">1.1. Trees：树</a> <a href="#ref-for-concept-tree-preceding①">(2)</a> <a href="#ref-for-concept-tree-preceding②">(3)</a>
     <li><a href="#ref-for-concept-tree-preceding③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-preceding④">(2)</a>
-    <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
+    <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-preceding⑦">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-concept-tree-preceding⑧">4.4. Interface Node</a> <a href="#ref-for-concept-tree-preceding⑨">(2)</a> <a href="#ref-for-concept-tree-preceding①⓪">(3)</a>
     <li><a href="#ref-for-concept-tree-preceding①①">5.5. Interface Range</a>
@@ -15554,7 +15556,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-tree-following">1.1. Trees：树</a> <a href="#ref-for-concept-tree-following①">(2)</a>
     <li><a href="#ref-for-concept-tree-following②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-following③">(2)</a>
-    <li><a href="#ref-for-concept-tree-following④">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑤">(2)</a>
+    <li><a href="#ref-for-concept-tree-following④">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑤">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑥">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-following⑦">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑧">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-tree-following⑨">5.2. Boundary points</a>
@@ -16840,25 +16842,25 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="nondocumenttypechildnode">
    <b><a href="#nondocumenttypechildnode">#nondocumenttypechildnode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nondocumenttypechildnode">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-nondocumenttypechildnode①">(2)</a> <a href="#ref-for-nondocumenttypechildnode②">(3)</a>
+    <li><a href="#ref-for-nondocumenttypechildnode">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-nondocumenttypechildnode①">(2)</a> <a href="#ref-for-nondocumenttypechildnode②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-nondocumenttypechildnode-previouselementsibling">
    <b><a href="#dom-nondocumenttypechildnode-previouselementsibling">#dom-nondocumenttypechildnode-previouselementsibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling②">(3)</a>
+    <li><a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-nondocumenttypechildnode-nextelementsibling">
    <b><a href="#dom-nondocumenttypechildnode-nextelementsibling">#dom-nondocumenttypechildnode-nextelementsibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling②">(3)</a>
+    <li><a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="childnode">
    <b><a href="#childnode">#childnode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-childnode">4.2.7. Mixin NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-childnode">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-childnode①">4.2.8. Mixin ChildNode</a> <a href="#ref-for-childnode②">(2)</a> <a href="#ref-for-childnode③">(3)</a> <a href="#ref-for-childnode④">(4)</a>
    </ul>
   </aside>
@@ -18025,7 +18027,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-doctype">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-doctype①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-doctype②">(2)</a> <a href="#ref-for-concept-doctype③">(3)</a> <a href="#ref-for-concept-doctype④">(4)</a> <a href="#ref-for-concept-doctype⑤">(5)</a> <a href="#ref-for-concept-doctype⑥">(6)</a> <a href="#ref-for-concept-doctype⑦">(7)</a> <a href="#ref-for-concept-doctype⑧">(8)</a> <a href="#ref-for-concept-doctype⑨">(9)</a> <a href="#ref-for-concept-doctype①⓪">(10)</a>
-    <li><a href="#ref-for-concept-doctype①①">4.2.7. Mixin NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-concept-doctype①①">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-concept-doctype①②">4.5. Interface Document</a> <a href="#ref-for-concept-doctype①③">(2)</a>
     <li><a href="#ref-for-concept-doctype①④">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-concept-doctype①⑤">(2)</a> <a href="#ref-for-concept-doctype①⑥">(3)</a> <a href="#ref-for-concept-doctype①⑦">(4)</a>
     <li><a href="#ref-for-concept-doctype①⑧">4.6. Interface DocumentType</a> <a href="#ref-for-concept-doctype①⑨">(2)</a> <a href="#ref-for-concept-doctype②⓪">(3)</a>
@@ -18279,7 +18281,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-element①⓪">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-element①①">(2)</a> <a href="#ref-for-element①②">(3)</a> <a href="#ref-for-element①③">(4)</a> <a href="#ref-for-element①④">(5)</a> <a href="#ref-for-element①⑤">(6)</a>
     <li><a href="#ref-for-element①⑥">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-element①⑦">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-element①⑧">(2)</a> <a href="#ref-for-element①⑨">(3)</a> <a href="#ref-for-element②⓪">(4)</a>
-    <li><a href="#ref-for-element②①">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
+    <li><a href="#ref-for-element②①">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
     <li><a href="#ref-for-element②④">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-element②⑤">4.2.9. Mixin Slottable</a>
     <li><a href="#ref-for-element②⑥">4.2.10.2. Interface HTMLCollection</a> <a href="#ref-for-element②⑦">(2)</a>
@@ -18325,7 +18327,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-element⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-element⑥">(2)</a> <a href="#ref-for-concept-element⑦">(3)</a> <a href="#ref-for-concept-element⑧">(4)</a> <a href="#ref-for-concept-element⑨">(5)</a> <a href="#ref-for-concept-element①⓪">(6)</a> <a href="#ref-for-concept-element①①">(7)</a> <a href="#ref-for-concept-element①②">(8)</a> <a href="#ref-for-concept-element①③">(9)</a> <a href="#ref-for-concept-element①④">(10)</a> <a href="#ref-for-concept-element①⑤">(11)</a> <a href="#ref-for-concept-element①⑥">(12)</a>
     <li><a href="#ref-for-concept-element①⑦">4.2.4. 混入(Mixin)：NonElementParentNode</a> <a href="#ref-for-concept-element①⑧">(2)</a> <a href="#ref-for-concept-element①⑨">(3)</a> <a href="#ref-for-concept-element②⓪">(4)</a>
     <li><a href="#ref-for-concept-element②①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-element②②">(2)</a> <a href="#ref-for-concept-element②③">(3)</a> <a href="#ref-for-concept-element②④">(4)</a> <a href="#ref-for-concept-element②⑤">(5)</a> <a href="#ref-for-concept-element②⑥">(6)</a>
-    <li><a href="#ref-for-concept-element②⑦">4.2.7. Mixin NonDocumentTypeChildNode</a> <a href="#ref-for-concept-element②⑧">(2)</a> <a href="#ref-for-concept-element②⑨">(3)</a> <a href="#ref-for-concept-element③⓪">(4)</a>
+    <li><a href="#ref-for-concept-element②⑦">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-element②⑧">(2)</a> <a href="#ref-for-concept-element②⑨">(3)</a> <a href="#ref-for-concept-element③⓪">(4)</a>
     <li><a href="#ref-for-concept-element③①">4.2.10.2. Interface HTMLCollection</a> <a href="#ref-for-concept-element③②">(2)</a> <a href="#ref-for-concept-element③③">(3)</a> <a href="#ref-for-concept-element③④">(4)</a> <a href="#ref-for-concept-element③⑤">(5)</a> <a href="#ref-for-concept-element③⑥">(6)</a> <a href="#ref-for-concept-element③⑦">(7)</a> <a href="#ref-for-concept-element③⑧">(8)</a> <a href="#ref-for-concept-element③⑨">(9)</a>
     <li><a href="#ref-for-concept-element④⓪">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-element④①">4.4. Interface Node</a> <a href="#ref-for-concept-element④②">(2)</a> <a href="#ref-for-concept-element④③">(3)</a> <a href="#ref-for-concept-element④④">(4)</a> <a href="#ref-for-concept-element④⑤">(5)</a> <a href="#ref-for-concept-element④⑥">(6)</a> <a href="#ref-for-concept-element④⑦">(7)</a> <a href="#ref-for-concept-element④⑧">(8)</a> <a href="#ref-for-concept-element④⑨">(9)</a> <a href="#ref-for-concept-element⑤⓪">(10)</a> <a href="#ref-for-concept-element⑤①">(11)</a>
@@ -19005,7 +19007,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-characterdata">4.2. Node tree：节点树</a> <a href="#ref-for-characterdata①">(2)</a> <a href="#ref-for-characterdata②">(3)</a> <a href="#ref-for-characterdata③">(4)</a> <a href="#ref-for-characterdata④">(5)</a>
     <li><a href="#ref-for-characterdata⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-characterdata⑥">(2)</a>
-    <li><a href="#ref-for-characterdata⑦">4.2.7. Mixin NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-characterdata⑦">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-characterdata⑧">4.2.8. Mixin ChildNode</a>
     <li><a href="#ref-for-characterdata⑨">4.3.3. Interface MutationRecord</a> <a href="#ref-for-characterdata①⓪">(2)</a>
     <li><a href="#ref-for-characterdata①①">4.4. Interface Node</a> <a href="#ref-for-characterdata①②">(2)</a> <a href="#ref-for-characterdata①③">(3)</a> <a href="#ref-for-characterdata①④">(4)</a>
