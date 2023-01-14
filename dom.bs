@@ -2703,58 +2703,55 @@ Element includes ParentNode;
   返回节点<a lt="descendant">后代</a>中匹配<var>selectors</var>的所有<a for=/ lt="element">元素</a>。
 </dl>
 
-<p>The <dfn attribute for=ParentNode><code>children</code></dfn> getter steps are to return an
-{{HTMLCollection}} <a>collection</a> rooted at <a>this</a> matching only <a for=/>element</a>
-<a for=tree>children</a>.
+<p><dfn attribute for=ParentNode><code>children</code></dfn> getter将返回一个以<a>this</a>
+为根的<a for=tree lt="children">子</a><a for=/ lt="element">元素</a>的{{HTMLCollection}}
+<a lt="collection">集合</a>。
 
-<p>The <dfn attribute for=ParentNode><code>firstElementChild</code></dfn> getter steps are to return
-the first <a for=tree>child</a> that is an <a for=/>element</a>; otherwise null.
+<p><dfn attribute for=ParentNode><code>firstElementChild</code></dfn> getter将返回第一个
+<a for=tree lt="child">子元素</a>；如果没有子元素则返回null。
 
-<p>The <dfn attribute for=ParentNode><code>lastElementChild</code></dfn> getter steps are to return
-the last <a for=tree>child</a> that is an <a for=/>element</a>; otherwise null.
+<p><dfn attribute for=ParentNode><code>lastElementChild</code></dfn> getter将返回最后一个
+<a for=tree lt="child">子元素</a>；如果没有子元素则返回null。
 
-<p>The <dfn attribute for=ParentNode><code>childElementCount</code></dfn> getter steps are to return
-the number of <a for=tree>children</a> of <a>this</a> that are <a for=/>elements</a>.
+<p><dfn attribute for=ParentNode><code>childElementCount</code></dfn> getter将返回以
+<a>this</a>为根的<a for=tree lt="children">子元素</a>的数量。
 
-<p>The <dfn method for=ParentNode><code>prepend(<var>nodes</var>)</code></dfn> method steps are:
-
-<ol>
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a> given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
-
- <li><p><a>Pre-insert</a> <var>node</var> into <a>this</a> before <a>this</a>'s
- <a for=tree>first child</a>.
-</ol>
-
-<p>The <dfn method for=ParentNode><code>append(<var>nodes</var>)</code></dfn> method steps are:
+<p><dfn method for=ParentNode><code>prepend(<var>nodes</var>)</code></dfn>方法执行步骤为： 
 
 <ol>
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a> given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>，
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
 
- <li><p><a>Append</a> <var>node</var> to <a>this</a>.
+ <li><p>在<a>this</a>的<a for=tree lt="first child">第一个子元素</a>之前<a lt="Pre-insert">预插入</a>
+ <var>node</var>到<a>this</a>。
 </ol>
 
-<p>The <dfn method for=ParentNode><code>replaceChildren(<var>nodes</var>)</code></dfn> method steps
-are:
+<p><dfn method for=ParentNode><code>append(<var>nodes</var>)</code></dfn>方法执行步骤为：
 
 <ol>
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a> given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>，
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
 
- <li><p><a>Ensure pre-insertion validity</a> of <var>node</var> into <a>this</a> before
- null.
-
- <li><p><a for=Node>Replace all</a> with <var>node</var> within <a>this</a>.
+ <li><p><a lt="Append">添加</a><var>node</var>到<a>this</a>。
 </ol>
 
-<p>The <dfn method for=ParentNode><code>querySelector(<var>selectors</var>)</code></dfn> method
-steps are to return the first result of running <a>scope-match a selectors string</a>
-<var>selectors</var> against <a>this</a>, if the result is not an empty list; otherwise null.
+<p><dfn method for=ParentNode><code>replaceChildren(<var>nodes</var>)</code></dfn>方法执行步骤为：
 
-<p>The <dfn method for=ParentNode><code>querySelectorAll(<var>selectors</var>)</code></dfn> method
-steps are to return the <a lt="static collection">static</a> result of running
-<a>scope-match a selectors string</a> <var>selectors</var> against <a>this</a>.
+<ol>
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>，
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
+
+ <li><p>将<var>node</var>在null之前插入到<a>this</a>，<a lt="Ensure pre-insertion validity">确认预插入有效性</a>。
+
+ <li><p><a for=Node lt="Replace all">替换所有</a><a>this</a>中的<var>node</var>。
+</ol>
+
+<p><dfn method for=ParentNode><code>querySelector(<var>selectors</var>)</code></dfn>方法将 
+针对<a>this</a><a lt="scope-match a selectors string">匹配给定的字符串选择器</a>，如果匹配结果
+不为空列表则返回的第一个结果，否则则返回null。
+
+<p><dfn method for=ParentNode><code>querySelectorAll(<var>selectors</var>)</code></dfn>方法将返回
+针对<a>this</a><a lt="scope-match a selectors string">匹配给定的字符串选择器</a>的结果。
 
 
 <h4 id=interface-nondocumenttypechildnode>Mixin {{NonDocumentTypeChildNode}}</h4>
