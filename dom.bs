@@ -2754,11 +2754,10 @@ Element includes ParentNode;
 针对<a>this</a><a lt="scope-match a selectors string">匹配给定的字符串选择器</a>的结果。
 
 
-<h4 id=interface-nondocumenttypechildnode>Mixin {{NonDocumentTypeChildNode}}</h4>
+<h4 id=interface-nondocumenttypechildnode>混入(Mixin)： {{NonDocumentTypeChildNode}}</h4>
 
-<p class=note>Web compatibility prevents the {{previousElementSibling}} and
-{{nextElementSibling}} attributes from being exposed on <a for=/>doctypes</a> (and therefore on
-{{ChildNode}}).
+<p class=note>由于考虑到Web兼容性问题，因此{{previousElementSibling}}和{{nextElementSibling}}属性并没有暴露在
+<a for=/>doctypes</a>上，而是暴露在{{ChildNode}}上。
 
 <pre class=idl>
 interface mixin NonDocumentTypeChildNode {
@@ -2771,21 +2770,21 @@ CharacterData includes NonDocumentTypeChildNode;
 
 <dl class=domintro>
  <dt><code><var>element</var> = <var>node</var> . {{previousElementSibling}}</code>
- <dd>Returns the first <a>preceding</a> <a for=tree>sibling</a> that is an <a for=/>element</a>;
- otherwise null.
+ <dd>返回<a lt="preceding">前一个</a><a for=tree lt="sibling">兄弟</a><a for=/ lt="element">元素</a>；
+ 没有则返回null。
 
  <dt><code><var>element</var> = <var>node</var> . {{nextElementSibling}}</code>
- <dd>Returns the first <a>following</a> <a for=tree>sibling</a> that is an <a for=/>element</a>;
- otherwise null.
+ <dd>返回<a lt="following">后一个</a><a for=tree lt="sibling">兄弟</a><a for=/ lt="element">元素</a>；
+ 没有则返回null。
 </dl>
 
-<p>The <dfn attribute for=NonDocumentTypeChildNode><code>previousElementSibling</code></dfn> getter
-steps are to return the first <a>preceding</a> <a for=tree>sibling</a> that is an
-<a for=/>element</a>; otherwise null.
+<p><dfn attribute for=NonDocumentTypeChildNode><code>previousElementSibling</code></dfn> getter方法将
+返回<a lt="preceding">前一个</a><a for=tree lt="sibling">兄弟</a><a for=/ lt="element">元素</a>；
+没有则返回null。
 
-<p>The <dfn attribute for=NonDocumentTypeChildNode><code>nextElementSibling</code></dfn> getter
-steps are to return the first <a>following</a> <a for=tree>sibling</a> that is an
-<a for=/>element</a>; otherwise null.
+<p>The <dfn attribute for=NonDocumentTypeChildNode><code>nextElementSibling</code></dfn> getter方法将
+返回<a lt="following">后一个</a><a for=tree lt="sibling">兄弟</a><a for=/ lt="element">元素</a>；
+没有则返回null。
 
 
 <h4 id=interface-childnode>Mixin {{ChildNode}}</h4>
