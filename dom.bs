@@ -2893,7 +2893,7 @@ CharacterData includes ChildNode;
 </ol>
 
 
-<h4 id=mixin-slotable>Mixin {{Slottable}}</h4>
+<h4 id=mixin-slotable>混入(Mixin)：{{Slottable}}</h4>
 
 <pre class=idl>
 interface mixin Slottable {
@@ -2903,9 +2903,8 @@ Element includes Slottable;
 Text includes Slottable;
 </pre>
 
-<p>The <dfn attribute for=Slottable id=dom-slotable-assignedslot><code>assignedSlot</code></dfn>
-getter steps are to return the result of <a>find a slot</a> given <a>this</a> and with the
-<i>open flag</i> set.
+<p><dfn attribute for=Slottable id=dom-slotable-assignedslot><code>assignedSlot</code></dfn>
+getter方法将返回给定参数<a>this</a>以及设置的<i>open flag</i><a lt="find a slot">查找插槽</a>的结果。
 
 
 <h4 id=old-style-collections>Old-style collections: {{NodeList}} and {{HTMLCollection}}</h4>
