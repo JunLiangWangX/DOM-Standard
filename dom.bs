@@ -2754,7 +2754,7 @@ Element includes ParentNode;
 针对<a>this</a><a lt="scope-match a selectors string">匹配给定的字符串选择器</a>的结果。
 
 
-<h4 id=interface-nondocumenttypechildnode>混入(Mixin)： {{NonDocumentTypeChildNode}}</h4>
+<h4 id=interface-nondocumenttypechildnode>混入(Mixin)：{{NonDocumentTypeChildNode}}</h4>
 
 <p class=note>由于考虑到Web兼容性问题，因此{{previousElementSibling}}和{{nextElementSibling}}属性并没有暴露在
 <a for=/>doctypes</a>上，而是暴露在{{ChildNode}}上。
@@ -2787,7 +2787,7 @@ CharacterData includes NonDocumentTypeChildNode;
 没有则返回null。
 
 
-<h4 id=interface-childnode>Mixin {{ChildNode}}</h4>
+<h4 id=interface-childnode>混入(Mixin)：{{ChildNode}}</h4>
 
 <pre class=idl>
 interface mixin ChildNode {
@@ -2804,99 +2804,92 @@ CharacterData includes ChildNode;
 <dl class=domintro>
  <dt><code><var>node</var> . {{before(...nodes)}}</code>
  <dd>
-  <p>Inserts <var>nodes</var> just before <var>node</var>, while replacing strings in
-  <var>nodes</var> with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>在该节点之前插入<var>nodes</var>，同时用等效的{{Text}}<a for=/ lt="nodes">节点</a>替换<var>nodes</var>中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"
+  的{{DOMException}}(DOM异常)。
 
  <dt><code><var>node</var> . {{after(...nodes)}}</code>
  <dd>
-  <p>Inserts <var>nodes</var> just after <var>node</var>, while replacing strings in
-  <var>nodes</var> with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>在该节点之后插入<var>nodes</var>，同时用等效的{{Text}}<a for=/ lt="nodes">节点</a>替换<var>nodes</var>中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"
+  的{{DOMException}}(DOM异常)。
 
  <dt><code><var>node</var> . {{replaceWith(...nodes)}}</code>
  <dd>
-  <p>Replaces <var>node</var> with <var>nodes</var>, while replacing strings in <var>nodes</var>
-  with equivalent {{Text}} <a for=/>nodes</a>.
+  <p>使用<var>nodes</var>替换该节点，同时用等效的{{Text}}<a for=/ lt="nodes">节点</a>替换<var>nodes</var>中的字符串。
 
-  <p><a>Throws</a> a "{{HierarchyRequestError!!exception}}" {{DOMException}} if the constraints of
-  the <a>node tree</a> are violated.
+  <p>如果违反了<a lt="node tree">节点树</a>的限制，则<a lt="Throws">抛出</a>一个"{{HierarchyRequestError!!exception}}(层次结构请求错误)"
+  的{{DOMException}}(DOM异常)。
 
  <dt><code><var>node</var> . {{ChildNode/remove()}}</code>
- <dd>Removes <var>node</var>.
+ <dd>删除该节点。
 </dl>
 
-<p>The <dfn method for=ChildNode><code>before(<var>nodes</var>)</code></dfn> method steps are:
+<p><dfn method for=ChildNode><code>before(<var>nodes</var>)</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p>Let <var>parent</var> be <a>this</a>'s <a for=tree>parent</a>.
+ <li><p>设<var>parent</var>为<a>this</a>的<a for=tree>parent</a>。
 
- <li><p>If <var>parent</var> is null, then return.
+ <li><p>如果<var>parent</var>为null，则直接return。
 
- <li><p>Let <var>viablePreviousSibling</var> be <a>this</a>'s first <a>preceding</a>
- <a for=tree>sibling</a> not in <var>nodes</var>; otherwise null.
+ <li><p>设<var>viablePreviousSibling</var>为<a>this</a>的不为<var>nodes</var>的<a lt="preceding">上一个</a>
+ <a for=tree lt="sibling">兄弟节点</a>；没有，则为null。
 
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a>, given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
 
- <li><p>If <var>viablePreviousSibling</var> is null, then set it to <var>parent</var>'s
- <a for=tree>first child</a>; otherwise to <var>viablePreviousSibling</var>'s
- <a for=tree>next sibling</a>.
+ <li><p>如果<var>viablePreviousSibling</var>为null，则设它为<var>parent</var>的<a for=tree lt="first child">第一个子节点</a>
+ ；如果<var>viablePreviousSibling</var>不为null，则设它为它的<a for=tree lt="next sibling">下一个兄弟节点</a>。
 
- <li><p><a>Pre-insert</a> <var>node</var> into <var>parent</var> before
- <var>viablePreviousSibling</var>.
+ <li><p><var>node</var>在<var>viablePreviousSibling</var>之前<a lt="Pre-insert">预插入</a>到<var>parent</var>。
 </ol>
 
-<p>The <dfn method for=ChildNode><code>after(<var>nodes</var>)</code></dfn> method steps are:
+<p><dfn method for=ChildNode><code>after(<var>nodes</var>)</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p>Let <var>parent</var> be <a>this</a>'s <a for=tree>parent</a>.
+ <li><p>设<var>parent</var>为<a>this</a>的<a for=tree>parent</a>。
 
- <li><p>If <var>parent</var> is null, then return.
+ <li><p>如果<var>parent</var>为null，则直接return。
 
- <li><p>Let <var>viableNextSibling</var> be <a>this</a>'s first <a>following</a>
- <a for=tree>sibling</a> not in <var>nodes</var>; otherwise null.
+ <li><p>设<var>viableNextSibling</var>为<a>this</a>的不为<var>nodes</var>的<a lt="following">下一个</a>
+ <a for=tree lt="sibling">兄弟节点</a>;没有，则为null。
 
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a>, given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
 
- <li><p><a>Pre-insert</a> <var>node</var> into <var>parent</var> before
- <var>viableNextSibling</var>.
+ <li><p><var>node</var>在<var>viablePreviousSibling</var>之前<a lt="Pre-insert">预插入</a>到<var>parent</var>。
 </ol>
 
-<p>The <dfn method for=ChildNode><code>replaceWith(<var>nodes</var>)</code></dfn> method steps are:
+<p><dfn method for=ChildNode><code>replaceWith(<var>nodes</var>)</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p>Let <var>parent</var> be <a>this</a>'s <a for=tree>parent</a>.
+ <li><p>设<var>parent</var>为<a>this</a>的<a for=tree>parent</a>。
 
- <li><p>If <var>parent</var> is null, then return.
+ <li><p>如果<var>parent</var>为null，则直接return。
 
- <li><p>Let <var>viableNextSibling</var> be <a>this</a>'s first <a>following</a>
- <a for=tree>sibling</a> not in <var>nodes</var>; otherwise null.
+ <li><p>设<var>viableNextSibling</var>为<a>this</a>的不为<var>nodes</var>的<a lt="following">下一个</a>
+ <a for=tree lt="sibling">兄弟节点</a>;没有，则为null。
 
- <li><p>Let <var>node</var> be the result of <a>converting nodes into a node</a>, given
- <var>nodes</var> and <a>this</a>'s <a for=Node>node document</a>.
+ <li><p>给定参数<var>nodes</var>以及<a>this</a>的<a for=Node lt="node document">节点文档</a>
+ <a lt="converting nodes into a node">转换nodes为node</a>，设<var>node</var>为其结果。
 
  <li>
-  <p>If <a>this</a>'s <a for=tree>parent</a> is <var>parent</var>, <a>replace</a> <a>this</a> with
-  <var>node</var> within <var>parent</var>.
+  <p>如果<a>this</a>的<a for=tree>parent</a>为<var>parent</var>，则将<a>this</a><a lt="replace">替换</a>为
+  <var>parent</var>中的节点。
 
-  <p class=note><a>This</a> could have been inserted into <var>node</var>.
+  <p class=note><a>This</a>可能已经被插入到节点中。
 
- <li><p>Otherwise, <a>pre-insert</a> <var>node</var> into <var>parent</var> before
- <var>viableNextSibling</var>.
+ <li><p>否则，<var>node</var>在<var>viableNextSibling</var>之前<a lt="pre-insert">预插入</a>到<var>parent</var>。
 </ol>
 
-<p>The <dfn method for=ChildNode><code>remove()</code></dfn> method steps are:
+<p><dfn method for=ChildNode><code>remove()</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p>If <a>this</a>'s <a for=tree>parent</a> is null, then return.
+ <li><p>如果<a>this</a>的<a for=tree>parent</a>为null，则直接return。
 
- <li><p><a for=/>Remove</a> <a>this</a>.
+ <li><p><a for=/ lt="Remove">删除</a><a>this</a>。
 </ol>
 
 
