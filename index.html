@@ -38,7 +38,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-14">2023-01-14</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-16">2023-01-16</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -120,8 +120,8 @@ a[href].issue-return {
         <li><a href="#interface-nonelementparentnode"><span class="secno">4.2.4</span> <span class="content">混入(Mixin)：<code class="idl"><span>NonElementParentNode</span></code></span></a>
         <li><a href="#mixin-documentorshadowroot"><span class="secno">4.2.5</span> <span class="content">混入(Mixin)：<code class="idl"><span>DocumentOrShadowRoot</span></code></span></a>
         <li><a href="#interface-parentnode"><span class="secno">4.2.6</span> <span class="content">混入(Mixin)：<code class="idl"><span>ParentNode</span></code></span></a>
-        <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">混入(Mixin)： <code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
-        <li><a href="#interface-childnode"><span class="secno">4.2.8</span> <span class="content">Mixin <code class="idl"><span>ChildNode</span></code></span></a>
+        <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">混入(Mixin)：<code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
+        <li><a href="#interface-childnode"><span class="secno">4.2.8</span> <span class="content">混入(Mixin)：<code class="idl"><span>ChildNode</span></code></span></a>
         <li><a href="#mixin-slotable"><span class="secno">4.2.9</span> <span class="content">Mixin <code class="idl"><span>Slottable</span></code></span></a>
         <li>
          <a href="#old-style-collections"><span class="secno">4.2.10</span> <span class="content">Old-style collections: <code class="idl"><span>NodeList</span></code> and <code class="idl"><span>HTMLCollection</span></code></span></a>
@@ -3196,7 +3196,7 @@ U除非另有说明，否则为空。 </p>
 不为空列表则返回的第一个结果，否则则返回null。 </p>
    <p><dfn class="dfn-paneled idl-code" data-dfn-for="ParentNode" data-dfn-type="method" data-export id="dom-parentnode-queryselectorall"><code>querySelectorAll(<var>selectors</var>)</code></dfn>方法将返回
 针对<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④②">this</a><a data-link-type="dfn" href="#scope-match-a-selectors-string" id="ref-for-scope-match-a-selectors-string①">匹配给定的字符串选择器</a>的结果。 </p>
-   <h4 class="heading settled" data-level="4.2.7" id="interface-nondocumenttypechildnode"><span class="secno">4.2.7. </span><span class="content">混入(Mixin)： <code class="idl"><a data-link-type="idl" href="#nondocumenttypechildnode" id="ref-for-nondocumenttypechildnode">NonDocumentTypeChildNode</a></code></span><a class="self-link" href="#interface-nondocumenttypechildnode"></a></h4>
+   <h4 class="heading settled" data-level="4.2.7" id="interface-nondocumenttypechildnode"><span class="secno">4.2.7. </span><span class="content">混入(Mixin)：<code class="idl"><a data-link-type="idl" href="#nondocumenttypechildnode" id="ref-for-nondocumenttypechildnode">NonDocumentTypeChildNode</a></code></span><a class="self-link" href="#interface-nondocumenttypechildnode"></a></h4>
    <p class="note" role="note">由于考虑到Web兼容性问题，因此<code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling">previousElementSibling</a></code>和<code class="idl"><a data-link-type="idl" href="#dom-nondocumenttypechildnode-nextelementsibling" id="ref-for-dom-nondocumenttypechildnode-nextelementsibling">nextElementSibling</a></code>属性并没有暴露在 <a data-link-type="dfn" href="#concept-doctype" id="ref-for-concept-doctype①①">doctypes</a>上，而是暴露在<code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode">ChildNode</a></code>上。 </p>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="nondocumenttypechildnode"><code><c- g>NonDocumentTypeChildNode</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#element" id="ref-for-element②①"><c- n>Element</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Element?" href="#dom-nondocumenttypechildnode-previouselementsibling" id="ref-for-dom-nondocumenttypechildnode-previouselementsibling①"><c- g>previousElementSibling</c-></a>;
@@ -3279,7 +3279,7 @@ U除非另有说明，否则为空。 </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NonDocumentTypeChildNode" data-dfn-type="attribute" data-export id="dom-nondocumenttypechildnode-nextelementsibling"><code>nextElementSibling</code></dfn> getter方法将
 返回<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑤">后一个</a><a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling⑨">兄弟</a><a data-link-type="dfn" href="#concept-element" id="ref-for-concept-element③⓪">元素</a>；
 没有则返回null。 </p>
-   <h4 class="heading settled" data-level="4.2.8" id="interface-childnode"><span class="secno">4.2.8. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode①">ChildNode</a></code></span><a class="self-link" href="#interface-childnode"></a></h4>
+   <h4 class="heading settled" data-level="4.2.8" id="interface-childnode"><span class="secno">4.2.8. </span><span class="content">混入(Mixin)：<code class="idl"><a data-link-type="idl" href="#childnode" id="ref-for-childnode①">ChildNode</a></code></span><a class="self-link" href="#interface-childnode"></a></h4>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="childnode"><code><c- g>ChildNode</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions" id="ref-for-cereactions③"><c- g>CEReactions</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Unscopable" id="ref-for-Unscopable③"><c- g>Unscopable</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①④"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-childnode-before" id="ref-for-dom-childnode-before"><c- g>before</c-></a>((<a data-link-type="idl-name" href="#node" id="ref-for-node⑥"><c- n>Node</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a>)... <dfn class="idl-code" data-dfn-for="ChildNode/before(...nodes), ChildNode/before()" data-dfn-type="argument" data-export id="dom-childnode-before-nodes-nodes"><code><c- g>nodes</c-></code><a class="self-link" href="#dom-childnode-before-nodes-nodes"></a></dfn>);
   [<a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions" id="ref-for-cereactions④"><c- g>CEReactions</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Unscopable" id="ref-for-Unscopable④"><c- g>Unscopable</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑤"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-childnode-after" id="ref-for-dom-childnode-after"><c- g>after</c-></a>((<a data-link-type="idl-name" href="#node" id="ref-for-node⑦"><c- n>Node</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①④"><c- b>DOMString</c-></a>)... <dfn class="idl-code" data-dfn-for="ChildNode/after(...nodes), ChildNode/after()" data-dfn-type="argument" data-export id="dom-childnode-after-nodes-nodes"><code><c- g>nodes</c-></code><a class="self-link" href="#dom-childnode-after-nodes-nodes"></a></dfn>);
@@ -3336,9 +3336,9 @@ U除非另有说明，否则为空。 </p>
      </div>
      <code><var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-childnode-before" id="ref-for-dom-childnode-before①">before(...nodes)</a></code></code> 
     <dd>
-     <p>Inserts <var>nodes</var> just before <var>node</var>, while replacing strings in <var>nodes</var> with equivalent <code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑤">Text</a></code> <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node③⑨">nodes</a>. </p>
-     <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②③">Throws</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①③">HierarchyRequestError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②⑨">DOMException</a></code> if the constraints of
-  the <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①②">node tree</a> are violated. </p>
+     <p>在该节点之前插入<var>nodes</var>，同时用等效的<code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑤">Text</a></code><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node③⑨">节点</a>替换<var>nodes</var>中的字符串。 </p>
+     <p>如果违反了<a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①②">节点树</a>的限制，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②③">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①③">HierarchyRequestError</a></code>(层次结构请求错误)"
+  的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②⑨">DOMException</a></code>(DOM异常)。 </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3384,9 +3384,9 @@ U除非另有说明，否则为空。 </p>
      </div>
      <code><var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-childnode-after" id="ref-for-dom-childnode-after①">after(...nodes)</a></code></code> 
     <dd>
-     <p>Inserts <var>nodes</var> just after <var>node</var>, while replacing strings in <var>nodes</var> with equivalent <code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑥">Text</a></code> <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④⓪">nodes</a>. </p>
-     <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②④">Throws</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①④">HierarchyRequestError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③⓪">DOMException</a></code> if the constraints of
-  the <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①③">node tree</a> are violated. </p>
+     <p>在该节点之后插入<var>nodes</var>，同时用等效的<code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑥">Text</a></code><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④⓪">节点</a>替换<var>nodes</var>中的字符串。 </p>
+     <p>如果违反了<a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①③">节点树</a>的限制，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②④">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①④">HierarchyRequestError</a></code>(层次结构请求错误)"
+  的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③⓪">DOMException</a></code>(DOM异常)。 </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3432,9 +3432,9 @@ U除非另有说明，否则为空。 </p>
      </div>
      <code><var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-childnode-replacewith" id="ref-for-dom-childnode-replacewith①">replaceWith(...nodes)</a></code></code> 
     <dd>
-     <p>Replaces <var>node</var> with <var>nodes</var>, while replacing strings in <var>nodes</var> with equivalent <code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑦">Text</a></code> <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④①">nodes</a>. </p>
-     <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑤">Throws</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①⑤">HierarchyRequestError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③①">DOMException</a></code> if the constraints of
-  the <a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①④">node tree</a> are violated. </p>
+     <p>使用<var>nodes</var>替换该节点，同时用等效的<code class="idl"><a data-link-type="idl" href="#text" id="ref-for-text①⑦">Text</a></code><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④①">节点</a>替换<var>nodes</var>中的字符串。 </p>
+     <p>如果违反了<a data-link-type="dfn" href="#concept-node-tree" id="ref-for-concept-node-tree①④">节点树</a>的限制，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑤">抛出</a>一个"<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#hierarchyrequesterror" id="ref-for-hierarchyrequesterror①⑤">HierarchyRequestError</a></code>(层次结构请求错误)"
+  的<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③①">DOMException</a></code>(DOM异常)。 </p>
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3479,58 +3479,58 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-childnode-remove" id="ref-for-dom-childnode-remove①">remove()</a></code></code> 
-    <dd>Removes <var>node</var>. 
+    <dd>删除该节点。 
    </dl>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="before(...nodes)|before()" id="dom-childnode-before"><code>before(<var>nodes</var>)</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="before(...nodes)|before()" id="dom-childnode-before"><code>before(<var>nodes</var>)</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>Let <var>parent</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④③">this</a>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①④">parent</a>. </p>
+     <p>设<var>parent</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④③">this</a>的<a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①④">parent</a>。 </p>
     <li>
-     <p>If <var>parent</var> is null, then return. </p>
+     <p>如果<var>parent</var>为null，则直接return。 </p>
     <li>
-     <p>Let <var>viablePreviousSibling</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④④">this</a>’s first <a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑦">preceding</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①⓪">sibling</a> not in <var>nodes</var>; otherwise null. </p>
+     <p>设<var>viablePreviousSibling</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④④">this</a>的不为<var>nodes</var>的<a data-link-type="dfn" href="#concept-tree-preceding" id="ref-for-concept-tree-preceding⑦">上一个</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①⓪">兄弟节点</a>；没有，则为null。 </p>
     <li>
-     <p>Let <var>node</var> be the result of <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node③">converting nodes into a node</a>, given <var>nodes</var> and <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑤">this</a>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑧">node document</a>. </p>
+     <p>给定参数<var>nodes</var>以及<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑤">this</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑧">节点文档</a> <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node③">转换nodes为node</a>，设<var>node</var>为其结果。 </p>
     <li>
-     <p>If <var>viablePreviousSibling</var> is null, then set it to <var>parent</var>’s <a data-link-type="dfn" href="#concept-tree-first-child" id="ref-for-concept-tree-first-child②">first child</a>; otherwise to <var>viablePreviousSibling</var>’s <a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling④">next sibling</a>. </p>
+     <p>如果<var>viablePreviousSibling</var>为null，则设它为<var>parent</var>的<a data-link-type="dfn" href="#concept-tree-first-child" id="ref-for-concept-tree-first-child②">第一个子节点</a> ；如果<var>viablePreviousSibling</var>不为null，则设它为它的<a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling④">下一个兄弟节点</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert③">Pre-insert</a> <var>node</var> into <var>parent</var> before <var>viablePreviousSibling</var>. </p>
+     <p><var>node</var>在<var>viablePreviousSibling</var>之前<a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert③">预插入</a>到<var>parent</var>。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="after(...nodes)|after()" id="dom-childnode-after"><code>after(<var>nodes</var>)</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="after(...nodes)|after()" id="dom-childnode-after"><code>after(<var>nodes</var>)</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>Let <var>parent</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑥">this</a>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑤">parent</a>. </p>
+     <p>设<var>parent</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑥">this</a>的<a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑤">parent</a>。 </p>
     <li>
-     <p>If <var>parent</var> is null, then return. </p>
+     <p>如果<var>parent</var>为null，则直接return。 </p>
     <li>
-     <p>Let <var>viableNextSibling</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑦">this</a>’s first <a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑥">following</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①①">sibling</a> not in <var>nodes</var>; otherwise null. </p>
+     <p>设<var>viableNextSibling</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑦">this</a>的不为<var>nodes</var>的<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑥">下一个</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①①">兄弟节点</a>;没有，则为null。 </p>
     <li>
-     <p>Let <var>node</var> be the result of <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node④">converting nodes into a node</a>, given <var>nodes</var> and <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑧">this</a>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑨">node document</a>. </p>
+     <p>给定参数<var>nodes</var>以及<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑧">this</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑨">节点文档</a> <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node④">转换nodes为node</a>，设<var>node</var>为其结果。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert④">Pre-insert</a> <var>node</var> into <var>parent</var> before <var>viableNextSibling</var>. </p>
+     <p><var>node</var>在<var>viablePreviousSibling</var>之前<a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert④">预插入</a>到<var>parent</var>。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="replaceWith(...nodes)|replaceWith()" id="dom-childnode-replacewith"><code>replaceWith(<var>nodes</var>)</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export data-lt="replaceWith(...nodes)|replaceWith()" id="dom-childnode-replacewith"><code>replaceWith(<var>nodes</var>)</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>Let <var>parent</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑨">this</a>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑥">parent</a>. </p>
+     <p>设<var>parent</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⑨">this</a>的<a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑥">parent</a>。 </p>
     <li>
-     <p>If <var>parent</var> is null, then return. </p>
+     <p>如果<var>parent</var>为null，则直接return。 </p>
     <li>
-     <p>Let <var>viableNextSibling</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⓪">this</a>’s first <a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑦">following</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①②">sibling</a> not in <var>nodes</var>; otherwise null. </p>
+     <p>设<var>viableNextSibling</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⓪">this</a>的不为<var>nodes</var>的<a data-link-type="dfn" href="#concept-tree-following" id="ref-for-concept-tree-following⑦">下一个</a> <a data-link-type="dfn" href="#concept-tree-sibling" id="ref-for-concept-tree-sibling①②">兄弟节点</a>;没有，则为null。 </p>
     <li>
-     <p>Let <var>node</var> be the result of <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node⑤">converting nodes into a node</a>, given <var>nodes</var> and <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤①">this</a>’s <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document①⓪">node document</a>. </p>
+     <p>给定参数<var>nodes</var>以及<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤①">this</a>的<a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document①⓪">节点文档</a> <a data-link-type="dfn" href="#converting-nodes-into-a-node" id="ref-for-converting-nodes-into-a-node⑤">转换nodes为node</a>，设<var>node</var>为其结果。 </p>
     <li>
-     <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤②">this</a>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑦">parent</a> is <var>parent</var>, <a data-link-type="dfn" href="#concept-node-replace" id="ref-for-concept-node-replace">replace</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤③">this</a> with <var>node</var> within <var>parent</var>. </p>
-     <p class="note" role="note"><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤④">This</a> could have been inserted into <var>node</var>. </p>
+     <p>如果<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤②">this</a>的<a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑦">parent</a>为<var>parent</var>，则将<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤③">this</a><a data-link-type="dfn" href="#concept-node-replace" id="ref-for-concept-node-replace">替换</a>为 <var>parent</var>中的节点。 </p>
+     <p class="note" role="note"><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤④">This</a>可能已经被插入到节点中。 </p>
     <li>
-     <p>Otherwise, <a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert⑤">pre-insert</a> <var>node</var> into <var>parent</var> before <var>viableNextSibling</var>. </p>
+     <p>否则，<var>node</var>在<var>viableNextSibling</var>之前<a data-link-type="dfn" href="#concept-node-pre-insert" id="ref-for-concept-node-pre-insert⑤">预插入</a>到<var>parent</var>。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export id="dom-childnode-remove"><code>remove()</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="ChildNode" data-dfn-type="method" data-export id="dom-childnode-remove"><code>remove()</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>If <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑤">this</a>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑧">parent</a> is null, then return. </p>
+     <p>如果<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑤">this</a>的<a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent①⑧">parent</a>为null，则直接return。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑥">Remove</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑥">this</a>. </p>
+     <p><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑥">删除</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑥">this</a>。 </p>
    </ol>
    <h4 class="heading settled" data-level="4.2.9" id="mixin-slotable"><span class="secno">4.2.9. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#slotable" id="ref-for-slotable">Slottable</a></code></span><a class="self-link" href="#mixin-slotable"></a></h4>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="slotable"><code><c- g>Slottable</c-></code></dfn> {
@@ -13046,7 +13046,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions">https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-cereactions">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-cereactions①">(2)</a> <a href="#ref-for-cereactions②">(3)</a>
-    <li><a href="#ref-for-cereactions③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-cereactions④">(2)</a> <a href="#ref-for-cereactions⑤">(3)</a> <a href="#ref-for-cereactions⑥">(4)</a>
+    <li><a href="#ref-for-cereactions③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-cereactions④">(2)</a> <a href="#ref-for-cereactions⑤">(3)</a> <a href="#ref-for-cereactions⑥">(4)</a>
     <li><a href="#ref-for-cereactions⑦">4.4. Interface Node</a> <a href="#ref-for-cereactions⑧">(2)</a> <a href="#ref-for-cereactions⑨">(3)</a> <a href="#ref-for-cereactions①⓪">(4)</a> <a href="#ref-for-cereactions①①">(5)</a> <a href="#ref-for-cereactions①②">(6)</a> <a href="#ref-for-cereactions①③">(7)</a> <a href="#ref-for-cereactions①④">(8)</a>
     <li><a href="#ref-for-cereactions①⑤">4.5. Interface Document</a> <a href="#ref-for-cereactions①⑥">(2)</a> <a href="#ref-for-cereactions①⑦">(3)</a> <a href="#ref-for-cereactions①⑧">(4)</a>
     <li><a href="#ref-for-cereactions①⑨">4.9. Interface Element</a> <a href="#ref-for-cereactions②⓪">(2)</a> <a href="#ref-for-cereactions②①">(3)</a> <a href="#ref-for-cereactions②②">(4)</a> <a href="#ref-for-cereactions②③">(5)</a> <a href="#ref-for-cereactions②④">(6)</a> <a href="#ref-for-cereactions②⑤">(7)</a> <a href="#ref-for-cereactions②⑥">(8)</a> <a href="#ref-for-cereactions②⑦">(9)</a> <a href="#ref-for-cereactions②⑧">(10)</a> <a href="#ref-for-cereactions②⑨">(11)</a> <a href="#ref-for-cereactions③⓪">(12)</a>
@@ -13921,7 +13921,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-DOMException⑧">3.2. AbortSignal接口</a> <a href="#ref-for-idl-DOMException⑨">(2)</a> <a href="#ref-for-idl-DOMException①⓪">(3)</a> <a href="#ref-for-idl-DOMException①①">(4)</a> <a href="#ref-for-idl-DOMException①②">(5)</a>
     <li><a href="#ref-for-idl-DOMException①③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-idl-DOMException①④">(2)</a> <a href="#ref-for-idl-DOMException①⑤">(3)</a> <a href="#ref-for-idl-DOMException①⑥">(4)</a> <a href="#ref-for-idl-DOMException①⑦">(5)</a> <a href="#ref-for-idl-DOMException①⑧">(6)</a> <a href="#ref-for-idl-DOMException①⑨">(7)</a> <a href="#ref-for-idl-DOMException②⓪">(8)</a> <a href="#ref-for-idl-DOMException②①">(9)</a> <a href="#ref-for-idl-DOMException②②">(10)</a> <a href="#ref-for-idl-DOMException②③">(11)</a> <a href="#ref-for-idl-DOMException②④">(12)</a> <a href="#ref-for-idl-DOMException②⑤">(13)</a>
     <li><a href="#ref-for-idl-DOMException②⑥">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-idl-DOMException②⑦">(2)</a> <a href="#ref-for-idl-DOMException②⑧">(3)</a>
-    <li><a href="#ref-for-idl-DOMException②⑨">4.2.8. Mixin ChildNode</a> <a href="#ref-for-idl-DOMException③⓪">(2)</a> <a href="#ref-for-idl-DOMException③①">(3)</a>
+    <li><a href="#ref-for-idl-DOMException②⑨">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-idl-DOMException③⓪">(2)</a> <a href="#ref-for-idl-DOMException③①">(3)</a>
     <li><a href="#ref-for-idl-DOMException③②">4.4. Interface Node</a>
     <li><a href="#ref-for-idl-DOMException③③">4.5. Interface Document</a> <a href="#ref-for-idl-DOMException③④">(2)</a> <a href="#ref-for-idl-DOMException③⑤">(3)</a> <a href="#ref-for-idl-DOMException③⑥">(4)</a> <a href="#ref-for-idl-DOMException③⑦">(5)</a> <a href="#ref-for-idl-DOMException③⑧">(6)</a> <a href="#ref-for-idl-DOMException③⑨">(7)</a> <a href="#ref-for-idl-DOMException④⓪">(8)</a> <a href="#ref-for-idl-DOMException④①">(9)</a> <a href="#ref-for-idl-DOMException④②">(10)</a> <a href="#ref-for-idl-DOMException④③">(11)</a> <a href="#ref-for-idl-DOMException④④">(12)</a> <a href="#ref-for-idl-DOMException④⑤">(13)</a> <a href="#ref-for-idl-DOMException④⑥">(14)</a> <a href="#ref-for-idl-DOMException④⑦">(15)</a> <a href="#ref-for-idl-DOMException④⑧">(16)</a> <a href="#ref-for-idl-DOMException④⑨">(17)</a> <a href="#ref-for-idl-DOMException⑤⓪">(18)</a> <a href="#ref-for-idl-DOMException⑤①">(19)</a>
     <li><a href="#ref-for-idl-DOMException⑤②">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-idl-DOMException⑤③">(2)</a>
@@ -13943,7 +13943,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-DOMString⑤">2.7. EventTarget接口</a> <a href="#ref-for-idl-DOMString⑥">(2)</a>
     <li><a href="#ref-for-idl-DOMString⑦">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-idl-DOMString⑧">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-idl-DOMString⑨">(2)</a> <a href="#ref-for-idl-DOMString①⓪">(3)</a> <a href="#ref-for-idl-DOMString①①">(4)</a> <a href="#ref-for-idl-DOMString①②">(5)</a>
-    <li><a href="#ref-for-idl-DOMString①③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-idl-DOMString①④">(2)</a> <a href="#ref-for-idl-DOMString①⑤">(3)</a>
+    <li><a href="#ref-for-idl-DOMString①③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-idl-DOMString①④">(2)</a> <a href="#ref-for-idl-DOMString①⑤">(3)</a>
     <li><a href="#ref-for-idl-DOMString①⑥">4.2.10.2. Interface HTMLCollection</a>
     <li><a href="#ref-for-idl-DOMString①⑦">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-idl-DOMString①⑧">4.3.3. Interface MutationRecord</a> <a href="#ref-for-idl-DOMString①⑨">(2)</a> <a href="#ref-for-idl-DOMString②⓪">(3)</a> <a href="#ref-for-idl-DOMString②①">(4)</a>
@@ -14010,7 +14010,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-hierarchyrequesterror">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-hierarchyrequesterror①">(2)</a> <a href="#ref-for-hierarchyrequesterror②">(3)</a> <a href="#ref-for-hierarchyrequesterror③">(4)</a> <a href="#ref-for-hierarchyrequesterror④">(5)</a> <a href="#ref-for-hierarchyrequesterror⑤">(6)</a> <a href="#ref-for-hierarchyrequesterror⑥">(7)</a> <a href="#ref-for-hierarchyrequesterror⑦">(8)</a> <a href="#ref-for-hierarchyrequesterror⑧">(9)</a> <a href="#ref-for-hierarchyrequesterror⑨">(10)</a>
     <li><a href="#ref-for-hierarchyrequesterror①⓪">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-hierarchyrequesterror①①">(2)</a> <a href="#ref-for-hierarchyrequesterror①②">(3)</a>
-    <li><a href="#ref-for-hierarchyrequesterror①③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-hierarchyrequesterror①④">(2)</a> <a href="#ref-for-hierarchyrequesterror①⑤">(3)</a>
+    <li><a href="#ref-for-hierarchyrequesterror①③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-hierarchyrequesterror①④">(2)</a> <a href="#ref-for-hierarchyrequesterror①⑤">(3)</a>
     <li><a href="#ref-for-hierarchyrequesterror①⑥">4.5. Interface Document</a> <a href="#ref-for-hierarchyrequesterror①⑦">(2)</a>
     <li><a href="#ref-for-hierarchyrequesterror①⑧">5.5. Interface Range</a> <a href="#ref-for-hierarchyrequesterror①⑨">(2)</a> <a href="#ref-for-hierarchyrequesterror②⓪">(3)</a>
    </ul>
@@ -14163,7 +14163,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://webidl.spec.whatwg.org/#Unscopable">https://webidl.spec.whatwg.org/#Unscopable</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-Unscopable">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-Unscopable①">(2)</a> <a href="#ref-for-Unscopable②">(3)</a>
-    <li><a href="#ref-for-Unscopable③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-Unscopable④">(2)</a> <a href="#ref-for-Unscopable⑤">(3)</a> <a href="#ref-for-Unscopable⑥">(4)</a>
+    <li><a href="#ref-for-Unscopable③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-Unscopable④">(2)</a> <a href="#ref-for-Unscopable⑤">(3)</a> <a href="#ref-for-Unscopable⑥">(4)</a>
     <li><a href="#ref-for-Unscopable⑦">4.9. Interface Element</a>
    </ul>
   </aside>
@@ -14308,7 +14308,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-this②⑥">3.2. AbortSignal接口</a> <a href="#ref-for-this②⑦">(2)</a> <a href="#ref-for-this②⑧">(3)</a> <a href="#ref-for-this②⑨">(4)</a>
     <li><a href="#ref-for-this③⓪">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-this③①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-this③②">(2)</a> <a href="#ref-for-this③③">(3)</a> <a href="#ref-for-this③④">(4)</a> <a href="#ref-for-this③⑤">(5)</a> <a href="#ref-for-this③⑥">(6)</a> <a href="#ref-for-this③⑦">(7)</a> <a href="#ref-for-this③⑧">(8)</a> <a href="#ref-for-this③⑨">(9)</a> <a href="#ref-for-this④⓪">(10)</a> <a href="#ref-for-this④①">(11)</a> <a href="#ref-for-this④②">(12)</a>
-    <li><a href="#ref-for-this④③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-this④④">(2)</a> <a href="#ref-for-this④⑤">(3)</a> <a href="#ref-for-this④⑥">(4)</a> <a href="#ref-for-this④⑦">(5)</a> <a href="#ref-for-this④⑧">(6)</a> <a href="#ref-for-this④⑨">(7)</a> <a href="#ref-for-this⑤⓪">(8)</a> <a href="#ref-for-this⑤①">(9)</a> <a href="#ref-for-this⑤②">(10)</a> <a href="#ref-for-this⑤③">(11)</a> <a href="#ref-for-this⑤④">(12)</a> <a href="#ref-for-this⑤⑤">(13)</a> <a href="#ref-for-this⑤⑥">(14)</a>
+    <li><a href="#ref-for-this④③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-this④④">(2)</a> <a href="#ref-for-this④⑤">(3)</a> <a href="#ref-for-this④⑥">(4)</a> <a href="#ref-for-this④⑦">(5)</a> <a href="#ref-for-this④⑧">(6)</a> <a href="#ref-for-this④⑨">(7)</a> <a href="#ref-for-this⑤⓪">(8)</a> <a href="#ref-for-this⑤①">(9)</a> <a href="#ref-for-this⑤②">(10)</a> <a href="#ref-for-this⑤③">(11)</a> <a href="#ref-for-this⑤④">(12)</a> <a href="#ref-for-this⑤⑤">(13)</a> <a href="#ref-for-this⑤⑥">(14)</a>
     <li><a href="#ref-for-this⑤⑦">4.2.9. Mixin Slottable</a>
     <li><a href="#ref-for-this⑤⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-this⑤⑨">(2)</a> <a href="#ref-for-this⑥⓪">(3)</a> <a href="#ref-for-this⑥①">(4)</a> <a href="#ref-for-this⑥②">(5)</a> <a href="#ref-for-this⑥③">(6)</a> <a href="#ref-for-this⑥④">(7)</a> <a href="#ref-for-this⑥⑤">(8)</a> <a href="#ref-for-this⑥⑥">(9)</a> <a href="#ref-for-this⑥⑦">(10)</a> <a href="#ref-for-this⑥⑧">(11)</a> <a href="#ref-for-this⑥⑨">(12)</a>
     <li><a href="#ref-for-this⑦⓪">4.4. Interface Node</a> <a href="#ref-for-this⑦①">(2)</a> <a href="#ref-for-this⑦②">(3)</a> <a href="#ref-for-this⑦③">(4)</a> <a href="#ref-for-this⑦④">(5)</a> <a href="#ref-for-this⑦⑤">(6)</a> <a href="#ref-for-this⑦⑥">(7)</a> <a href="#ref-for-this⑦⑦">(8)</a> <a href="#ref-for-this⑦⑧">(9)</a> <a href="#ref-for-this⑦⑨">(10)</a> <a href="#ref-for-this⑧⓪">(11)</a> <a href="#ref-for-this⑧①">(12)</a> <a href="#ref-for-this⑧②">(13)</a> <a href="#ref-for-this⑧③">(14)</a> <a href="#ref-for-this⑧④">(15)</a> <a href="#ref-for-this⑧⑤">(16)</a> <a href="#ref-for-this⑧⑥">(17)</a> <a href="#ref-for-this⑧⑦">(18)</a> <a href="#ref-for-this⑧⑧">(19)</a> <a href="#ref-for-this⑧⑨">(20)</a> <a href="#ref-for-this⑨⓪">(21)</a> <a href="#ref-for-this⑨①">(22)</a> <a href="#ref-for-this⑨②">(23)</a> <a href="#ref-for-this⑨③">(24)</a> <a href="#ref-for-this⑨④">(25)</a> <a href="#ref-for-this⑨⑤">(26)</a> <a href="#ref-for-this⑨⑥">(27)</a> <a href="#ref-for-this⑨⑦">(28)</a> <a href="#ref-for-this⑨⑧">(29)</a> <a href="#ref-for-this⑨⑨">(30)</a> <a href="#ref-for-this①⓪⓪">(31)</a> <a href="#ref-for-this①⓪①">(32)</a> <a href="#ref-for-this①⓪②">(33)</a> <a href="#ref-for-this①⓪③">(34)</a> <a href="#ref-for-this①⓪④">(35)</a> <a href="#ref-for-this①⓪⑤">(36)</a> <a href="#ref-for-this①⓪⑥">(37)</a> <a href="#ref-for-this①⓪⑦">(38)</a> <a href="#ref-for-this①⓪⑧">(39)</a> <a href="#ref-for-this①⓪⑨">(40)</a> <a href="#ref-for-this①①⓪">(41)</a> <a href="#ref-for-this①①①">(42)</a> <a href="#ref-for-this①①②">(43)</a> <a href="#ref-for-this①①③">(44)</a> <a href="#ref-for-this①①④">(45)</a> <a href="#ref-for-this①①⑤">(46)</a> <a href="#ref-for-this①①⑥">(47)</a>
@@ -14340,7 +14340,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-dfn-throw⑥">2.7. EventTarget接口</a>
     <li><a href="#ref-for-dfn-throw⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
     <li><a href="#ref-for-dfn-throw②⓪">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-dfn-throw②①">(2)</a> <a href="#ref-for-dfn-throw②②">(3)</a>
-    <li><a href="#ref-for-dfn-throw②③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dfn-throw②④">(2)</a> <a href="#ref-for-dfn-throw②⑤">(3)</a>
+    <li><a href="#ref-for-dfn-throw②③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dfn-throw②④">(2)</a> <a href="#ref-for-dfn-throw②⑤">(3)</a>
     <li><a href="#ref-for-dfn-throw②⑥">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dfn-throw②⑦">(2)</a> <a href="#ref-for-dfn-throw②⑧">(3)</a> <a href="#ref-for-dfn-throw②⑨">(4)</a>
     <li><a href="#ref-for-dfn-throw③⓪">4.4. Interface Node</a>
     <li><a href="#ref-for-dfn-throw③①">4.5. Interface Document</a> <a href="#ref-for-dfn-throw③②">(2)</a> <a href="#ref-for-dfn-throw③③">(3)</a> <a href="#ref-for-dfn-throw③④">(4)</a> <a href="#ref-for-dfn-throw③⑤">(5)</a> <a href="#ref-for-dfn-throw③⑥">(6)</a> <a href="#ref-for-dfn-throw③⑦">(7)</a> <a href="#ref-for-dfn-throw③⑧">(8)</a> <a href="#ref-for-dfn-throw③⑨">(9)</a> <a href="#ref-for-dfn-throw④⓪">(10)</a> <a href="#ref-for-dfn-throw④①">(11)</a>
@@ -14363,7 +14363,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-undefined⑨">3.1. AbortController接口</a>
     <li><a href="#ref-for-idl-undefined①⓪">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-idl-undefined①①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-idl-undefined①②">(2)</a> <a href="#ref-for-idl-undefined①③">(3)</a>
-    <li><a href="#ref-for-idl-undefined①④">4.2.8. Mixin ChildNode</a> <a href="#ref-for-idl-undefined①⑤">(2)</a> <a href="#ref-for-idl-undefined①⑥">(3)</a> <a href="#ref-for-idl-undefined①⑦">(4)</a>
+    <li><a href="#ref-for-idl-undefined①④">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-idl-undefined①⑤">(2)</a> <a href="#ref-for-idl-undefined①⑥">(3)</a> <a href="#ref-for-idl-undefined①⑦">(4)</a>
     <li><a href="#ref-for-idl-undefined①⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-undefined①⑨">(2)</a> <a href="#ref-for-idl-undefined②⓪">(3)</a>
     <li><a href="#ref-for-idl-undefined②①">4.4. Interface Node</a>
     <li><a href="#ref-for-idl-undefined②②">4.9. Interface Element</a> <a href="#ref-for-idl-undefined②③">(2)</a> <a href="#ref-for-idl-undefined②④">(3)</a> <a href="#ref-for-idl-undefined②⑤">(4)</a> <a href="#ref-for-idl-undefined②⑥">(5)</a>
@@ -15430,7 +15430,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-parent⑤">4.2.1. Document tree：文档树</a>
     <li><a href="#ref-for-concept-tree-parent⑥">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-tree-parent⑦">(2)</a> <a href="#ref-for-concept-tree-parent⑧">(3)</a>
     <li><a href="#ref-for-concept-tree-parent⑨">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-parent①⓪">(2)</a> <a href="#ref-for-concept-tree-parent①①">(3)</a> <a href="#ref-for-concept-tree-parent①②">(4)</a> <a href="#ref-for-concept-tree-parent①③">(5)</a>
-    <li><a href="#ref-for-concept-tree-parent①④">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-parent①⑤">(2)</a> <a href="#ref-for-concept-tree-parent①⑥">(3)</a> <a href="#ref-for-concept-tree-parent①⑦">(4)</a> <a href="#ref-for-concept-tree-parent①⑧">(5)</a>
+    <li><a href="#ref-for-concept-tree-parent①④">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-tree-parent①⑤">(2)</a> <a href="#ref-for-concept-tree-parent①⑥">(3)</a> <a href="#ref-for-concept-tree-parent①⑦">(4)</a> <a href="#ref-for-concept-tree-parent①⑧">(5)</a>
     <li><a href="#ref-for-concept-tree-parent①⑨">4.3. Mutation observers</a>
     <li><a href="#ref-for-concept-tree-parent②⓪">4.4. Interface Node</a> <a href="#ref-for-concept-tree-parent②①">(2)</a> <a href="#ref-for-concept-tree-parent②②">(3)</a> <a href="#ref-for-concept-tree-parent②③">(4)</a> <a href="#ref-for-concept-tree-parent②④">(5)</a>
     <li><a href="#ref-for-concept-tree-parent②⑤">4.5. Interface Document</a>
@@ -15533,8 +15533,8 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-sibling">#concept-tree-sibling</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-sibling">1.1. Trees：树</a> <a href="#ref-for-concept-tree-sibling①">(2)</a> <a href="#ref-for-concept-tree-sibling②">(3)</a> <a href="#ref-for-concept-tree-sibling③">(4)</a> <a href="#ref-for-concept-tree-sibling④">(5)</a> <a href="#ref-for-concept-tree-sibling⑤">(6)</a>
-    <li><a href="#ref-for-concept-tree-sibling⑥">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-sibling⑨">(4)</a>
-    <li><a href="#ref-for-concept-tree-sibling①⓪">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-sibling①①">(2)</a> <a href="#ref-for-concept-tree-sibling①②">(3)</a>
+    <li><a href="#ref-for-concept-tree-sibling⑥">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-sibling⑨">(4)</a>
+    <li><a href="#ref-for-concept-tree-sibling①⓪">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-tree-sibling①①">(2)</a> <a href="#ref-for-concept-tree-sibling①②">(3)</a>
     <li><a href="#ref-for-concept-tree-sibling①③">4.11. Interface Text</a>
     <li><a href="#ref-for-concept-tree-sibling①④">5.5. Interface Range</a> <a href="#ref-for-concept-tree-sibling①⑤">(2)</a>
    </ul>
@@ -15544,8 +15544,8 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-tree-preceding">1.1. Trees：树</a> <a href="#ref-for-concept-tree-preceding①">(2)</a> <a href="#ref-for-concept-tree-preceding②">(3)</a>
     <li><a href="#ref-for-concept-tree-preceding③">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-preceding④">(2)</a>
-    <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
-    <li><a href="#ref-for-concept-tree-preceding⑦">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-concept-tree-preceding⑤">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-preceding⑥">(2)</a>
+    <li><a href="#ref-for-concept-tree-preceding⑦">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-concept-tree-preceding⑧">4.4. Interface Node</a> <a href="#ref-for-concept-tree-preceding⑨">(2)</a> <a href="#ref-for-concept-tree-preceding①⓪">(3)</a>
     <li><a href="#ref-for-concept-tree-preceding①①">5.5. Interface Range</a>
     <li><a href="#ref-for-concept-tree-preceding①②">6.1. Interface NodeIterator</a>
@@ -15556,8 +15556,8 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-tree-following">1.1. Trees：树</a> <a href="#ref-for-concept-tree-following①">(2)</a>
     <li><a href="#ref-for-concept-tree-following②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-following③">(2)</a>
-    <li><a href="#ref-for-concept-tree-following④">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑤">(2)</a>
-    <li><a href="#ref-for-concept-tree-following⑥">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-tree-following⑦">(2)</a>
+    <li><a href="#ref-for-concept-tree-following④">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-concept-tree-following⑤">(2)</a>
+    <li><a href="#ref-for-concept-tree-following⑥">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-tree-following⑦">(2)</a>
     <li><a href="#ref-for-concept-tree-following⑧">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-tree-following⑨">5.2. Boundary points</a>
     <li><a href="#ref-for-concept-tree-following①⓪">6.1. Interface NodeIterator</a> <a href="#ref-for-concept-tree-following①①">(2)</a>
@@ -15567,7 +15567,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-first-child">#concept-tree-first-child</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-first-child">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-tree-first-child①">(2)</a>
-    <li><a href="#ref-for-concept-tree-first-child②">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-concept-tree-first-child②">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-concept-tree-first-child③">4.4. Interface Node</a> <a href="#ref-for-concept-tree-first-child④">(2)</a>
     <li><a href="#ref-for-concept-tree-first-child⑤">4.9. Interface Element</a>
     <li><a href="#ref-for-concept-tree-first-child⑥">6.2. Interface TreeWalker</a> <a href="#ref-for-concept-tree-first-child⑦">(2)</a> <a href="#ref-for-concept-tree-first-child⑧">(3)</a> <a href="#ref-for-concept-tree-first-child⑨">(4)</a>
@@ -15597,7 +15597,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-tree-next-sibling">#concept-tree-next-sibling</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-tree-next-sibling">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-next-sibling①">(2)</a> <a href="#ref-for-concept-tree-next-sibling②">(3)</a> <a href="#ref-for-concept-tree-next-sibling③">(4)</a>
-    <li><a href="#ref-for-concept-tree-next-sibling④">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-concept-tree-next-sibling④">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-concept-tree-next-sibling⑤">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-tree-next-sibling⑥">4.4. Interface Node</a> <a href="#ref-for-concept-tree-next-sibling⑦">(2)</a> <a href="#ref-for-concept-tree-next-sibling⑧">(3)</a> <a href="#ref-for-concept-tree-next-sibling⑨">(4)</a>
     <li><a href="#ref-for-concept-tree-next-sibling①⓪">4.9. Interface Element</a>
@@ -16440,7 +16440,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node②①">4.2.2.4. 分配可插槽元素和插槽</a>
     <li><a href="#ref-for-concept-node②②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node②③">(2)</a> <a href="#ref-for-concept-node②④">(3)</a> <a href="#ref-for-concept-node②⑤">(4)</a> <a href="#ref-for-concept-node②⑥">(5)</a> <a href="#ref-for-concept-node②⑦">(6)</a> <a href="#ref-for-concept-node②⑧">(7)</a> <a href="#ref-for-concept-node②⑨">(8)</a> <a href="#ref-for-concept-node③⓪">(9)</a> <a href="#ref-for-concept-node③①">(10)</a> <a href="#ref-for-concept-node③②">(11)</a> <a href="#ref-for-concept-node③③">(12)</a> <a href="#ref-for-concept-node③④">(13)</a>
     <li><a href="#ref-for-concept-node③⑤">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-node③⑥">(2)</a> <a href="#ref-for-concept-node③⑦">(3)</a> <a href="#ref-for-concept-node③⑧">(4)</a>
-    <li><a href="#ref-for-concept-node③⑨">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node④⓪">(2)</a> <a href="#ref-for-concept-node④①">(3)</a>
+    <li><a href="#ref-for-concept-node③⑨">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-node④⓪">(2)</a> <a href="#ref-for-concept-node④①">(3)</a>
     <li><a href="#ref-for-concept-node④②">4.2.10. Old-style collections: NodeList and HTMLCollection</a>
     <li><a href="#ref-for-concept-node④③">4.2.10.1. Interface NodeList</a> <a href="#ref-for-concept-node④④">(2)</a> <a href="#ref-for-concept-node④⑤">(3)</a> <a href="#ref-for-concept-node④⑥">(4)</a> <a href="#ref-for-concept-node④⑦">(5)</a> <a href="#ref-for-concept-node④⑧">(6)</a>
     <li><a href="#ref-for-concept-node④⑨">4.3. Mutation observers</a> <a href="#ref-for-concept-node⑤⓪">(2)</a> <a href="#ref-for-concept-node⑤①">(3)</a> <a href="#ref-for-concept-node⑤②">(4)</a>
@@ -16477,7 +16477,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node-tree⑤">4.2.2. Shadow tree：影子树</a> <a href="#ref-for-concept-node-tree⑥">(2)</a> <a href="#ref-for-concept-node-tree⑦">(3)</a>
     <li><a href="#ref-for-concept-node-tree⑧">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-concept-node-tree⑨">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-node-tree①⓪">(2)</a> <a href="#ref-for-concept-node-tree①①">(3)</a>
-    <li><a href="#ref-for-concept-node-tree①②">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-tree①③">(2)</a> <a href="#ref-for-concept-node-tree①④">(3)</a>
+    <li><a href="#ref-for-concept-node-tree①②">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-node-tree①③">(2)</a> <a href="#ref-for-concept-node-tree①④">(3)</a>
     <li><a href="#ref-for-concept-node-tree①⑤">4.7. Interface DocumentFragment</a>
     <li><a href="#ref-for-concept-node-tree①⑥">4.8. Interface ShadowRoot</a> <a href="#ref-for-concept-node-tree①⑦">(2)</a> <a href="#ref-for-concept-node-tree①⑧">(3)</a>
     <li><a href="#ref-for-concept-node-tree①⑨">5.1. Introduction to "DOM Ranges"</a> <a href="#ref-for-concept-node-tree②⓪">(2)</a> <a href="#ref-for-concept-node-tree②①">(3)</a> <a href="#ref-for-concept-node-tree②②">(4)</a> <a href="#ref-for-concept-node-tree②③">(5)</a> <a href="#ref-for-concept-node-tree②④">(6)</a> <a href="#ref-for-concept-node-tree②⑤">(7)</a> <a href="#ref-for-concept-node-tree②⑥">(8)</a> <a href="#ref-for-concept-node-tree②⑦">(9)</a>
@@ -16676,7 +16676,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-node-pre-insert">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-pre-insert①">(2)</a>
     <li><a href="#ref-for-concept-node-pre-insert②">4.2.6. 混入(Mixin)：ParentNode</a>
-    <li><a href="#ref-for-concept-node-pre-insert③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-pre-insert④">(2)</a> <a href="#ref-for-concept-node-pre-insert⑤">(3)</a>
+    <li><a href="#ref-for-concept-node-pre-insert③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-node-pre-insert④">(2)</a> <a href="#ref-for-concept-node-pre-insert⑤">(3)</a>
     <li><a href="#ref-for-concept-node-pre-insert⑥">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-node-pre-insert⑦">4.7. Interface DocumentFragment</a>
     <li><a href="#ref-for-concept-node-pre-insert⑧">4.9. Interface Element</a> <a href="#ref-for-concept-node-pre-insert⑨">(2)</a> <a href="#ref-for-concept-node-pre-insert①⓪">(3)</a> <a href="#ref-for-concept-node-pre-insert①①">(4)</a>
@@ -16717,7 +16717,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-node-replace">
    <b><a href="#concept-node-replace">#concept-node-replace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-node-replace">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-concept-node-replace">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-concept-node-replace①">4.4. Interface Node</a>
     <li><a href="#ref-for-concept-node-replace②">4.7. Interface DocumentFragment</a>
    </ul>
@@ -16746,7 +16746,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-node-remove">#concept-node-remove</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-node-remove">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-remove①">(2)</a> <a href="#ref-for-concept-node-remove②">(3)</a> <a href="#ref-for-concept-node-remove③">(4)</a> <a href="#ref-for-concept-node-remove④">(5)</a> <a href="#ref-for-concept-node-remove⑤">(6)</a>
-    <li><a href="#ref-for-concept-node-remove⑥">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-concept-node-remove⑥">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-concept-node-remove⑦">4.4. Interface Node</a> <a href="#ref-for-concept-node-remove⑧">(2)</a>
     <li><a href="#ref-for-concept-node-remove⑨">4.5. Interface Document</a>
     <li><a href="#ref-for-concept-node-remove①⓪">5.1. Introduction to "DOM Ranges"</a>
@@ -16775,7 +16775,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#converting-nodes-into-a-node">#converting-nodes-into-a-node</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-converting-nodes-into-a-node">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-converting-nodes-into-a-node①">(2)</a> <a href="#ref-for-converting-nodes-into-a-node②">(3)</a>
-    <li><a href="#ref-for-converting-nodes-into-a-node③">4.2.8. Mixin ChildNode</a> <a href="#ref-for-converting-nodes-into-a-node④">(2)</a> <a href="#ref-for-converting-nodes-into-a-node⑤">(3)</a>
+    <li><a href="#ref-for-converting-nodes-into-a-node③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-converting-nodes-into-a-node④">(2)</a> <a href="#ref-for-converting-nodes-into-a-node⑤">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parentnode">
@@ -16842,50 +16842,50 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="nondocumenttypechildnode">
    <b><a href="#nondocumenttypechildnode">#nondocumenttypechildnode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nondocumenttypechildnode">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-nondocumenttypechildnode①">(2)</a> <a href="#ref-for-nondocumenttypechildnode②">(3)</a>
+    <li><a href="#ref-for-nondocumenttypechildnode">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-nondocumenttypechildnode①">(2)</a> <a href="#ref-for-nondocumenttypechildnode②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-nondocumenttypechildnode-previouselementsibling">
    <b><a href="#dom-nondocumenttypechildnode-previouselementsibling">#dom-nondocumenttypechildnode-previouselementsibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling②">(3)</a>
+    <li><a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-previouselementsibling②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-nondocumenttypechildnode-nextelementsibling">
    <b><a href="#dom-nondocumenttypechildnode-nextelementsibling">#dom-nondocumenttypechildnode-nextelementsibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling②">(3)</a>
+    <li><a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling①">(2)</a> <a href="#ref-for-dom-nondocumenttypechildnode-nextelementsibling②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="childnode">
    <b><a href="#childnode">#childnode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-childnode">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
-    <li><a href="#ref-for-childnode①">4.2.8. Mixin ChildNode</a> <a href="#ref-for-childnode②">(2)</a> <a href="#ref-for-childnode③">(3)</a> <a href="#ref-for-childnode④">(4)</a>
+    <li><a href="#ref-for-childnode">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-childnode①">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-childnode②">(2)</a> <a href="#ref-for-childnode③">(3)</a> <a href="#ref-for-childnode④">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-childnode-before">
    <b><a href="#dom-childnode-before">#dom-childnode-before</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-childnode-before">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dom-childnode-before①">(2)</a>
+    <li><a href="#ref-for-dom-childnode-before">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dom-childnode-before①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-childnode-after">
    <b><a href="#dom-childnode-after">#dom-childnode-after</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-childnode-after">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dom-childnode-after①">(2)</a>
+    <li><a href="#ref-for-dom-childnode-after">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dom-childnode-after①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-childnode-replacewith">
    <b><a href="#dom-childnode-replacewith">#dom-childnode-replacewith</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-childnode-replacewith">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dom-childnode-replacewith①">(2)</a>
+    <li><a href="#ref-for-dom-childnode-replacewith">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dom-childnode-replacewith①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-childnode-remove">
    <b><a href="#dom-childnode-remove">#dom-childnode-remove</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-childnode-remove">4.2.8. Mixin ChildNode</a> <a href="#ref-for-dom-childnode-remove①">(2)</a>
+    <li><a href="#ref-for-dom-childnode-remove">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dom-childnode-remove①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="slotable">
@@ -17264,7 +17264,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-node">4.2. Node tree：节点树</a> <a href="#ref-for-node①">(2)</a> <a href="#ref-for-node②">(3)</a>
     <li><a href="#ref-for-node③">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-node④">(2)</a> <a href="#ref-for-node⑤">(3)</a>
-    <li><a href="#ref-for-node⑥">4.2.8. Mixin ChildNode</a> <a href="#ref-for-node⑦">(2)</a> <a href="#ref-for-node⑧">(3)</a>
+    <li><a href="#ref-for-node⑥">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-node⑦">(2)</a> <a href="#ref-for-node⑧">(3)</a>
     <li><a href="#ref-for-node⑨">4.2.10.1. Interface NodeList</a> <a href="#ref-for-node①⓪">(2)</a>
     <li><a href="#ref-for-node①①">4.3.1. Interface MutationObserver</a>
     <li><a href="#ref-for-node①②">4.3.3. Interface MutationRecord</a> <a href="#ref-for-node①③">(2)</a> <a href="#ref-for-node①④">(3)</a>
@@ -17305,7 +17305,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-node-document">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-node-document①">(2)</a> <a href="#ref-for-concept-node-document②">(3)</a>
     <li><a href="#ref-for-concept-node-document③">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-node-document④">(2)</a> <a href="#ref-for-concept-node-document⑤">(3)</a> <a href="#ref-for-concept-node-document⑥">(4)</a> <a href="#ref-for-concept-node-document⑦">(5)</a>
-    <li><a href="#ref-for-concept-node-document⑧">4.2.8. Mixin ChildNode</a> <a href="#ref-for-concept-node-document⑨">(2)</a> <a href="#ref-for-concept-node-document①⓪">(3)</a>
+    <li><a href="#ref-for-concept-node-document⑧">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-concept-node-document⑨">(2)</a> <a href="#ref-for-concept-node-document①⓪">(3)</a>
     <li><a href="#ref-for-concept-node-document①①">4.4. Interface Node</a> <a href="#ref-for-concept-node-document①②">(2)</a> <a href="#ref-for-concept-node-document①③">(3)</a> <a href="#ref-for-concept-node-document①④">(4)</a> <a href="#ref-for-concept-node-document①⑤">(5)</a> <a href="#ref-for-concept-node-document①⑥">(6)</a> <a href="#ref-for-concept-node-document①⑦">(7)</a> <a href="#ref-for-concept-node-document①⑧">(8)</a> <a href="#ref-for-concept-node-document①⑨">(9)</a> <a href="#ref-for-concept-node-document②⓪">(10)</a> <a href="#ref-for-concept-node-document②①">(11)</a> <a href="#ref-for-concept-node-document②②">(12)</a> <a href="#ref-for-concept-node-document②③">(13)</a> <a href="#ref-for-concept-node-document②④">(14)</a> <a href="#ref-for-concept-node-document②⑤">(15)</a>
     <li><a href="#ref-for-concept-node-document②⑥">4.5. Interface Document</a> <a href="#ref-for-concept-node-document②⑦">(2)</a> <a href="#ref-for-concept-node-document②⑧">(3)</a> <a href="#ref-for-concept-node-document②⑨">(4)</a> <a href="#ref-for-concept-node-document③⓪">(5)</a> <a href="#ref-for-concept-node-document③①">(6)</a> <a href="#ref-for-concept-node-document③②">(7)</a> <a href="#ref-for-concept-node-document③③">(8)</a> <a href="#ref-for-concept-node-document③④">(9)</a> <a href="#ref-for-concept-node-document③⑤">(10)</a>
     <li><a href="#ref-for-concept-node-document③⑥">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-concept-node-document③⑦">(2)</a> <a href="#ref-for-concept-node-document③⑧">(3)</a>
@@ -18012,7 +18012,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-documenttype">4.2. Node tree：节点树</a> <a href="#ref-for-documenttype①">(2)</a> <a href="#ref-for-documenttype②">(3)</a> <a href="#ref-for-documenttype③">(4)</a>
     <li><a href="#ref-for-documenttype④">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-documenttype⑤">(2)</a> <a href="#ref-for-documenttype⑥">(3)</a> <a href="#ref-for-documenttype⑦">(4)</a>
-    <li><a href="#ref-for-documenttype⑧">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-documenttype⑧">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-documenttype⑨">4.4. Interface Node</a> <a href="#ref-for-documenttype①⓪">(2)</a> <a href="#ref-for-documenttype①①">(3)</a> <a href="#ref-for-documenttype①②">(4)</a> <a href="#ref-for-documenttype①③">(5)</a> <a href="#ref-for-documenttype①④">(6)</a> <a href="#ref-for-documenttype①⑤">(7)</a> <a href="#ref-for-documenttype①⑥">(8)</a>
     <li><a href="#ref-for-documenttype①⑦">4.5. Interface Document</a>
     <li><a href="#ref-for-documenttype①⑧">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-documenttype①⑨">(2)</a>
@@ -18027,7 +18027,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-doctype">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-doctype①">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-doctype②">(2)</a> <a href="#ref-for-concept-doctype③">(3)</a> <a href="#ref-for-concept-doctype④">(4)</a> <a href="#ref-for-concept-doctype⑤">(5)</a> <a href="#ref-for-concept-doctype⑥">(6)</a> <a href="#ref-for-concept-doctype⑦">(7)</a> <a href="#ref-for-concept-doctype⑧">(8)</a> <a href="#ref-for-concept-doctype⑨">(9)</a> <a href="#ref-for-concept-doctype①⓪">(10)</a>
-    <li><a href="#ref-for-concept-doctype①①">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-concept-doctype①①">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a>
     <li><a href="#ref-for-concept-doctype①②">4.5. Interface Document</a> <a href="#ref-for-concept-doctype①③">(2)</a>
     <li><a href="#ref-for-concept-doctype①④">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-concept-doctype①⑤">(2)</a> <a href="#ref-for-concept-doctype①⑥">(3)</a> <a href="#ref-for-concept-doctype①⑦">(4)</a>
     <li><a href="#ref-for-concept-doctype①⑧">4.6. Interface DocumentType</a> <a href="#ref-for-concept-doctype①⑨">(2)</a> <a href="#ref-for-concept-doctype②⓪">(3)</a>
@@ -18281,8 +18281,8 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-element①⓪">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-element①①">(2)</a> <a href="#ref-for-element①②">(3)</a> <a href="#ref-for-element①③">(4)</a> <a href="#ref-for-element①④">(5)</a> <a href="#ref-for-element①⑤">(6)</a>
     <li><a href="#ref-for-element①⑥">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-element①⑦">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-element①⑧">(2)</a> <a href="#ref-for-element①⑨">(3)</a> <a href="#ref-for-element②⓪">(4)</a>
-    <li><a href="#ref-for-element②①">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
-    <li><a href="#ref-for-element②④">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-element②①">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
+    <li><a href="#ref-for-element②④">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-element②⑤">4.2.9. Mixin Slottable</a>
     <li><a href="#ref-for-element②⑥">4.2.10.2. Interface HTMLCollection</a> <a href="#ref-for-element②⑦">(2)</a>
     <li><a href="#ref-for-element②⑧">4.4. Interface Node</a> <a href="#ref-for-element②⑨">(2)</a> <a href="#ref-for-element③⓪">(3)</a> <a href="#ref-for-element③①">(4)</a> <a href="#ref-for-element③②">(5)</a> <a href="#ref-for-element③③">(6)</a> <a href="#ref-for-element③④">(7)</a> <a href="#ref-for-element③⑤">(8)</a> <a href="#ref-for-element③⑥">(9)</a> <a href="#ref-for-element③⑦">(10)</a>
@@ -18327,7 +18327,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-element⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-element⑥">(2)</a> <a href="#ref-for-concept-element⑦">(3)</a> <a href="#ref-for-concept-element⑧">(4)</a> <a href="#ref-for-concept-element⑨">(5)</a> <a href="#ref-for-concept-element①⓪">(6)</a> <a href="#ref-for-concept-element①①">(7)</a> <a href="#ref-for-concept-element①②">(8)</a> <a href="#ref-for-concept-element①③">(9)</a> <a href="#ref-for-concept-element①④">(10)</a> <a href="#ref-for-concept-element①⑤">(11)</a> <a href="#ref-for-concept-element①⑥">(12)</a>
     <li><a href="#ref-for-concept-element①⑦">4.2.4. 混入(Mixin)：NonElementParentNode</a> <a href="#ref-for-concept-element①⑧">(2)</a> <a href="#ref-for-concept-element①⑨">(3)</a> <a href="#ref-for-concept-element②⓪">(4)</a>
     <li><a href="#ref-for-concept-element②①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-element②②">(2)</a> <a href="#ref-for-concept-element②③">(3)</a> <a href="#ref-for-concept-element②④">(4)</a> <a href="#ref-for-concept-element②⑤">(5)</a> <a href="#ref-for-concept-element②⑥">(6)</a>
-    <li><a href="#ref-for-concept-element②⑦">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a> <a href="#ref-for-concept-element②⑧">(2)</a> <a href="#ref-for-concept-element②⑨">(3)</a> <a href="#ref-for-concept-element③⓪">(4)</a>
+    <li><a href="#ref-for-concept-element②⑦">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-concept-element②⑧">(2)</a> <a href="#ref-for-concept-element②⑨">(3)</a> <a href="#ref-for-concept-element③⓪">(4)</a>
     <li><a href="#ref-for-concept-element③①">4.2.10.2. Interface HTMLCollection</a> <a href="#ref-for-concept-element③②">(2)</a> <a href="#ref-for-concept-element③③">(3)</a> <a href="#ref-for-concept-element③④">(4)</a> <a href="#ref-for-concept-element③⑤">(5)</a> <a href="#ref-for-concept-element③⑥">(6)</a> <a href="#ref-for-concept-element③⑦">(7)</a> <a href="#ref-for-concept-element③⑧">(8)</a> <a href="#ref-for-concept-element③⑨">(9)</a>
     <li><a href="#ref-for-concept-element④⓪">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-element④①">4.4. Interface Node</a> <a href="#ref-for-concept-element④②">(2)</a> <a href="#ref-for-concept-element④③">(3)</a> <a href="#ref-for-concept-element④④">(4)</a> <a href="#ref-for-concept-element④⑤">(5)</a> <a href="#ref-for-concept-element④⑥">(6)</a> <a href="#ref-for-concept-element④⑦">(7)</a> <a href="#ref-for-concept-element④⑧">(8)</a> <a href="#ref-for-concept-element④⑨">(9)</a> <a href="#ref-for-concept-element⑤⓪">(10)</a> <a href="#ref-for-concept-element⑤①">(11)</a>
@@ -19007,8 +19007,8 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-characterdata">4.2. Node tree：节点树</a> <a href="#ref-for-characterdata①">(2)</a> <a href="#ref-for-characterdata②">(3)</a> <a href="#ref-for-characterdata③">(4)</a> <a href="#ref-for-characterdata④">(5)</a>
     <li><a href="#ref-for-characterdata⑤">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-characterdata⑥">(2)</a>
-    <li><a href="#ref-for-characterdata⑦">4.2.7. 混入(Mixin)： NonDocumentTypeChildNode</a>
-    <li><a href="#ref-for-characterdata⑧">4.2.8. Mixin ChildNode</a>
+    <li><a href="#ref-for-characterdata⑦">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a>
+    <li><a href="#ref-for-characterdata⑧">4.2.8. 混入(Mixin)：ChildNode</a>
     <li><a href="#ref-for-characterdata⑨">4.3.3. Interface MutationRecord</a> <a href="#ref-for-characterdata①⓪">(2)</a>
     <li><a href="#ref-for-characterdata①①">4.4. Interface Node</a> <a href="#ref-for-characterdata①②">(2)</a> <a href="#ref-for-characterdata①③">(3)</a> <a href="#ref-for-characterdata①④">(4)</a>
     <li><a href="#ref-for-characterdata①⑤">4.10. Interface CharacterData</a> <a href="#ref-for-characterdata①⑥">(2)</a> <a href="#ref-for-characterdata①⑦">(3)</a>
@@ -19104,7 +19104,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-text⑥">4.2.2.2. Slottables：可插槽元素</a>
     <li><a href="#ref-for-text⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-text⑧">(2)</a> <a href="#ref-for-text⑨">(3)</a> <a href="#ref-for-text①⓪">(4)</a>
     <li><a href="#ref-for-text①①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-text①②">(2)</a> <a href="#ref-for-text①③">(3)</a> <a href="#ref-for-text①④">(4)</a>
-    <li><a href="#ref-for-text①⑤">4.2.8. Mixin ChildNode</a> <a href="#ref-for-text①⑥">(2)</a> <a href="#ref-for-text①⑦">(3)</a>
+    <li><a href="#ref-for-text①⑤">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-text①⑥">(2)</a> <a href="#ref-for-text①⑦">(3)</a>
     <li><a href="#ref-for-text①⑧">4.2.9. Mixin Slottable</a>
     <li><a href="#ref-for-text①⑨">4.4. Interface Node</a> <a href="#ref-for-text②⓪">(2)</a> <a href="#ref-for-text②①">(3)</a>
     <li><a href="#ref-for-text②②">4.5. Interface Document</a> <a href="#ref-for-text②③">(2)</a> <a href="#ref-for-text②④">(3)</a>
