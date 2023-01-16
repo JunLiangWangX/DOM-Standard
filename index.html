@@ -122,7 +122,7 @@ a[href].issue-return {
         <li><a href="#interface-parentnode"><span class="secno">4.2.6</span> <span class="content">混入(Mixin)：<code class="idl"><span>ParentNode</span></code></span></a>
         <li><a href="#interface-nondocumenttypechildnode"><span class="secno">4.2.7</span> <span class="content">混入(Mixin)：<code class="idl"><span>NonDocumentTypeChildNode</span></code></span></a>
         <li><a href="#interface-childnode"><span class="secno">4.2.8</span> <span class="content">混入(Mixin)：<code class="idl"><span>ChildNode</span></code></span></a>
-        <li><a href="#mixin-slotable"><span class="secno">4.2.9</span> <span class="content">Mixin <code class="idl"><span>Slottable</span></code></span></a>
+        <li><a href="#mixin-slotable"><span class="secno">4.2.9</span> <span class="content">混入(Mixin)：<code class="idl"><span>Slottable</span></code></span></a>
         <li>
          <a href="#old-style-collections"><span class="secno">4.2.10</span> <span class="content">Old-style collections: <code class="idl"><span>NodeList</span></code> and <code class="idl"><span>HTMLCollection</span></code></span></a>
          <ol class="toc">
@@ -3532,7 +3532,7 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑥">删除</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑥">this</a>。 </p>
    </ol>
-   <h4 class="heading settled" data-level="4.2.9" id="mixin-slotable"><span class="secno">4.2.9. </span><span class="content">Mixin <code class="idl"><a data-link-type="idl" href="#slotable" id="ref-for-slotable">Slottable</a></code></span><a class="self-link" href="#mixin-slotable"></a></h4>
+   <h4 class="heading settled" data-level="4.2.9" id="mixin-slotable"><span class="secno">4.2.9. </span><span class="content">混入(Mixin)：<code class="idl"><a data-link-type="idl" href="#slotable" id="ref-for-slotable">Slottable</a></code></span><a class="self-link" href="#mixin-slotable"></a></h4>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="slotable"><code><c- g>Slottable</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlslotelement" id="ref-for-htmlslotelement"><c- n>HTMLSlotElement</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="HTMLSlotElement?" href="#dom-slotable-assignedslot" id="ref-for-dom-slotable-assignedslot"><c- g>assignedSlot</c-></a>;
 };
@@ -3568,7 +3568,7 @@ U除非另有说明，否则为空。 </p>
      </div>
     </div>
    </div>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Slottable" data-dfn-type="attribute" data-export id="dom-slotable-assignedslot"><code>assignedSlot</code></dfn> getter steps are to return the result of <a data-link-type="dfn" href="#find-a-slot" id="ref-for-find-a-slot②">find a slot</a> given <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑦">this</a> and with the <i>open flag</i> set. </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="Slottable" data-dfn-type="attribute" data-export id="dom-slotable-assignedslot"><code>assignedSlot</code></dfn> getter方法将返回给定参数<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑦">this</a>以及设置的<i>open flag</i><a data-link-type="dfn" href="#find-a-slot" id="ref-for-find-a-slot②">查找插槽</a>的结果。 </p>
    <h4 class="heading settled" data-level="4.2.10" id="old-style-collections"><span class="secno">4.2.10. </span><span class="content">Old-style collections: <code class="idl"><a data-link-type="idl" href="#nodelist" id="ref-for-nodelist①">NodeList</a></code> and <code class="idl"><a data-link-type="idl" href="#htmlcollection" id="ref-for-htmlcollection②">HTMLCollection</a></code></span><a class="self-link" href="#old-style-collections"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-collection">collection</dfn> is an object that represents a list of <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④②">nodes</a>. A <a data-link-type="dfn" href="#concept-collection" id="ref-for-concept-collection①">collection</a> can be either <dfn class="dfn-paneled" data-dfn-for="collection" data-dfn-type="dfn" data-export data-local-lt="live" data-lt="live collection" id="concept-collection-live">live</dfn> or <dfn data-dfn-for="collection" data-dfn-type="dfn" data-export data-lt="static collection" id="concept-collection-static">static<a class="self-link" href="#concept-collection-static"></a></dfn>.
 Unless otherwise stated, a <a data-link-type="dfn" href="#concept-collection" id="ref-for-concept-collection②">collection</a> must be <a data-link-type="dfn" href="#concept-collection-live" id="ref-for-concept-collection-live">live</a>.</p>
@@ -13091,7 +13091,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-htmlslotelement">
    <a href="https://html.spec.whatwg.org/multipage/scripting.html#htmlslotelement">https://html.spec.whatwg.org/multipage/scripting.html#htmlslotelement</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-htmlslotelement">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-htmlslotelement">4.2.9. 混入(Mixin)：Slottable</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-htmlunknownelement">
@@ -14309,7 +14309,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-this③⓪">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-this③①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-this③②">(2)</a> <a href="#ref-for-this③③">(3)</a> <a href="#ref-for-this③④">(4)</a> <a href="#ref-for-this③⑤">(5)</a> <a href="#ref-for-this③⑥">(6)</a> <a href="#ref-for-this③⑦">(7)</a> <a href="#ref-for-this③⑧">(8)</a> <a href="#ref-for-this③⑨">(9)</a> <a href="#ref-for-this④⓪">(10)</a> <a href="#ref-for-this④①">(11)</a> <a href="#ref-for-this④②">(12)</a>
     <li><a href="#ref-for-this④③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-this④④">(2)</a> <a href="#ref-for-this④⑤">(3)</a> <a href="#ref-for-this④⑥">(4)</a> <a href="#ref-for-this④⑦">(5)</a> <a href="#ref-for-this④⑧">(6)</a> <a href="#ref-for-this④⑨">(7)</a> <a href="#ref-for-this⑤⓪">(8)</a> <a href="#ref-for-this⑤①">(9)</a> <a href="#ref-for-this⑤②">(10)</a> <a href="#ref-for-this⑤③">(11)</a> <a href="#ref-for-this⑤④">(12)</a> <a href="#ref-for-this⑤⑤">(13)</a> <a href="#ref-for-this⑤⑥">(14)</a>
-    <li><a href="#ref-for-this⑤⑦">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-this⑤⑦">4.2.9. 混入(Mixin)：Slottable</a>
     <li><a href="#ref-for-this⑤⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-this⑤⑨">(2)</a> <a href="#ref-for-this⑥⓪">(3)</a> <a href="#ref-for-this⑥①">(4)</a> <a href="#ref-for-this⑥②">(5)</a> <a href="#ref-for-this⑥③">(6)</a> <a href="#ref-for-this⑥④">(7)</a> <a href="#ref-for-this⑥⑤">(8)</a> <a href="#ref-for-this⑥⑥">(9)</a> <a href="#ref-for-this⑥⑦">(10)</a> <a href="#ref-for-this⑥⑧">(11)</a> <a href="#ref-for-this⑥⑨">(12)</a>
     <li><a href="#ref-for-this⑦⓪">4.4. Interface Node</a> <a href="#ref-for-this⑦①">(2)</a> <a href="#ref-for-this⑦②">(3)</a> <a href="#ref-for-this⑦③">(4)</a> <a href="#ref-for-this⑦④">(5)</a> <a href="#ref-for-this⑦⑤">(6)</a> <a href="#ref-for-this⑦⑥">(7)</a> <a href="#ref-for-this⑦⑦">(8)</a> <a href="#ref-for-this⑦⑧">(9)</a> <a href="#ref-for-this⑦⑨">(10)</a> <a href="#ref-for-this⑧⓪">(11)</a> <a href="#ref-for-this⑧①">(12)</a> <a href="#ref-for-this⑧②">(13)</a> <a href="#ref-for-this⑧③">(14)</a> <a href="#ref-for-this⑧④">(15)</a> <a href="#ref-for-this⑧⑤">(16)</a> <a href="#ref-for-this⑧⑥">(17)</a> <a href="#ref-for-this⑧⑦">(18)</a> <a href="#ref-for-this⑧⑧">(19)</a> <a href="#ref-for-this⑧⑨">(20)</a> <a href="#ref-for-this⑨⓪">(21)</a> <a href="#ref-for-this⑨①">(22)</a> <a href="#ref-for-this⑨②">(23)</a> <a href="#ref-for-this⑨③">(24)</a> <a href="#ref-for-this⑨④">(25)</a> <a href="#ref-for-this⑨⑤">(26)</a> <a href="#ref-for-this⑨⑥">(27)</a> <a href="#ref-for-this⑨⑦">(28)</a> <a href="#ref-for-this⑨⑧">(29)</a> <a href="#ref-for-this⑨⑨">(30)</a> <a href="#ref-for-this①⓪⓪">(31)</a> <a href="#ref-for-this①⓪①">(32)</a> <a href="#ref-for-this①⓪②">(33)</a> <a href="#ref-for-this①⓪③">(34)</a> <a href="#ref-for-this①⓪④">(35)</a> <a href="#ref-for-this①⓪⑤">(36)</a> <a href="#ref-for-this①⓪⑥">(37)</a> <a href="#ref-for-this①⓪⑦">(38)</a> <a href="#ref-for-this①⓪⑧">(39)</a> <a href="#ref-for-this①⓪⑨">(40)</a> <a href="#ref-for-this①①⓪">(41)</a> <a href="#ref-for-this①①①">(42)</a> <a href="#ref-for-this①①②">(43)</a> <a href="#ref-for-this①①③">(44)</a> <a href="#ref-for-this①①④">(45)</a> <a href="#ref-for-this①①⑤">(46)</a> <a href="#ref-for-this①①⑥">(47)</a>
     <li><a href="#ref-for-this①①⑦">4.5. Interface Document</a> <a href="#ref-for-this①①⑧">(2)</a> <a href="#ref-for-this①①⑨">(3)</a> <a href="#ref-for-this①②⓪">(4)</a> <a href="#ref-for-this①②①">(5)</a> <a href="#ref-for-this①②②">(6)</a> <a href="#ref-for-this①②③">(7)</a> <a href="#ref-for-this①②④">(8)</a> <a href="#ref-for-this①②⑤">(9)</a> <a href="#ref-for-this①②⑥">(10)</a> <a href="#ref-for-this①②⑦">(11)</a> <a href="#ref-for-this①②⑧">(12)</a> <a href="#ref-for-this①②⑨">(13)</a> <a href="#ref-for-this①③⓪">(14)</a> <a href="#ref-for-this①③①">(15)</a> <a href="#ref-for-this①③②">(16)</a> <a href="#ref-for-this①③③">(17)</a> <a href="#ref-for-this①③④">(18)</a> <a href="#ref-for-this①③⑤">(19)</a> <a href="#ref-for-this①③⑥">(20)</a> <a href="#ref-for-this①③⑦">(21)</a> <a href="#ref-for-this①③⑧">(22)</a> <a href="#ref-for-this①③⑨">(23)</a> <a href="#ref-for-this①④⓪">(24)</a> <a href="#ref-for-this①④①">(25)</a> <a href="#ref-for-this①④②">(26)</a> <a href="#ref-for-this①④③">(27)</a> <a href="#ref-for-this①④④">(28)</a> <a href="#ref-for-this①④⑤">(29)</a> <a href="#ref-for-this①④⑥">(30)</a>
@@ -16611,7 +16611,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-find-a-slot">4.2.2.3. 查找插槽以及可插槽元素</a>
     <li><a href="#ref-for-find-a-slot①">4.2.2.4. 分配可插槽元素和插槽</a>
-    <li><a href="#ref-for-find-a-slot②">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-find-a-slot②">4.2.9. 混入(Mixin)：Slottable</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="find-slotables">
@@ -16891,13 +16891,13 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="slotable">
    <b><a href="#slotable">#slotable</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-slotable">4.2.9. Mixin Slottable</a> <a href="#ref-for-slotable①">(2)</a> <a href="#ref-for-slotable②">(3)</a>
+    <li><a href="#ref-for-slotable">4.2.9. 混入(Mixin)：Slottable</a> <a href="#ref-for-slotable①">(2)</a> <a href="#ref-for-slotable②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-slotable-assignedslot">
    <b><a href="#dom-slotable-assignedslot">#dom-slotable-assignedslot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-slotable-assignedslot">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-dom-slotable-assignedslot">4.2.9. 混入(Mixin)：Slottable</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-collection">
@@ -18283,7 +18283,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-element①⑦">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-element①⑧">(2)</a> <a href="#ref-for-element①⑨">(3)</a> <a href="#ref-for-element②⓪">(4)</a>
     <li><a href="#ref-for-element②①">4.2.7. 混入(Mixin)：NonDocumentTypeChildNode</a> <a href="#ref-for-element②②">(2)</a> <a href="#ref-for-element②③">(3)</a>
     <li><a href="#ref-for-element②④">4.2.8. 混入(Mixin)：ChildNode</a>
-    <li><a href="#ref-for-element②⑤">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-element②⑤">4.2.9. 混入(Mixin)：Slottable</a>
     <li><a href="#ref-for-element②⑥">4.2.10.2. Interface HTMLCollection</a> <a href="#ref-for-element②⑦">(2)</a>
     <li><a href="#ref-for-element②⑧">4.4. Interface Node</a> <a href="#ref-for-element②⑨">(2)</a> <a href="#ref-for-element③⓪">(3)</a> <a href="#ref-for-element③①">(4)</a> <a href="#ref-for-element③②">(5)</a> <a href="#ref-for-element③③">(6)</a> <a href="#ref-for-element③④">(7)</a> <a href="#ref-for-element③⑤">(8)</a> <a href="#ref-for-element③⑥">(9)</a> <a href="#ref-for-element③⑦">(10)</a>
     <li><a href="#ref-for-element③⑧">4.5. Interface Document</a> <a href="#ref-for-element③⑨">(2)</a> <a href="#ref-for-element④⓪">(3)</a> <a href="#ref-for-element④①">(4)</a>
@@ -19105,7 +19105,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-text⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-text⑧">(2)</a> <a href="#ref-for-text⑨">(3)</a> <a href="#ref-for-text①⓪">(4)</a>
     <li><a href="#ref-for-text①①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-text①②">(2)</a> <a href="#ref-for-text①③">(3)</a> <a href="#ref-for-text①④">(4)</a>
     <li><a href="#ref-for-text①⑤">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-text①⑥">(2)</a> <a href="#ref-for-text①⑦">(3)</a>
-    <li><a href="#ref-for-text①⑧">4.2.9. Mixin Slottable</a>
+    <li><a href="#ref-for-text①⑧">4.2.9. 混入(Mixin)：Slottable</a>
     <li><a href="#ref-for-text①⑨">4.4. Interface Node</a> <a href="#ref-for-text②⓪">(2)</a> <a href="#ref-for-text②①">(3)</a>
     <li><a href="#ref-for-text②②">4.5. Interface Document</a> <a href="#ref-for-text②③">(2)</a> <a href="#ref-for-text②④">(3)</a>
     <li><a href="#ref-for-text②⑤">4.5.1. Interface DOMImplementation</a>
