@@ -2907,31 +2907,25 @@ Text includes Slottable;
 getter方法将返回给定参数<a>this</a>以及设置的<i>open flag</i><a lt="find a slot">查找插槽</a>的结果。
 
 
-<h4 id=old-style-collections>Old-style collections: {{NodeList}} and {{HTMLCollection}}</h4>
+<h4 id=old-style-collections>早期集合类型：{{NodeList}}以及{{HTMLCollection}}</h4>
 
-A <dfn export id=concept-collection>collection</dfn> is an object that represents a list of
-<a for=/>nodes</a>. A <a>collection</a> can be either
-<dfn export for=collection id=concept-collection-live lt="live collection" local-lt="live">live</dfn>
-or <dfn export for=collection id=concept-collection-static lt="static collection">static</dfn>.
-Unless otherwise stated, a <a>collection</a> must be <a for=collection>live</a>.
+<dfn export id=concept-collection lt="collection">集合(collection)</dfn>是一个对象，它表示一组<a for=/ lt="nodes">节点</a>的列表。
+<a lt="collection">集合</a>可以是<dfn export for=collection id=concept-collection-live lt="live collection" local-lt="live">动态的</dfn>
+或是<dfn export for=collection id=concept-collection-static lt="static collection">静态的</dfn>。若没有特别声明，<a lt="collection">集合</a>
+必须是<a for=collection lt="live">动态的</a>。
 
-If a <a>collection</a> is <a for=collection>live</a>, then the attributes and methods
-on that object must operate on the actual underlying data, not a snapshot of
-the data.
+如果<a lt="collection">集合</a>是<a for=collection lt="live">动态的</a>，则该对象的属性以及方法必须对实际的底层数据进行操作，
+而不是数据的快照。
 
-When a <a>collection</a> is created, a
-filter and a root are associated with it.
+当一个<a lt="collection">集合</a>被创建时，会与之关联一个过滤器和一个根。
 
-The <a>collection</a> then
-<dfn export for=collection lt="represented by the collection" id=represented-by-the-collection>represents</dfn>
-a view of the subtree rooted at the <a>collection's</a> root, containing only nodes that match the
-given filter. The view is linear. In the absence of specific requirements to the contrary, the nodes
-within the <a>collection</a> must be sorted in <a>tree order</a>.
+<a lt="collection">集合</a>表示以<a lt="collection">集合</a>的根节点为根的子树的视图，它仅包含匹配过滤器的节点。视图是线性的。
+相反，在没有特定要求的情况下，<a lt="collection">集合</a>中的节点必须按<a lt="tree order">树的顺序</a>排序。
 
 
-<h5 id=interface-nodelist>Interface {{NodeList}}</h5>
+<h5 id=interface-nodelist>接口：{{NodeList}}</h5>
 
-<p>A {{NodeList}} object is a <a>collection</a> of <a for=/>nodes</a>.
+<p>{{NodeList}}对象表示<a for=/ lt="nodes">节点</a>的<a lt="collection">集合</a>。
 
 <pre class=idl>
 [Exposed=Window]
@@ -2944,32 +2938,28 @@ interface NodeList {
 
 <dl class=domintro>
  <dt><var>collection</var> . {{NodeList/length}}
- <dd>Returns the number of <a for=/>nodes</a> in the <a>collection</a>.
+ <dd>返回<a lt="collection">集合</a>中<a for=/ lt="nodes">节点</a>的数量。
 
  <dt><var>element</var> = <var>collection</var> . {{NodeList/item(index)}}
  <dt><var>element</var> = <var>collection</var>[<var>index</var>]
- <dd>Returns the <a for=/>node</a> with index <var>index</var> from the <a>collection</a>. The
- <a for=/>nodes</a> are sorted in <a>tree order</a>.
+ <dd>从<a lt="collection">集合</a>中返回索引为index的<a for=/ lt="node">节点</a>，
+ <a for=/ lt="nodes">节点</a>按<a lt="tree order">树的顺序</a>排序。
 </dl>
 
 <div class=impl>
 
-<p>The object's <a>supported property indices</a> are the numbers in the range zero to one less than
-the number of nodes <a for=collection>represented by the collection</a>. If there are no such
-elements, then there are no <a>supported property indices</a>.
+<p>对象<a lt="supported property indices">支持的属性索引</a>是从零到<a for=collection lt="represented by the collection">集合代表</a>
+的节点数量减一的范围内的数字。如果没有这样的元素，则表示没有<a lt="supported property indices">支持的属性索引</a>。
 
-<p>The <dfn attribute for=NodeList>length</dfn> attribute must return the number of nodes
-<a for=collection>represented by the collection</a>.
+<p><dfn attribute for=NodeList>length</dfn>属性返回<a for=collection lt="represented by the collection">集合代表</a>的节点数量。
 
-<p>The <dfn method for=NodeList><code>item(<var>index</var>)</code></dfn> method must return the
-<var>index</var><sup>th</sup> <a for=/>node</a> in the <a>collection</a>. If there is no
-<var>index</var><sup>th</sup> <a for=/>node</a> in the <a>collection</a>, then the method must
-return null.
+<p><dfn method for=NodeList><code>item(<var>index</var>)</code></dfn>方法必须返回<a lt="collection">集合</a>中索引为<var>index</var>的
+<a for=/ lt="node">节点</a>，如何没有这样的节点，该方法将返回null。
 
 </div>
 
 
-<h5 id=interface-htmlcollection>Interface {{HTMLCollection}}</h5>
+<h5 id=interface-htmlcollection>接口：{{HTMLCollection}}</h5>
 
 <pre class=idl>
 [Exposed=Window, LegacyUnenumerableNamedProperties]
@@ -2980,7 +2970,7 @@ interface HTMLCollection {
 };
 </pre>
 
-<p>An {{HTMLCollection}} object is a <a>collection</a> of <a for=/>elements</a>.
+<p>{{HTMLCollection}}对象表示<a for=/ lt="elements">元素</a>的<a lt="collection">集合</a>。
 
 <p class=note>{{HTMLCollection}} is a historical artifact we cannot rid the web of.
 While developers are of course welcome to keep using it, new API standard designers ought not to use
