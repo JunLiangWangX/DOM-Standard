@@ -2972,83 +2972,72 @@ interface HTMLCollection {
 
 <p>{{HTMLCollection}}对象表示<a for=/ lt="elements">元素</a>的<a lt="collection">集合</a>。
 
-<p class=note>{{HTMLCollection}} is a historical artifact we cannot rid the web of.
-While developers are of course welcome to keep using it, new API standard designers ought not to use
-it (use <code>sequence&lt;T></code> in IDL instead).
+<p class=note>{{HTMLCollection}}是Web中的历史遗留对象。当然我们欢迎开发者继续使用它，但新的API标准的设计者
+不应该使用它(而是在IDL中使用<code>sequence&lt;T></code>)。
 
 <dl class=domintro>
  <dt><var>collection</var> . {{HTMLCollection/length}}
  <dd>
-  Returns the number of <a for=/>elements</a> in
-  the <a>collection</a>.
+  返回<a lt="collection">集合</a>中<a for=/ lt="elements">元素</a>的数量。
 
  <dt><var>element</var> = <var>collection</var> . {{HTMLCollection/item(index)}}
  <dt><var>element</var> = <var>collection</var>[<var>index</var>]
  <dd>
-  Returns the <a for=/>element</a> with index
-  <var>index</var> from the <a>collection</a>.
-  The <a for=/>elements</a> are sorted in <a>tree order</a>.
+  从<a lt="collection">集合</a>中返回索引为index的<a for=/ lt="elements">元素</a>，<a for=/ lt="elements">元素</a>
+  按<a lt="tree order">树的顺序</a>排序。
 
  <dt><var>element</var> = <var>collection</var> . {{namedItem(name)}}
  <dt><var>element</var> = <var>collection</var>[<var>name</var>]
  <dd>
-  Returns the first <a for=/>element</a> with <a for=Element>ID</a> or name <var>name</var>
-  from the collection.
+  返回<a lt="collection">集合</a>中name或者<a for=Element>ID</a>为传入值的第一个<a for=/ lt="elements">元素</a>。
 </dl>
 
-<p>The object's <a>supported property indices</a> are the numbers in the range zero to one less than
-the number of elements <a for=collection>represented by the collection</a>. If there are no such
-elements, then there are no <a>supported property indices</a>.
+<p>对象<a lt="supported property indices">支持的属性索引</a>是从零到<a for=collection lt="represented by the collection">集合代表</a>
+的<a for=/ lt="elements">元素</a>数量减一的范围内的数字。如果没有这样的元素，则表示没有支持的属性索引。
 
-<p>The <dfn attribute for=HTMLCollection><code>length</code></dfn> getter steps are to return the
-number of nodes <a for=collection>represented by the collection</a>.
+<p><dfn attribute for=HTMLCollection><code>length</code></dfn>的getter方法将返回<a for=collection lt="represented by the collection">集合代表</a>
+的<a for=/ lt="elements">元素</a>数量。
 
-<p>The <dfn method for=HTMLCollection><code>item(<var>index</var>)</code></dfn> method steps are to
-return the <var>index</var><sup>th</sup> <a for=/>element</a> in the <a>collection</a>. If there
-is no <var>index</var><sup>th</sup> <a for=/>element</a> in the <a>collection</a>, then the method
-must return null.
+<p><dfn method for=HTMLCollection><code>item(<var>index</var>)</code></dfn>方法返回<a lt="collection">集合</a>中索引为index的
+<a for=/ lt="elements">元素</a>，如何没有这样的<a for=/ lt="elements">元素</a>，该方法将返回null。
 
-<p>The <a>supported property names</a> are the values from the list returned by these steps:
+<p>获取<a lt="supported property names">支持的属性名</a>流程如下：
 
 <ol>
- <li><p>Let <var>result</var> be an empty list.
+ <li><p>创建一个空的列表 (名为result)。
 
  <li>
-  <p>For each <var>element</var> <a for=collection>represented by the collection</a>, in
-  <a>tree order</a>:
+  <p>按<a lt="tree order">树的顺序</a>遍历<a for=collection lt="represented by the collection">集合中代表</a>的
+  <a for=/ lt="elements">元素</a>：
 
   <ol>
-   <li><p>If <var>element</var> has an <a for=Element>ID</a> which is not in <var>result</var>,
-   append <var>element</var>'s <a for=Element>ID</a> to <var>result</var>.
+   <li><p>如果当前元素有一个<a for=Element>ID</a>且这个<a for=Element>ID</a>不在<var>result</var>中，
+   则把这个<a for=Element>ID</a>添加到<var>result</var>中。
 
-   <li><p>If <var>element</var> is in the <a>HTML namespace</a> and <a lt="has an attribute">has</a>
-   a <a lt="named attribute"><code>name</code> attribute</a> whose <a for=Attr>value</a> is neither
-   the empty string nor is in <var>result</var>, append <var>element</var>'s
-   <a lt="named attribute"><code>name</code> attribute</a> <a for=Attr>value</a> to
-   <var>result</var>.
+   <li><p>如果当前元素在<a lt="HTML namespace">HTML命名空间</a>中，并且<a lt="has an attribute">有</a>
+   一个<a lt="named attribute"><code>name</code>属性</a>，且这个属性的值不为空且也不在<var>result</var>中，
+   则把这个属性的值加入到<var>result</var>中。
   </ol>
 
- <li><p>Return <var>result</var>.
+ <li><p>返回<var>result</var>。
 </ol>
 
-<p>The <dfn method for=HTMLCollection><code>namedItem(<var>key</var>)</code></dfn> method steps are:
+<p><dfn method for=HTMLCollection><code>namedItem(<var>key</var>)</code></dfn>方法将会运行以下步骤：
 
 <ol>
- <li><p>If <var>key</var> is the empty string, return null.
+ <li><p>如果<var>key</var>为空字符串，则直接返回null。
 
  <li>
-  <p>Return the first <a for=/>element</a> in the <a>collection</a> for which at least one of
-  the following is true:
+  <p>以下条件至少满足一个，则返回<a lt="collection">集合</a>中第一个满足条件的<a for=/ lt="element">元素</a>：
 
   <ul>
-   <li>it has an <a for=Element>ID</a> which is <var>key</var>;
+   <li>存在<a for=Element>ID</a>且值为<var>key</var>;
 
-   <li>it is in the <a>HTML namespace</a> and <a lt="has an attribute">has</a> a
-   <a lt="named attribute"><code>name</code> attribute</a> whose <a for=Attr>value</a> is
-   <var>key</var>;
+   <li>在<a lt="HTML namespace">HTML命名空间</a>中且<a lt="has an attribute">有</a>一个<a lt="named attribute"><code>name</code>属性</a>，
+   该属性值为<var>key</var>；
   </ul>
 
-  <p>or null if there is no such <a for=/>element</a>.
+  <p>如果没有这样的<a for=/ lt="element">元素</a>，则返回null。
 </ol>
 
 
