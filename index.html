@@ -133,7 +133,7 @@ a[href].issue-return {
       <li>
        <a href="#mutation-observers"><span class="secno">4.3</span> <span class="content">变化观察者</span></a>
        <ol class="toc">
-        <li><a href="#interface-mutationobserver"><span class="secno">4.3.1</span> <span class="content">Interface <code class="idl"><span>MutationObserver</span></code></span></a>
+        <li><a href="#interface-mutationobserver"><span class="secno">4.3.1</span> <span class="content">接口：<code class="idl"><span>MutationObserver</span></code></span></a>
         <li><a href="#queueing-a-mutation-record"><span class="secno">4.3.2</span> <span class="content">Queuing a mutation record</span></a>
         <li><a href="#interface-mutationrecord"><span class="secno">4.3.3</span> <span class="content">Interface <code class="idl"><span>MutationRecord</span></code></span></a>
         <li><a href="#garbage-collection"><span class="secno">4.3.4</span> <span class="content">Garbage collection</span></a>
@@ -3830,7 +3830,7 @@ U除非另有说明，否则为空。 </p>
 和一个<dfn class="dfn-paneled" data-dfn-for="registered observer" data-dfn-type="dfn" data-lt="options" data-noexport id="registered-observer-options">选项</dfn>(<code class="idl"><a data-link-type="idl" href="#dictdef-mutationobserverinit" id="ref-for-dictdef-mutationobserverinit">MutationObserverInit</a></code>字典)组成。 </p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="transient registered observer" data-noexport id="transient-registered-observer">瞬态注册观察者</dfn>是一个 <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer①">注册观察者</a>，它由一个<dfn class="dfn-paneled" data-dfn-for="transient registered observer" data-dfn-type="dfn" data-lt="source" data-noexport id="transient-registered-observer-source">源</dfn> (一个<a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer②">注册观察者</a>)组成。 </p>
    <p class="note" role="note"><a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer②">瞬态注册观察者</a>用于在节点被删除后跟踪给定 <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node④⑨">节点</a>的<a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant⑧">后代</a>内的变化，因此当节点的父节点的 <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree①">subtree</a></code>设置为true时它们不会丢失。 </p>
-   <h4 class="heading settled" data-level="4.3.1" id="interface-mutationobserver"><span class="secno">4.3.1. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver②">MutationObserver</a></code></span><a class="self-link" href="#interface-mutationobserver"></a></h4>
+   <h4 class="heading settled" data-level="4.3.1" id="interface-mutationobserver"><span class="secno">4.3.1. </span><span class="content">接口：<code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver②">MutationObserver</a></code></span><a class="self-link" href="#interface-mutationobserver"></a></h4>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -3868,12 +3868,12 @@ U除非另有说明，否则为空。 </p>
   <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence③"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①⑦"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserverInit" data-dfn-type="dict-member" data-export data-type="sequence<DOMString> " id="dom-mutationobserverinit-attributefilter"><code><c- g>attributeFilter</c-></code></dfn>;
 };
 </pre>
-   <p>A <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver④">MutationObserver</a></code> object can be used to observe mutations to the <a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①③">tree</a> of <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤⓪">nodes</a>. </p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑤">MutationObserver</a></code> object has these associated concepts: </p>
+   <p><code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver④">MutationObserver</a></code>对象用于观察<a data-link-type="dfn" href="#concept-tree" id="ref-for-concept-tree①③">树</a>中<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤⓪">节点</a>的变化。 </p>
+   <p>每个<code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑤">MutationObserver</a></code>对象有相关的概念： </p>
    <ul>
-    <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-noexport id="concept-mo-callback">callback</dfn> set on creation. 
-    <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-noexport id="mutationobserver-node-list">node list</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a> of <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤①">nodes</a>), which is initially empty. 
-    <li>A <dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-export id="concept-mo-queue">record queue</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#queue" id="ref-for-queue">queue</a> of zero or more <code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord②">MutationRecord</a></code> objects), which is initially empty. 
+    <li>创建时设置的<dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-lt="callback" data-noexport id="concept-mo-callback">回调</dfn>。 
+    <li><dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-lt="node list" data-noexport id="mutationobserver-node-list">节点列表</dfn>(由<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤①">节点</a>组成的<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">列表</a>)，初值为空。 
+    <li><dfn class="dfn-paneled" data-dfn-for="MutationObserver" data-dfn-type="dfn" data-export data-lt="record queue" id="concept-mo-queue">记录队列</dfn>(由零个或多个<code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord②">MutationRecord</a></code>对象组成的 <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#queue" id="ref-for-queue">队列</a>)，初值为空。 
    </ul>
    <dl class="domintro">
     <dt>
@@ -3894,10 +3894,8 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>observer</var> = new <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-mutationobserver" id="ref-for-dom-mutationobserver-mutationobserver①">MutationObserver(callback)</a></code></code> 
-    <dd>Constructs a <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑥">MutationObserver</a></code> object and sets its <a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback①">callback</a> to <var>callback</var>. The <var>callback</var> is invoked with a list of <code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord③">MutationRecord</a></code> objects
- as first argument and the constructed <code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑦">MutationObserver</a></code> object as second argument. It is
- invoked after <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤②">nodes</a> registered with the <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-observe" id="ref-for-dom-mutationobserver-observe①">observe()</a></code> method, are
- mutated. 
+    <dd>构造一个<code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑥">MutationObserver</a></code>对象并且设置它的<a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback①">回调函数</a>为<var>callback</var>。 <var>callback</var>被调用时，<code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord③">MutationRecord</a></code>对象列表作为第一个参数以及构造的<code class="idl"><a data-link-type="idl" href="#mutationobserver" id="ref-for-mutationobserver⑦">MutationObserver</a></code>对象作为第二个参数。
+ 它在使用<code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-observe" id="ref-for-dom-mutationobserver-observe①">observe()</a></code>方法注册的<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤②">节点</a>发生变化后调用。 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3917,34 +3915,26 @@ U除非另有说明，否则为空。 </p>
      </div>
      <code><var>observer</var> . <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-observe" id="ref-for-dom-mutationobserver-observe②">observe(target, options)</a></code></code> 
     <dd>
-      Instructs the user agent to observe a given <var>target</var> (a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤③">node</a>) and report any mutations based on
-  the criteria given by <var>options</var> (an object). 
-     <p>The <var>options</var> argument allows for setting mutation
-  observation options via object members. These are the object members that
-  can be used:</p>
+      指示用户代理观察给定<var>target</var>(一个<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑤③">节点</a>)并根据<var>options</var>(一个对象)给出的标准报告节点的变化。 
+     <p><var>options</var>允许通过对象成员设置变化观察者选项。以下为能够被设置的变化观察者选项的对象成员：</p>
      <dl>
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist">childList</a></code> 
-      <dd>Set to true if mutations to <var>target</var>’s <a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child④①">children</a> are to be observed. 
+      <dd>如果需要观察<var>target</var>的<a data-link-type="dfn" href="#concept-tree-child" id="ref-for-concept-tree-child④①">子节点</a>的变化，则设为true。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes">attributes</a></code> 
-      <dd>Set to true if mutations to <var>target</var>’s <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute">attributes</a> are to be observed. Can be omitted if <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue">attributeOldValue</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter">attributeFilter</a></code> is
-   specified. 
+      <dd>如果需要观察<var>target</var>的<a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute">属性</a>变化，则设置为true。
+   如果指定了<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue">attributeOldValue</a></code>或<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter">attributeFilter</a></code>，则可以省略。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata">characterData</a></code> 
-      <dd>Set to true if mutations to <var>target</var>’s <a data-link-type="dfn" href="#concept-cd-data" id="ref-for-concept-cd-data②">data</a> are to be observed. Can be omitted if <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue">characterDataOldValue</a></code> is specified. 
+      <dd>如果需要观察<var>target</var>的<a data-link-type="dfn" href="#concept-cd-data" id="ref-for-concept-cd-data②">字符数据</a>变化，则设置为true。
+   如果指定了<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue">characterDataOldValue</a></code>，则可以省略。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree②">subtree</a></code> 
-      <dd>Set to true if mutations to not just <var>target</var>, but
-   also <var>target</var>’s <a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant⑨">descendants</a> are to be
-   observed. 
+      <dd>如果不仅要观察<var>target</var>的变化，而且还要观察<var>target</var>的<a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant⑨">后代</a>的变化，则设置为 true。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue①">attributeOldValue</a></code> 
-      <dd>Set to true if <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes①">attributes</a></code> is true or omitted
-   and <var>target</var>’s <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute①">attribute</a> <a data-link-type="dfn" href="#concept-attribute-value" id="ref-for-concept-attribute-value">value</a> before the mutation
-   needs to be recorded. 
+      <dd>如果<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes①">attributes</a></code>为true或被省略，并且需要记录变化之前<var>target</var>的<a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute①">属性</a> <a data-link-type="dfn" href="#concept-attribute-value" id="ref-for-concept-attribute-value">值</a>，则设置为 true。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue①">characterDataOldValue</a></code> 
-      <dd>Set to true if <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata①">characterData</a></code> is set to true or omitted and <var>target</var>’s <a data-link-type="dfn" href="#concept-cd-data" id="ref-for-concept-cd-data③">data</a> before the mutation
-   needs to be recorded. 
+      <dd>如果<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata①">characterData</a></code>为true或被省略，并且需要记录变化之前<var>target</var>的 <a data-link-type="dfn" href="#concept-cd-data" id="ref-for-concept-cd-data③">字符数据</a>，则设置为 true。 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter①">attributeFilter</a></code> 
-      <dd>Set to a list of <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②">attribute</a> <a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name">local names</a> (without <a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace">namespace</a>) if not all <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute③">attribute</a> mutations need to be
-   observed and <code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes②">attributes</a></code> is true
-   or omitted. 
+      <dd>如果并不需要观察全部<a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute②">属性</a>的变化并且<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes②">attributes</a></code>为true或被省略，则可以
+   设置一组<a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute③">属性</a>的<a data-link-type="dfn" href="#concept-attribute-local-name" id="ref-for-concept-attribute-local-name">本地名称</a>(属性名，不带<a data-link-type="dfn" href="#concept-attribute-namespace" id="ref-for-concept-attribute-namespace"> 命名空间</a>前缀)的列表。 
      </dl>
     <dt>
      <div class="mdn-anno wrapped">
@@ -3964,8 +3954,7 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>observer</var> . <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-disconnect" id="ref-for-dom-mutationobserver-disconnect①">disconnect()</a></code></code> 
-    <dd>Stops <var>observer</var> from observing any mutations. Until the <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-observe" id="ref-for-dom-mutationobserver-observe③">observe()</a></code> method is used
- again, <var>observer</var>’s <a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback②">callback</a> will not be invoked. 
+    <dd>阻止观察者观察任何变化，直到再次使用<code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-observe" id="ref-for-dom-mutationobserver-observe③">observe()</a></code>方法，才会调用观察者的<a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback②">回调函数</a>。 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -3984,63 +3973,62 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>observer</var> . <code class="idl"><a data-link-type="idl" href="#dom-mutationobserver-takerecords" id="ref-for-dom-mutationobserver-takerecords①">takeRecords()</a></code></code> 
-    <dd>Empties the <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue②">record queue</a> and
- returns what was in there. 
+    <dd>清空<a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue②">记录队列</a>并返回其中的内容。 
    </dl>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="constructor" data-export data-lt="MutationObserver(callback)|constructor(callback)" id="dom-mutationobserver-mutationobserver"><code>new MutationObserver(<var>callback</var>)</code></dfn> constructor steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="constructor" data-export data-lt="MutationObserver(callback)|constructor(callback)" id="dom-mutationobserver-mutationobserver"><code>new MutationObserver(<var>callback</var>)</code></dfn> 构造函数将运行以下步骤： </p>
    <ol>
     <li>
-     <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑧">this</a>’s <a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback③">callback</a> to <var>callback</var>. </p>
+     <p>设<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑧">this</a>的<a data-link-type="dfn" href="#concept-mo-callback" id="ref-for-concept-mo-callback③">回调函数</a>为<var>callback</var>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append③">Append</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑨">this</a> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⓪">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent①">relevant agent</a>’s <a data-link-type="dfn" href="#mutation-observer-list" id="ref-for-mutation-observer-list①">mutation observers</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append③">添加</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤⑨">this</a>到<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⓪">this</a>的<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent" id="ref-for-relevant-agent①">负责处理事件的元素</a> 的<a data-link-type="dfn" href="#mutation-observer-list" id="ref-for-mutation-observer-list①">变化观察者</a>中。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export data-lt="observe(target, options)|observe(target)" id="dom-mutationobserver-observe"><code>observe(<var>target</var>, <var>options</var>)</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export data-lt="observe(target, options)|observe(target)" id="dom-mutationobserver-observe"><code>observe(<var>target</var>, <var>options</var>)</code></dfn> 方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>If either <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue②">attributeOldValue</a></code>"] or <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter②">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes③">attributes</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes④">attributes</a></code>"] to true. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue②">attributeOldValue</a></code>"]或 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter②">attributeFilter</a></code>"]<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists">存在</a>，且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes③">attributes</a></code>"]不<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">存在</a>，则设 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes④">attributes</a></code>"]为true。 </p>
     <li>
-     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue②">characterDataOldValue</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②">exists</a> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata②">characterData</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③">exist</a>, then set <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata③">characterData</a></code>"] to
- true. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue②">characterDataOldValue</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②">存在</a>且<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata②">characterData</a></code>"]不 <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③">存在</a>，则设<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata③">characterData</a></code>"]为true。 </p>
     <li>
-     <p>If none of <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist①">childList</a></code>"], <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑤">attributes</a></code>"], and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata④">characterData</a></code>"] is true, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑥">throw</a> a <code>TypeError</code>. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist①">childList</a></code>"]为none， <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑤">attributes</a></code>"]以及 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata④">characterData</a></code>"]为true，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑥">抛出</a>一个 <code>TypeError</code>。 </p>
     <li>
-     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue③">attributeOldValue</a></code>"] is true and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑥">attributes</a></code>"] is false, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑦">throw</a> a <code>TypeError</code>. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue③">attributeOldValue</a></code>"]为true且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑥">attributes</a></code>"]为false，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑦">抛出</a>一个 <code>TypeError</code>。 </p>
     <li>
-     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter③">attributeFilter</a></code>"] is present and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑦">attributes</a></code>"] is false, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑧">throw</a> a <code>TypeError</code>. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter③">attributeFilter</a></code>"]存在并且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑦">attributes</a></code>"]为false，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑧">抛出</a>一个 <code>TypeError</code>。 </p>
     <li>
-     <p>If <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue③">characterDataOldValue</a></code>"] is true and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑤">characterData</a></code>"] is false, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑨">throw</a> a <code>TypeError</code>. </p>
+     <p>如果<var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue③">characterDataOldValue</a></code>"]为true且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑤">characterData</a></code>"]为false，则<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⑨">抛出</a>一个 <code>TypeError</code>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①②">For each</a> <var>registered</var> of <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list③">registered observer list</a>, if <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer③">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①②">遍历</a><var>target</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list③">注册观察者列表</a>(<var>registered</var>)，
+  如果<var>registered</var>的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer③">观察者</a>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥①">this</a>： </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①③">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥②">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list①">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑤">remove</a> all <a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer③">transient registered observers</a> whose <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source①">source</a> is <var>registered</var> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list④">registered observer list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①③">遍历</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥②">this</a>的<a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list①">节点列表</a>中的节点， <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑤">删除</a><var>node</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list④">注册观察者列表</a>中所有 <a data-link-type="dfn" href="#transient-registered-observer-source" id="ref-for-transient-registered-observer-source①">source</a>为<var>registered</var>的<a data-link-type="dfn" href="#transient-registered-observer" id="ref-for-transient-registered-observer③">瞬态注册观察者</a>。 </p>
       <li>
-       <p>Set <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options③">options</a> to <var>options</var>. </p>
+       <p>设<var>registered</var>的<a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options③">options</a>为<var>options</var>。 </p>
      </ol>
     <li>
-     <p>Otherwise: </p>
+     <p>否则： </p>
      <ol>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">Append</a> a new <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer③">registered observer</a> whose <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer④">observer</a> is <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥③">this</a> and <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options④">options</a> is <var>options</var> to <var>target</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑤">registered observer list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">添加</a>一个新的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer④">观察者</a>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥③">this</a>且 <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options④">options</a>为<var>options</var>的<a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer③">注册观察者</a> 到<var>target</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑤">注册观察者列表</a>中。 </p>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> <var>target</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥④">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list②">node list</a>. </p>
+       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">添加</a> <var>target</var>到<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥④">this</a>的 <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list②">节点列表</a>中。 </p>
      </ol>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-disconnect"><code>disconnect()</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-disconnect"><code>disconnect()</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①④">For each</a> <var>node</var> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑤">this</a>’s <a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list③">node list</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑥">remove</a> any <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer④">registered observer</a> from <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑥">registered observer list</a> for which <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑥">this</a> is the <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑤">observer</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①④">遍历</a><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑤">this</a>的<a data-link-type="dfn" href="#mutationobserver-node-list" id="ref-for-mutationobserver-node-list③">节点列表</a>中的节点， <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove⑥">删除</a>节点的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑥">注册观察者列表</a>中的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑤">观察者</a> 为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑥">this</a>的<a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer④">注册观察者</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty②">Empty</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑦">this</a>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue③">record queue</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty②">清空</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑦">this</a>的<a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue③">记录队列</a>。 </p>
    </ol>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-takerecords"><code>takeRecords()</code></dfn> method steps are: </p>
+   <p><dfn class="dfn-paneled idl-code" data-dfn-for="MutationObserver" data-dfn-type="method" data-export id="dom-mutationobserver-takerecords"><code>takeRecords()</code></dfn>方法执行步骤如下： </p>
    <ol>
     <li>
-     <p>Let <var>records</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-clone" id="ref-for-list-clone④">clone</a> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑧">this</a>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue④">record queue</a>. </p>
+     <p>设<var>records</var>为<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑧">this</a>的<a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue④">记录队列</a>的<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-clone" id="ref-for-list-clone④">克隆</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty③">Empty</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑨">this</a>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue⑤">record queue</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty③">清空</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥⑨">this</a>的<a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue⑤">记录队列</a>。 </p>
     <li>
-     <p>Return <var>records</var>. </p>
+     <p>返回<var>records</var>。 </p>
    </ol>
    <h4 class="heading settled" data-level="4.3.2" id="queueing-a-mutation-record"><span class="secno">4.3.2. </span><span class="content">Queuing a mutation record</span><a class="self-link" href="#queueing-a-mutation-record"></a></h4>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-mutation-record">queue a mutation record</dfn> of <var>type</var> for <var>target</var> with <var>name</var>, <var>namespace</var>, <var>oldValue</var>, <var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>, and <var>nextSibling</var>, run these steps: </p>
@@ -13328,7 +13316,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-agent</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-relevant-agent">4.2.2.5. 发出插槽改变信号</a>
-    <li><a href="#ref-for-relevant-agent①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-relevant-agent①">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
@@ -13429,7 +13417,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-append③">2.9. 分派事件</a> <a href="#ref-for-list-append④">(2)</a>
     <li><a href="#ref-for-list-append⑤">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-append⑥">(2)</a>
     <li><a href="#ref-for-list-append⑦">4.2.3. 修改DOM结构的算法</a>
-    <li><a href="#ref-for-list-append⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-append⑨">(2)</a>
+    <li><a href="#ref-for-list-append⑧">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-list-append⑨">(2)</a>
     <li><a href="#ref-for-list-append①⓪">4.9. Interface Element</a>
    </ul>
   </aside>
@@ -13440,7 +13428,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-set-append">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-set-append①">4.2.2.5. 发出插槽改变信号</a>
     <li><a href="#ref-for-set-append②">4.2.3. 修改DOM结构的算法</a>
-    <li><a href="#ref-for-set-append③">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-set-append③">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-set-append④">7.1. Interface DOMTokenList</a> <a href="#ref-for-set-append⑤">(2)</a>
    </ul>
   </aside>
@@ -13487,7 +13475,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-list-clone">2.9. 分派事件</a>
     <li><a href="#ref-for-list-clone①">4.3. 变化观察者</a> <a href="#ref-for-list-clone②">(2)</a> <a href="#ref-for-list-clone③">(3)</a>
-    <li><a href="#ref-for-list-clone④">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-list-clone④">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-code-unit">
@@ -13536,7 +13524,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-list-empty">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-list-empty①">4.3. 变化观察者</a>
-    <li><a href="#ref-for-list-empty②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-empty③">(2)</a>
+    <li><a href="#ref-for-list-empty②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-list-empty③">(2)</a>
     <li><a href="#ref-for-list-empty④">7.1. Interface DOMTokenList</a>
    </ul>
   </aside>
@@ -13559,7 +13547,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-map-exists">
    <a href="https://infra.spec.whatwg.org/#map-exists">https://infra.spec.whatwg.org/#map-exists</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-exists">4.3.1. Interface MutationObserver</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a>
+    <li><a href="#ref-for-map-exists">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a>
     <li><a href="#ref-for-map-exists④">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-exists⑤">(2)</a> <a href="#ref-for-map-exists⑥">(3)</a> <a href="#ref-for-map-exists⑦">(4)</a>
     <li><a href="#ref-for-map-exists⑧">4.5. Interface Document</a> <a href="#ref-for-map-exists⑨">(2)</a>
    </ul>
@@ -13573,7 +13561,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-iterate⑦">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-list-iterate⑧">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-iterate⑨">(2)</a>
     <li><a href="#ref-for-list-iterate①⓪">4.3. 变化观察者</a> <a href="#ref-for-list-iterate①①">(2)</a>
-    <li><a href="#ref-for-list-iterate①②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-iterate①③">(2)</a> <a href="#ref-for-list-iterate①④">(3)</a>
+    <li><a href="#ref-for-list-iterate①②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-list-iterate①③">(2)</a> <a href="#ref-for-list-iterate①④">(3)</a>
     <li><a href="#ref-for-list-iterate①⑤">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-list-iterate①⑥">4.4. Interface Node</a> <a href="#ref-for-list-iterate①⑦">(2)</a>
     <li><a href="#ref-for-list-iterate①⑧">4.9.1. Interface NamedNodeMap</a>
@@ -13646,7 +13634,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-list">2.2. Event接口</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a> <a href="#ref-for-list③">(4)</a>
     <li><a href="#ref-for-list④">2.9. 分派事件</a> <a href="#ref-for-list⑤">(2)</a>
-    <li><a href="#ref-for-list⑥">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-list⑥">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-list⑦">4.9. Interface Element</a> <a href="#ref-for-list⑧">(2)</a>
    </ul>
   </aside>
@@ -13668,7 +13656,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-queue">
    <a href="https://infra.spec.whatwg.org/#queue">https://infra.spec.whatwg.org/#queue</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-queue">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-remove">
@@ -13679,7 +13667,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-remove②">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-list-remove③">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-remove④">4.3. 变化观察者</a>
-    <li><a href="#ref-for-list-remove⑤">4.3.1. Interface MutationObserver</a> <a href="#ref-for-list-remove⑥">(2)</a>
+    <li><a href="#ref-for-list-remove⑤">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-list-remove⑥">(2)</a>
     <li><a href="#ref-for-list-remove⑦">4.9. Interface Element</a>
     <li><a href="#ref-for-list-remove⑧">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-remove⑨">(2)</a>
    </ul>
@@ -13930,7 +13918,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-DOMString⑧">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-idl-DOMString⑨">(2)</a> <a href="#ref-for-idl-DOMString①⓪">(3)</a> <a href="#ref-for-idl-DOMString①①">(4)</a> <a href="#ref-for-idl-DOMString①②">(5)</a>
     <li><a href="#ref-for-idl-DOMString①③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-idl-DOMString①④">(2)</a> <a href="#ref-for-idl-DOMString①⑤">(3)</a>
     <li><a href="#ref-for-idl-DOMString①⑥">4.2.10.2. 接口：HTMLCollection</a>
-    <li><a href="#ref-for-idl-DOMString①⑦">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-idl-DOMString①⑦">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-idl-DOMString①⑧">4.3.3. Interface MutationRecord</a> <a href="#ref-for-idl-DOMString①⑨">(2)</a> <a href="#ref-for-idl-DOMString②⓪">(3)</a> <a href="#ref-for-idl-DOMString②①">(4)</a>
     <li><a href="#ref-for-idl-DOMString②②">4.4. Interface Node</a> <a href="#ref-for-idl-DOMString②③">(2)</a> <a href="#ref-for-idl-DOMString②④">(3)</a> <a href="#ref-for-idl-DOMString②⑤">(4)</a> <a href="#ref-for-idl-DOMString②⑥">(5)</a> <a href="#ref-for-idl-DOMString②⑦">(6)</a> <a href="#ref-for-idl-DOMString②⑧">(7)</a> <a href="#ref-for-idl-DOMString②⑨">(8)</a>
     <li><a href="#ref-for-idl-DOMString③⓪">4.5. Interface Document</a> <a href="#ref-for-idl-DOMString③①">(2)</a> <a href="#ref-for-idl-DOMString③②">(3)</a> <a href="#ref-for-idl-DOMString③③">(4)</a> <a href="#ref-for-idl-DOMString③④">(5)</a> <a href="#ref-for-idl-DOMString③⑤">(6)</a> <a href="#ref-for-idl-DOMString③⑥">(7)</a> <a href="#ref-for-idl-DOMString③⑦">(8)</a> <a href="#ref-for-idl-DOMString③⑧">(9)</a> <a href="#ref-for-idl-DOMString③⑨">(10)</a> <a href="#ref-for-idl-DOMString④⓪">(11)</a> <a href="#ref-for-idl-DOMString④①">(12)</a> <a href="#ref-for-idl-DOMString④②">(13)</a> <a href="#ref-for-idl-DOMString④③">(14)</a> <a href="#ref-for-idl-DOMString④④">(15)</a> <a href="#ref-for-idl-DOMString④⑤">(16)</a> <a href="#ref-for-idl-DOMString④⑥">(17)</a> <a href="#ref-for-idl-DOMString④⑦">(18)</a> <a href="#ref-for-idl-DOMString④⑧">(19)</a> <a href="#ref-for-idl-DOMString④⑨">(20)</a> <a href="#ref-for-idl-DOMString⑤⓪">(21)</a> <a href="#ref-for-idl-DOMString⑤①">(22)</a> <a href="#ref-for-idl-DOMString⑤②">(23)</a> <a href="#ref-for-idl-DOMString⑤③">(24)</a>
@@ -13961,7 +13949,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-Exposed">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-Exposed①">4.2.10.1. 接口：NodeList</a>
     <li><a href="#ref-for-Exposed②">4.2.10.2. 接口：HTMLCollection</a>
-    <li><a href="#ref-for-Exposed③">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-Exposed③">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-Exposed④">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-Exposed⑤">4.4. Interface Node</a>
     <li><a href="#ref-for-Exposed⑥">4.5. Interface Document</a> <a href="#ref-for-Exposed⑦">(2)</a>
@@ -14186,7 +14174,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-boolean①②">2.4. CustomEvent接口</a> <a href="#ref-for-idl-boolean①③">(2)</a>
     <li><a href="#ref-for-idl-boolean①④">2.7. EventTarget接口</a> <a href="#ref-for-idl-boolean①⑤">(2)</a> <a href="#ref-for-idl-boolean①⑥">(3)</a> <a href="#ref-for-idl-boolean①⑦">(4)</a> <a href="#ref-for-idl-boolean①⑧">(5)</a> <a href="#ref-for-idl-boolean①⑨">(6)</a>
     <li><a href="#ref-for-idl-boolean②⓪">3.2. AbortSignal接口</a>
-    <li><a href="#ref-for-idl-boolean②①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-boolean②②">(2)</a> <a href="#ref-for-idl-boolean②③">(3)</a> <a href="#ref-for-idl-boolean②④">(4)</a> <a href="#ref-for-idl-boolean②⑤">(5)</a> <a href="#ref-for-idl-boolean②⑥">(6)</a>
+    <li><a href="#ref-for-idl-boolean②①">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-idl-boolean②②">(2)</a> <a href="#ref-for-idl-boolean②③">(3)</a> <a href="#ref-for-idl-boolean②④">(4)</a> <a href="#ref-for-idl-boolean②⑤">(5)</a> <a href="#ref-for-idl-boolean②⑥">(6)</a>
     <li><a href="#ref-for-idl-boolean②⑦">4.4. Interface Node</a> <a href="#ref-for-idl-boolean②⑧">(2)</a> <a href="#ref-for-idl-boolean②⑨">(3)</a> <a href="#ref-for-idl-boolean③⓪">(4)</a> <a href="#ref-for-idl-boolean③①">(5)</a> <a href="#ref-for-idl-boolean③②">(6)</a> <a href="#ref-for-idl-boolean③③">(7)</a> <a href="#ref-for-idl-boolean③④">(8)</a>
     <li><a href="#ref-for-idl-boolean③⑤">4.5. Interface Document</a>
     <li><a href="#ref-for-idl-boolean③⑥">4.5.1. Interface DOMImplementation</a>
@@ -14256,7 +14244,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://webidl.spec.whatwg.org/#idl-sequence">https://webidl.spec.whatwg.org/#idl-sequence</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-sequence">2.2. Event接口</a>
-    <li><a href="#ref-for-idl-sequence①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-sequence②">(2)</a> <a href="#ref-for-idl-sequence③">(3)</a>
+    <li><a href="#ref-for-idl-sequence①">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-idl-sequence②">(2)</a> <a href="#ref-for-idl-sequence③">(3)</a>
     <li><a href="#ref-for-idl-sequence④">4.9. Interface Element</a>
    </ul>
   </aside>
@@ -14295,7 +14283,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-this③①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-this③②">(2)</a> <a href="#ref-for-this③③">(3)</a> <a href="#ref-for-this③④">(4)</a> <a href="#ref-for-this③⑤">(5)</a> <a href="#ref-for-this③⑥">(6)</a> <a href="#ref-for-this③⑦">(7)</a> <a href="#ref-for-this③⑧">(8)</a> <a href="#ref-for-this③⑨">(9)</a> <a href="#ref-for-this④⓪">(10)</a> <a href="#ref-for-this④①">(11)</a> <a href="#ref-for-this④②">(12)</a>
     <li><a href="#ref-for-this④③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-this④④">(2)</a> <a href="#ref-for-this④⑤">(3)</a> <a href="#ref-for-this④⑥">(4)</a> <a href="#ref-for-this④⑦">(5)</a> <a href="#ref-for-this④⑧">(6)</a> <a href="#ref-for-this④⑨">(7)</a> <a href="#ref-for-this⑤⓪">(8)</a> <a href="#ref-for-this⑤①">(9)</a> <a href="#ref-for-this⑤②">(10)</a> <a href="#ref-for-this⑤③">(11)</a> <a href="#ref-for-this⑤④">(12)</a> <a href="#ref-for-this⑤⑤">(13)</a> <a href="#ref-for-this⑤⑥">(14)</a>
     <li><a href="#ref-for-this⑤⑦">4.2.9. 混入(Mixin)：Slottable</a>
-    <li><a href="#ref-for-this⑤⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-this⑤⑨">(2)</a> <a href="#ref-for-this⑥⓪">(3)</a> <a href="#ref-for-this⑥①">(4)</a> <a href="#ref-for-this⑥②">(5)</a> <a href="#ref-for-this⑥③">(6)</a> <a href="#ref-for-this⑥④">(7)</a> <a href="#ref-for-this⑥⑤">(8)</a> <a href="#ref-for-this⑥⑥">(9)</a> <a href="#ref-for-this⑥⑦">(10)</a> <a href="#ref-for-this⑥⑧">(11)</a> <a href="#ref-for-this⑥⑨">(12)</a>
+    <li><a href="#ref-for-this⑤⑧">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-this⑤⑨">(2)</a> <a href="#ref-for-this⑥⓪">(3)</a> <a href="#ref-for-this⑥①">(4)</a> <a href="#ref-for-this⑥②">(5)</a> <a href="#ref-for-this⑥③">(6)</a> <a href="#ref-for-this⑥④">(7)</a> <a href="#ref-for-this⑥⑤">(8)</a> <a href="#ref-for-this⑥⑥">(9)</a> <a href="#ref-for-this⑥⑦">(10)</a> <a href="#ref-for-this⑥⑧">(11)</a> <a href="#ref-for-this⑥⑨">(12)</a>
     <li><a href="#ref-for-this⑦⓪">4.4. Interface Node</a> <a href="#ref-for-this⑦①">(2)</a> <a href="#ref-for-this⑦②">(3)</a> <a href="#ref-for-this⑦③">(4)</a> <a href="#ref-for-this⑦④">(5)</a> <a href="#ref-for-this⑦⑤">(6)</a> <a href="#ref-for-this⑦⑥">(7)</a> <a href="#ref-for-this⑦⑦">(8)</a> <a href="#ref-for-this⑦⑧">(9)</a> <a href="#ref-for-this⑦⑨">(10)</a> <a href="#ref-for-this⑧⓪">(11)</a> <a href="#ref-for-this⑧①">(12)</a> <a href="#ref-for-this⑧②">(13)</a> <a href="#ref-for-this⑧③">(14)</a> <a href="#ref-for-this⑧④">(15)</a> <a href="#ref-for-this⑧⑤">(16)</a> <a href="#ref-for-this⑧⑥">(17)</a> <a href="#ref-for-this⑧⑦">(18)</a> <a href="#ref-for-this⑧⑧">(19)</a> <a href="#ref-for-this⑧⑨">(20)</a> <a href="#ref-for-this⑨⓪">(21)</a> <a href="#ref-for-this⑨①">(22)</a> <a href="#ref-for-this⑨②">(23)</a> <a href="#ref-for-this⑨③">(24)</a> <a href="#ref-for-this⑨④">(25)</a> <a href="#ref-for-this⑨⑤">(26)</a> <a href="#ref-for-this⑨⑥">(27)</a> <a href="#ref-for-this⑨⑦">(28)</a> <a href="#ref-for-this⑨⑧">(29)</a> <a href="#ref-for-this⑨⑨">(30)</a> <a href="#ref-for-this①⓪⓪">(31)</a> <a href="#ref-for-this①⓪①">(32)</a> <a href="#ref-for-this①⓪②">(33)</a> <a href="#ref-for-this①⓪③">(34)</a> <a href="#ref-for-this①⓪④">(35)</a> <a href="#ref-for-this①⓪⑤">(36)</a> <a href="#ref-for-this①⓪⑥">(37)</a> <a href="#ref-for-this①⓪⑦">(38)</a> <a href="#ref-for-this①⓪⑧">(39)</a> <a href="#ref-for-this①⓪⑨">(40)</a> <a href="#ref-for-this①①⓪">(41)</a> <a href="#ref-for-this①①①">(42)</a> <a href="#ref-for-this①①②">(43)</a> <a href="#ref-for-this①①③">(44)</a> <a href="#ref-for-this①①④">(45)</a> <a href="#ref-for-this①①⑤">(46)</a> <a href="#ref-for-this①①⑥">(47)</a>
     <li><a href="#ref-for-this①①⑦">4.5. Interface Document</a> <a href="#ref-for-this①①⑧">(2)</a> <a href="#ref-for-this①①⑨">(3)</a> <a href="#ref-for-this①②⓪">(4)</a> <a href="#ref-for-this①②①">(5)</a> <a href="#ref-for-this①②②">(6)</a> <a href="#ref-for-this①②③">(7)</a> <a href="#ref-for-this①②④">(8)</a> <a href="#ref-for-this①②⑤">(9)</a> <a href="#ref-for-this①②⑥">(10)</a> <a href="#ref-for-this①②⑦">(11)</a> <a href="#ref-for-this①②⑧">(12)</a> <a href="#ref-for-this①②⑨">(13)</a> <a href="#ref-for-this①③⓪">(14)</a> <a href="#ref-for-this①③①">(15)</a> <a href="#ref-for-this①③②">(16)</a> <a href="#ref-for-this①③③">(17)</a> <a href="#ref-for-this①③④">(18)</a> <a href="#ref-for-this①③⑤">(19)</a> <a href="#ref-for-this①③⑥">(20)</a> <a href="#ref-for-this①③⑦">(21)</a> <a href="#ref-for-this①③⑧">(22)</a> <a href="#ref-for-this①③⑨">(23)</a> <a href="#ref-for-this①④⓪">(24)</a> <a href="#ref-for-this①④①">(25)</a> <a href="#ref-for-this①④②">(26)</a> <a href="#ref-for-this①④③">(27)</a> <a href="#ref-for-this①④④">(28)</a> <a href="#ref-for-this①④⑤">(29)</a> <a href="#ref-for-this①④⑥">(30)</a>
     <li><a href="#ref-for-this①④⑦">4.5.1. Interface DOMImplementation</a> <a href="#ref-for-this①④⑧">(2)</a> <a href="#ref-for-this①④⑨">(3)</a>
@@ -14326,7 +14314,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-dfn-throw⑦">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-dfn-throw⑧">(2)</a> <a href="#ref-for-dfn-throw⑨">(3)</a> <a href="#ref-for-dfn-throw①⓪">(4)</a> <a href="#ref-for-dfn-throw①①">(5)</a> <a href="#ref-for-dfn-throw①②">(6)</a> <a href="#ref-for-dfn-throw①③">(7)</a> <a href="#ref-for-dfn-throw①④">(8)</a> <a href="#ref-for-dfn-throw①⑤">(9)</a> <a href="#ref-for-dfn-throw①⑥">(10)</a> <a href="#ref-for-dfn-throw①⑦">(11)</a> <a href="#ref-for-dfn-throw①⑧">(12)</a> <a href="#ref-for-dfn-throw①⑨">(13)</a>
     <li><a href="#ref-for-dfn-throw②⓪">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-dfn-throw②①">(2)</a> <a href="#ref-for-dfn-throw②②">(3)</a>
     <li><a href="#ref-for-dfn-throw②③">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-dfn-throw②④">(2)</a> <a href="#ref-for-dfn-throw②⑤">(3)</a>
-    <li><a href="#ref-for-dfn-throw②⑥">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dfn-throw②⑦">(2)</a> <a href="#ref-for-dfn-throw②⑧">(3)</a> <a href="#ref-for-dfn-throw②⑨">(4)</a>
+    <li><a href="#ref-for-dfn-throw②⑥">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dfn-throw②⑦">(2)</a> <a href="#ref-for-dfn-throw②⑧">(3)</a> <a href="#ref-for-dfn-throw②⑨">(4)</a>
     <li><a href="#ref-for-dfn-throw③⓪">4.4. Interface Node</a>
     <li><a href="#ref-for-dfn-throw③①">4.5. Interface Document</a> <a href="#ref-for-dfn-throw③②">(2)</a> <a href="#ref-for-dfn-throw③③">(3)</a> <a href="#ref-for-dfn-throw③④">(4)</a> <a href="#ref-for-dfn-throw③⑤">(5)</a> <a href="#ref-for-dfn-throw③⑥">(6)</a> <a href="#ref-for-dfn-throw③⑦">(7)</a> <a href="#ref-for-dfn-throw③⑧">(8)</a> <a href="#ref-for-dfn-throw③⑨">(9)</a> <a href="#ref-for-dfn-throw④⓪">(10)</a> <a href="#ref-for-dfn-throw④①">(11)</a>
     <li><a href="#ref-for-dfn-throw④②">4.9. Interface Element</a> <a href="#ref-for-dfn-throw④③">(2)</a> <a href="#ref-for-dfn-throw④④">(3)</a> <a href="#ref-for-dfn-throw④⑤">(4)</a> <a href="#ref-for-dfn-throw④⑥">(5)</a> <a href="#ref-for-dfn-throw④⑦">(6)</a> <a href="#ref-for-dfn-throw④⑧">(7)</a> <a href="#ref-for-dfn-throw④⑨">(8)</a> <a href="#ref-for-dfn-throw⑤⓪">(9)</a> <a href="#ref-for-dfn-throw⑤①">(10)</a> <a href="#ref-for-dfn-throw⑤②">(11)</a> <a href="#ref-for-dfn-throw⑤③">(12)</a> <a href="#ref-for-dfn-throw⑤④">(13)</a> <a href="#ref-for-dfn-throw⑤⑤">(14)</a> <a href="#ref-for-dfn-throw⑤⑥">(15)</a> <a href="#ref-for-dfn-throw⑤⑦">(16)</a>
@@ -14349,7 +14337,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-idl-undefined①⓪">3.2. AbortSignal接口</a>
     <li><a href="#ref-for-idl-undefined①①">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-idl-undefined①②">(2)</a> <a href="#ref-for-idl-undefined①③">(3)</a>
     <li><a href="#ref-for-idl-undefined①④">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-idl-undefined①⑤">(2)</a> <a href="#ref-for-idl-undefined①⑥">(3)</a> <a href="#ref-for-idl-undefined①⑦">(4)</a>
-    <li><a href="#ref-for-idl-undefined①⑧">4.3.1. Interface MutationObserver</a> <a href="#ref-for-idl-undefined①⑨">(2)</a> <a href="#ref-for-idl-undefined②⓪">(3)</a>
+    <li><a href="#ref-for-idl-undefined①⑧">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-idl-undefined①⑨">(2)</a> <a href="#ref-for-idl-undefined②⓪">(3)</a>
     <li><a href="#ref-for-idl-undefined②①">4.4. Interface Node</a>
     <li><a href="#ref-for-idl-undefined②②">4.9. Interface Element</a> <a href="#ref-for-idl-undefined②③">(2)</a> <a href="#ref-for-idl-undefined②④">(3)</a> <a href="#ref-for-idl-undefined②⑤">(4)</a> <a href="#ref-for-idl-undefined②⑥">(5)</a>
     <li><a href="#ref-for-idl-undefined②⑦">4.10. Interface CharacterData</a> <a href="#ref-for-idl-undefined②⑧">(2)</a> <a href="#ref-for-idl-undefined②⑨">(3)</a> <a href="#ref-for-idl-undefined③⓪">(4)</a>
@@ -15371,7 +15359,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree⑧">2.2. Event接口</a> <a href="#ref-for-concept-tree⑨">(2)</a>
     <li><a href="#ref-for-concept-tree①⓪">4.1. DOM简介</a>
     <li><a href="#ref-for-concept-tree①①">4.2. Node tree：节点树</a> <a href="#ref-for-concept-tree①②">(2)</a>
-    <li><a href="#ref-for-concept-tree①③">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-tree①③">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-tree①④">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-tree①⑤">4.4. Interface Node</a> <a href="#ref-for-concept-tree①⑥">(2)</a>
     <li><a href="#ref-for-concept-tree①⑦">4.5.1. Interface DOMImplementation</a>
@@ -15437,7 +15425,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-child①⓪">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-concept-tree-child①①">(2)</a>
     <li><a href="#ref-for-concept-tree-child①②">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-concept-tree-child①③">(2)</a> <a href="#ref-for-concept-tree-child①④">(3)</a> <a href="#ref-for-concept-tree-child①⑤">(4)</a> <a href="#ref-for-concept-tree-child①⑥">(5)</a> <a href="#ref-for-concept-tree-child①⑦">(6)</a> <a href="#ref-for-concept-tree-child①⑧">(7)</a> <a href="#ref-for-concept-tree-child①⑨">(8)</a> <a href="#ref-for-concept-tree-child②⓪">(9)</a> <a href="#ref-for-concept-tree-child②①">(10)</a> <a href="#ref-for-concept-tree-child②②">(11)</a> <a href="#ref-for-concept-tree-child②③">(12)</a> <a href="#ref-for-concept-tree-child②④">(13)</a> <a href="#ref-for-concept-tree-child②⑤">(14)</a> <a href="#ref-for-concept-tree-child②⑥">(15)</a> <a href="#ref-for-concept-tree-child②⑦">(16)</a> <a href="#ref-for-concept-tree-child②⑧">(17)</a> <a href="#ref-for-concept-tree-child②⑨">(18)</a> <a href="#ref-for-concept-tree-child③⓪">(19)</a> <a href="#ref-for-concept-tree-child③①">(20)</a> <a href="#ref-for-concept-tree-child③②">(21)</a>
     <li><a href="#ref-for-concept-tree-child③③">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-tree-child③④">(2)</a> <a href="#ref-for-concept-tree-child③⑤">(3)</a> <a href="#ref-for-concept-tree-child③⑥">(4)</a> <a href="#ref-for-concept-tree-child③⑦">(5)</a> <a href="#ref-for-concept-tree-child③⑧">(6)</a> <a href="#ref-for-concept-tree-child③⑨">(7)</a> <a href="#ref-for-concept-tree-child④⓪">(8)</a>
-    <li><a href="#ref-for-concept-tree-child④①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-tree-child④①">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-tree-child④②">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-tree-child④③">4.4. Interface Node</a> <a href="#ref-for-concept-tree-child④④">(2)</a> <a href="#ref-for-concept-tree-child④⑤">(3)</a> <a href="#ref-for-concept-tree-child④⑥">(4)</a> <a href="#ref-for-concept-tree-child④⑦">(5)</a> <a href="#ref-for-concept-tree-child④⑧">(6)</a> <a href="#ref-for-concept-tree-child④⑨">(7)</a> <a href="#ref-for-concept-tree-child⑤⓪">(8)</a> <a href="#ref-for-concept-tree-child⑤①">(9)</a>
     <li><a href="#ref-for-concept-tree-child⑤②">4.5. Interface Document</a>
@@ -15475,7 +15463,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-tree-descendant⑤">4.2.4. 混入(Mixin)：NonElementParentNode</a>
     <li><a href="#ref-for-concept-tree-descendant⑥">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-concept-tree-descendant⑦">(2)</a>
     <li><a href="#ref-for-concept-tree-descendant⑧">4.3. 变化观察者</a>
-    <li><a href="#ref-for-concept-tree-descendant⑨">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-tree-descendant⑨">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-tree-descendant①⓪">4.4. Interface Node</a> <a href="#ref-for-concept-tree-descendant①①">(2)</a> <a href="#ref-for-concept-tree-descendant①②">(3)</a> <a href="#ref-for-concept-tree-descendant①③">(4)</a> <a href="#ref-for-concept-tree-descendant①④">(5)</a> <a href="#ref-for-concept-tree-descendant①⑤">(6)</a> <a href="#ref-for-concept-tree-descendant①⑥">(7)</a> <a href="#ref-for-concept-tree-descendant①⑦">(8)</a> <a href="#ref-for-concept-tree-descendant①⑧">(9)</a> <a href="#ref-for-concept-tree-descendant①⑨">(10)</a> <a href="#ref-for-concept-tree-descendant②⓪">(11)</a> <a href="#ref-for-concept-tree-descendant②①">(12)</a>
     <li><a href="#ref-for-concept-tree-descendant②②">4.5. Interface Document</a> <a href="#ref-for-concept-tree-descendant②③">(2)</a> <a href="#ref-for-concept-tree-descendant②④">(3)</a> <a href="#ref-for-concept-tree-descendant②⑤">(4)</a> <a href="#ref-for-concept-tree-descendant②⑥">(5)</a> <a href="#ref-for-concept-tree-descendant②⑦">(6)</a> <a href="#ref-for-concept-tree-descendant②⑧">(7)</a>
     <li><a href="#ref-for-concept-tree-descendant②⑨">4.8. Interface ShadowRoot</a>
@@ -16429,7 +16417,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node④②">4.2.10. 早期集合类型：NodeList以及HTMLCollection</a>
     <li><a href="#ref-for-concept-node④③">4.2.10.1. 接口：NodeList</a> <a href="#ref-for-concept-node④④">(2)</a> <a href="#ref-for-concept-node④⑤">(3)</a> <a href="#ref-for-concept-node④⑥">(4)</a> <a href="#ref-for-concept-node④⑦">(5)</a>
     <li><a href="#ref-for-concept-node④⑧">4.3. 变化观察者</a> <a href="#ref-for-concept-node④⑨">(2)</a>
-    <li><a href="#ref-for-concept-node⑤⓪">4.3.1. Interface MutationObserver</a> <a href="#ref-for-concept-node⑤①">(2)</a> <a href="#ref-for-concept-node⑤②">(3)</a> <a href="#ref-for-concept-node⑤③">(4)</a>
+    <li><a href="#ref-for-concept-node⑤⓪">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-node⑤①">(2)</a> <a href="#ref-for-concept-node⑤②">(3)</a> <a href="#ref-for-concept-node⑤③">(4)</a>
     <li><a href="#ref-for-concept-node⑤④">4.3.3. Interface MutationRecord</a> <a href="#ref-for-concept-node⑤⑤">(2)</a> <a href="#ref-for-concept-node⑤⑥">(3)</a> <a href="#ref-for-concept-node⑤⑦">(4)</a> <a href="#ref-for-concept-node⑤⑧">(5)</a> <a href="#ref-for-concept-node⑤⑨">(6)</a> <a href="#ref-for-concept-node⑥⓪">(7)</a> <a href="#ref-for-concept-node⑥①">(8)</a>
     <li><a href="#ref-for-concept-node⑥②">4.3.4. Garbage collection</a> <a href="#ref-for-concept-node⑥③">(2)</a> <a href="#ref-for-concept-node⑥④">(3)</a>
     <li><a href="#ref-for-concept-node⑥⑤">4.4. Interface Node</a> <a href="#ref-for-concept-node⑥⑥">(2)</a> <a href="#ref-for-concept-node⑥⑦">(3)</a> <a href="#ref-for-concept-node⑥⑧">(4)</a> <a href="#ref-for-concept-node⑥⑨">(5)</a> <a href="#ref-for-concept-node⑦⓪">(6)</a> <a href="#ref-for-concept-node⑦①">(7)</a> <a href="#ref-for-concept-node⑦②">(8)</a> <a href="#ref-for-concept-node⑦③">(9)</a> <a href="#ref-for-concept-node⑦④">(10)</a> <a href="#ref-for-concept-node⑦⑤">(11)</a> <a href="#ref-for-concept-node⑦⑥">(12)</a> <a href="#ref-for-concept-node⑦⑦">(13)</a> <a href="#ref-for-concept-node⑦⑧">(14)</a> <a href="#ref-for-concept-node⑦⑨">(15)</a> <a href="#ref-for-concept-node⑧⓪">(16)</a> <a href="#ref-for-concept-node⑧①">(17)</a> <a href="#ref-for-concept-node⑧②">(18)</a> <a href="#ref-for-concept-node⑧③">(19)</a> <a href="#ref-for-concept-node⑧④">(20)</a> <a href="#ref-for-concept-node⑧⑤">(21)</a>
@@ -16962,7 +16950,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#mutation-observer-list">#mutation-observer-list</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mutation-observer-list">4.3. 变化观察者</a>
-    <li><a href="#ref-for-mutation-observer-list①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-mutation-observer-list①">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="queue-a-mutation-observer-compound-microtask">
@@ -16989,7 +16977,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-registered-observer-list">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-list①">(2)</a>
     <li><a href="#ref-for-registered-observer-list②">4.3. 变化观察者</a>
-    <li><a href="#ref-for-registered-observer-list③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-list④">(2)</a> <a href="#ref-for-registered-observer-list⑤">(3)</a> <a href="#ref-for-registered-observer-list⑥">(4)</a>
+    <li><a href="#ref-for-registered-observer-list③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-list④">(2)</a> <a href="#ref-for-registered-observer-list⑤">(3)</a> <a href="#ref-for-registered-observer-list⑥">(4)</a>
     <li><a href="#ref-for-registered-observer-list⑦">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-registered-observer-list⑧">4.3.4. Garbage collection</a> <a href="#ref-for-registered-observer-list⑨">(2)</a>
     <li><a href="#ref-for-registered-observer-list①⓪">4.4. Interface Node</a>
@@ -16999,7 +16987,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#registered-observer">#registered-observer</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-registered-observer">4.3. 变化观察者</a> <a href="#ref-for-registered-observer①">(2)</a> <a href="#ref-for-registered-observer②">(3)</a>
-    <li><a href="#ref-for-registered-observer③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer④">(2)</a>
+    <li><a href="#ref-for-registered-observer③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer④">(2)</a>
     <li><a href="#ref-for-registered-observer⑤">4.3.4. Garbage collection</a> <a href="#ref-for-registered-observer⑥">(2)</a>
    </ul>
   </aside>
@@ -17008,7 +16996,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-registered-observer-observer">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-observer①">(2)</a>
     <li><a href="#ref-for-registered-observer-observer②">4.3. 变化观察者</a>
-    <li><a href="#ref-for-registered-observer-observer③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-observer④">(2)</a> <a href="#ref-for-registered-observer-observer⑤">(3)</a>
+    <li><a href="#ref-for-registered-observer-observer③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-observer④">(2)</a> <a href="#ref-for-registered-observer-observer⑤">(3)</a>
     <li><a href="#ref-for-registered-observer-observer⑥">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
@@ -17016,7 +17004,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#registered-observer-options">#registered-observer-options</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-registered-observer-options">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-options①">(2)</a> <a href="#ref-for-registered-observer-options②">(3)</a>
-    <li><a href="#ref-for-registered-observer-options③">4.3.1. Interface MutationObserver</a> <a href="#ref-for-registered-observer-options④">(2)</a>
+    <li><a href="#ref-for-registered-observer-options③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-options④">(2)</a>
     <li><a href="#ref-for-registered-observer-options⑤">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
@@ -17025,54 +17013,54 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-transient-registered-observer">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-transient-registered-observer①">4.3. 变化观察者</a> <a href="#ref-for-transient-registered-observer②">(2)</a>
-    <li><a href="#ref-for-transient-registered-observer③">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-transient-registered-observer③">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="transient-registered-observer-source">
    <b><a href="#transient-registered-observer-source">#transient-registered-observer-source</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-transient-registered-observer-source">4.2.3. 修改DOM结构的算法</a>
-    <li><a href="#ref-for-transient-registered-observer-source①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-transient-registered-observer-source①">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mutationobserver">
    <b><a href="#mutationobserver">#mutationobserver</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mutationobserver">4.3. 变化观察者</a> <a href="#ref-for-mutationobserver①">(2)</a>
-    <li><a href="#ref-for-mutationobserver②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-mutationobserver③">(2)</a> <a href="#ref-for-mutationobserver④">(3)</a> <a href="#ref-for-mutationobserver⑤">(4)</a> <a href="#ref-for-mutationobserver⑥">(5)</a> <a href="#ref-for-mutationobserver⑦">(6)</a>
+    <li><a href="#ref-for-mutationobserver②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-mutationobserver③">(2)</a> <a href="#ref-for-mutationobserver④">(3)</a> <a href="#ref-for-mutationobserver⑤">(4)</a> <a href="#ref-for-mutationobserver⑥">(5)</a> <a href="#ref-for-mutationobserver⑦">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="callbackdef-mutationcallback">
    <b><a href="#callbackdef-mutationcallback">#callbackdef-mutationcallback</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-callbackdef-mutationcallback">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-callbackdef-mutationcallback">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-mutationobserverinit">
    <b><a href="#dictdef-mutationobserverinit">#dictdef-mutationobserverinit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-mutationobserverinit">4.3. 变化观察者</a>
-    <li><a href="#ref-for-dictdef-mutationobserverinit①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-dictdef-mutationobserverinit①">4.3.1. 接口：MutationObserver</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-childlist">
    <b><a href="#dom-mutationobserverinit-childlist">#dom-mutationobserverinit-childlist</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-childlist">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-childlist①">(2)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-childlist">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-childlist①">(2)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-childlist②">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributes">
    <b><a href="#dom-mutationobserverinit-attributes">#dom-mutationobserverinit-attributes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributes">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributes①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributes②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributes③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-attributes④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑤">(6)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑥">(7)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑦">(8)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributes">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributes①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributes②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributes③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-attributes④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑤">(6)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑥">(7)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑦">(8)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-attributes⑧">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-characterdata">
    <b><a href="#dom-mutationobserverinit-characterdata">#dom-mutationobserverinit-characterdata</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-characterdata">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdata①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata⑤">(6)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-characterdata">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdata①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata⑤">(6)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-characterdata⑥">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
@@ -17081,28 +17069,28 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree①">4.3. 变化观察者</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-subtree②">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-subtree②">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree③">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributeoldvalue">
    <b><a href="#dom-mutationobserverinit-attributeoldvalue">#dom-mutationobserverinit-attributeoldvalue</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue③">(4)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue③">(4)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue④">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-characterdataoldvalue">
    <b><a href="#dom-mutationobserverinit-characterdataoldvalue">#dom-mutationobserverinit-characterdataoldvalue</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue③">(4)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue③">(4)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue④">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributefilter">
    <b><a href="#dom-mutationobserverinit-attributefilter">#dom-mutationobserverinit-attributefilter</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributefilter">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter③">(4)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributefilter">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter③">(4)</a>
     <li><a href="#ref-for-dom-mutationobserverinit-attributefilter④">4.3.2. Queuing a mutation record</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter⑤">(2)</a>
    </ul>
   </aside>
@@ -17110,46 +17098,46 @@ if ("serviceWorker" in navigator) {
    <b><a href="#concept-mo-callback">#concept-mo-callback</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-mo-callback">4.3. 变化观察者</a>
-    <li><a href="#ref-for-concept-mo-callback①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-concept-mo-callback②">(2)</a> <a href="#ref-for-concept-mo-callback③">(3)</a>
+    <li><a href="#ref-for-concept-mo-callback①">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-mo-callback②">(2)</a> <a href="#ref-for-concept-mo-callback③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mutationobserver-node-list">
    <b><a href="#mutationobserver-node-list">#mutationobserver-node-list</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mutationobserver-node-list">4.3. 变化观察者</a>
-    <li><a href="#ref-for-mutationobserver-node-list①">4.3.1. Interface MutationObserver</a> <a href="#ref-for-mutationobserver-node-list②">(2)</a> <a href="#ref-for-mutationobserver-node-list③">(3)</a>
+    <li><a href="#ref-for-mutationobserver-node-list①">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-mutationobserver-node-list②">(2)</a> <a href="#ref-for-mutationobserver-node-list③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-mo-queue">
    <b><a href="#concept-mo-queue">#concept-mo-queue</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-mo-queue">4.3. 变化观察者</a> <a href="#ref-for-concept-mo-queue①">(2)</a>
-    <li><a href="#ref-for-concept-mo-queue②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-concept-mo-queue③">(2)</a> <a href="#ref-for-concept-mo-queue④">(3)</a> <a href="#ref-for-concept-mo-queue⑤">(4)</a>
+    <li><a href="#ref-for-concept-mo-queue②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-mo-queue③">(2)</a> <a href="#ref-for-concept-mo-queue④">(3)</a> <a href="#ref-for-concept-mo-queue⑤">(4)</a>
     <li><a href="#ref-for-concept-mo-queue⑥">4.3.2. Queuing a mutation record</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserver-mutationobserver">
    <b><a href="#dom-mutationobserver-mutationobserver">#dom-mutationobserver-mutationobserver</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserver-mutationobserver">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserver-mutationobserver①">(2)</a>
+    <li><a href="#ref-for-dom-mutationobserver-mutationobserver">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserver-mutationobserver①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserver-observe">
    <b><a href="#dom-mutationobserver-observe">#dom-mutationobserver-observe</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserver-observe">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserver-observe①">(2)</a> <a href="#ref-for-dom-mutationobserver-observe②">(3)</a> <a href="#ref-for-dom-mutationobserver-observe③">(4)</a>
+    <li><a href="#ref-for-dom-mutationobserver-observe">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserver-observe①">(2)</a> <a href="#ref-for-dom-mutationobserver-observe②">(3)</a> <a href="#ref-for-dom-mutationobserver-observe③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserver-disconnect">
    <b><a href="#dom-mutationobserver-disconnect">#dom-mutationobserver-disconnect</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserver-disconnect">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserver-disconnect①">(2)</a>
+    <li><a href="#ref-for-dom-mutationobserver-disconnect">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserver-disconnect①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserver-takerecords">
    <b><a href="#dom-mutationobserver-takerecords">#dom-mutationobserver-takerecords</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationobserver-takerecords">4.3.1. Interface MutationObserver</a> <a href="#ref-for-dom-mutationobserver-takerecords①">(2)</a>
+    <li><a href="#ref-for-dom-mutationobserver-takerecords">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserver-takerecords①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="queue-a-mutation-record">
@@ -17169,7 +17157,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="mutationrecord">
    <b><a href="#mutationrecord">#mutationrecord</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-mutationrecord">4.3.1. Interface MutationObserver</a> <a href="#ref-for-mutationrecord①">(2)</a> <a href="#ref-for-mutationrecord②">(3)</a> <a href="#ref-for-mutationrecord③">(4)</a>
+    <li><a href="#ref-for-mutationrecord">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-mutationrecord①">(2)</a> <a href="#ref-for-mutationrecord②">(3)</a> <a href="#ref-for-mutationrecord③">(4)</a>
     <li><a href="#ref-for-mutationrecord④">4.3.2. Queuing a mutation record</a>
     <li><a href="#ref-for-mutationrecord⑤">4.3.3. Interface MutationRecord</a>
    </ul>
@@ -17244,7 +17232,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-node③">4.2.6. 混入(Mixin)：ParentNode</a> <a href="#ref-for-node④">(2)</a> <a href="#ref-for-node⑤">(3)</a>
     <li><a href="#ref-for-node⑥">4.2.8. 混入(Mixin)：ChildNode</a> <a href="#ref-for-node⑦">(2)</a> <a href="#ref-for-node⑧">(3)</a>
     <li><a href="#ref-for-node⑨">4.2.10.1. 接口：NodeList</a> <a href="#ref-for-node①⓪">(2)</a>
-    <li><a href="#ref-for-node①①">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-node①①">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-node①②">4.3.3. Interface MutationRecord</a> <a href="#ref-for-node①③">(2)</a> <a href="#ref-for-node①④">(3)</a>
     <li><a href="#ref-for-node①⑤">4.4. Interface Node</a> <a href="#ref-for-node①⑥">(2)</a> <a href="#ref-for-node①⑦">(3)</a> <a href="#ref-for-node①⑧">(4)</a> <a href="#ref-for-node①⑨">(5)</a> <a href="#ref-for-node②⓪">(6)</a> <a href="#ref-for-node②①">(7)</a> <a href="#ref-for-node②②">(8)</a> <a href="#ref-for-node②③">(9)</a> <a href="#ref-for-node②④">(10)</a> <a href="#ref-for-node②⑤">(11)</a> <a href="#ref-for-node②⑥">(12)</a> <a href="#ref-for-node②⑦">(13)</a> <a href="#ref-for-node②⑧">(14)</a> <a href="#ref-for-node②⑨">(15)</a> <a href="#ref-for-node③⓪">(16)</a> <a href="#ref-for-node③①">(17)</a> <a href="#ref-for-node③②">(18)</a> <a href="#ref-for-node③③">(19)</a> <a href="#ref-for-node③④">(20)</a> <a href="#ref-for-node③⑤">(21)</a> <a href="#ref-for-node③⑥">(22)</a> <a href="#ref-for-node③⑦">(23)</a> <a href="#ref-for-node③⑧">(24)</a> <a href="#ref-for-node③⑨">(25)</a> <a href="#ref-for-node④⓪">(26)</a> <a href="#ref-for-node④①">(27)</a> <a href="#ref-for-node④②">(28)</a> <a href="#ref-for-node④③">(29)</a> <a href="#ref-for-node④④">(30)</a> <a href="#ref-for-node④⑤">(31)</a> <a href="#ref-for-node④⑥">(32)</a> <a href="#ref-for-node④⑦">(33)</a> <a href="#ref-for-node④⑧">(34)</a> <a href="#ref-for-node④⑨">(35)</a> <a href="#ref-for-node⑤⓪">(36)</a> <a href="#ref-for-node⑤①">(37)</a>
     <li><a href="#ref-for-node⑤②">4.5. Interface Document</a> <a href="#ref-for-node⑤③">(2)</a> <a href="#ref-for-node⑤④">(3)</a> <a href="#ref-for-node⑤⑤">(4)</a> <a href="#ref-for-node⑤⑥">(5)</a> <a href="#ref-for-node⑤⑦">(6)</a> <a href="#ref-for-node⑤⑧">(7)</a>
@@ -18853,7 +18841,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-attribute">
    <b><a href="#concept-attribute">#concept-attribute</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-attribute">4.3.1. Interface MutationObserver</a> <a href="#ref-for-concept-attribute①">(2)</a> <a href="#ref-for-concept-attribute②">(3)</a> <a href="#ref-for-concept-attribute③">(4)</a>
+    <li><a href="#ref-for-concept-attribute">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-attribute①">(2)</a> <a href="#ref-for-concept-attribute②">(3)</a> <a href="#ref-for-concept-attribute③">(4)</a>
     <li><a href="#ref-for-concept-attribute④">4.3.3. Interface MutationRecord</a> <a href="#ref-for-concept-attribute⑤">(2)</a> <a href="#ref-for-concept-attribute⑥">(3)</a> <a href="#ref-for-concept-attribute⑦">(4)</a> <a href="#ref-for-concept-attribute⑧">(5)</a>
     <li><a href="#ref-for-concept-attribute⑨">4.4. Interface Node</a> <a href="#ref-for-concept-attribute①⓪">(2)</a> <a href="#ref-for-concept-attribute①①">(3)</a> <a href="#ref-for-concept-attribute①②">(4)</a> <a href="#ref-for-concept-attribute①③">(5)</a> <a href="#ref-for-concept-attribute①④">(6)</a> <a href="#ref-for-concept-attribute①⑤">(7)</a> <a href="#ref-for-concept-attribute①⑥">(8)</a> <a href="#ref-for-concept-attribute①⑦">(9)</a> <a href="#ref-for-concept-attribute①⑧">(10)</a> <a href="#ref-for-concept-attribute①⑨">(11)</a> <a href="#ref-for-concept-attribute②⓪">(12)</a>
     <li><a href="#ref-for-concept-attribute②①">4.5. Interface Document</a> <a href="#ref-for-concept-attribute②②">(2)</a> <a href="#ref-for-concept-attribute②③">(3)</a>
@@ -18867,7 +18855,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-attribute-namespace">
    <b><a href="#concept-attribute-namespace">#concept-attribute-namespace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-attribute-namespace">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-attribute-namespace">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-attribute-namespace①">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-attribute-namespace②">4.4. Interface Node</a> <a href="#ref-for-concept-attribute-namespace③">(2)</a> <a href="#ref-for-concept-attribute-namespace④">(3)</a> <a href="#ref-for-concept-attribute-namespace⑤">(4)</a>
     <li><a href="#ref-for-concept-attribute-namespace⑥">4.5. Interface Document</a>
@@ -18887,7 +18875,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-attribute-local-name">
    <b><a href="#concept-attribute-local-name">#concept-attribute-local-name</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-attribute-local-name">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-attribute-local-name">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-attribute-local-name①">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-attribute-local-name②">4.4. Interface Node</a> <a href="#ref-for-concept-attribute-local-name③">(2)</a> <a href="#ref-for-concept-attribute-local-name④">(3)</a> <a href="#ref-for-concept-attribute-local-name⑤">(4)</a> <a href="#ref-for-concept-attribute-local-name⑥">(5)</a>
     <li><a href="#ref-for-concept-attribute-local-name⑦">4.5. Interface Document</a> <a href="#ref-for-concept-attribute-local-name⑧">(2)</a>
@@ -18899,7 +18887,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="concept-attribute-value">
    <b><a href="#concept-attribute-value">#concept-attribute-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-attribute-value">4.3.1. Interface MutationObserver</a>
+    <li><a href="#ref-for-concept-attribute-value">4.3.1. 接口：MutationObserver</a>
     <li><a href="#ref-for-concept-attribute-value①">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-attribute-value②">4.4. Interface Node</a> <a href="#ref-for-concept-attribute-value③">(2)</a> <a href="#ref-for-concept-attribute-value④">(3)</a> <a href="#ref-for-concept-attribute-value⑤">(4)</a> <a href="#ref-for-concept-attribute-value⑥">(5)</a> <a href="#ref-for-concept-attribute-value⑦">(6)</a>
     <li><a href="#ref-for-concept-attribute-value⑧">4.9. Interface Element</a> <a href="#ref-for-concept-attribute-value⑨">(2)</a> <a href="#ref-for-concept-attribute-value①⓪">(3)</a> <a href="#ref-for-concept-attribute-value①①">(4)</a> <a href="#ref-for-concept-attribute-value①②">(5)</a> <a href="#ref-for-concept-attribute-value①③">(6)</a> <a href="#ref-for-concept-attribute-value①④">(7)</a> <a href="#ref-for-concept-attribute-value①⑤">(8)</a> <a href="#ref-for-concept-attribute-value①⑥">(9)</a> <a href="#ref-for-concept-attribute-value①⑦">(10)</a> <a href="#ref-for-concept-attribute-value①⑧">(11)</a> <a href="#ref-for-concept-attribute-value①⑨">(12)</a> <a href="#ref-for-concept-attribute-value②⓪">(13)</a> <a href="#ref-for-concept-attribute-value②①">(14)</a>
@@ -19000,7 +18988,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-cd-data">4.2. Node tree：节点树</a>
     <li><a href="#ref-for-concept-cd-data①">4.2.6. 混入(Mixin)：ParentNode</a>
-    <li><a href="#ref-for-concept-cd-data②">4.3.1. Interface MutationObserver</a> <a href="#ref-for-concept-cd-data③">(2)</a>
+    <li><a href="#ref-for-concept-cd-data②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-cd-data③">(2)</a>
     <li><a href="#ref-for-concept-cd-data④">4.3.3. Interface MutationRecord</a>
     <li><a href="#ref-for-concept-cd-data⑤">4.4. Interface Node</a> <a href="#ref-for-concept-cd-data⑥">(2)</a> <a href="#ref-for-concept-cd-data⑦">(3)</a> <a href="#ref-for-concept-cd-data⑧">(4)</a> <a href="#ref-for-concept-cd-data⑨">(5)</a> <a href="#ref-for-concept-cd-data①⓪">(6)</a> <a href="#ref-for-concept-cd-data①①">(7)</a> <a href="#ref-for-concept-cd-data①②">(8)</a> <a href="#ref-for-concept-cd-data①③">(9)</a>
     <li><a href="#ref-for-concept-cd-data①④">4.5. Interface Document</a> <a href="#ref-for-concept-cd-data①⑤">(2)</a> <a href="#ref-for-concept-cd-data①⑥">(3)</a> <a href="#ref-for-concept-cd-data①⑦">(4)</a> <a href="#ref-for-concept-cd-data①⑧">(5)</a> <a href="#ref-for-concept-cd-data①⑨">(6)</a> <a href="#ref-for-concept-cd-data②⓪">(7)</a> <a href="#ref-for-concept-cd-data②①">(8)</a>
