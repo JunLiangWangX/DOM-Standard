@@ -3115,7 +3115,7 @@ interface HTMLCollection {
 {{MutationObserverInit/subtree}}设置为true时它们不会丢失。
 
 
-<h4 id=interface-mutationobserver>Interface {{MutationObserver}}</h4>
+<h4 id=interface-mutationobserver>接口：{{MutationObserver}}</h4>
 
 <pre class=idl>
 [Exposed=Window]
@@ -3140,184 +3140,148 @@ dictionary MutationObserverInit {
 };
 </pre>
 
-<p>A {{MutationObserver}} object can be used to observe mutations to the <a>tree</a> of
-<a for=/>nodes</a>.
+<p>{{MutationObserver}}对象用于观察<a lt="tree">树</a>中<a for=/ lt="nodes">节点</a>的变化。
 
-<p>Each {{MutationObserver}} object has these associated concepts:
+<p>每个{{MutationObserver}}对象有相关的概念：
 
 <ul>
- <li>A <dfn noexport for=MutationObserver id=concept-mo-callback>callback</dfn> set on creation.
- <li>A <dfn noexport for=MutationObserver>node list</dfn> (a <a for=/>list</a> of
- <a for=/>nodes</a>), which is initially empty.
- <li>A <dfn export for=MutationObserver id=concept-mo-queue>record queue</dfn> (a <a for=/>queue</a>
- of zero or more {{MutationRecord}} objects), which is initially empty.
+ <li>创建时设置的<dfn noexport for=MutationObserver id=concept-mo-callback lt="callback">回调</dfn>。
+ <li><dfn noexport for=MutationObserver lt="node list">节点列表</dfn>(由<a for=/ lt="node">节点</a>组成的<a for=/ lt="list">列表</a>)，初值为空。
+ <li><dfn export for=MutationObserver id=concept-mo-queue lt="record queue">记录队列</dfn>(由零个或多个{{MutationRecord}}对象组成的
+ <a for=/ lt="queue">队列</a>)，初值为空。
 </ul>
 
 <dl class=domintro>
  <dt><code><var>observer</var> = new {{MutationObserver(callback)}}</code>
- <dd>Constructs a {{MutationObserver}} object and sets its <a for=MutationObserver>callback</a> to
- <var>callback</var>. The <var>callback</var> is invoked with a list of {{MutationRecord}} objects
- as first argument and the constructed {{MutationObserver}} object as second argument. It is
- invoked after <a for=/>nodes</a> registered with the {{MutationObserver/observe()}} method, are
- mutated.
+ <dd>构造一个{{MutationObserver}}对象并且设置它的<a for=MutationObserver lt="callback">回调函数</a>为<var>callback</var>。
+ <var>callback</var>被调用时，{{MutationRecord}}对象列表作为第一个参数以及构造的{{MutationObserver}}对象作为第二个参数。
+ 它在使用{{MutationObserver/observe()}}方法注册的<a for=/ lt="nodes">节点</a>发生变化后调用。
 
  <dt><code><var>observer</var> . {{observe(target, options)}}</code>
  <dd>
-  Instructs the user agent to observe a given <var>target</var>
-  (a <a for=/>node</a>) and report any mutations based on
-  the criteria given by <var>options</var> (an object).
+  指示用户代理观察给定<var>target</var>(一个<a for=/ lt="node">节点</a>)并根据<var>options</var>(一个对象)给出的标准报告节点的变化。
 
-  The <var>options</var> argument allows for setting mutation
-  observation options via object members. These are the object members that
-  can be used:
+  <var>options</var>允许通过对象成员设置变化观察者选项。以下为能够被设置的变化观察者选项的对象成员：
 
   <dl>
    <dt>{{MutationObserverInit/childList}}
-   <dd>Set to true if mutations to <var>target</var>'s <a for=tree>children</a> are to be observed.
+   <dd>如果需要观察<var>target</var>的<a for=tree lt="children">子节点</a>的变化，则设为true。
 
    <dt>{{MutationObserverInit/attributes}}
-   <dd>Set to true if mutations to <var>target</var>'s
-   <a>attributes</a> are to be observed. Can be omitted if
-   {{MutationObserverInit/attributeOldValue}} or
-   {{MutationObserverInit/attributeFilter}} is
-   specified.
+   <dd>如果需要观察<var>target</var>的<a lt="attributes">属性</a>变化，则设置为true。
+   如果指定了{{MutationObserverInit/attributeOldValue}}或{{MutationObserverInit/attributeFilter}}，则可以省略。
 
    <dt>{{MutationObserverInit/characterData}}
-   <dd>Set to true if mutations to <var>target</var>'s
-   <a for=CharacterData>data</a> are to be observed. Can be omitted if
-   {{MutationObserverInit/characterDataOldValue}}
-   is specified.
+   <dd>如果需要观察<var>target</var>的<a for=CharacterData lt="data">字符数据</a>变化，则设置为true。
+   如果指定了{{MutationObserverInit/characterDataOldValue}}，则可以省略。
 
    <dt>{{MutationObserverInit/subtree}}
-   <dd>Set to true if mutations to not just <var>target</var>, but
-   also <var>target</var>'s
-   <a>descendants</a> are to be
-   observed.
+   <dd>如果不仅要观察<var>target</var>的变化，而且还要观察<var>target</var>的<a lt="descendants">后代</a>的变化，则设置为 true。
 
    <dt>{{MutationObserverInit/attributeOldValue}}
-   <dd>Set to true if
-   {{MutationObserverInit/attributes}} is true or omitted
-   and <var>target</var>'s
-   <a>attribute</a>
-   <a for=Attr>value</a> before the mutation
-   needs to be recorded.
+   <dd>如果{{MutationObserverInit/attributes}}为true或被省略，并且需要记录变化之前<var>target</var>的<a lt="attribute">属性</a>
+   <a for=Attr lt="value">值</a>，则设置为 true。
 
    <dt>{{MutationObserverInit/characterDataOldValue}}
-   <dd>Set to true if
-   {{MutationObserverInit/characterData}}
-   is set to true or omitted and <var>target</var>'s
-   <a for=CharacterData>data</a> before the mutation
-   needs to be recorded.
+   <dd>如果{{MutationObserverInit/characterData}}为true或被省略，并且需要记录变化之前<var>target</var>的
+   <a for=CharacterData lt="data">字符数据</a>，则设置为 true。
 
    <dt>{{MutationObserverInit/attributeFilter}}
-   <dd>Set to a list of <a>attribute</a>
-   <a for=Attr>local names</a> (without <a for=Attr>namespace</a>) if not all
-   <a>attribute</a> mutations need to be
-   observed and {{MutationObserverInit/attributes}} is true
-   or omitted.
+   <dd>如果并不需要观察全部<a lt="attribute">属性</a>的变化并且{{MutationObserverInit/attributes}}为true或被省略，则可以
+   设置一组<a lt="attribute">属性</a>的<a for=Attr lt="local names">本地名称</a>(属性名，不带<a for=Attr lt="namespace">
+   命名空间</a>前缀)的列表。
   </dl>
 
  <dt><code><var>observer</var> . {{disconnect()}}</code>
- <dd>Stops <var>observer</var> from observing any mutations. Until the {{observe()}} method is used
- again, <var>observer</var>'s <a for=MutationObserver>callback</a> will not be invoked.
+ <dd>阻止观察者观察任何变化，直到再次使用{{observe()}}方法，才会调用观察者的<a for=MutationObserver lt="callback">回调函数</a>。
 
  <dt><code><var>observer</var> . {{takeRecords()}}</code>
- <dd>Empties the <a>record queue</a> and
- returns what was in there.
+ <dd>清空<a lt="record queue">记录队列</a>并返回其中的内容。
 </dl>
 
-<p>The
-<dfn constructor for=MutationObserver lt=MutationObserver(callback)><code>new MutationObserver(<var>callback</var>)</code></dfn>
-constructor steps are:
+<p><dfn constructor for=MutationObserver lt=MutationObserver(callback)><code>new MutationObserver(<var>callback</var>)</code></dfn>
+构造函数将运行以下步骤：
 
 <ol>
- <li><p>Set <a>this</a>'s <a for=MutationObserver>callback</a> to <var>callback</var>.
+ <li><p>设<a>this</a>的<a for=MutationObserver lt="callback">回调函数</a>为<var>callback</var>。
 
- <li><p><a for=set>Append</a> <a>this</a> to <a>this</a>'s <a>relevant agent</a>'s
- <a>mutation observers</a>.
+ <li><p><a for=set lt="Append">添加</a><a>this</a>到<a>this</a>的<a lt="relevant agent">负责处理事件的元素</a>
+ 的<a lt="mutation observers">变化观察者</a>中。
 </ol>
 
-<p>The
-<dfn method for=MutationObserver><code>observe(<var>target</var>, <var>options</var>)</code></dfn>
-method steps are:
+<p><dfn method for=MutationObserver><code>observe(<var>target</var>, <var>options</var>)</code></dfn>
+方法执行步骤如下：
 
 <ol>
- <li><p>If either <var>options</var>["{{MutationObserverInit/attributeOldValue}}"] or
- <var>options</var>["{{MutationObserverInit/attributeFilter}}"] <a for=map>exists</a>, and
- <var>options</var>["{{MutationObserverInit/attributes}}"] does not <a for=map>exist</a>, then set
- <var>options</var>["{{MutationObserverInit/attributes}}"] to true.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/attributeOldValue}}"]或
+ <var>options</var>["{{MutationObserverInit/attributeFilter}}"]<a for=map lt="exists">存在</a>，且
+ <var>options</var>["{{MutationObserverInit/attributes}}"]不<a for=map lt="exists">存在</a>，则设
+ <var>options</var>["{{MutationObserverInit/attributes}}"]为true。
 
- <li><p>If <var>options</var>["{{MutationObserverInit/characterDataOldValue}}"]
- <a for=map>exists</a> and <var>options</var>["{{MutationObserverInit/characterData}}"] does not
- <a for=map>exist</a>, then set <var>options</var>["{{MutationObserverInit/characterData}}"] to
- true.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/characterDataOldValue}}"]
+ <a for=map lt="exists">存在</a>且<var>options</var>["{{MutationObserverInit/characterData}}"]不
+ <a for=map lt="exists">存在</a>，则设<var>options</var>["{{MutationObserverInit/characterData}}"]为true。
 
- <li><p>If none of <var>options</var>["{{MutationObserverInit/childList}}"],
- <var>options</var>["{{MutationObserverInit/attributes}}"], and
- <var>options</var>["{{MutationObserverInit/characterData}}"] is true, then <a>throw</a> a
- <code>TypeError</code>.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/childList}}"]为none，
+ <var>options</var>["{{MutationObserverInit/attributes}}"]以及
+ <var>options</var>["{{MutationObserverInit/characterData}}"]为true，则<a lt="throw">抛出</a>一个
+ <code>TypeError</code>。
 
- <li><p>If <var>options</var>["{{MutationObserverInit/attributeOldValue}}"] is true and
- <var>options</var>["{{MutationObserverInit/attributes}}"] is false, then <a>throw</a> a
- <code>TypeError</code>.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/attributeOldValue}}"]为true且
+ <var>options</var>["{{MutationObserverInit/attributes}}"]为false，则<a lt="throw">抛出</a>一个
+ <code>TypeError</code>。
 
- <li><p>If <var>options</var>["{{MutationObserverInit/attributeFilter}}"] is present and
- <var>options</var>["{{MutationObserverInit/attributes}}"] is false, then <a>throw</a> a
- <code>TypeError</code>.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/attributeFilter}}"]存在并且
+ <var>options</var>["{{MutationObserverInit/attributes}}"]为false，则<a lt="throw">抛出</a>一个
+ <code>TypeError</code>。
 
- <li><p>If <var>options</var>["{{MutationObserverInit/characterDataOldValue}}"] is true and
- <var>options</var>["{{MutationObserverInit/characterData}}"] is false, then <a>throw</a> a
- <code>TypeError</code>.
+ <li><p>如果<var>options</var>["{{MutationObserverInit/characterDataOldValue}}"]为true且
+ <var>options</var>["{{MutationObserverInit/characterData}}"]为false，则<a lt="throw">抛出</a>一个
+ <code>TypeError</code>。
 
  <li>
-  <p><a for=list>For each</a> <var>registered</var> of <var>target</var>'s
-  <a>registered observer list</a>, if <var>registered</var>'s
-  <a for="registered observer">observer</a> is <a>this</a>:
+  <p><a for=list lt="For each">遍历</a><var>target</var>的<a lt="registered observer list">注册观察者列表</a>(<var>registered</var>)，
+  如果<var>registered</var>的<a for="registered observer" lt="observer">观察者</a>为<a>this</a>：
 
   <ol>
-   <li><p><a for=list>For each</a> <var>node</var> of <a>this</a>'s
-   <a for=MutationObserver>node list</a>, <a for=list>remove</a> all
-   <a>transient registered observers</a> whose <a for="transient registered observer">source</a> is
-   <var>registered</var> from <var>node</var>'s <a>registered observer list</a>.
+   <li><p><a for=list lt="For each">遍历</a><a>this</a>的<a for=MutationObserver lt="node list">节点列表</a>中的节点，
+   <a for=list lt="remove">删除</a><var>node</var>的<a lt="registered observer list">注册观察者列表</a>中所有
+   <a for="transient registered observer">source</a>为<var>registered</var>的<a lt="transient registered observers">瞬态注册观察者</a>。
 
-   <li><p>Set <var>registered</var>'s <a for="registered observer">options</a> to
-   <var>options</var>.
+   <li><p>设<var>registered</var>的<a for="registered observer">options</a>为<var>options</var>。
   </ol>
 
  <li>
-  <p>Otherwise:
+  <p>否则：
 
   <ol>
-   <li><p><a for=list>Append</a> a new <a>registered observer</a> whose
-   <a for="registered observer">observer</a> is <a>this</a> and
-   <a for="registered observer">options</a> is <var>options</var> to <var>target</var>'s
-   <a>registered observer list</a>.
+   <li><p><a for=list lt="Append">添加</a>一个新的<a for="registered observer" lt="observer">观察者</a>为<a>this</a>且
+   <a for="registered observer">options</a>为<var>options</var>的<a lt="registered observer">注册观察者</a>
+   到<var>target</var>的<a lt="registered observer list">注册观察者列表</a>中。
 
-   <li><p><a for=list>Append</a> <var>target</var> to <a>this</a>'s
-   <a for=MutationObserver>node list</a>.
+   <li><p><a for=list lt="Append">添加</a> <var>target</var>到<a>this</a>的
+   <a for=MutationObserver lt="node list">节点列表</a>中。
   </ol>
 </ol>
 
-<p>The <dfn method for=MutationObserver><code>disconnect()</code></dfn> method steps are:
+<p><dfn method for=MutationObserver><code>disconnect()</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p><a for=list>For each</a> <var>node</var> of <a>this</a>'s
- <a for=MutationObserver>node list</a>, <a for=list>remove</a> any <a>registered observer</a> from
- <var>node</var>'s <a>registered observer list</a> for which <a>this</a> is the
- <a for="registered observer">observer</a>.
+ <li><p><a for=list lt="For each">遍历</a><a>this</a>的<a for=MutationObserver lt="node list">节点列表</a>中的节点，
+ <a for=list lt="remove">删除</a>节点的<a lt="registered observer list">注册观察者列表</a>中的<a for="registered observer" lt="observer">观察者</a>
+ 为<a>this</a>的<a lt="registered observer">注册观察者</a>。
 
- <li><p><a for=queue>Empty</a> <a>this</a>'s <a for=MutationObserver>record queue</a>.
+ <li><p><a for=queue lt="Empty">清空</a> <a>this</a>的<a for=MutationObserver lt="record queue">记录队列</a>。
 </ol>
 
-<p>The <dfn method for=MutationObserver><code>takeRecords()</code></dfn> method steps are:
+<p><dfn method for=MutationObserver><code>takeRecords()</code></dfn>方法执行步骤如下：
 
 <ol>
- <li><p>Let <var>records</var> be a <a for=queue>clone</a> of <a>this</a>'s
- <a for=MutationObserver>record queue</a>.
+ <li><p>设<var>records</var>为<a>this</a>的<a for=MutationObserver lt="record queue">记录队列</a>的<a for=queue lt="clone">克隆</a>。
 
- <li><p><a for=queue>Empty</a> <a>this</a>'s <a for=MutationObserver>record queue</a>.
+ <li><p><a for=queue lt="Empty">清空</a> <a>this</a>的<a for=MutationObserver lt="record queue">记录队列</a>。
 
- <li><p>Return <var>records</var>.
+ <li><p>返回<var>records</var>。
 </ol>
 
 
