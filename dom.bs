@@ -2569,9 +2569,9 @@ U除非另有说明，否则为空。
  </li>
 
  <li><p>对于<var>parent</var>的每一个<a for=tree lt="inclusive ancestor">包含它的祖先</a>(<var>inclusiveAncestor</var>)，以及
- 对于<var>inclusiveAncestor</var>的<a lt="registered observer list">已注册观察者列表</a>中每一个已注册的观察者(registered)，
+ 对于<var>inclusiveAncestor</var>的<a lt="registered observer list">注册观察者列表</a>中每一个注册的观察者(registered)，
  如果<var>registered</var>的<a for="registered observer">options</a>["{{MutationObserverInit/subtree}}"]为true，则
- 在<var>node</var>的<a lt="registered observer list">已注册观察者列表</a>中<a for=list lt="append">添加</a>一个新的
+ 在<var>node</var>的<a lt="registered observer list">注册观察者列表</a>中<a for=list lt="append">添加</a>一个新的
  <a lt="transient registered observer">临时观察者</a>，该观察者的<a for="registered observer">observer</a>是<var>registered</var>
  的<a for="registered observer">observer</a>，<a for="registered observer">options</a>是<var>registered</var>的
  <a for="registered observer">options</a>，<a for="transient registered observer">source</a>是<var>registered</var>。
@@ -3042,83 +3042,77 @@ interface HTMLCollection {
 
 
 
-<h3 id=mutation-observers>Mutation observers</h3>
+<h3 id=mutation-observers>变化观察者</h3>
 
-<p>Each <a>similar-origin window agent</a> has a
-<dfn noexport id=mutation-observer-compound-microtask-queued-flag>mutation observer microtask queued</dfn>
-(a boolean), which is initially false. [[!HTML]]
+<p>每个<a lt="similar-origin window agent">同源的窗口代理</a>都有一个
+<dfn noexport id=mutation-observer-compound-microtask-queued-flag lt="mutation observer microtask queued">变化观察者微任务队列</dfn>(为一个Boolean值)，
+其初始值为false。[[HTML]]
 
-<p>Each <a>similar-origin window agent</a> also has
-<dfn noexport id=mutation-observer-list>mutation observers</dfn> (a <a for=/>set</a> of zero or more
-{{MutationObserver}} objects), which is initially empty.
+<p>每个<a lt="similar-origin window agent">同源的窗口代理</a>都有一个
+<dfn noexport id=mutation-observer-list lt="mutation observers">变化观察者</dfn>(一个由零或多个{{MutationObserver}}对象组成的集合)，
+其初始值为空。
 
-<p>To
-<dfn noexport id=queue-a-mutation-observer-compound-microtask>queue a mutation observer microtask</dfn>,
-run these steps:
+<p>对
+<dfn noexport id=queue-a-mutation-observer-compound-microtask lt="queue a mutation observer microtask">变化观察者微任务进行排队</dfn>，
+将运行以下步骤：
 
 <ol>
- <li><p>If the <a>surrounding agent</a>'s <a>mutation observer microtask queued</a> is true, then
- return.
+ <li><p>如果<a lt="surrounding agent">周围元素</a>(该元素的父元素或祖先元素)的<a lt="mutation observer microtask queued">变化观察者微任务队列</a>为true，
+ 说明已经有一个相同的任务在队列中了，所以直接return。
 
- <li><p>Set the <a>surrounding agent</a>'s <a>mutation observer microtask queued</a> to true.
+ <li><p>设<a lt="surrounding agent">周围元素</a>的<a lt="mutation observer microtask queued">变化观察者微任务队列</a>为true。
 
- <li><p><a lt="queue a microtask">Queue</a> a <a>microtask</a> to <a>notify mutation observers</a>.
+ <li><p>将一个<a lt="microtask">微任务</a><a lt="queue a microtask">加入队列</a>，用来<a lt="notify mutation observers">通知变化观察者</a>。
 </ol>
 
-<p>To <dfn export>notify mutation observers</dfn>, run these steps:
+<p><dfn export lt="notify mutation observers">通知变化观察者</dfn>，将运行以下步骤：
 
 <ol>
- <li><p>Set the <a>surrounding agent</a>'s <a>mutation observer microtask queued</a> to false.
+ <li><p>设<a lt="surrounding agent">周围元素</a>的<a lt="mutation observer microtask queued">变化观察者微任务队列</a>为false。
 
- <li><p>Let <var>notifySet</var> be a <a for=set>clone</a> of the <a>surrounding agent</a>'s
- <a>mutation observers</a>.
+ <li><p>设<var>notifySet</var>为<a lt="surrounding agent">周围元素</a>的<a lt="mutation observers">变化观察者</a>的<a for=set lt="clone">克隆</a>。
 
- <li><p>Let <var>signalSet</var> be a <a for=set>clone</a> of the <a>surrounding agent</a>'s
- <a>signal slots</a>.
+ <li><p>设<var>signalSet</var>为<a lt="surrounding agent">周围元素</a>的<a lt="signal slots">信号槽</a>的<a for=set lt="clone">克隆</a>。
 
- <li><p><a for=set>Empty</a> the <a>surrounding agent</a>'s <a>signal slots</a>.
+ <li><p>将<a lt="surrounding agent">周围元素</a>的<a lt="signal slots">信号槽</a>设为空。
 
  <li>
-  <p><a for=set>For each</a> <var>mo</var> of <var>notifySet</var>:
+  <p><a for=set lt="For each">遍历</a><var>notifySet</var>中的<var>mo</var>：
 
   <ol>
-   <li><p>Let <var>records</var> be a <a for=queue>clone</a> of <var>mo</var>'s
-   <a for=MutationObserver>record queue</a>.
+   <li><p>设<var>records</var>为<var>mo</var>的<a for=MutationObserver lt="record queue">变化记录队列</a>的<a for=set lt="clone">克隆</a>。
 
-   <li><p><a for=queue>Empty</a> <var>mo</var>'s <a for=MutationObserver>record queue</a>.
+   <li><p>将<var>mo</var>的<a for=MutationObserver lt="record queue">变化记录队列</a>设为<a for=queue lt="Empty">空</a>。
 
-   <li><p><a for=list>For each</a> <var>node</var> of <var>mo</var>'s
-   <a for=MutationObserver>node list</a>, <a for=list>remove</a> all
-   <a>transient registered observers</a> whose <a for="registered observer">observer</a> is
-   <var>mo</var> from <var>node</var>'s <a>registered observer list</a>.
+   <li><p>对于<var>mo</var>的<a for=MutationObserver lt="node list">节点列表</a>中的每个节点，从节点的
+   <a lt="registered observer list">注册观察者列表</a>中<a for=list lt="remove">移除</a>所有
+   <a for="registered observer" lt="observer">观察者</a>为<var>mo</var>的<a lt="transient registered observers">瞬态注册观察者</a>。
 
-   <li><p>If <var>records</var> <a for=queue>is not empty</a>, then <a spec=webidl>invoke</a>
-   <var>mo</var>'s <a for=MutationObserver>callback</a> with « <var>records</var>, <var>mo</var> »,
-   and <var>mo</var>. If this throws an exception, catch it, and <a>report the exception</a>.
+   <li><p>如果<var>records</var> <a for=queue lt="is not empty">不为空</a>，则使用参数« <var>records</var>、<var>mo</var> »以及<var>mo</var>
+   <a spec=webidl lt="invoke">调用</a><var>mo</var>的<a for=MutationObserver lt="callback">回调函数</a>，如果抛出异常，捕获它并
+   <a lt="report the exception">报告异常</a>。
   </ol>
 
- <li><p><a for=set>For each</a> <var>slot</var> of <var>signalSet</var>, <a>fire an event</a> named
- <dfn event for=HTMLSlotElement>slotchange</dfn>, with its {{Event/bubbles}} attribute set to true,
- at <var>slot</var>.
+ <li><p><a for=set lt="For each">遍历</a><var>signalSet</var>中的每个<var>slot</var>，在<var>slot</var>处<a lt="fire an event">触发</a>
+ 一个名为<dfn event for=HTMLSlotElement>slotchange</dfn>的事件，其{{Event/bubbles}}属性设置为true。
 </ol>
 
 <hr>
 
-<p>Each <a for=/>node</a> has a <dfn noexport>registered observer list</dfn> (a <a for=/>list</a> of
-zero or more <a>registered observers</a>), which is initially empty.
+<p>每个<a for=/ lt="node">节点</a>都有一个<dfn noexport lt="registered observer list">注册观察者列表</dfn>(它为零个或多个
+<a lt="registered observers">注册观察者</a>组成的列表)，其初始值为空。
 
-<p>A <dfn noexport id=registered-observer>registered observer</dfn> consists of an
-<dfn noexport for="registered observer">observer</dfn> (a {{MutationObserver}} object) and
-<dfn noexport for="registered observer">options</dfn> (a {{MutationObserverInit}} dictionary).
+<p><dfn noexport id=registered-observer lt="registered observer">注册观察者</dfn>由一个
+<dfn noexport for="registered observer" lt="observer">观察者</dfn>({{MutationObserver}}对象)
+和一个<dfn noexport for="registered observer" lt="options">选项</dfn>({{MutationObserverInit}}字典)组成。
 
-<p>A <dfn noexport id=transient-registered-observer>transient registered observer</dfn> is a
-<a>registered observer</a> that also consists of a
-<dfn for="transient registered observer">source</dfn> (a <a>registered observer</a>).
+<p><dfn noexport id=transient-registered-observer lt="transient registered observer">瞬态注册观察者</dfn>是一个
+<a lt="registered observer">注册观察者</a>，它由一个<dfn for="transient registered observer" lt="source">源</dfn>
+(一个<a lt="registered observer">注册观察者</a>)组成。
 
-<p class=note><a>Transient registered observers</a> are used to track mutations within
-a given <a for=/>node</a>'s <a for=tree>descendants</a> after <a for=/>node</a> has been removed so
-they do not get lost when {{MutationObserverInit/subtree}} is set to true on <a for=/>node</a>'s
-<a for=tree>parent</a>.
+<p class=note><a lt="transient registered observers">瞬态注册观察者</a>用于在节点被删除后跟踪给定
+<a for=/ lt="node">节点</a>的<a for=tree lt="descendants">后代</a>内的变化，因此当节点的父节点的
+{{MutationObserverInit/subtree}}设置为true时它们不会丢失。
 
 
 <h4 id=interface-mutationobserver>Interface {{MutationObserver}}</h4>
