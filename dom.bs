@@ -3433,13 +3433,13 @@ interface MutationRecord {
 <dfn attribute for="MutationRecord">oldValue</dfn>属性是只读的，仅返回其初始值。 
 
 
-<h4 id=garbage-collection>Garbage collection</h4>
+<h4 id=garbage-collection>垃圾回收</h4>
 
-<p><a for=/>Nodes</a> have a strong reference to <a>registered observers</a> in their
-<a>registered observer list</a>.
+<p><a for=/ lt="Nodes">节点</a>在<a lt="registered observer list">注册观察者列表</a>中对<a lt="registered observers">注册观察者</a>
+为强引用。
 
-<p><a>Registered observers</a> in a <a for=/>node</a>'s <a>registered observer list</a> have a weak
-reference to the <a for=/>node</a>.
+<p>在<a for=/ lt="node">节点</a>的<a lt="registered observer list">注册观察者列表</a>中的<a lt="Registered observers">注册观察者</a>
+有一个对<a for=/ lt="node">节点</a>的弱引用。
 
 
 <h3 id=interface-node>Interface {{Node}}</h3>
