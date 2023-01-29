@@ -3285,96 +3285,91 @@ dictionary MutationObserverInit {
 </ol>
 
 
-<h4 id=queueing-a-mutation-record>Queuing a mutation record</h4>
+<h4 id=queueing-a-mutation-record>将一个变化记录加入队列</h4>
 
-<p>To <dfn noexport>queue a mutation record</dfn> of <var>type</var> for <var>target</var> with
-<var>name</var>, <var>namespace</var>, <var>oldValue</var>, <var>addedNodes</var>,
-<var>removedNodes</var>, <var>previousSibling</var>, and <var>nextSibling</var>, run these steps:
+<p>将具有<var>name</var>、<var>namespace</var>、<var>oldValue</var>、<var>addedNodes</var>、<var>removedNodes</var>、
+<var>previousSibling</var>以及<var>nextSibling</var>的<var>target</var>的<dfn noexport lt="queue a mutation record">变化记录加入队列</dfn>，
+会运行以下步骤：
 
 <ol>
- <li><p>Let <var>interestedObservers</var> be an empty <a for=/>map</a>.
+ <li><p>设<var>interestedObservers</var>为空<a for=/>map</a>。
 
- <li><p>Let <var>nodes</var> be the <a for=tree>inclusive ancestors</a> of <var>target</var>.
+ <li><p>设<var>nodes</var>为<var>target</var>的<a for=tree lt="inclusive ancestors">包容性祖先</a>。
 
  <li>
-  <p>For each <var>node</var> in <var>nodes</var>, and then <a for=list>for each</a>
-  <var>registered</var> of <var>node</var>'s <a>registered observer list</a>:
+  <p>遍历<var>nodes</var>中每个<var>node</var>的<a lt="registered observer list">注册观察者列表</a>(<var>registered</var>)：
 
   <ol>
-   <li><p>Let <var>options</var> be <var>registered</var>'s
-   <a for="registered observer">options</a>.
+   <li><p>设<var>options</var>为<var>registered</var>的<a for="registered observer">options</a>。
 
    <li>
-    <p>If none of the following are true
+    <p>如果以下都不成立
 
     <ul class=brief>
-     <li><var>node</var> is not <var>target</var> and
-     <var>options</var>["{{MutationObserverInit/subtree}}"] is false
+     <li><var>node</var>不为<var>target</var>且
+     <var>options</var>["{{MutationObserverInit/subtree}}"]为false。
 
-     <li><var>type</var> is "<code>attributes</code>" and
-     <var>options</var>["{{MutationObserverInit/attributes}}"] either does not <a for=map>exist</a>
-     or is false
+     <li><var>type</var>为"<code>attributes</code>"且
+     <var>options</var>["{{MutationObserverInit/attributes}}"]不<a for=map lt="exist">存在</a>
+     或为false。
 
-     <li><var>type</var> is "<code>attributes</code>",
-     <var>options</var>["{{MutationObserverInit/attributeFilter}}"] <a for=map>exists</a>, and
-     <var>options</var>["{{MutationObserverInit/attributeFilter}}"] does not <a for=list>contain</a>
-     <var>name</var> or <var>namespace</var> is non-null
+     <li><var>type</var>为"<code>attributes</code>"，
+     <var>options</var>["{{MutationObserverInit/attributeFilter}}"] <a for=map lt="exists">存在</a>且
+     <var>options</var>["{{MutationObserverInit/attributeFilter}}"]不<a for=list lt="contain">包含</a>
+     <var>name</var>或<var>namespace</var>不为null。
 
-     <li><var>type</var> is "<code>characterData</code>" and
-     <var>options</var>["{{MutationObserverInit/characterData}}"] either does not
-     <a for=map>exist</a> or is false
+     <li><var>type</var>为"<code>characterData</code>"且
+     <var>options</var>["{{MutationObserverInit/characterData}}"]不<a for=map lt="exists">存在</a>
+     或为false。
 
-     <li><var>type</var> is "<code>childList</code>" and
-     <var>options</var>["{{MutationObserverInit/childList}}"] is false
+     <li><var>type</var>为"<code>childList</code>"且
+     <var>options</var>["{{MutationObserverInit/childList}}"]为false。
     </ul>
 
-    <p>then:
+    <p>则：
 
     <ol>
-     <li><p>Let <var>mo</var> be <var>registered</var>'s <a for="registered observer">observer</a>.
+     <li><p>设<var>mo</var>为<var>registered</var>的<a for="registered observer" lt="observer">观察者</a>。
 
-     <li><p>If <var>interestedObservers</var>[<var>mo</var>] does not <a for=map>exist</a>, then
-     <a for=map>set</a> <var>interestedObservers</var>[<var>mo</var>] to null.
+     <li><p>如果<var>interestedObservers</var>[<var>mo</var>]不<a for=map lt="exists">存在</a>，则
+     <a for=map lt="set">设</a> <var>interestedObservers</var>[<var>mo</var>]为null。
 
-     <li><p>If either <var>type</var> is "<code>attributes</code>" and
-     <var>options</var>["{{MutationObserverInit/attributeOldValue}}"] is true, or <var>type</var> is
-     "<code>characterData</code>" and
-     <var>options</var>["{{MutationObserverInit/characterDataOldValue}}"] is true, then
-     <a for=map>set</a> <var>interestedObservers</var>[<var>mo</var>] to <var>oldValue</var>.
+     <li><p>如果<var>type</var>为"<code>attributes</code>"且
+     <var>options</var>["{{MutationObserverInit/attributeOldValue}}"]为true，或<var>type</var>为
+     "<code>characterData</code>"且
+     <var>options</var>["{{MutationObserverInit/characterDataOldValue}}"]为true，则
+     <a for=map lt="set">设</a> <var>interestedObservers</var>[<var>mo</var>]为<var>oldValue</var>。
     </ol>
   </ol>
 
  <li>
-  <p><a for=map>For each</a> <var>observer</var> → <var>mappedOldValue</var> of
-  <var>interestedObservers</var>:
+  <p><a for=map lt="For each">遍历</a> <var>observer</var> → <var>interestedObservers</var>的<var>mappedOldValue</var>：
 
   <ol>
-   <li><p>Let <var>record</var> be a new {{MutationRecord}} object with its {{MutationRecord/type}}
-   set to <var>type</var>, {{MutationRecord/target}} set to <var>target</var>,
-   {{MutationRecord/attributeName}} set to <var>name</var>, {{MutationRecord/attributeNamespace}}
-   set to <var>namespace</var>, {{MutationRecord/oldValue}} set to <var>mappedOldValue</var>,
-   {{MutationRecord/addedNodes}} set to <var>addedNodes</var>,
-   {{MutationRecord/removedNodes}} set to <var>removedNodes</var>,
-   {{MutationRecord/previousSibling}} set to <var>previousSibling</var>, and
-   {{MutationRecord/nextSibling}} set to <var>nextSibling</var>.
+   <li><p>设<var>record</var>为新的{{MutationRecord}}对象，其{{MutationRecord/type}}
+   为<var>type</var>、{{MutationRecord/target}}为<var>target</var>、
+   {{MutationRecord/attributeName}}为<var>name</var>、{{MutationRecord/attributeNamespace}}
+   为<var>namespace</var>、{{MutationRecord/oldValue}}为<var>mappedOldValue</var>、
+   {{MutationRecord/addedNodes}}为<var>addedNodes</var>、
+   {{MutationRecord/removedNodes}}为<var>removedNodes</var>、
+   {{MutationRecord/previousSibling}}为<var>previousSibling</var>以及
+   {{MutationRecord/nextSibling}}为<var>nextSibling</var>。
 
-   <li><p><a for=queue>Enqueue</a> <var>record</var> to <var>observer</var>'s
-   <a for=MutationObserver>record queue</a>.
+   <li><p>将<var>record</var><a for=queue lt="Enqueue">加入</a>到<var>observer</var>的
+   <a for=MutationObserver lt="record queue">记录队列</a>。
   </ol>
 
- <li><p><a>Queue a mutation observer microtask</a>.
+ <li><p><a lt="Queue a mutation observer microtask">将一个变化观察者微任务加入队列</a>。
 </ol>
 
-<p>To <dfn noexport>queue a tree mutation record</dfn> for <var>target</var> with
-<var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>, and
-<var>nextSibling</var>, run these steps:
+<p>给定参数<var>addedNodes</var>、<var>removedNodes</var>、<var>previousSibling</var>以及<var>nextSibling</var>，
+将<var>target</var><dfn noexport lt="queue a tree mutation record">加入树的变化记录队列</dfn>，会执行以下步骤：
 
 <ol>
- <li><p>Assert: either <var>addedNodes</var> or <var>removedNodes</var> <a for=set>is not empty</a>.
+ <li><p>确认：<var>addedNodes</var>或<var>removedNodes</var> <a for=set lt="is not empty">不为空</a>。
 
- <li><p><a>Queue a mutation record</a> of "<code>childList</code>" for <var>target</var> with
- null, null, null, <var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>,
- and <var>nextSibling</var>.
+ <li><p>给定参数null、null、null、<var>addedNodes</var>、<var>removedNodes</var>、<var>previousSibling</var>以及<var>nextSibling</var>，
+ 将<var>target</var><a lt="Queue a mutation record">加入到<code>childList</code>的变化记录队列</a>。
 </ol>
 
 
