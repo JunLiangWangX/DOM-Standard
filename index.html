@@ -38,7 +38,7 @@ a[href].issue-return {
     <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-dom.svg"> </a> 
    <hgroup>
     <h1 class="p-name no-ref allcaps" id="title">DOM</h1>
-    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-28">2023-01-28</time> </p>
+    <p id="subtitle">Living Standard — 最后更新 <time class="dt-updated" datetime="2023-01-29">2023-01-29</time> </p>
    </hgroup>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -134,7 +134,7 @@ a[href].issue-return {
        <a href="#mutation-observers"><span class="secno">4.3</span> <span class="content">变化观察者</span></a>
        <ol class="toc">
         <li><a href="#interface-mutationobserver"><span class="secno">4.3.1</span> <span class="content">接口：<code class="idl"><span>MutationObserver</span></code></span></a>
-        <li><a href="#queueing-a-mutation-record"><span class="secno">4.3.2</span> <span class="content">Queuing a mutation record</span></a>
+        <li><a href="#queueing-a-mutation-record"><span class="secno">4.3.2</span> <span class="content">将一个变化记录加入队列</span></a>
         <li><a href="#interface-mutationrecord"><span class="secno">4.3.3</span> <span class="content">Interface <code class="idl"><span>MutationRecord</span></code></span></a>
         <li><a href="#garbage-collection"><span class="secno">4.3.4</span> <span class="content">Garbage collection</span></a>
        </ol>
@@ -4030,57 +4030,58 @@ U除非另有说明，否则为空。 </p>
     <li>
      <p>返回<var>records</var>。 </p>
    </ol>
-   <h4 class="heading settled" data-level="4.3.2" id="queueing-a-mutation-record"><span class="secno">4.3.2. </span><span class="content">Queuing a mutation record</span><a class="self-link" href="#queueing-a-mutation-record"></a></h4>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-mutation-record">queue a mutation record</dfn> of <var>type</var> for <var>target</var> with <var>name</var>, <var>namespace</var>, <var>oldValue</var>, <var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>, and <var>nextSibling</var>, run these steps: </p>
+   <h4 class="heading settled" data-level="4.3.2" id="queueing-a-mutation-record"><span class="secno">4.3.2. </span><span class="content">将一个变化记录加入队列</span><a class="self-link" href="#queueing-a-mutation-record"></a></h4>
+   <p>将具有<var>name</var>、<var>namespace</var>、<var>oldValue</var>、<var>addedNodes</var>、<var>removedNodes</var>、 <var>previousSibling</var>以及<var>nextSibling</var>的<var>target</var>的<dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="queue a mutation record" data-noexport id="queue-a-mutation-record">变化记录加入队列</dfn>，
+会运行以下步骤： </p>
    <ol>
     <li>
-     <p>Let <var>interestedObservers</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>. </p>
+     <p>设<var>interestedObservers</var>为空<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>。 </p>
     <li>
-     <p>Let <var>nodes</var> be the <a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor③">inclusive ancestors</a> of <var>target</var>. </p>
+     <p>设<var>nodes</var>为<var>target</var>的<a data-link-type="dfn" href="#concept-tree-inclusive-ancestor" id="ref-for-concept-tree-inclusive-ancestor③">包容性祖先</a>。 </p>
     <li>
-     <p>For each <var>node</var> in <var>nodes</var>, and then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑤">for each</a> <var>registered</var> of <var>node</var>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑦">registered observer list</a>: </p>
+     <p>遍历<var>nodes</var>中每个<var>node</var>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑦">注册观察者列表</a>(<var>registered</var>)： </p>
      <ol>
       <li>
-       <p>Let <var>options</var> be <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options⑤">options</a>. </p>
+       <p>设<var>options</var>为<var>registered</var>的<a data-link-type="dfn" href="#registered-observer-options" id="ref-for-registered-observer-options⑤">options</a>。 </p>
       <li>
-       <p>If none of the following are true </p>
+       <p>如果以下都不成立 </p>
        <ul class="brief">
-        <li><var>node</var> is not <var>target</var> and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree③">subtree</a></code>"] is false 
-        <li><var>type</var> is "<code>attributes</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑧">attributes</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists④">exist</a> or is false 
-        <li><var>type</var> is "<code>attributes</code>", <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter④">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤">exists</a>, and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter⑤">attributeFilter</a></code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>name</var> or <var>namespace</var> is non-null 
-        <li><var>type</var> is "<code>characterData</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑥">characterData</a></code>"] either does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥">exist</a> or is false 
-        <li><var>type</var> is "<code>childList</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist②">childList</a></code>"] is false 
+        <li><var>node</var>不为<var>target</var>且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-subtree" id="ref-for-dom-mutationobserverinit-subtree③">subtree</a></code>"]为false。 
+        <li><var>type</var>为"<code>attributes</code>"且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributes" id="ref-for-dom-mutationobserverinit-attributes⑧">attributes</a></code>"]不<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists④">存在</a> 或为false。 
+        <li><var>type</var>为"<code>attributes</code>"， <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter④">attributeFilter</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤">存在</a>且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributefilter" id="ref-for-dom-mutationobserverinit-attributefilter⑤">attributeFilter</a></code>"]不<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">包含</a> <var>name</var>或<var>namespace</var>不为null。 
+        <li><var>type</var>为"<code>characterData</code>"且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdata" id="ref-for-dom-mutationobserverinit-characterdata⑥">characterData</a></code>"]不<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥">存在</a> 或为false。 
+        <li><var>type</var>为"<code>childList</code>"且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-childlist" id="ref-for-dom-mutationobserverinit-childlist②">childList</a></code>"]为false。 
        </ul>
-       <p>then: </p>
+       <p>则： </p>
        <ol>
         <li>
-         <p>Let <var>mo</var> be <var>registered</var>’s <a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑥">observer</a>. </p>
+         <p>设<var>mo</var>为<var>registered</var>的<a data-link-type="dfn" href="#registered-observer-observer" id="ref-for-registered-observer-observer⑥">观察者</a>。 </p>
         <li>
-         <p>If <var>interestedObservers</var>[<var>mo</var>] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑦">exist</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">set</a> <var>interestedObservers</var>[<var>mo</var>] to null. </p>
+         <p>如果<var>interestedObservers</var>[<var>mo</var>]不<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑦">存在</a>，则 <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">设</a> <var>interestedObservers</var>[<var>mo</var>]为null。 </p>
         <li>
-         <p>If either <var>type</var> is "<code>attributes</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue④">attributeOldValue</a></code>"] is true, or <var>type</var> is
-     "<code>characterData</code>" and <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue④">characterDataOldValue</a></code>"] is true, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">set</a> <var>interestedObservers</var>[<var>mo</var>] to <var>oldValue</var>. </p>
+         <p>如果<var>type</var>为"<code>attributes</code>"且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-attributeoldvalue" id="ref-for-dom-mutationobserverinit-attributeoldvalue④">attributeOldValue</a></code>"]为true，或<var>type</var>为
+     "<code>characterData</code>"且 <var>options</var>["<code class="idl"><a data-link-type="idl" href="#dom-mutationobserverinit-characterdataoldvalue" id="ref-for-dom-mutationobserverinit-characterdataoldvalue④">characterDataOldValue</a></code>"]为true，则 <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">设</a> <var>interestedObservers</var>[<var>mo</var>]为<var>oldValue</var>。 </p>
        </ol>
      </ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate①">For each</a> <var>observer</var> → <var>mappedOldValue</var> of <var>interestedObservers</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate①">遍历</a> <var>observer</var> → <var>interestedObservers</var>的<var>mappedOldValue</var>： </p>
      <ol>
       <li>
-       <p>Let <var>record</var> be a new <code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord④">MutationRecord</a></code> object with its <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-type" id="ref-for-dom-mutationrecord-type">type</a></code> set to <var>type</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-target" id="ref-for-dom-mutationrecord-target">target</a></code> set to <var>target</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-attributename" id="ref-for-dom-mutationrecord-attributename">attributeName</a></code> set to <var>name</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-attributenamespace" id="ref-for-dom-mutationrecord-attributenamespace">attributeNamespace</a></code> set to <var>namespace</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-oldvalue" id="ref-for-dom-mutationrecord-oldvalue">oldValue</a></code> set to <var>mappedOldValue</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-addednodes" id="ref-for-dom-mutationrecord-addednodes">addedNodes</a></code> set to <var>addedNodes</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-removednodes" id="ref-for-dom-mutationrecord-removednodes">removedNodes</a></code> set to <var>removedNodes</var>, <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-previoussibling" id="ref-for-dom-mutationrecord-previoussibling">previousSibling</a></code> set to <var>previousSibling</var>, and <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-nextsibling" id="ref-for-dom-mutationrecord-nextsibling">nextSibling</a></code> set to <var>nextSibling</var>. </p>
+       <p>设<var>record</var>为新的<code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord④">MutationRecord</a></code>对象，其<code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-type" id="ref-for-dom-mutationrecord-type">type</a></code> 为<var>type</var>、<code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-target" id="ref-for-dom-mutationrecord-target">target</a></code>为<var>target</var>、 <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-attributename" id="ref-for-dom-mutationrecord-attributename">attributeName</a></code>为<var>name</var>、<code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-attributenamespace" id="ref-for-dom-mutationrecord-attributenamespace">attributeNamespace</a></code> 为<var>namespace</var>、<code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-oldvalue" id="ref-for-dom-mutationrecord-oldvalue">oldValue</a></code>为<var>mappedOldValue</var>、 <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-addednodes" id="ref-for-dom-mutationrecord-addednodes">addedNodes</a></code>为<var>addedNodes</var>、 <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-removednodes" id="ref-for-dom-mutationrecord-removednodes">removedNodes</a></code>为<var>removedNodes</var>、 <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-previoussibling" id="ref-for-dom-mutationrecord-previoussibling">previousSibling</a></code>为<var>previousSibling</var>以及 <code class="idl"><a data-link-type="idl" href="#dom-mutationrecord-nextsibling" id="ref-for-dom-mutationrecord-nextsibling">nextSibling</a></code>为<var>nextSibling</var>。 </p>
       <li>
-       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#queue-enqueue" id="ref-for-queue-enqueue">Enqueue</a> <var>record</var> to <var>observer</var>’s <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue⑥">record queue</a>. </p>
+       <p>将<var>record</var><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#queue-enqueue" id="ref-for-queue-enqueue">加入</a>到<var>observer</var>的 <a data-link-type="dfn" href="#concept-mo-queue" id="ref-for-concept-mo-queue⑥">记录队列</a>。 </p>
      </ol>
     <li>
-     <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask①">Queue a mutation observer microtask</a>. </p>
+     <p><a data-link-type="dfn" href="#queue-a-mutation-observer-compound-microtask" id="ref-for-queue-a-mutation-observer-compound-microtask①">将一个变化观察者微任务加入队列</a>。 </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-tree-mutation-record">queue a tree mutation record</dfn> for <var>target</var> with <var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>, and <var>nextSibling</var>, run these steps: </p>
+   <p>给定参数<var>addedNodes</var>、<var>removedNodes</var>、<var>previousSibling</var>以及<var>nextSibling</var>，
+将<var>target</var><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="queue a tree mutation record" data-noexport id="queue-a-tree-mutation-record">加入树的变化记录队列</dfn>，会执行以下步骤： </p>
    <ol>
     <li>
-     <p>Assert: either <var>addedNodes</var> or <var>removedNodes</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty③">is not empty</a>. </p>
+     <p>确认：<var>addedNodes</var>或<var>removedNodes</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty③">不为空</a>。 </p>
     <li>
-     <p><a data-link-type="dfn" href="#queue-a-mutation-record" id="ref-for-queue-a-mutation-record">Queue a mutation record</a> of "<code>childList</code>" for <var>target</var> with
- null, null, null, <var>addedNodes</var>, <var>removedNodes</var>, <var>previousSibling</var>,
- and <var>nextSibling</var>. </p>
+     <p>给定参数null、null、null、<var>addedNodes</var>、<var>removedNodes</var>、<var>previousSibling</var>以及<var>nextSibling</var>，
+ 将<var>target</var><a data-link-type="dfn" href="#queue-a-mutation-record" id="ref-for-queue-a-mutation-record">加入到<code>childList</code>的变化记录队列</a>。 </p>
    </ol>
    <h4 class="heading settled" data-level="4.3.3" id="interface-mutationrecord"><span class="secno">4.3.3. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#mutationrecord" id="ref-for-mutationrecord⑤">MutationRecord</a></code></span><a class="self-link" href="#interface-mutationrecord"></a></h4>
    <div class="mdn-anno wrapped after">
@@ -4818,7 +4819,7 @@ steps: </p>
         <p>Let <var>copy</var> be the result of <a data-link-type="dfn" href="#concept-create-element" id="ref-for-concept-create-element">creating an element</a>, given <var>document</var>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-local-name" id="ref-for-concept-element-local-name">local name</a>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-namespace" id="ref-for-concept-element-namespace">namespace</a>, <var>node</var>’s <a data-link-type="dfn" href="#concept-element-namespace-prefix" id="ref-for-concept-element-namespace-prefix">namespace prefix</a>, and <var>node</var>’s <a data-link-type="dfn" href="#concept-element-is-value" id="ref-for-concept-element-is-value"><code>is</code> value</a>, with the <var>synchronous custom elements
    flag</var> unset. </p>
        <li>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑥">For each</a> <var>attribute</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute">attribute list</a>: </p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑤">For each</a> <var>attribute</var> in <var>node</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute">attribute list</a>: </p>
         <ol>
          <li>
           <p>Let <var>copyAttribute</var> be a <a data-link-type="dfn" href="#concept-node-clone" id="ref-for-concept-node-clone①">clone</a> of <var>attribute</var>. </p>
@@ -4999,7 +5000,7 @@ steps are: </p>
        <p>If <var>attr1</var> and <var>node1</var> are non-null, and <var>node2</var> is <var>node1</var>, then: </p>
        <ol>
         <li>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑦">For each</a> <var>attr</var> in <var>node2</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute④">attribute list</a>: </p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑥">For each</a> <var>attr</var> in <var>node2</var>’s <a data-link-type="dfn" href="#concept-element-attribute" id="ref-for-concept-element-attribute④">attribute list</a>: </p>
          <ol>
           <li>
            <p>If <var>attr</var> <a data-link-type="dfn" href="#concept-node-equals" id="ref-for-concept-node-equals③">equals</a> <var>attr1</var>, then return the result of
@@ -8026,7 +8027,7 @@ steps: </p>
      <p>Let <var>names</var> be the <a data-link-type="dfn" href="#concept-attribute-qualified-name" id="ref-for-concept-attribute-qualified-name①②">qualified names</a> of the <a data-link-type="dfn" href="#concept-attribute" id="ref-for-concept-attribute⑥⓪">attributes</a> in this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑧">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-attribute" id="ref-for-concept-namednodemap-attribute⑤">attribute list</a>, with duplicates omitted, in
  order. </p>
     <li>
-     <p>If this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑨">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-element" id="ref-for-concept-namednodemap-element①">element</a> is in the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#html-namespace" id="ref-for-html-namespace②⑨">HTML namespace</a> and its <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑥①">node document</a> is an <a data-link-type="dfn" href="#html-document" id="ref-for-html-document①⑥">HTML document</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑧">for each</a> <var>name</var> in <var>names</var>: </p>
+     <p>If this <code class="idl"><a data-link-type="idl" href="#namednodemap" id="ref-for-namednodemap⑨">NamedNodeMap</a></code> object’s <a data-link-type="dfn" href="#concept-namednodemap-element" id="ref-for-concept-namednodemap-element①">element</a> is in the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#html-namespace" id="ref-for-html-namespace②⑨">HTML namespace</a> and its <a data-link-type="dfn" href="#concept-node-document" id="ref-for-concept-node-document⑥①">node document</a> is an <a data-link-type="dfn" href="#html-document" id="ref-for-html-document①⑥">HTML document</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑦">for each</a> <var>name</var> in <var>names</var>: </p>
      <ol>
       <li>
        <p>Let <var>lowercaseName</var> be <var>name</var>, in <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ascii-lowercase" id="ref-for-ascii-lowercase⑦">ASCII lowercase</a>. </p>
@@ -11028,7 +11029,7 @@ false. </p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DOMTokenList" data-dfn-type="method" data-export data-lt="add(...tokens)|add()|add(tokens)" id="dom-domtokenlist-add"><code>add(<var>tokens</var>…)</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑨">For each</a> <var>token</var> in <var>tokens</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑧">For each</a> <var>token</var> in <var>tokens</var>: </p>
      <ol>
       <li>
        <p>If <var>token</var> is the empty string, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧⑤">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror⑧">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑤">DOMException</a></code>. </p>
@@ -11037,14 +11038,14 @@ false. </p>
    "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#invalidcharactererror" id="ref-for-invalidcharactererror①⑦">InvalidCharacterError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑥">DOMException</a></code>. </p>
      </ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②⓪">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③①⑨">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①⑨">For each</a> <var>token</var> in <var>tokens</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append④">append</a> <var>token</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③①⑨">this</a>’s <a data-link-type="dfn" href="#concept-dtl-tokens" id="ref-for-concept-dtl-tokens①①">token set</a>. </p>
     <li>
      <p>Run the <a data-link-type="dfn" href="#concept-dtl-update" id="ref-for-concept-dtl-update">update steps</a>. </p>
    </ol>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DOMTokenList" data-dfn-type="method" data-export data-lt="remove(...tokens)|remove()|remove(tokens)" id="dom-domtokenlist-remove"><code>remove(<var>tokens</var>…)</code></dfn> method steps are: </p>
    <ol>
     <li>
-     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②①">For each</a> <var>token</var> in <var>tokens</var>: </p>
+     <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate②⓪">For each</a> <var>token</var> in <var>tokens</var>: </p>
      <ol>
       <li>
        <p>If <var>token</var> is the empty string, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧⑦">throw</a> a "<code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#syntaxerror" id="ref-for-syntaxerror⑨">SyntaxError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①⓪⑦">DOMException</a></code>. </p>
@@ -13507,7 +13508,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-list-contain">2.7. EventTarget接口</a> <a href="#ref-for-list-contain①">(2)</a>
     <li><a href="#ref-for-list-contain②">4.2.2.3. 查找插槽以及可插槽元素</a>
-    <li><a href="#ref-for-list-contain③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-list-contain③">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-list-contain④">4.9. Interface Element</a> <a href="#ref-for-list-contain⑤">(2)</a>
     <li><a href="#ref-for-list-contain⑥">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-contain⑦">(2)</a> <a href="#ref-for-list-contain⑧">(3)</a>
    </ul>
@@ -13531,7 +13532,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-queue-enqueue">
    <a href="https://infra.spec.whatwg.org/#queue-enqueue">https://infra.spec.whatwg.org/#queue-enqueue</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-enqueue">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-queue-enqueue">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-contain">
@@ -13539,7 +13540,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-list-contain">2.7. EventTarget接口</a> <a href="#ref-for-list-contain①">(2)</a>
     <li><a href="#ref-for-list-contain②">4.2.2.3. 查找插槽以及可插槽元素</a>
-    <li><a href="#ref-for-list-contain③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-list-contain③">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-list-contain④">4.9. Interface Element</a> <a href="#ref-for-list-contain⑤">(2)</a>
     <li><a href="#ref-for-list-contain⑥">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-contain⑦">(2)</a> <a href="#ref-for-list-contain⑧">(3)</a>
    </ul>
@@ -13548,7 +13549,7 @@ if ("serviceWorker" in navigator) {
    <a href="https://infra.spec.whatwg.org/#map-exists">https://infra.spec.whatwg.org/#map-exists</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-map-exists">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a>
-    <li><a href="#ref-for-map-exists④">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-exists⑤">(2)</a> <a href="#ref-for-map-exists⑥">(3)</a> <a href="#ref-for-map-exists⑦">(4)</a>
+    <li><a href="#ref-for-map-exists④">4.3.2. 将一个变化记录加入队列</a> <a href="#ref-for-map-exists⑤">(2)</a> <a href="#ref-for-map-exists⑥">(3)</a> <a href="#ref-for-map-exists⑦">(4)</a>
     <li><a href="#ref-for-map-exists⑧">4.5. Interface Document</a> <a href="#ref-for-map-exists⑨">(2)</a>
    </ul>
   </aside>
@@ -13562,17 +13563,16 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-iterate⑧">4.2.2.3. 查找插槽以及可插槽元素</a> <a href="#ref-for-list-iterate⑨">(2)</a>
     <li><a href="#ref-for-list-iterate①⓪">4.3. 变化观察者</a> <a href="#ref-for-list-iterate①①">(2)</a>
     <li><a href="#ref-for-list-iterate①②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-list-iterate①③">(2)</a> <a href="#ref-for-list-iterate①④">(3)</a>
-    <li><a href="#ref-for-list-iterate①⑤">4.3.2. Queuing a mutation record</a>
-    <li><a href="#ref-for-list-iterate①⑥">4.4. Interface Node</a> <a href="#ref-for-list-iterate①⑦">(2)</a>
-    <li><a href="#ref-for-list-iterate①⑧">4.9.1. Interface NamedNodeMap</a>
-    <li><a href="#ref-for-list-iterate①⑨">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-iterate②⓪">(2)</a> <a href="#ref-for-list-iterate②①">(3)</a>
+    <li><a href="#ref-for-list-iterate①⑤">4.4. Interface Node</a> <a href="#ref-for-list-iterate①⑥">(2)</a>
+    <li><a href="#ref-for-list-iterate①⑦">4.9.1. Interface NamedNodeMap</a>
+    <li><a href="#ref-for-list-iterate①⑧">7.1. Interface DOMTokenList</a> <a href="#ref-for-list-iterate①⑨">(2)</a> <a href="#ref-for-list-iterate②⓪">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-map-iterate">
    <a href="https://infra.spec.whatwg.org/#map-iterate">https://infra.spec.whatwg.org/#map-iterate</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-map-iterate">2.5. 事件构造过程</a>
-    <li><a href="#ref-for-map-iterate①">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-map-iterate①">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-html-namespace">
@@ -13604,7 +13604,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-is-empty">2.2. Event接口</a>
     <li><a href="#ref-for-list-is-empty①">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-is-empty②">4.3. 变化观察者</a>
-    <li><a href="#ref-for-list-is-empty③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-list-is-empty③">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-list-is-empty④">4.9. Interface Element</a> <a href="#ref-for-list-is-empty⑤">(2)</a> <a href="#ref-for-list-is-empty⑥">(3)</a>
     <li><a href="#ref-for-list-is-empty⑦">4.9.1. Interface NamedNodeMap</a>
     <li><a href="#ref-for-list-is-empty⑧">7.1. Interface DOMTokenList</a>
@@ -13616,7 +13616,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-list-is-empty">2.2. Event接口</a>
     <li><a href="#ref-for-list-is-empty①">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-list-is-empty②">4.3. 变化观察者</a>
-    <li><a href="#ref-for-list-is-empty③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-list-is-empty③">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-list-is-empty④">4.9. Interface Element</a> <a href="#ref-for-list-is-empty⑤">(2)</a> <a href="#ref-for-list-is-empty⑥">(3)</a>
     <li><a href="#ref-for-list-is-empty⑦">4.9.1. Interface NamedNodeMap</a>
     <li><a href="#ref-for-list-is-empty⑧">7.1. Interface DOMTokenList</a>
@@ -13641,7 +13641,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-ordered-map">
    <a href="https://infra.spec.whatwg.org/#ordered-map">https://infra.spec.whatwg.org/#ordered-map</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordered-map">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-ordered-map">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ordered-set">
@@ -13696,7 +13696,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="term-for-map-set">
    <a href="https://infra.spec.whatwg.org/#map-set">https://infra.spec.whatwg.org/#map-set</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-set">4.3.2. Queuing a mutation record</a> <a href="#ref-for-map-set①">(2)</a>
+    <li><a href="#ref-for-map-set">4.3.2. 将一个变化记录加入队列</a> <a href="#ref-for-map-set①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-size">
@@ -15495,7 +15495,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor">2.1. DOM事件简介</a> <a href="#ref-for-concept-tree-inclusive-ancestor①">(2)</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor②">4.2.3. 修改DOM结构的算法</a>
-    <li><a href="#ref-for-concept-tree-inclusive-ancestor③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-concept-tree-inclusive-ancestor③">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor④">4.7. Interface DocumentFragment</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor⑤">4.9. Interface Element</a> <a href="#ref-for-concept-tree-inclusive-ancestor⑥">(2)</a>
     <li><a href="#ref-for-concept-tree-inclusive-ancestor⑦">5.5. Interface Range</a> <a href="#ref-for-concept-tree-inclusive-ancestor⑧">(2)</a> <a href="#ref-for-concept-tree-inclusive-ancestor⑨">(3)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⓪">(4)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①①">(5)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①②">(6)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①③">(7)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①④">(8)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⑤">(9)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⑥">(10)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⑦">(11)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⑧">(12)</a> <a href="#ref-for-concept-tree-inclusive-ancestor①⑨">(13)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②⓪">(14)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②①">(15)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②②">(16)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②③">(17)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②④">(18)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②⑤">(19)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②⑥">(20)</a> <a href="#ref-for-concept-tree-inclusive-ancestor②⑦">(21)</a>
@@ -16957,7 +16957,7 @@ if ("serviceWorker" in navigator) {
    <b><a href="#queue-a-mutation-observer-compound-microtask">#queue-a-mutation-observer-compound-microtask</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask">4.2.2.5. 发出插槽改变信号</a>
-    <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask①">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-queue-a-mutation-observer-compound-microtask①">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="notify-mutation-observers">
@@ -16978,7 +16978,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-registered-observer-list">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-list①">(2)</a>
     <li><a href="#ref-for-registered-observer-list②">4.3. 变化观察者</a>
     <li><a href="#ref-for-registered-observer-list③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-list④">(2)</a> <a href="#ref-for-registered-observer-list⑤">(3)</a> <a href="#ref-for-registered-observer-list⑥">(4)</a>
-    <li><a href="#ref-for-registered-observer-list⑦">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-registered-observer-list⑦">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-registered-observer-list⑧">4.3.4. Garbage collection</a> <a href="#ref-for-registered-observer-list⑨">(2)</a>
     <li><a href="#ref-for-registered-observer-list①⓪">4.4. Interface Node</a>
    </ul>
@@ -16997,7 +16997,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-registered-observer-observer">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-observer①">(2)</a>
     <li><a href="#ref-for-registered-observer-observer②">4.3. 变化观察者</a>
     <li><a href="#ref-for-registered-observer-observer③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-observer④">(2)</a> <a href="#ref-for-registered-observer-observer⑤">(3)</a>
-    <li><a href="#ref-for-registered-observer-observer⑥">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-registered-observer-observer⑥">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="registered-observer-options">
@@ -17005,7 +17005,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-registered-observer-options">4.2.3. 修改DOM结构的算法</a> <a href="#ref-for-registered-observer-options①">(2)</a> <a href="#ref-for-registered-observer-options②">(3)</a>
     <li><a href="#ref-for-registered-observer-options③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-options④">(2)</a>
-    <li><a href="#ref-for-registered-observer-options⑤">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-registered-observer-options⑤">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="transient-registered-observer">
@@ -17047,21 +17047,21 @@ if ("serviceWorker" in navigator) {
    <b><a href="#dom-mutationobserverinit-childlist">#dom-mutationobserverinit-childlist</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-childlist">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-childlist①">(2)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-childlist②">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-childlist②">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributes">
    <b><a href="#dom-mutationobserverinit-attributes">#dom-mutationobserverinit-attributes</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-attributes">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributes①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributes②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributes③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-attributes④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑤">(6)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑥">(7)</a> <a href="#ref-for-dom-mutationobserverinit-attributes⑦">(8)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributes⑧">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributes⑧">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-characterdata">
    <b><a href="#dom-mutationobserverinit-characterdata">#dom-mutationobserverinit-characterdata</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-characterdata">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdata①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata③">(4)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata④">(5)</a> <a href="#ref-for-dom-mutationobserverinit-characterdata⑤">(6)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-characterdata⑥">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-characterdata⑥">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-subtree">
@@ -17070,28 +17070,28 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-dom-mutationobserverinit-subtree">4.2.3. 修改DOM结构的算法</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree①">4.3. 变化观察者</a>
     <li><a href="#ref-for-dom-mutationobserverinit-subtree②">4.3.1. 接口：MutationObserver</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-subtree③">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-subtree③">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributeoldvalue">
    <b><a href="#dom-mutationobserverinit-attributeoldvalue">#dom-mutationobserverinit-attributeoldvalue</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributeoldvalue③">(4)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue④">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributeoldvalue④">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-characterdataoldvalue">
    <b><a href="#dom-mutationobserverinit-characterdataoldvalue">#dom-mutationobserverinit-characterdataoldvalue</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue③">(4)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue④">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-characterdataoldvalue④">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserverinit-attributefilter">
    <b><a href="#dom-mutationobserverinit-attributefilter">#dom-mutationobserverinit-attributefilter</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mutationobserverinit-attributefilter">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter①">(2)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter②">(3)</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter③">(4)</a>
-    <li><a href="#ref-for-dom-mutationobserverinit-attributefilter④">4.3.2. Queuing a mutation record</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter⑤">(2)</a>
+    <li><a href="#ref-for-dom-mutationobserverinit-attributefilter④">4.3.2. 将一个变化记录加入队列</a> <a href="#ref-for-dom-mutationobserverinit-attributefilter⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-mo-callback">
@@ -17113,7 +17113,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-concept-mo-queue">4.3. 变化观察者</a> <a href="#ref-for-concept-mo-queue①">(2)</a>
     <li><a href="#ref-for-concept-mo-queue②">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-mo-queue③">(2)</a> <a href="#ref-for-concept-mo-queue④">(3)</a> <a href="#ref-for-concept-mo-queue⑤">(4)</a>
-    <li><a href="#ref-for-concept-mo-queue⑥">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-concept-mo-queue⑥">4.3.2. 将一个变化记录加入队列</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationobserver-mutationobserver">
@@ -17143,7 +17143,7 @@ if ("serviceWorker" in navigator) {
   <aside class="dfn-panel" data-for="queue-a-mutation-record">
    <b><a href="#queue-a-mutation-record">#queue-a-mutation-record</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-a-mutation-record">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-queue-a-mutation-record">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-queue-a-mutation-record①">4.9. Interface Element</a>
     <li><a href="#ref-for-queue-a-mutation-record②">4.10. Interface CharacterData</a>
    </ul>
@@ -17158,70 +17158,70 @@ if ("serviceWorker" in navigator) {
    <b><a href="#mutationrecord">#mutationrecord</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mutationrecord">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-mutationrecord①">(2)</a> <a href="#ref-for-mutationrecord②">(3)</a> <a href="#ref-for-mutationrecord③">(4)</a>
-    <li><a href="#ref-for-mutationrecord④">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-mutationrecord④">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-mutationrecord⑤">4.3.3. Interface MutationRecord</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-type">
    <b><a href="#dom-mutationrecord-type">#dom-mutationrecord-type</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-type">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-type">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-type①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-type②">(2)</a> <a href="#ref-for-dom-mutationrecord-type③">(3)</a> <a href="#ref-for-dom-mutationrecord-type④">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-target">
    <b><a href="#dom-mutationrecord-target">#dom-mutationrecord-target</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-target">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-target">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-target①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-target②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-addednodes">
    <b><a href="#dom-mutationrecord-addednodes">#dom-mutationrecord-addednodes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-addednodes">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-addednodes">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-addednodes①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-addednodes②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-removednodes">
    <b><a href="#dom-mutationrecord-removednodes">#dom-mutationrecord-removednodes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-removednodes">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-removednodes">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-removednodes①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-removednodes②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-previoussibling">
    <b><a href="#dom-mutationrecord-previoussibling">#dom-mutationrecord-previoussibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-previoussibling">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-previoussibling">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-previoussibling①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-previoussibling②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-nextsibling">
    <b><a href="#dom-mutationrecord-nextsibling">#dom-mutationrecord-nextsibling</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-nextsibling">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-nextsibling">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-nextsibling①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-nextsibling②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-attributename">
    <b><a href="#dom-mutationrecord-attributename">#dom-mutationrecord-attributename</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-attributename">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-attributename">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-attributename①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-attributename②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-attributenamespace">
    <b><a href="#dom-mutationrecord-attributenamespace">#dom-mutationrecord-attributenamespace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-attributenamespace">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-attributenamespace">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-attributenamespace①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-attributenamespace②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mutationrecord-oldvalue">
    <b><a href="#dom-mutationrecord-oldvalue">#dom-mutationrecord-oldvalue</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mutationrecord-oldvalue">4.3.2. Queuing a mutation record</a>
+    <li><a href="#ref-for-dom-mutationrecord-oldvalue">4.3.2. 将一个变化记录加入队列</a>
     <li><a href="#ref-for-dom-mutationrecord-oldvalue①">4.3.3. Interface MutationRecord</a> <a href="#ref-for-dom-mutationrecord-oldvalue②">(2)</a>
    </ul>
   </aside>
