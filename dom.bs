@@ -3435,11 +3435,11 @@ interface MutationRecord {
 
 <h4 id=garbage-collection>垃圾回收</h4>
 
-<p><a for=/ lt="Nodes">节点</a>在<a lt="registered observer list">注册观察者列表</a>中对<a lt="registered observers">注册观察者</a>
-为强引用。
+<p><a for=/ lt="Nodes">节点</a>在<a lt="registered observer list">注册观察者列表</a>中，有一个对<a lt="registered observers">注册观察者</a>
+的强引用，这意味着节点会保留对观察者的引用，防止观察者被垃圾回收机制回收。
 
 <p>在<a for=/ lt="node">节点</a>的<a lt="registered observer list">注册观察者列表</a>中的<a lt="Registered observers">注册观察者</a>
-有一个对<a for=/ lt="node">节点</a>的弱引用。
+有一个对<a for=/ lt="node">节点</a>的弱引用，这意味着观察者对节点的引用不会阻止节点被垃圾回收机制回收。
 
 
 <h3 id=interface-node>Interface {{Node}}</h3>
