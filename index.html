@@ -136,7 +136,7 @@ a[href].issue-return {
         <li><a href="#interface-mutationobserver"><span class="secno">4.3.1</span> <span class="content">接口：<code class="idl"><span>MutationObserver</span></code></span></a>
         <li><a href="#queueing-a-mutation-record"><span class="secno">4.3.2</span> <span class="content">将一个变化记录加入队列</span></a>
         <li><a href="#interface-mutationrecord"><span class="secno">4.3.3</span> <span class="content">接口：<code class="idl"><span>MutationRecord</span></code></span></a>
-        <li><a href="#garbage-collection"><span class="secno">4.3.4</span> <span class="content">Garbage collection</span></a>
+        <li><a href="#garbage-collection"><span class="secno">4.3.4</span> <span class="content">垃圾回收</span></a>
        </ol>
       <li><a href="#interface-node"><span class="secno">4.4</span> <span class="content">Interface <code class="idl"><span>Node</span></code></span></a>
       <li>
@@ -4140,10 +4140,9 @@ U除非另有说明，否则为空。 </p>
  对于"<code>childList</code>"，则返回null。 
    </dl>
    <p><dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-type"><code>type</code></dfn>、<dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-target"><code>target</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-addednodes"><code>addedNodes</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-removednodes"><code>removedNodes</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-previoussibling"><code>previousSibling</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-nextsibling"><code>nextSibling</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-attributename"><code>attributeName</code></dfn>、 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-attributenamespace"><code>attributeNamespace</code></dfn>以及 <dfn class="dfn-paneled idl-code" data-dfn-for="MutationRecord" data-dfn-type="attribute" data-export id="dom-mutationrecord-oldvalue"><code>oldValue</code></dfn>属性是只读的，仅返回其初始值。 </p>
-   <h4 class="heading settled" data-level="4.3.4" id="garbage-collection"><span class="secno">4.3.4. </span><span class="content">Garbage collection</span><a class="self-link" href="#garbage-collection"></a></h4>
-   <p><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥⓪">Nodes</a> have a strong reference to <a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer⑤">registered observers</a> in their <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑧">registered observer list</a>. </p>
-   <p><a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer⑥">Registered observers</a> in a <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥①">node</a>’s <a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑨">registered observer list</a> have a weak
-reference to the <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥②">node</a>. </p>
+   <h4 class="heading settled" data-level="4.3.4" id="garbage-collection"><span class="secno">4.3.4. </span><span class="content">垃圾回收</span><a class="self-link" href="#garbage-collection"></a></h4>
+   <p><a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥⓪">节点</a>在<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑧">注册观察者列表</a>中对<a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer⑤">注册观察者</a> 为强引用。 </p>
+   <p>在<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥①">节点</a>的<a data-link-type="dfn" href="#registered-observer-list" id="ref-for-registered-observer-list⑨">注册观察者列表</a>中的<a data-link-type="dfn" href="#registered-observer" id="ref-for-registered-observer⑥">注册观察者</a> 有一个对<a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑥②">节点</a>的弱引用。 </p>
    <h3 class="heading settled" data-level="4.4" id="interface-node"><span class="secno">4.4. </span><span class="content">Interface <code class="idl"><a data-link-type="idl" href="#node" id="ref-for-node①⑤">Node</a></code></span><a class="self-link" href="#interface-node"></a></h3>
    <div class="mdn-anno wrapped after">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -16414,7 +16413,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-concept-node④⑧">4.3. 变化观察者</a> <a href="#ref-for-concept-node④⑨">(2)</a>
     <li><a href="#ref-for-concept-node⑤⓪">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-concept-node⑤①">(2)</a> <a href="#ref-for-concept-node⑤②">(3)</a> <a href="#ref-for-concept-node⑤③">(4)</a>
     <li><a href="#ref-for-concept-node⑤④">4.3.3. 接口：MutationRecord</a> <a href="#ref-for-concept-node⑤⑤">(2)</a> <a href="#ref-for-concept-node⑤⑥">(3)</a> <a href="#ref-for-concept-node⑤⑦">(4)</a> <a href="#ref-for-concept-node⑤⑧">(5)</a> <a href="#ref-for-concept-node⑤⑨">(6)</a>
-    <li><a href="#ref-for-concept-node⑥⓪">4.3.4. Garbage collection</a> <a href="#ref-for-concept-node⑥①">(2)</a> <a href="#ref-for-concept-node⑥②">(3)</a>
+    <li><a href="#ref-for-concept-node⑥⓪">4.3.4. 垃圾回收</a> <a href="#ref-for-concept-node⑥①">(2)</a> <a href="#ref-for-concept-node⑥②">(3)</a>
     <li><a href="#ref-for-concept-node⑥③">4.4. Interface Node</a> <a href="#ref-for-concept-node⑥④">(2)</a> <a href="#ref-for-concept-node⑥⑤">(3)</a> <a href="#ref-for-concept-node⑥⑥">(4)</a> <a href="#ref-for-concept-node⑥⑦">(5)</a> <a href="#ref-for-concept-node⑥⑧">(6)</a> <a href="#ref-for-concept-node⑥⑨">(7)</a> <a href="#ref-for-concept-node⑦⓪">(8)</a> <a href="#ref-for-concept-node⑦①">(9)</a> <a href="#ref-for-concept-node⑦②">(10)</a> <a href="#ref-for-concept-node⑦③">(11)</a> <a href="#ref-for-concept-node⑦④">(12)</a> <a href="#ref-for-concept-node⑦⑤">(13)</a> <a href="#ref-for-concept-node⑦⑥">(14)</a> <a href="#ref-for-concept-node⑦⑦">(15)</a> <a href="#ref-for-concept-node⑦⑧">(16)</a> <a href="#ref-for-concept-node⑦⑨">(17)</a> <a href="#ref-for-concept-node⑧⓪">(18)</a> <a href="#ref-for-concept-node⑧①">(19)</a> <a href="#ref-for-concept-node⑧②">(20)</a> <a href="#ref-for-concept-node⑧③">(21)</a>
     <li><a href="#ref-for-concept-node⑧④">4.5. Interface Document</a> <a href="#ref-for-concept-node⑧⑤">(2)</a> <a href="#ref-for-concept-node⑧⑥">(3)</a> <a href="#ref-for-concept-node⑧⑦">(4)</a> <a href="#ref-for-concept-node⑧⑧">(5)</a> <a href="#ref-for-concept-node⑧⑨">(6)</a> <a href="#ref-for-concept-node⑨⓪">(7)</a> <a href="#ref-for-concept-node⑨①">(8)</a> <a href="#ref-for-concept-node⑨②">(9)</a> <a href="#ref-for-concept-node⑨③">(10)</a> <a href="#ref-for-concept-node⑨④">(11)</a> <a href="#ref-for-concept-node⑨⑤">(12)</a> <a href="#ref-for-concept-node⑨⑥">(13)</a>
     <li><a href="#ref-for-concept-node⑨⑦">4.5.1. Interface DOMImplementation</a>
@@ -16974,7 +16973,7 @@ if ("serviceWorker" in navigator) {
     <li><a href="#ref-for-registered-observer-list②">4.3. 变化观察者</a>
     <li><a href="#ref-for-registered-observer-list③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer-list④">(2)</a> <a href="#ref-for-registered-observer-list⑤">(3)</a> <a href="#ref-for-registered-observer-list⑥">(4)</a>
     <li><a href="#ref-for-registered-observer-list⑦">4.3.2. 将一个变化记录加入队列</a>
-    <li><a href="#ref-for-registered-observer-list⑧">4.3.4. Garbage collection</a> <a href="#ref-for-registered-observer-list⑨">(2)</a>
+    <li><a href="#ref-for-registered-observer-list⑧">4.3.4. 垃圾回收</a> <a href="#ref-for-registered-observer-list⑨">(2)</a>
     <li><a href="#ref-for-registered-observer-list①⓪">4.4. Interface Node</a>
    </ul>
   </aside>
@@ -16983,7 +16982,7 @@ if ("serviceWorker" in navigator) {
    <ul>
     <li><a href="#ref-for-registered-observer">4.3. 变化观察者</a> <a href="#ref-for-registered-observer①">(2)</a> <a href="#ref-for-registered-observer②">(3)</a>
     <li><a href="#ref-for-registered-observer③">4.3.1. 接口：MutationObserver</a> <a href="#ref-for-registered-observer④">(2)</a>
-    <li><a href="#ref-for-registered-observer⑤">4.3.4. Garbage collection</a> <a href="#ref-for-registered-observer⑥">(2)</a>
+    <li><a href="#ref-for-registered-observer⑤">4.3.4. 垃圾回收</a> <a href="#ref-for-registered-observer⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="registered-observer-observer">
