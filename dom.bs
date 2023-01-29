@@ -3373,7 +3373,7 @@ dictionary MutationObserverInit {
 </ol>
 
 
-<h4 id=interface-mutationrecord>Interface {{MutationRecord}}</h4>
+<h4 id=interface-mutationrecord>接口：{{MutationRecord}}</h4>
 
 <pre class=idl>
 [Exposed=Window]
@@ -3392,62 +3392,45 @@ interface MutationRecord {
 
 <dl class=domintro>
  <dt><code><var>record</var> . {{MutationRecord/type}}</code>
- <dd>Returns "<code>attributes</code>" if it was an
- <a>attribute</a> mutation.
- "<code>characterData</code>" if it was a mutation to a
- {{CharacterData}} <a for=/>node</a>. And
- "<code>childList</code>" if it was a mutation to the
- <a>tree</a> of
- <a for=/>nodes</a>.
+ <dd>如果为<a lt="attribute">属性</a>变化则返回"<code>attributes</code>"，
+ 如果为{{CharacterData}}<a for=/ lt="node">节点</a>变化则返回"<code>characterData</code>"，
+ 如果为<a lt="tree">树</a>的<a for=/ lt="node">节点</a>变化则返回"<code>childList</code>"。
 
  <dt><code><var>record</var> . {{MutationRecord/target}}</code>
- <dd>Returns the <a for=/>node</a> the mutation
- affected, depending on the {{MutationRecord/type}}.
- For "<code>attributes</code>", it is the
- <a for=/>element</a> whose
- <a>attribute</a> changed. For
- "<code>characterData</code>", it is the {{CharacterData}}
- <a for=/>node</a>. For "<code>childList</code>",
- it is the <a for=/>node</a> whose
- <a for=tree>children</a> changed.
+ <dd>根据{{MutationRecord/type}}返回受变化影响的<a for=/ lt="node">节点</a>。
+ 对于"<code>attributes</code>"，则返回<a lt="attribute">属性</a>发送变化的<a for=/ lt="element">元素</a>，
+ 对于"<code>characterData</code>"，则返回{{CharacterData}}<a for=/ lt="node">节点</a>，
+ 对于"<code>childList</code>"，则返回<a for=tree lt="children">子节点</a>发生变化的<a for=/ lt="node">节点</a>。
 
  <dt><code><var>record</var> . {{MutationRecord/addedNodes}}</code>
  <dt><code><var>record</var> . {{MutationRecord/removedNodes}}</code>
- <dd>Return the <a for=/>nodes</a> added and removed
- respectively.
+ <dd>分别返回添加和删除的<a for=/ lt="nodes">节点</a>。
 
  <dt><code><var>record</var> . {{MutationRecord/previousSibling}}</code>
  <dt><code><var>record</var> . {{MutationRecord/nextSibling}}</code>
- <dd>Return the <a lt="previous sibling">previous</a> and <a for=tree>next sibling</a> respectively
- of the added or removed <a for=/>nodes</a>; otherwise null.
+ <dd>分别返回添加或删除<a lt="previous sibling">前一个</a>和<a for=tree lt="next sibling">下一个</a>同级节点; 否则为空。
 
  <dt><code><var>record</var> . {{MutationRecord/attributeName}}</code>
- <dd>Returns the <a for=Attr>local name</a> of the changed <a>attribute</a>; otherwise null.
+ <dd>返回更改的<a lt="attribute">属性</a>的<a for=Attr>local name</a>；否则为null。
 
  <dt><code><var>record</var> . {{MutationRecord/attributeNamespace}}</code>
- <dd>Returns the <a for=Attr>namespace</a> of the changed <a>attribute</a>; otherwise null.
+ <dd>返回更改的<a lt="attribute">属性</a>的<a for=Attr lt="namespace">命名空间</a>；否则为null。 
 
  <dt><code><var>record</var> . {{MutationRecord/oldValue}}</code>
- <dd>The return value depends on
- {{MutationRecord/type}}. For
- "<code>attributes</code>", it is the
- <a for=Attr>value</a> of the
- changed <a>attribute</a> before the change.
- For "<code>characterData</code>", it is the
- <a for=CharacterData>data</a> of the changed
- <a for=/>node</a> before the change. For
- "<code>childList</code>", it is null.
+ <dd>根据{{MutationRecord/type}}返回不同的返回值。
+ 对于"<code>attributes</code>"，则返回更改之前的<a lt="attribute">属性值</a>。
+ 对于"<code>characterData</code>"，则返回更改之前的<a for=CharacterData lt="data">字符值</a>。
+ 对于"<code>childList</code>"，则返回null。
 </dl>
 
-<p>The <dfn attribute for=MutationRecord>type</dfn>, <dfn attribute for=MutationRecord>target</dfn>,
-<dfn attribute for="MutationRecord">addedNodes</dfn>,
-<dfn attribute for="MutationRecord">removedNodes</dfn>,
-<dfn attribute for="MutationRecord">previousSibling</dfn>,
-<dfn attribute for="MutationRecord">nextSibling</dfn>,
-<dfn attribute for="MutationRecord">attributeName</dfn>,
-<dfn attribute for="MutationRecord">attributeNamespace</dfn>, and
-<dfn attribute for="MutationRecord">oldValue</dfn> attributes must return the values they were
-initialized to.
+<p><dfn attribute for=MutationRecord>type</dfn>、<dfn attribute for=MutationRecord>target</dfn>、
+<dfn attribute for="MutationRecord">addedNodes</dfn>、
+<dfn attribute for="MutationRecord">removedNodes</dfn>、
+<dfn attribute for="MutationRecord">previousSibling</dfn>、
+<dfn attribute for="MutationRecord">nextSibling</dfn>、
+<dfn attribute for="MutationRecord">attributeName</dfn>、
+<dfn attribute for="MutationRecord">attributeNamespace</dfn>以及
+<dfn attribute for="MutationRecord">oldValue</dfn>属性是只读的，仅返回其初始值。 
 
 
 <h4 id=garbage-collection>Garbage collection</h4>
