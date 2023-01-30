@@ -3442,7 +3442,7 @@ interface MutationRecord {
 有一个对<a for=/ lt="node">节点</a>的弱引用，这意味着观察者对节点的引用不会阻止节点被垃圾回收机制回收。
 
 
-<h3 id=interface-node>Interface {{Node}}</h3>
+<h3 id=interface-node>接口：{{Node}}</h3>
 
 <pre class=idl>
 [Exposed=Window]
@@ -3508,248 +3508,238 @@ dictionary GetRootNodeOptions {
 };
 </pre>
 
-<p class=note>{{Node}} is an abstract interface that is used by all <a for=/>nodes</a>. You cannot
-get a direct instance of it.
+<p class=note>{{Node}}是一个抽象的接口，它被用于所有的<a for=/ lt="nodes">节点</a>，因此
+你不能够直接实例化它。
 
-<p>Each <a for=/>node</a> has an associated
-<dfn export for=Node id=concept-node-document>node document</dfn>, set upon creation, that is a
-<a>document</a>.
+<p>每个<a for=/ lt="node">节点</a>都有一个与之关联的<dfn export for=Node id=concept-node-document lt="node document">节点文档</dfn>，
+它在创建之初则被设置，它为一个<a>document</a>对象。
 
-<p class=note>A <a for=/>node</a>'s <a for=Node>node document</a> can be changed by the
-<a>adopt</a> algorithm.
+<p class=note><a for=/ lt="node">节点</a>的<a for=Node lt="node document">节点文档</a>可通过<a>adopt</a>算法更改。
 
-<p>A <a for=/>node</a>'s <a>get the parent</a> algorithm, given an <var>event</var>, returns the
-<a for=/>node</a>'s <a>assigned slot</a>, if <a for=/>node</a> is <a>assigned</a>; otherwise
-<a for=/>node</a>'s <a for=tree>parent</a>.
+<p>对于<a for=/ lt="node">节点</a>的<a lt="get the parent">获取父节点</a>算法，给定参数<var>event</var>，
+如果<a for=/ lt="node">节点</a><a lt="assigned">已被分配</a>，则返回<a for=/ lt="node">节点</a>的
+<a lt="assigned slot">已分配的插槽</a>；否则返回<a for=/ lt="node">节点</a>的<a for=tree lt="parent">父元素</a>。
 
-<p class=note>Each <a for=/>node</a> also has a <a>registered observer list</a>.
+<p class=note>每个<a for=/ lt="node">节点</a>都存在一个<a lt="registered observer list">注册观察者列表</a>。
 
 <hr>
 
 <dl class=domintro>
  <dt><code><var>node</var> . {{Node/nodeType}}</code>
  <dd>
-  <p>Returns a number appropriate for the type of <var>node</var>, as follows:
+  <p>返回符合节点类型的数字，如下所示：
 
   <dl>
    <dt>{{Element}}
-   <dd><code>{{Node}} . {{Node/ELEMENT_NODE}}</code> (1).
+   <dd><code>{{Node}}.{{Node/ELEMENT_NODE}}</code> (1)。
 
    <dt>{{Attr}}
-   <dd><code>{{Node}} . {{Node/ATTRIBUTE_NODE}}</code> (2).
+   <dd><code>{{Node}}.{{Node/ATTRIBUTE_NODE}}</code> (2)。
 
-   <dt>An <a>exclusive <code>Text</code> node</a>
-   <dd><code>{{Node}} . {{Node/TEXT_NODE}}</code> (3).
+   <dt>一个<a lt="exclusive Text node">仅为<code>Text</code>节点</a>
+   <dd><code>{{Node}}.{{Node/TEXT_NODE}}</code> (3)。
 
    <dt>{{CDATASection}}
-   <dd><code>{{Node}} . {{Node/CDATA_SECTION_NODE}}</code> (4).
+   <dd><code>{{Node}}.{{Node/CDATA_SECTION_NODE}}</code> (4)。
 
    <dt>{{ProcessingInstruction}}
-   <dd><code>{{Node}} . {{Node/PROCESSING_INSTRUCTION_NODE}}</code> (7).
+   <dd><code>{{Node}}.{{Node/PROCESSING_INSTRUCTION_NODE}}</code> (7)。
 
    <dt>{{Comment}}
-   <dd><code>{{Node}} . {{Node/COMMENT_NODE}}</code> (8).
+   <dd><code>{{Node}}.{{Node/COMMENT_NODE}}</code> (8)。
 
    <dt>{{Document}}
-   <dd><code>{{Node}} . {{Node/DOCUMENT_NODE}}</code> (9).
+   <dd><code>{{Node}}.{{Node/DOCUMENT_NODE}}</code> (9)。
 
    <dt>{{DocumentType}}
-   <dd><code>{{Node}} . {{Node/DOCUMENT_TYPE_NODE}}</code> (10).
+   <dd><code>{{Node}}.{{Node/DOCUMENT_TYPE_NODE}}</code> (10)。
 
    <dt>{{DocumentFragment}}
-   <dd><code>{{Node}} . {{Node/DOCUMENT_FRAGMENT_NODE}}</code> (11).
+   <dd><code>{{Node}}.{{Node/DOCUMENT_FRAGMENT_NODE}}</code> (11)。
   </dl>
 
  <dt><code><var>node</var> . {{Node/nodeName}}</code>
  <dd>
-  <p>Returns a string appropriate for the type of <var>node</var>, as follows:
+  <p>返回符合节点类型的字符串，如下所示：
 
   <dl>
    <dt>{{Element}}
-   <dd>Its <a for=Element>HTML-uppercased qualified name</a>.
+   <dd>它的<a for=Element lt="HTML-uppercased qualified name">转换为大写的限定名称</a>。
 
    <dt>{{Attr}}
-   <dd>Its <a for=Attr>qualified name</a>.
+   <dd>它的<a for=Attr lt="qualified name">限定名称</a>。
 
-   <dt>An <a>exclusive <code>Text</code> node</a>
-   <dd>"<code>#text</code>".
+   <dt>一个<a lt="exclusive Text node">仅为<code>Text</code>节点</a>
+   <dd>"<code>#text</code>"。
 
    <dt>{{CDATASection}}
-   <dd>"<code>#cdata-section</code>".
+   <dd>"<code>#cdata-section</code>"。
 
    <dt>{{ProcessingInstruction}}
-   <dd>Its <a for=ProcessingInstruction>target</a>.
+   <dd>它的<a for=ProcessingInstruction lt="target">target</a>。
 
    <dt>{{Comment}}
-   <dd>"<code>#comment</code>".
+   <dd>"<code>#comment</code>"。
 
    <dt>{{Document}}
-   <dd>"<code>#document</code>".
+   <dd>"<code>#document</code>"。
 
    <dt>{{DocumentType}}
-   <dd>Its <a for=DocumentType>name</a>.
+   <dd>它的<a for=DocumentType>name</a>。
 
    <dt>{{DocumentFragment}}
-   <dd>"<code>#document-fragment</code>".
+   <dd>"<code>#document-fragment</code>"。
   </dl>
 </dl>
 
-<p>The <dfn attribute for=Node>nodeType</dfn> getter steps are to return the first matching
-statement, switching on the interface <a>this</a> <a>implements</a>:
+<p><dfn attribute for=Node>nodeType</dfn> getter将返回第一个匹配的声明，使用当前<a lt="implements">实现</a>的接口作为判断条件，
+根据接口类型来确定结果：
 
 <dl class=switch>
  <dt>{{Element}}
- <dd><dfn const for=Node>ELEMENT_NODE</dfn> (1)
+ <dd><dfn const for=Node>ELEMENT_NODE</dfn> (1)；
 
  <dt>{{Attr}}
- <dd><dfn const for=Node>ATTRIBUTE_NODE</dfn> (2);
+ <dd><dfn const for=Node>ATTRIBUTE_NODE</dfn> (2)；
 
- <dt>An <a>exclusive <code>Text</code> node</a>
- <dd><dfn const for=Node>TEXT_NODE</dfn> (3);
+ <dt>一个<a lt="exclusive Text node">仅为<code>Text</code>节点</a>
+ <dd><dfn const for=Node>TEXT_NODE</dfn> (3)；
 
  <dt>{{CDATASection}}
- <dd><dfn const for=Node>CDATA_SECTION_NODE</dfn> (4);
+ <dd><dfn const for=Node>CDATA_SECTION_NODE</dfn> (4)；
 
  <dt>{{ProcessingInstruction}}
- <dd><dfn const for=Node>PROCESSING_INSTRUCTION_NODE</dfn> (7);
+ <dd><dfn const for=Node>PROCESSING_INSTRUCTION_NODE</dfn> (7)；
 
  <dt>{{Comment}}
- <dd><dfn const for=Node>COMMENT_NODE</dfn> (8);
+ <dd><dfn const for=Node>COMMENT_NODE</dfn> (8)；
 
  <dt>{{Document}}
- <dd><dfn const for=Node>DOCUMENT_NODE</dfn> (9);
+ <dd><dfn const for=Node>DOCUMENT_NODE</dfn> (9)；
 
  <dt>{{DocumentType}}
- <dd><dfn const for=Node>DOCUMENT_TYPE_NODE</dfn> (10);
+ <dd><dfn const for=Node>DOCUMENT_TYPE_NODE</dfn> (10)；
 
  <dt>{{DocumentFragment}}
- <dd><dfn const for=Node>DOCUMENT_FRAGMENT_NODE</dfn> (11).
+ <dd><dfn const for=Node>DOCUMENT_FRAGMENT_NODE</dfn> (11)；
 </dl>
 
-<p>The <dfn attribute for=Node>nodeName</dfn> getter steps are to return the first matching
-statement, switching on the interface <a>this</a> <a>implements</a>:
+<p><dfn attribute for=Node>nodeName</dfn> getter将返回第一个匹配的声明，使用当前<a lt="implements">实现</a>的接口作为判断条件，
+根据接口类型来确定结果：
 
 <dl class=switch>
  <dt>{{Element}}
- <dd>Its <a for=Element>HTML-uppercased qualified name</a>.
+ <dd>它的<a for=Element lt="HTML-uppercased qualified name">转换为大写的限定名称</a>。
 
  <dt>{{Attr}}
- <dd>Its <a for=Attr>qualified name</a>.
+ <dd>它的<a for=Attr lt="qualified name">限定名称</a>。
 
- <dt>An <a>exclusive <code>Text</code> node</a>
- <dd>"<code>#text</code>".
+ <dt>一个<a lt="exclusive Text node">仅为<code>Text</code>节点</a>
+ <dd>"<code>#text</code>"。
 
  <dt>{{CDATASection}}
- <dd>"<code>#cdata-section</code>".
+ <dd>"<code>#cdata-section</code>"。
 
  <dt>{{ProcessingInstruction}}
- <dd>Its <a for=ProcessingInstruction>target</a>.
+ <dd>它的<a for=ProcessingInstruction lt="target">target</a>。
 
  <dt>{{Comment}}
- <dd>"<code>#comment</code>".
+ <dd>"<code>#comment</code>"。
 
  <dt>{{Document}}
- <dd>"<code>#document</code>".
+ <dd>"<code>#document</code>"。
 
  <dt>{{DocumentType}}
- <dd>Its <a for=DocumentType>name</a>.
+ <dd>它的<a for=DocumentType>name</a>。
 
  <dt>{{DocumentFragment}}
- <dd>"<code>#document-fragment</code>".
+ <dd>"<code>#document-fragment</code>"。
 </dl>
 
 <hr>
 
 <dl class=domintro>
  <dt><code><var>node</var> . {{Node/baseURI}}</code>
- <dd>Returns <var>node</var>'s <a for=Node>node document</a>'s <a>document base URL</a>.
+ <dd>返回<var>node</var>的<a for=Node lt="node document">节点文档</a>的<a lt="document base URL">文档基础URL</a>。
 </dl>
 
-<p>The <dfn attribute for=Node><code>baseURI</code></dfn> getter steps are to return <a>this</a>'s
-<a for=Node>node document</a>'s <a>document base URL</a>, <a lt="URL serializer" spec=url>serialized</a>.
+<p><dfn attribute for=Node><code>baseURI</code></dfn> getter将返回<a>this</a>的<a for=Node lt="node document">节点文档</a>
+的<a lt="document base URL">文档基础URL</a>，<a lt="URL serializer" spec=url>serialized</a>。
 
 <hr>
 
 <dl class=domintro>
  <dt><code><var>node</var> . {{Node/isConnected}}</code>
- <dd><p>Returns true if <var>node</var> is <a>connected</a>; otherwise false.
+ <dd><p>如果<var>node</var><a lt="connected">已连接</a>则返回true；否则返回false。
 
  <dt><code><var>node</var> . {{Node/ownerDocument}}</code>
  <dd>
-  Returns the <a for=Node>node document</a>.
-  Returns null for <a>documents</a>.
+  返回<var>node</var>的<a for=Node lt="node document">节点文档</a>，
+  如果<var>node</var>为<a>documents</a>则返回null。
 
  <dt><code><var>node</var> . {{Node/getRootNode()}}</code>
- <dd>Returns <var>node</var>'s <a for=tree>root</a>.
+ <dd>返回<var>node</var>的<a for=tree>root</a>。
 
  <dt><code><var>node</var> . <a idl lt=getRootNode()>getRootNode</a>({ composed:true })</code>
- <dd>Returns <var>node</var>'s <a>shadow-including root</a>.
+ <dd>返回<var>node</var>的<a>shadow-including root</a>(影子树根节点)。
 
  <dt><code><var>node</var> . {{Node/parentNode}}</code>
- <dd>Returns the <a for=tree>parent</a>.
+ <dd>返回<a for=tree lt="parent">父节点</a>。
 
  <dt><code><var>node</var> . {{Node/parentElement}}</code>
- <dd>Returns the <a>parent element</a>.
+ <dd>返回<a lt="parent element">父元素</a>。
 
  <dt><code><var>node</var> . {{Node/hasChildNodes()}}</code>
- <dd>Returns whether <var>node</var> has
- <a for=tree>children</a>.
+ <dd>返回<var>node</var>是否存在<a for=tree lt="children">子节点</a>。
 
  <dt><code><var>node</var> . {{Node/childNodes}}</code>
- <dd>Returns the <a for=tree>children</a>.
+ <dd>返回<a for=tree lt="children">子节点</a>。
 
  <dt><code><var>node</var> . {{Node/firstChild}}</code>
- <dd>Returns the <a for=tree>first child</a>.
+ <dd>返回<a for=tree lt="first child">第一个子节点</a>。
 
  <dt><code><var>node</var> . {{Node/lastChild}}</code>
- <dd>Returns the <a>last child</a>.
+ <dd>返回<a lt="last child">最后一个子节点</a>。
 
  <dt><code><var>node</var> . {{Node/previousSibling}}</code>
- <dd>Returns the
- <a>previous sibling</a>.
+ <dd>返回<a lt="previous sibling">上一个兄弟节点</a>。
 
  <dt><code><var>node</var> . {{Node/nextSibling}}</code>
- <dd>Returns the
- <a for=tree>next sibling</a>.
+ <dd>返回<a for=tree lt="next sibling">下一个兄弟节点</a>。
 </dl>
 
-<p>The <dfn attribute for=Node><code>isConnected</code></dfn> getter steps are to return true,
-if <a>this</a> is <a>connected</a>; otherwise false.</p>
+<p><dfn attribute for=Node><code>isConnected</code></dfn> getter如果<a>this</a>为<a lt="connected">已连接</a>则返回true；
+否则返回false。</p>
 
-<p>The <dfn attribute for=Node><code>ownerDocument</code></dfn> getter steps are to return null,
-if <a>this</a> is a <a>document</a>; otherwise <a>this</a>'s <a for=Node>node document</a>.
+<p><dfn attribute for=Node><code>ownerDocument</code></dfn> getter如果<a>this</a>为<a>document</a>则返回null，否则
+则返回<a>this</a>的<a for=Node lt="node document">节点文档</a>。
 
-<p class=note>The <a for=Node>node document</a> of a <a>document</a> is that <a>document</a> itself.
-All <a for=/>nodes</a> have a <a for=Node>node document</a> at all times.
+<p class=note><a>document</a>的<a for=Node lt="node document">节点文档</a>为它本身。
+所有<a for=/ lt="nodes">节点</a>在任何时候都存在一个<a for=Node lt="node document">节点文档</a>。
 
-<p>The <dfn method for=Node><code>getRootNode(<var>options</var>)</code></dfn> method steps are to
-return <a>this</a>'s <a>shadow-including root</a> if
-<var>options</var>["{{GetRootNodeOptions/composed}}"] is true; otherwise <a>this</a>'s
-<a for=tree>root</a>.
+<p><dfn method for=Node><code>getRootNode(<var>options</var>)</code></dfn>方法如果
+<var>options</var>["{{GetRootNodeOptions/composed}}"]为true则返回<a>this</a>的
+<a lt="shadow-including root">影子根节点</a>；否则返回<a>this</a>的<a for=tree>root</a>。
 
-<p>The <dfn attribute for=Node><code>parentNode</code></dfn> getter steps are to return
-<a>this</a>'s <a for=tree>parent</a>.
+<p><dfn attribute for=Node><code>parentNode</code></dfn> getter将返回
+<a>this</a>的<a for=tree lt="parent">父节点</a>。
 
-<p>The <dfn attribute for=Node><code>parentElement</code></dfn> getter steps are to return
-<a>this</a>'s <a>parent element</a>.
+<p><dfn attribute for=Node><code>parentElement</code></dfn> getter将返回
+<a>this</a>的<a lt="parent element">父元素</a>。
 
-<p>The <dfn method for=Node><code>hasChildNodes()</code></dfn> method steps are to return true if
-<a>this</a> has <a for=tree>children</a>; otherwise false.
+<p><dfn method for=Node><code>hasChildNodes()</code></dfn>方法如果<a>this</a>
+存在<a for=tree lt="children">子节点</a>则返回true；否则返回false。
 
-<p>The <dfn attribute for=Node><code>childNodes</code></dfn> getter steps are to return a
-{{NodeList}} rooted at <a>this</a> matching only <a for=tree>children</a>.
+<p><dfn attribute for=Node><code>childNodes</code></dfn> getter返回一个以<a>this</a>为根仅匹配
+<a for=tree lt="children">子节点</a>的{{NodeList}}。
 
-<p>The <dfn attribute for=Node><code>firstChild</code> </dfn> getter steps are to return
-<a>this</a>'s <a for=tree>first child</a>.
+<p><dfn attribute for=Node><code>firstChild</code> </dfn> getter返回<a>this</a>的<a for=tree lt="first child">第一个子节点</a>。
 
-<p>The <dfn attribute for=Node><code>lastChild</code></dfn> getter steps are to return <a>this</a>'s
-<a>last child</a>.
+<p><dfn attribute for=Node><code>lastChild</code></dfn> getter返回<a>this</a>的<a lt="last child">最后一个子节点</a>。
 
-<p>The <dfn attribute for=Node><code>previousSibling</code></dfn> getter steps are to return
-<a>this</a>'s <a>previous sibling</a>.
+<p><dfn attribute for=Node><code>previousSibling</code></dfn> getter返回<a>this</a>的<a lt="previous sibling">上一个兄弟节点</a>。
 
-<p>The <dfn attribute for=Node><code>nextSibling</code></dfn> getter steps are to return
-<a>this</a>'s <a for=tree>next sibling</a>.
+<p>The <dfn attribute for=Node><code>nextSibling</code></dfn> getter返回<a>this</a>的<a for=tree lt="next sibling">下一个兄弟节点</a>。
 
 <hr>
 
