@@ -3745,63 +3745,60 @@ dictionary GetRootNodeOptions {
 
 <!-- TODO: domintro -->
 
-<p>The <dfn attribute for=Node>nodeValue</dfn> getter steps are to return the following, switching
-on the interface <a>this</a> <a>implements</a>:
+<p>The <dfn attribute for=Node>nodeValue</dfn> getter 使用当前<a lt="implements">实现</a>的接口作为判断条件， 
+根据接口类型来返回结果：
 
 <dl class=switch>
  <dt>{{Attr}}
- <dd><a>this</a>'s <a for=Attr>value</a>.
+ <dd><a>this</a>的<a for=Attr>value</a>。
 
  <dt>{{CharacterData}}
- <dd><a>this</a>'s <a for=CharacterData>data</a>.
+ <dd><a>this</a>的<a for=CharacterData>data</a>。
 
- <dt>Otherwise
- <dd>Null.
+ <dt>不为以上类型
+ <dd>Null
 </dl>
 
-<p>The {{Node/nodeValue}} setter steps are to, if the given value is null, act as if it was the
-empty string instead, and then do as described below, switching on the interface <a>this</a>
-<a>implements</a>:
+<p>{{Node/nodeValue}} setter 步骤为, 如果给定值为null，则将其视为空字符串，并且使用当前<a lt="implements">实现</a>的接口作为判断条件，
+根据接口类型来执行以下操作：
 
 <dl class=switch>
  <dt>{{Attr}}
- <dd><p><a>Set an existing attribute value</a> with <a>this</a> and the given value.
+ <dd><p>使用<a>this</a>和给定值<a lt="Set an existing attribute value">设置现有属性值</a>。
 
  <dt>{{CharacterData}}
- <dd><p><a>Replace data</a> with node <a>this</a>, offset 0, count <a>this</a>'s
- <a for=Node>length</a>, and data the given value.
+ <dd><p>将<a lt="Replace data">数据替换</a>为节点<a>this</a>，偏移量0，计算<a>this</a>的长度，并将数据设为给定值。
 
- <dt>Otherwise
- <dd><p>Do nothing.
+ <dt>不为以上类型
+ <dd><p>什么都不做。
 </dl>
 
-<p>The <dfn attribute for=Node><code>textContent</code></dfn> getter steps are to return the
-following, switching on the interface <a>this</a> <a>implements</a>:
+<p><dfn attribute for=Node><code>textContent</code></dfn> getter 使用当前<a lt="implements">实现</a>的接口作为判断条件， 
+根据接口类型来返回结果：
 
 <dl class=switch>
  <dt>{{DocumentFragment}}
  <dt>{{Element}}
- <dd>The <a>descendant text content</a> of <a>this</a>.
+ <dd>this的<a lt="descendant text content">后代的文本内容</a>。
 
  <dt>{{Attr}}
- <dd><a>this</a>'s <a for=Attr>value</a>.
+ <dd><a>this</a>的<a for=Attr>value</a>.
 
  <dt>{{CharacterData}}
- <dd><a>this</a>'s <a for=CharacterData>data</a>.
+ <dd><a>this</a>的<a for=CharacterData>data</a>。
 
- <dt>Otherwise
- <dd>Null.
+ <dt>不为以上类型
+ <dd>Null
 </dl>
 
-<p>To <dfn export>string replace all</dfn> with a string <var>string</var> within a
-<a for=/>node</a> <var>parent</var>, run these steps:
+<p>要将<dfn export lt="string replace all">所有字符串替换</dfn>为<a for=/ lt="node">节点</a>父节点中的字符串，请运行以下步骤： 
 
 <ol>
- <li><p>Let <var>node</var> be null.
+ <li><p>设<var>node</var>为null。
 
- <li><p>If <var>string</var> is not the empty string, then set <var>node</var> to a new {{Text}}
- <a for=/>node</a> whose <a for=CharacterData>data</a> is <var>string</var> and
- <a for=Node>node document</a> is <var>parent</var>'s <a for=Node>node document</a>.
+ <li><p>如果<var>string</var>不为空字符串，则设<var>node</var>为新的{{Text}}
+ <a for=/ lt="node">节点</a>，其<a for=CharacterData>data</a>为<var>string</var>且它的
+ <a for=Node lt="node document">节点文档</a>为<var>parent</var>的<a for=Node lt="node document">节点文档</a>。
 
  <li><p><a for=Node>Replace all</a> with <var>node</var> within <var>parent</var>.
 </ol>
