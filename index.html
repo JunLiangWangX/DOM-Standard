@@ -4735,26 +4735,27 @@ U除非另有说明，否则为空。 </p>
     <li>如果<var>length</var>为0，则<a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑦">删除</a><var>node</var>并继续处理下一个 <a data-link-type="dfn" href="#exclusive-text-node" id="ref-for-exclusive-text-node⑥">仅为<code>Text</code>的节点</a>(如果有)。 
     <li>设<var>data</var>为<var>node</var>的<a data-link-type="dfn" href="#contiguous-exclusive-text-nodes" id="ref-for-contiguous-exclusive-text-nodes①">相邻且仅为<code>Text</code>的节点</a>(不包括自己)
  的<a data-link-type="dfn" href="#concept-cd-data" id="ref-for-concept-cd-data⑨">data</a>值<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order①②">按照树的顺序</a><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-concatenate" id="ref-for-string-concatenate①">串联</a>。 
-    <li><a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace③">Replace data</a> with node <var>node</var>, offset <var>length</var>, count 0, and data <var>data</var>. 
-    <li>Let <var>currentNode</var> be <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling⑧">next sibling</a>. 
+    <li>用节点<var>node</var>、偏移量<var>length</var>、计数0和数据<var>data</var><a data-link-type="dfn" href="#concept-cd-replace" id="ref-for-concept-cd-replace③">替换数据</a>。 
+    <li>设<var>currentNode</var>为<var>node</var>的<a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling⑧">下一个兄弟节点</a>。 
     <li>
-     <p>While <var>currentNode</var> is an <a data-link-type="dfn" href="#exclusive-text-node" id="ref-for-exclusive-text-node⑦">exclusive <code>Text</code> node</a>: </p>
+     <p>当<var>currentNode</var>为<a data-link-type="dfn" href="#exclusive-text-node" id="ref-for-exclusive-text-node⑦">仅为<code>Text</code>的节点</a>： </p>
      <ol>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range⑧">live range</a> whose <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node③">start node</a> is <var>currentNode</var>,
-   add <var>length</var> to its <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset④">start offset</a> and set its <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node④">start node</a> to <var>node</var>. </p>
+       <p>对于<a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node③">开始节点</a>为<var>currentNode</var>的每个<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range⑧">live range</a>，
+   设其<a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset④">开始偏移量</a>为其值加上<var>length</var>并将其 <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node④">开始节点</a>设置为<var>node</var>。 </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range⑨">live range</a> whose <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node③">end node</a> is <var>currentNode</var>, add <var>length</var> to its <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset④">end offset</a> and set its <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node④">end node</a> to <var>node</var>. </p>
+       <p>对于<a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node③">结束节点</a>为<var>currentNode</var>的每个<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range⑨">live range</a>，
+   设其<a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset④">结束偏移量</a>为其值加上<var>length</var>并将其 <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node④">结束节点</a>设置为<var>node</var>。 </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①⓪">live range</a> whose <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node⑤">start node</a> is <var>currentNode</var>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent②②">parent</a> and <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset⑤">start offset</a> is <var>currentNode</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index④">index</a>, set its <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node⑥">start node</a> to <var>node</var> and its <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset⑥">start offset</a> to <var>length</var>. </p>
+       <p>对于<a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node⑤">开始节点</a>为<var>currentNode</var>的 <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent②②">父节点</a>且<a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset⑤">开始偏移量</a> 为<var>currentNode</var>的<a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index④">index</a>的每个<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①⓪">live range</a>，设它的 <a data-link-type="dfn" href="#concept-range-start-node" id="ref-for-concept-range-start-node⑥">开始节点</a>为<var>node</var>以及其 <a data-link-type="dfn" href="#concept-range-start-offset" id="ref-for-concept-range-start-offset⑥">开始偏移量</a>为<var>length</var>。 </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①①">live range</a> whose <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node⑤">end node</a> is <var>currentNode</var>’s <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent②③">parent</a> and <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset⑤">end offset</a> is <var>currentNode</var>’s <a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index⑤">index</a>, set its <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node⑥">end node</a> to <var>node</var> and its <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset⑥">end offset</a> to <var>length</var>. </p>
+       <p>对于<a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node⑤">结束节点</a>为<var>currentNode</var>的 <a data-link-type="dfn" href="#concept-tree-parent" id="ref-for-concept-tree-parent②③">父节点</a>且<a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset⑤">结束偏移量</a> 为<var>currentNode</var>的<a data-link-type="dfn" href="#concept-tree-index" id="ref-for-concept-tree-index⑤">index</a>的每个<a data-link-type="dfn" href="#concept-live-range" id="ref-for-concept-live-range①①">live range</a>，设它的 <a data-link-type="dfn" href="#concept-range-end-node" id="ref-for-concept-range-end-node⑥">结束节点</a>为<var>node</var>以及其 <a data-link-type="dfn" href="#concept-range-end-offset" id="ref-for-concept-range-end-offset⑥">结束偏移量</a>为<var>length</var>。 </p>
       <li>
-       <p>Add <var>currentNode</var>’s <a data-link-type="dfn" href="#concept-node-length" id="ref-for-concept-node-length②">length</a> to <var>length</var>. </p>
+       <p>设<var>length</var>为<var>length</var>加上<var>currentNode</var>的<a data-link-type="dfn" href="#concept-node-length" id="ref-for-concept-node-length②">length</a>。 </p>
       <li>
-       <p>Set <var>currentNode</var> to its <a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling⑨">next sibling</a>. </p>
+       <p>设<var>currentNode</var>为它的<a data-link-type="dfn" href="#concept-tree-next-sibling" id="ref-for-concept-tree-next-sibling⑨">下一个兄弟节点</a>。 </p>
      </ol>
-    <li><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑧">Remove</a> <var>node</var>’s <a data-link-type="dfn" href="#contiguous-exclusive-text-nodes" id="ref-for-contiguous-exclusive-text-nodes②">contiguous exclusive <code>Text</code> nodes</a> (excluding itself), in <a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order①③">tree order</a>. 
+    <li>使用<a data-link-type="dfn" href="#concept-tree-order" id="ref-for-concept-tree-order①③">树的顺序</a><a data-link-type="dfn" href="#concept-node-remove" id="ref-for-concept-node-remove⑧">删除</a> <var>node</var>的 <a data-link-type="dfn" href="#contiguous-exclusive-text-nodes" id="ref-for-contiguous-exclusive-text-nodes②">相邻的仅为<code>Text</code>的节点</a>(排除自身)。 
    </ol>
    <hr>
    <dl class="domintro">
@@ -4776,7 +4777,7 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>node</var> . <a class="idl-code" data-link-type="method" href="#dom-node-clonenode" id="ref-for-dom-node-clonenode①">cloneNode([<var>deep</var> = false])</a></code> 
-    <dd>Returns a copy of <var>node</var>. If <var>deep</var> is true, the copy also includes the <var>node</var>’s <a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant①①">descendants</a>. 
+    <dd>返回复制的节点，如果<var>deep</var>参数为true，则会将其<a data-link-type="dfn" href="#concept-tree-descendant" id="ref-for-concept-tree-descendant①①">后代</a>节点也一同复制。 
     <dt>
      <div class="mdn-anno wrapped">
       <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -4795,7 +4796,7 @@ U除非另有说明，否则为空。 </p>
       </div>
      </div>
      <code><var>node</var> . <code class="idl"><a data-link-type="idl" href="#dom-node-isequalnode" id="ref-for-dom-node-isequalnode①">isEqualNode(otherNode)</a></code></code> 
-    <dd>Returns whether <var>node</var> and <var>otherNode</var> have the same properties. 
+    <dd>返回该节点与<var>otherNode</var>是否有相同的属性。 
    </dl>
    <div class="impl">
     <p><a data-link-type="dfn" href="#other-applicable-specifications" id="ref-for-other-applicable-specifications④">Specifications</a> may define <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-node-clone-ext">cloning steps</dfn> for all or some <a data-link-type="dfn" href="#concept-node" id="ref-for-concept-node⑦⑤">nodes</a>. The
