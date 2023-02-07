@@ -3800,50 +3800,47 @@ dictionary GetRootNodeOptions {
  <a for=/ lt="node">节点</a>，其<a for=CharacterData>data</a>为<var>string</var>且它的
  <a for=Node lt="node document">节点文档</a>为<var>parent</var>的<a for=Node lt="node document">节点文档</a>。
 
- <li><p><a for=Node>Replace all</a> with <var>node</var> within <var>parent</var>.
+ <li><p>将<a for=Node lt="Replace all">所有替换</a>为parent中的节点。
 </ol>
 
-<p>The {{Node/textContent}} setter steps are to, if the given value is null, act as if it was the
-empty string instead, and then do as described below, switching on the interface <a>this</a>
-<a>implements</a>:
+<p>{{Node/textContent}} setter 步骤为，如果给定值为null，则将其视为空字符串，并且使用当前<a lt="implements">实现</a>的接口作为判断条件，
+根据接口类型来执行以下操作：
 
 <dl class=switch>
  <dt>{{DocumentFragment}}
  <dt>{{Element}}
- <dd><p><a>String replace all</a> with the given value within <a>this</a>.
+ <dd><p>使用<a>this</a>的给定值<a lt="String replace all">替换所有字符串</a>。
 
  <dt>{{Attr}}
- <dd><p><a>Set an existing attribute value</a> with <a>this</a> and the given value.
+ <dd><p>使用给定值<a lt="Set an existing attribute value">设置一个this中现有的属性</a>。
 
  <dt>{{CharacterData}}
- <dd><p><a>Replace data</a> with node <a>this</a>, offset 0, count <a>this</a>'s
- <a for=Node>length</a>, and data the given value.
+ <dd><p>将<a lt="Replace data">数据替换</a>为节点<a>this</a>，偏移量0，计算<a>this</a>的长度，并将数据设为给定值。
 
- <dt>Otherwise
- <dd><p>Do nothing.
+ <dt>不为以上类型
+ <dd><p>什么都不做。
 </dl>
 
 <hr>
 
 <dl class=domintro>
  <dt><code><var>node</var> . {{Node/normalize()}}</code>
- <dd>Removes <a for=Node>empty</a> <a>exclusive <code>Text</code> nodes</a> and concatenates the
- <a for=CharacterData>data</a> of remaining <a>contiguous exclusive <code>Text</code> nodes</a>
- into the first of their <a for=/>nodes</a>.
+ <dd>移除<a for=Node lt="empty">空的</a><a lt="exclusive Text nodes">仅为<code>Text</code>的节点</a>，
+ 并将剩余的<a lt="contiguous exclusive Text nodes">相邻的仅为<code>Text</code>的节点</a>的<a for=CharacterData lt="data">数据</a>
+ 连接到它们的第一个<a for=/ lt="nodes">节点</a>中。
 </dl>
 
-<p>The <dfn method for=Node><code>normalize()</code></dfn> method steps are to run these steps for
-each <a>descendant</a> <a>exclusive <code>Text</code> node</a> <var>node</var> of <a>this</a>:
+<p><dfn method for=Node><code>normalize()</code></dfn>方法对于<a>this</a>的<a lt="descendant">后代中</a>
+每个<a lt="exclusive Text nodes">仅为<code>Text</code>的节点</a>(<var>node</var>)将运行以下步骤：
 
 <ol>
- <li>Let <var>length</var> be <var>node</var>'s <a for=Node>length</a>.
+ <li>设<var>length</var>为<var>node</var>的<a for=Node>length</a>。
 
- <li>If <var>length</var> is zero, then <a for=/>remove</a> <var>node</var> and continue with the
- next <a>exclusive <code>Text</code> node</a>, if any.
+ <li>如果<var>length</var>为0，则<a for=/ lt="remove">删除</a><var>node</var>并继续处理下一个
+ <a lt="exclusive Text nodes">仅为<code>Text</code>的节点</a>(如果有)。
 
- <li>Let <var>data</var> be the <a for=string>concatenation</a> of the <a for=CharacterData>data</a>
- of <var>node</var>'s <a>contiguous exclusive <code>Text</code> nodes</a> (excluding itself), in
- <a>tree order</a>.
+ <li>设<var>data</var>为<var>node</var>的<a lt="contiguous exclusive Text nodes">相邻且仅为<code>Text</code>的节点</a>(不包括自己)
+ 的<a for=CharacterData>data</a>值<a lt="tree order">按照树的顺序</a><a for=string lt="concatenation">串联</a>。
 
  <li><a>Replace data</a> with node <var>node</var>, offset <var>length</var>, count 0, and data
  <var>data</var>.
