@@ -3842,53 +3842,51 @@ dictionary GetRootNodeOptions {
  <li>设<var>data</var>为<var>node</var>的<a lt="contiguous exclusive Text nodes">相邻且仅为<code>Text</code>的节点</a>(不包括自己)
  的<a for=CharacterData>data</a>值<a lt="tree order">按照树的顺序</a><a for=string lt="concatenation">串联</a>。
 
- <li><a>Replace data</a> with node <var>node</var>, offset <var>length</var>, count 0, and data
- <var>data</var>.
+ <li>用节点<var>node</var>、偏移量<var>length</var>、计数0和数据<var>data</var><a lt="Replace data">替换数据</a>。
 
- <li>Let <var>currentNode</var> be <var>node</var>'s <a for=tree>next sibling</a>.
+ <li>设<var>currentNode</var>为<var>node</var>的<a for=tree lt="next sibling">下一个兄弟节点</a>。
 
  <li>
-  <p>While <var>currentNode</var> is an <a>exclusive <code>Text</code> node</a>:
+  <p>当<var>currentNode</var>为<a lt="exclusive Text nodes">仅为<code>Text</code>的节点</a>：
 
   <ol>
-   <li><p>For each <a>live range</a> whose <a for=range>start node</a> is <var>currentNode</var>,
-   add <var>length</var> to its <a for=range>start offset</a> and set its
-   <a for=range>start node</a> to <var>node</var>.
+   <li><p>对于<a for=range lt="start node">开始节点</a>为<var>currentNode</var>的每个<a>live range</a>，
+   设其<a for=range lt="start offset">开始偏移量</a>为其值加上<var>length</var>并将其
+   <a for=range lt="start node">开始节点</a>设置为<var>node</var>。
 
-   <li><p>For each <a>live range</a> whose <a for=range>end node</a> is <var>currentNode</var>, add
-   <var>length</var> to its <a for=range>end offset</a> and set its <a for=range>end node</a> to
-   <var>node</var>.
+   <li><p>对于<a for=range lt="end node">结束节点</a>为<var>currentNode</var>的每个<a>live range</a>，
+   设其<a for=range lt="end offset">结束偏移量</a>为其值加上<var>length</var>并将其
+   <a for=range lt="end node">结束节点</a>设置为<var>node</var>。
 
-   <li><p>For each <a>live range</a> whose <a for=range>start node</a> is <var>currentNode</var>'s
-   <a for=tree>parent</a> and <a for=range>start offset</a> is <var>currentNode</var>'s
-   <a for=tree>index</a>, set its <a for=range>start node</a> to <var>node</var> and its
-   <a for=range>start offset</a> to <var>length</var>.
+   <li><p>对于<a for=range lt="start node">开始节点</a>为<var>currentNode</var>的
+   <a for=tree lt="parent">父节点</a>且<a for=range lt="start offset">开始偏移量</a>
+   为<var>currentNode</var>的<a for=tree>index</a>的每个<a>live range</a>，设它的
+   <a for=range lt="start node">开始节点</a>为<var>node</var>以及其
+   <a for=range lt="start offset">开始偏移量</a>为<var>length</var>。
 
-   <li><p>For each <a>live range</a> whose <a for=range>end node</a> is <var>currentNode</var>'s
-   <a for=tree>parent</a> and <a for=range>end offset</a> is <var>currentNode</var>'s
-   <a for=tree>index</a>, set its <a for=range>end node</a> to <var>node</var> and its
-   <a for=range>end offset</a> to <var>length</var>.
+   <li><p>对于<a for=range lt="end node">结束节点</a>为<var>currentNode</var>的
+   <a for=tree lt="parent">父节点</a>且<a for=range lt="end offset">结束偏移量</a>
+   为<var>currentNode</var>的<a for=tree>index</a>的每个<a>live range</a>，设它的
+   <a for=range lt="end node">结束节点</a>为<var>node</var>以及其
+   <a for=range lt="end offset">结束偏移量</a>为<var>length</var>。
 
-   <li><p>Add <var>currentNode</var>'s <a for=Node>length</a> to <var>length</var>.
+   <li><p>设<var>length</var>为<var>length</var>加上<var>currentNode</var>的<a for=Node>length</a>。
 
-   <li><p>Set <var>currentNode</var> to its <a for=tree>next sibling</a>.
+   <li><p>设<var>currentNode</var>为它的<a for=tree lt="next sibling">下一个兄弟节点</a>。
   </ol>
 
- <li><a for=/>Remove</a> <var>node</var>'s <a>contiguous exclusive <code>Text</code> nodes</a>
- (excluding itself), in <a>tree order</a>.
+ <li>使用<a lt="tree order">树的顺序</a><a for=/ lt="Remove">删除</a> <var>node</var>的
+ <a lt="contiguous exclusive Text nodes">相邻的仅为<code>Text</code>的节点</a>(排除自身)。
 </ol>
 
 <hr>
 
 <dl class=domintro>
  <dt><code><var>node</var> . <a method for=Node lt=cloneNode()>cloneNode([<var>deep</var> = false])</a></code>
- <dd>Returns a copy of <var>node</var>. If
- <var>deep</var> is true, the copy also includes the
- <var>node</var>'s <a>descendants</a>.
+ <dd>返回复制的节点，如果<var>deep</var>参数为true，则会将其<a lt="descendants">后代</a>节点也一同复制。
 
  <dt><code><var>node</var> . {{Node/isEqualNode(otherNode)}}</code>
- <dd>Returns whether <var>node</var> and <var>otherNode</var>
- have the same properties.
+ <dd>返回该节点与<var>otherNode</var>是否有相同的属性。
 </dl>
 
 <div class=impl>
